@@ -27,12 +27,13 @@ VIDEO. Include a demo video of your game here (you don't have to wait until the 
 
 GROUP PHOTO. Add a group photo here.
 
-- Group member 1, name, email, role
-- Group member 2, name, email, role
-- Group member 3, name, email, role
-- Group member 4, name, email, role
-- Group member 5, name, email, role
-- Group member 6, name, email, role
+| Name  | GitHub ID | Email | Role |
+| --- | --- | --- | --- |
+| Jen Chen | jenchen-dev | fa25231@bristol.ac.uk | Role |
+| Shanley Chang | hyc-ib | shanley.chang.2024@bristol.ac.uk | Role |
+| Yijia Chen | yijia0018-boop | hj25114@bristol.ac.uk | Role |
+| Yumeng Jiang | midnight7273 | ea25130@bristol.ac.uk | Role |
+| Yufei Liu | Yufeifei123 | nq25048@bristol.ac.uk | Role |
 
 ## Project Report
 
