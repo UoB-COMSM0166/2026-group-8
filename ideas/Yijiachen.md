@@ -19,5 +19,3 @@ Players help a small kiwi bird bounce through the air by dragging objects into i
 ## 🖼 Screenshots  
 
 ![Kiwis Can't Fly Screenshot](https://media.rawg.io/media/resize/640/-/screenshots/92a/92ab354ef93cfdb0bff12cdc4fa006f4.jpg)
-
-![Kiwis Can't Fly Icon](https://is1-ssl.mzstatic.com/image/thumb/Purple112/v4/4e/da/b4/4edab4d8-d36e-c37a-27de-fe7903eb9085/AppIcon-0-0-1x_U007emarketing-0-0-0-5-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/1200x630wa.png)
