@@ -34,6 +34,10 @@ VIDEO. Include a demo video of your game here (you don't have to wait until the 
 | Yumeng Jiang | midnight7273 | ea25130@bristol.ac.uk | Role |
 | Yufei Liu | Yufeifei123 | nq25048@bristol.ac.uk | Role |
 
+## Kanban
+
+Project Progress: [Here](https://github.com/orgs/UoB-COMSM0166/projects/161/views/1)
+
 ## Project Report
 
 ### Introduction
