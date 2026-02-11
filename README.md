@@ -51,7 +51,52 @@ Project Progress: [Here](https://github.com/orgs/UoB-COMSM0166/projects/161/view
 ### Requirements 
 
 - 15% ~750 words
-- Early stages design. Ideation process. How did you decide as a team what to develop? Use case diagrams, user stories. 
+- Early stages design. Ideation process. How did you decide as a team what to develop? Use case diagrams, user stories.
+------------------
+  
+#### Stakeholders
+-	Development Team (Team Leader, Designers, Engineers, Testers, Artists)
+-	Players
+-	Course Instructor (Teachers/ TAs)
+-	Future Platform Providers
+------------------
+
+#### Epics - User Stories and Acceptance Criteria
+
+##### Epic 1 - Core Gameplay System
+- User Story 1: As a player, I want to launch the ball by clicking the mouse, so that I can start the game easily.
+- Acceptance Criteria: Given the game is in the start state and the ball is on the paddle, when the player clicks the mouse, then the ball moves upward and the game begins.
+- User Story 2: As a player, I want the ball to bounce off walls, bricks, and the paddle, so that the game behaves realistically.
+- Acceptance Criteria: Given the ball collides with a wall, brick, or paddle, when the collision occurs, then the ball changes direction according to collision rules.
+- User Story 3: As a player, I want bricks to disappear when hit, so that I can see my progress.
+- Acceptance Criteria: Given a brick is hit by the ball, when the collision is detected, then the brick is removed from the screen and the score increases.
+
+##### Epic 2: Power-up System
+- User Story 1: As a player, I want bricks to randomly drop power-ups, so that the game feels dynamic and unpredictable.
+- Acceptance Criteria: Given a brick is destroyed, when the destruction event occurs, then there is a fixed probability that a power-up object is generated.
+- User Story 2: As a player, I want to catch falling power-ups with the paddle, so that I can activate special effects.
+- Acceptance Criteria: Given a power-up is falling, when the paddle collides with the power-up, then the corresponding effect is activated.
+
+##### Epic 3: Game Progression and End Conditions
+- User Story 1: As a player, I want to lose a life when the ball falls below the paddle, so that the game has challenge.
+- Acceptance Criteria: Given the ball moves below the paddle boundary, when the out-of-bounds condition is detected, then one life is deducted and the ball resets to the paddle.
+- User Story 2: As a player, I want to pause the game at any time, so that I can take a break without losing progress.
+- Acceptance Criteria: Given the game is currently running, when the player presses the pause key (e.g., “P”), then the ball stops moving and all game interactions are temporarily disabled. Given the game is paused, when the player presses the pause key again, then the game resumes from the same state as before pausing.
+- User Story 3: As a player, I want the game to end when all bricks are destroyed, so that I feel a sense of achievement.
+- Acceptance Criteria: Given there are no bricks remaining on the screen, when the system checks win conditions, then a victory message is displayed and the game stops.
+------------------
+
+#### Reflection
+
+During the lecture, we learned how epics, user stories, and acceptance criteria help structure requirements in a clear and testable way.
+
+Epics allowed us to organise the system into high-level functional areas, such as core gameplay, power-ups, and game progression. Instead of thinking about isolated features, we first identified the main components of the game. This helped us understand the overall structure and ensured that no important functionality was overlooked.
+
+Writing user stories using the format “As a player, I want…, so that…” encouraged us to focus on the player’s perspective rather than technical implementation. For example, instead of describing collision detection algorithms, we framed requirements around player goals, such as wanting realistic ball bouncing or dynamic gameplay through power-ups. This shift improved our understanding of user experience and game motivation.
+
+Acceptance criteria were particularly valuable because they made requirements measurable and testable. Using the “Given–When–Then” format helped us define precise conditions under which a feature is considered complete. For instance, defining what happens when the ball falls below the paddle clarified life deduction and reset behaviour. This reduced ambiguity and improved team communication.
+
+The paper prototyping process further strengthened our understanding of the game’s context. By simulating interactions physically, we identified design issues early, such as pacing and difficulty balance. Overall, this structured requirement approach made our design more systematic, user-centred, and easier to evaluate.
 
 ### Design
 
