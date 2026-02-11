@@ -63,7 +63,7 @@ Project Progress: [Here](https://github.com/orgs/UoB-COMSM0166/projects/161/view
 
 #### Epics - User Stories and Acceptance Criteria
 
-##### Epic 1 - Core Gameplay System
+##### Epic 1: Core Gameplay System
 - User Story 1: As a player, I want to launch the ball by clicking the mouse, so that I can start the game easily.
 - Acceptance Criteria: Given the game is in the start state and the ball is on the paddle, when the player clicks the mouse, then the ball moves upward and the game begins.
 - User Story 2: As a player, I want the ball to bounce off walls, bricks, and the paddle, so that the game behaves realistically.
