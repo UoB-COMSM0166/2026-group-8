@@ -32,7 +32,7 @@ VIDEO. Include a demo video of your game here (you don't have to wait until the 
 | Name  | GitHub ID | Email | Role |
 | --- | --- | --- | --- |
 | Jen Chen | jenchen-dev | fa25231@bristol.ac.uk | Role |
-| Shanley Chang | hyc-ib | shanley.chang.2024@bristol.ac.uk | Role |
+| Shanley Chang | hyc-ib | xn25085@bristol.ac.uk | Role |
 | Yijia Chen | yijia0018-boop | hj25114@bristol.ac.uk | Role |
 | Yumeng Jiang | midnight7273 | ea25130@bristol.ac.uk | Role |
 | Yufei Liu | Yufeifei123 | nq25048@bristol.ac.uk | Role |
@@ -46,7 +46,12 @@ Project Progress: [Here](https://github.com/orgs/UoB-COMSM0166/projects/161/view
 ### Introduction
 
 - 5% ~250 words 
-- Describe your game, what is based on, what makes it novel? (what's the "twist"?) 
+- Describe your game, what is based on, what makes it novel? (what's the "twist"?)
+
+The game follows the core rules of a breakout game: the player controls a paddle to bounce a ball and destroy bricks. However, we have added a unique "Active Paddle" mechanic that changes the traditional gameplay.
+  1. The Jumping Paddle: By pressing the Spacebar, players can make the paddle jump upwards. This allows the player to actively strike the ball, giving it more speed or changing its direction.
+  2. Physics-Based Movement: The ball is subject to subtle gravity, moving in realistic arcs rather than just straight lines.
+  3. Power-up System: Players can collect items to expand the paddle, increase the number of balls, or gain special abilities.
 
 ### Requirements 
 
