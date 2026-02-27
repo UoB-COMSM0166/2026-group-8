@@ -28,13 +28,13 @@ class Ball {
     this.checkPaddleCollision(paddle); // Check paddle collision
     this.checkBrickCollision(bricks); // Check brick collision
   }
-
+  
 
   // Display the ball
   display() {
     circle(this.pos.x, this.pos.y, this.r * 2);
   }
-
+  
 
   // Wall collision (left, right, top walls; bottom handled by Game)
   checkWallCollision() {
