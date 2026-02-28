@@ -30,5 +30,7 @@ function mouseClicked() {
         if (menuPage.checkStartClicked()) {
             currentMode = 'game';
         }
+    } else if (currentMode === 'game') {
+        gamePage.paddle.launchBall();
     }
 }

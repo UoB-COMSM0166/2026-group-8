@@ -1,9 +1,9 @@
 class Game {
     constructor(imgFile1, imgFile2) {
-        // this.ball = new Ball();
-        // this.paddle = new Paddle();
+        this.ball = new Ball(200, 350, 5);
+        this.paddle = new Paddle();
         // this.bricks = new Bricks();
-        // this.currentState = new State();
+        // this.currentState = new State(this);
         this.score = 0;
         this.life = 3;
         this.brickImg = imgFile1;
@@ -11,10 +11,14 @@ class Game {
     }
 
     display() {
-        // this.bricks.display();
-        // this.paddle.display();
-        // this.ball.display();
         this.drawInitPage();
+        // this.bricks.display();
+
+        this.paddle.update();
+        this.ball.update(this.paddle, []);
+
+        this.paddle.display();
+        this.ball.display();
     }
 
     drawInitPage() {
