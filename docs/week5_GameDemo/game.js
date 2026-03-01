@@ -43,7 +43,7 @@ class Game {
         text('Score: ', 450, 100);
         text(this.score, 450, 120);
         text('Life remain: ', 450, 150);
-        text(this.life, 450, 170)
+        text(this.lives, 450, 170)
 
         image(this.brickImg, 480, 300, 80, 80);
         image(this.ballImg, 550, 20, 30, 30);
