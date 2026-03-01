@@ -2,7 +2,7 @@ class Game {
     constructor(imgFile1, imgFile2) {
         this.ball = new Ball(200, 350, 5);
         this.paddle = new Paddle();
-        // this.bricks = new Bricks();
+        this.bricks = new Bricks();
         // this.currentState = new State(this);
         this.score = 0;
         this.life = 3;
@@ -12,7 +12,7 @@ class Game {
 
     display() {
         this.drawInitPage();
-        // this.bricks.display();
+        this.bricks.display();
 
         this.paddle.update();
         this.ball.update(this.paddle, []);
