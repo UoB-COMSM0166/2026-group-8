@@ -70,7 +70,6 @@ class Menu {
             fill('red');
             cursor(HAND);
         } else {
-
             fill('yellow');
         }
 
@@ -82,6 +81,7 @@ class Menu {
 
     drawDecor() {
         noStroke();
+        fill(255);
         rect(140, 70, 320, 270);
         circle(30, 30, 10);
         circle(570, 30, 10);
