@@ -4,7 +4,6 @@ class Game {
         this.paddle = new Paddle();
         this.bricks = new Bricks();
         // this.currentState = new GameManage(this);
-        this.score = 0;
         this.lives = 3;
         this.brickImg = imgFile1;
         this.ballImg = imgFile2;
