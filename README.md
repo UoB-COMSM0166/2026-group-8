@@ -13,13 +13,14 @@ You will be developing your game using [P5.js](https://p5js.org) a javascript li
 - [P5.js tutorials](https://p5js.org/tutorials/) 
 - [Coding Train P5.js](https://thecodingtrain.com/tracks/code-programming-with-p5-js) course - go here for enthusiastic video tutorials from Dan Shiffman (recommended!)
 
-## Your Game (change to title of your game)
+## BLOCK
 
 STRAPLINE. Add an exciting one sentence description of your game here.
 
 IMAGE. Add an image of your game here, keep this updated with a snapshot of your latest development.
 
-LINK. Add a link here to your deployed game, you can also make the image above link to your game if you wish. Your game lives in the [/docs](/docs) folder, and is published using Github pages. 
+LINK. Add a link here to your deployed game, you can also make the image above link to your game if you wish. Your game lives in the [/docs](/docs) folder, and is published using Github pages.
+[![click to play](https://i.pinimg.com/1200x/0b/e1/27/0be127916560702af014298cc64b7137.jpg)](https://uob-comsm0166.github.io/2026-group-8/)
 
 VIDEO. Include a demo video of your game here (you don't have to wait until the end, you can insert a work in progress video)
 ## 🎥 Gameplay Demo
