@@ -33,7 +33,7 @@ VIDEO. Include a demo video of your game here (you don't have to wait until the 
 [![Watch the demo](https://img.youtube.com/vi/5SVV6CRx2f8/0.jpg)](https://youtu.be/5SVV6CRx2f8)
 
 ## Your Group
-<img width="450" height="300" alt="image" src="https://github.com/user-attachments/assets/486c7d2b-6287-45e7-a901-5b63c62400e1" />
+<img width="450" height="300" alt="image" src="https://github.com/user-attachments/assets/e9fe9ff7-deb9-4966-bee2-bffa69ac1743" />
 
 | Name  | GitHub ID | Email | Role |
 | --- | --- | --- | --- |
