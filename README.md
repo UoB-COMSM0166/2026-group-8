@@ -19,7 +19,8 @@ STRAPLINE. Add an exciting one sentence description of your game here.
 
 IMAGE. Add an image of your game here, keep this updated with a snapshot of your latest development.
 
-<img width="450" height="300" alt="image" src="https://github.com/user-attachments/assets/486c7d2b-6287-45e7-a901-5b63c62400e1" />
+<img width="335" height="485" alt="image" src="https://github.com/user-attachments/assets/ecc6fc1c-702a-4b7b-834e-991c4d5013d9" />
+" />
 
 LINK. Add a link here to your deployed game, you can also make the image above link to your game if you wish. Your game lives in the [/docs](/docs) folder, and is published using Github pages.
 
