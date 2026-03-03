@@ -21,27 +21,27 @@ class Ball {
     // Display the ball
     display() {
         fill('#4A90D9');
-        noStroke();
+        stroke('#4A90D9');
+        strokeWeight(3);
         circle(this.pos.x, this.pos.y, this.r * 2);
     }
     // Wall collision (left, right, top walls; bottom handled by Game)
     checkWallCollision() {
-        // Hit left wall
-        if (this.pos.x - this.r < 15) {
-            this.pos.x = 15 + this.r;        // Push the ball back inside the boundary
-            this.vel.x *= -1;           // Reverse x velocity
-        }
-        // Hit right wall
-        if (this.pos.x + this.r > 425) {
-            this.pos.x = 425 - this.r;
+
+        if (this.pos.x - this.r < 35) {
+            this.pos.x = 35 + this.r;
             this.vel.x *= -1;
         }
-        // Hit top wall
-        if (this.pos.y - this.r < 15) {
-            this.pos.y = 15 + this.r;
+
+        if (this.pos.x + this.r > 465) {
+            this.pos.x = 465 - this.r;
+            this.vel.x *= -1;
+        }
+
+        if (this.pos.y - this.r < 35) {
+            this.pos.y = 35 + this.r;
             this.vel.y *= -1;
         }
-        // Bottom not handled here; if the ball falls below, Game switches to GameOver state
     }
     // Paddle collision, change angle based on hit position
     checkPaddleCollision(paddle) {

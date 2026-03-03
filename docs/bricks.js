@@ -14,23 +14,22 @@ class Bricks {
     }
 
     generateLevel() {
-        this.items = [];     // Clear existing bricks
-        let cols = 8;        // Number of columns
-        let rows = 5;        // Number of rows
-        let offsetX = 20;    // Starting X position to perfectly fit the team's game box
+        this.items = [];
+        let cols = 7;
+        let rows = 8;
+        let gap = 5;
+        let offsetX = 75;
 
         for (let r = 0; r < rows; r++) {
             for (let c = 0; c < cols; c++) {
-                // Randomly pick one color from the palette
                 let pickedColor = random(this.colorPalette);
-                // Add the new brick object to the items array
                 this.items.push({
-                    x: offsetX + c * (this.brickW + 5), // Calculate X position with a 5px gap
-                    y: 60 + r * (this.brickH + 5),      // Calculate Y position with a 5px gap
-                    w: this.brickW,                     // Width
-                    h: this.brickH,                     // Height
-                    active: true,                       // Status flag used for collision and rendering
-                    color: pickedColor                  // Store the assigned color for this brick
+                    x: offsetX + c * (this.brickW + gap),
+                    y: 80 + r * (this.brickH + gap),
+                    w: this.brickW,
+                    h: this.brickH,
+                    active: true,
+                    color: pickedColor
                 });
             }
         }

@@ -1,7 +1,7 @@
 class Menu {
     constructor() {
         this.gridSize = 20;
-        this.btnSize = 20;
+        this.btnSize = 24;
         this.center = width / 2;
     }
 
@@ -12,9 +12,9 @@ class Menu {
         this.drawDecor();
         this.drawTitle();
 
-        this.drawButton('Start', 220);
-        this.drawButton('Twist version 1', 260);
-        this.drawButton('Twist version 2', 300);
+        this.drawButton('Start', 350);
+        this.drawButton('Twist version 1', 400);
+        this.drawButton('Twist version 2', 450);
     }
 
     drawBorder() {
@@ -33,7 +33,7 @@ class Menu {
 
     drawGrid(x, y) {
         if (((x + y) / this.gridSize) % 2 === 0) {
-            fill('grey');
+            fill('gray');
         } else {
             fill('white');
         }
@@ -53,7 +53,7 @@ class Menu {
         stroke(0);
         strokeWeight(4);
         textAlign(CENTER, CENTER);
-        text('- BLOCK -', width / 2, 130);
+        text('- BLOCK -', width / 2, 250);
         pop();
     }
 
@@ -82,16 +82,16 @@ class Menu {
     drawDecor() {
         noStroke();
         fill(255);
-        rect(140, 70, 320, 270);
-        circle(30, 30, 10);
-        circle(570, 30, 10);
-        circle(30, 370, 10);
-        circle(570, 370, 10);
+        rect(75, 125, 350, 450);
+        circle(30, 30, 12);
+        circle(width - 30, 30, 12);
+        circle(30, height - 30, 12);
+        circle(width - 30, height - 30, 12);
     }
 
     checkStartClicked() {
         let tw = textWidth('Start');
-        if (this.btnRange(this.center, 220, tw, this.btnSize)) {
+        if (this.btnRange(this.center, 350, tw, this.btnSize)) {
             return true;
         }
         return false;

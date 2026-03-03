@@ -1,16 +1,15 @@
 class Paddle {
     constructor() {
         this.w = 100;
-        this.h = 12;
-
+        this.h = 15;
         this.x = (width - this.w) / 2;
-        this.y = height - 30;
+        this.y = 600;
         this.isBallAttached = true;
     }
 
     update() {
         this.x = mouseX - this.w / 2;
-        this.x = constrain(this.x, 15, 425 - this.w);
+        this.x = constrain(this.x, 35, 465 - this.w);
     }
 
     launchBall() {

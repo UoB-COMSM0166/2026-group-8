@@ -25,27 +25,42 @@ class Game {
         background('grey');
         fill('white');
         noStroke();
-        rect(10, 10, 420, 380);
-        rect(440, 10, 150, 380);
+        rect(25, 25, 450, 600);
+        this.drawWatermark();
 
-        textSize(30);
-        stroke(0);
-        strokeWeight(4);
+        textSize(20);
+        textAlign(LEFT);
         fill('white');
-        textAlign(LEFT);
-        text('BASIC', 450, 50);
-
-        textSize(15);
         stroke(0);
-        strokeWeight(4);
-        textAlign(LEFT);
-        fill('pink');
-        text('Score: ', 450, 100);
-        text(this.score, 450, 120);
-        text('Life remain: ', 450, 150);
-        text(this.lives, 450, 170)
+        strokeWeight(3);
+        text('LIVES: ', 40, 660);
+        this.displayHeartEmojis(120, 665);
 
-        image(this.brickImg, 480, 300, 80, 80);
-        image(this.ballImg, 550, 20, 30, 30);
+        image(this.brickImg, 400, 635, 50, 50);
+    }
+
+    displayHeartEmojis(x, y) {
+        let hearts = "";
+        for (let i = 0; i < this.lives; i++) {
+            hearts += "❤️";
+        }
+        push();
+        textSize(22);
+        noStroke();
+        textAlign(LEFT, CENTER);
+        text(hearts, x, y - 2);
+        pop();
+    }
+
+    drawWatermark() {
+        push();
+        translate(250, 325);
+        textAlign(CENTER, CENTER);
+        textSize(80);
+        textStyle(BOLD);
+        fill(150, 150, 150, 30);
+        noStroke();
+        text('BASIC', 0, 0);
+        pop();
     }
 }

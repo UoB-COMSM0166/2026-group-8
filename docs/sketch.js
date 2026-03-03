@@ -9,7 +9,7 @@ function preload() {
 }
 
 function setup() {
-    createCanvas(600, 400);
+    createCanvas(500, 700);
 
     menuPage = new Menu();
     gamePage = new Game(brickImg, ballImg);
