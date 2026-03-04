@@ -2,7 +2,8 @@ class GameManage {
     constructor() {
         this.lives = 3;
         this.score = 0;
-        this.state = 'PLAYING';  // playing, won, gameover
+        this.state = 'INSTRUCTION';  // instruction, playing, won, gameover
+        this.prevState = 'PLAYING';
     }
 
 
@@ -26,5 +27,14 @@ class GameManage {
 
     getLifeString() {
         return "❤️".repeat(this.lives);
+    }
+
+    togglePause() {
+        if (this.state === 'PAUSED') {
+            this.state = this.prevState;
+        } else {
+            this.prevState = this.state;
+            this.state = 'PAUSED';
+        }
     }
 }

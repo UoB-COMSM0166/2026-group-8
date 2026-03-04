@@ -49,7 +49,7 @@ class Ball {
             this.vel.y *= -1;
         }
     }
-  
+
 
     // Paddle collision, change angle based on hit position
     checkPaddleCollision(paddle) {
@@ -145,10 +145,10 @@ class Ball {
     }
 
     reset(paddle) {
-      this.pos.x = paddle.x + paddle.w / 2;
-      this.pos.y = paddle.y - this.r;
+        this.pos.x = paddle.x + paddle.w / 2;
+        this.pos.y = paddle.y - this.r;
 
-      this.vel.set(0, 0);
-      paddle.isBallAttached = true;
+        this.vel.set(0, 0);
+        paddle.isBallAttached = true;
     }
 }

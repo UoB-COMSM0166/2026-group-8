@@ -35,6 +35,29 @@ function mouseClicked() {
             currentMode = 'game';
         }
     } else if (currentMode === 'game') {
-        gamePage.paddle.launchBall(gamePage.ball);
+        if (gamePage.manage.state === 'INSTRUCTION' || gamePage.manage.state === 'PAUSED') {
+            if (
+                mouseX > 170 && mouseX < 330 &&
+                mouseY > 540 && mouseY < 580
+            ) {
+                currentMode = 'menu';
+                gamePage = new Game(brickImg, ballImg);
+                return;
+            }
+        }
+
+        if (gamePage.manage.state === 'INSTRUCTION') {
+            gamePage.manage.state = 'PLAYING';
+        } else if (gamePage.manage.state === 'PLAYING') {
+            gamePage.paddle.launchBall(gamePage.ball);
+        }
+    }
+}
+
+function keyPressed() {
+    if (currentMode === 'game') {
+        if (key === 'p' || key === 'P') {
+            gamePage.manage.togglePause();
+        }
     }
 }
