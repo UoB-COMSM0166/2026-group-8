@@ -7,16 +7,20 @@ class Paddle {
         this.isBallAttached = true;
     }
 
+
     update() {
         this.x = mouseX - this.w / 2;
         this.x = constrain(this.x, 35, 465 - this.w);
     }
 
-    launchBall() {
+
+    launchBall(ball) {
         if (this.isBallAttached) {
             this.isBallAttached = false;
+            ball.vel.set(4, -4);
         }
     }
+
 
     calculateBounce(ballX) {
         const hitOffset = (ballX - (this.x + this.w / 2)) / (this.w / 2);
@@ -28,6 +32,7 @@ class Paddle {
             vy: -cos(angle),
         };
     }
+
 
     display() {
         push();

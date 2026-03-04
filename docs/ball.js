@@ -6,6 +6,8 @@ class Ball {
         this.vel = createVector(4, -4); // x direction 4 means moving right, y direction -4 means moving up
         this.r = r; // Radius
     }
+
+
     // Update every frame (core function), called continuously inside draw()
     update(paddle, bricks) {
         if (paddle.isBallAttached) {
@@ -18,6 +20,8 @@ class Ball {
             this.checkBrickCollision(bricks); // Check brick collision
         }
     }
+
+
     // Display the ball
     display() {
         fill('#4A90D9');
@@ -25,6 +29,8 @@ class Ball {
         strokeWeight(3);
         circle(this.pos.x, this.pos.y, this.r * 2);
     }
+
+
     // Wall collision (left, right, top walls; bottom handled by Game)
     checkWallCollision() {
 
@@ -43,6 +49,8 @@ class Ball {
             this.vel.y *= -1;
         }
     }
+  
+
     // Paddle collision, change angle based on hit position
     checkPaddleCollision(paddle) {
         /* Check rectangle collision
@@ -71,6 +79,8 @@ class Ball {
             this.vel.y = -speed * cos(angle); // y uses cos, negative because ball bounces upward
         }
     }
+
+
     // Brick collision (distinguish left/right face vs top/bottom)
     // Using circle vs rectangle collision detection
     checkBrickCollision(bricks) {
@@ -116,6 +126,8 @@ class Ball {
             }
         }
     }
+
+
     /*
     Physical reflection formula: angle of incidence = angle of reflection
     Formula: v' = v - 2 (v·n) n
@@ -130,5 +142,13 @@ class Ball {
             this.vel,
             p5.Vector.mult(normal, 2 * dot)
         );
+    }
+
+    reset(paddle) {
+      this.pos.x = paddle.x + paddle.w / 2;
+      this.pos.y = paddle.y - this.r;
+
+      this.vel.set(0, 0);
+      paddle.isBallAttached = true;
     }
 }

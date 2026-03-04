@@ -3,22 +3,33 @@ class Game {
         this.ball = new Ball(200, 350, 5);
         this.paddle = new Paddle();
         this.bricks = new Bricks();
-        // this.currentState = new GameManage(this);
-        this.lives = 3;
+        this.manage = new GameManage();
+        // this.score = 0;
         this.brickImg = imgFile1;
         this.ballImg = imgFile2;
     }
+
 
     display() {
         this.drawInitPage();
         this.bricks.display();
 
-        this.paddle.update();
-        this.ball.update(this.paddle, this.bricks.items);
+        if (this.manage.state === 'PLAYING') {
+            this.paddle.update();
+            this.ball.update(this.paddle, this.bricks.items);
+
+            if (this.ball.pos.y > height) {
+                this.manage.handleBallLost(this.ball, this.paddle);
+            }
+            this.manage.checkWinCondition(this.bricks.items);
+        }
+
+        this.displayHeartEmojis(this.manage.getLifeString(), 120, 665);
 
         this.paddle.display();
         this.ball.display();
     }
+  
 
     drawInitPage() {
         background('grey');
@@ -33,24 +44,22 @@ class Game {
         stroke(0);
         strokeWeight(3);
         text('LIVES: ', 40, 660);
-        this.displayHeartEmojis(120, 665);
+        // this.displayHeartEmojis(120, 665);
 
         image(this.brickImg, 400, 635, 50, 50);
     }
 
-    displayHeartEmojis(x, y) {
-        let hearts = "";
-        for (let i = 0; i < this.lives; i++) {
-            hearts += "❤️";
-        }
+
+    displayHeartEmojis(heartString, x, y) {
         push();
         textSize(22);
         noStroke();
         textAlign(LEFT, CENTER);
-        text(hearts, x, y - 2);
+        text(heartString, x, y - 2);
         pop();
     }
 
+  
     drawWatermark() {
         push();
         translate(250, 325);
