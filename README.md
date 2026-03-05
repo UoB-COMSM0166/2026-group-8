@@ -128,13 +128,60 @@ The paper prototyping process further strengthened our understanding of the game
 
 ### Evaluation
 
+#### 1. Qualitative Evaluation: Think Aloud & Heuristic Analysis 
+The goal of this qualitative evaluation was to gain deep insights into the user’s subjective experience and identify logic issues within the interface. 
+
+#### 1.1 Methodology
+Our qualitative evaluation was conducted in two distinct phases during the workshop : 
+
+**Phase 1: Think Aloud Study**  
+    **Roles**: We designated one facilitator and two observers.  
+    **Participants**: We recruited one participant from the group sitting next to us.  
+    **Tasks**: The participant was asked to perform two short tasks: starting the game/switching modes and surviving for one minute in standard mode.   
+    **Process**: The facilitator encouraged the participant to verbalize their thoughts in real-time while observers documented critical moments. 
+
+**Phase 2: Heuristic Evaluation**  
+    **Roles**: One team member acted as a facilitator to ensure the game ran smoothly, while an observer/expert from another team was recruited to evaluate the interface.  
+    **Process**: The expert first spent 10 minutes familiarizing themselves with the game. They then performed a solo systematic inspection to identify and record usability issues using the provided form.  
+    **Criteria**: Findings were assessed against Nielsen’s 10 Usability Heuristics. 
+
+#### 1.2 Key Findings
+Based on the combined observation data and expert feedback, we identified several key issues:
+
+* **Navigation Confusion (Visibility of System Status)**: The user noted they "couldn't find the interface to switch modes." This violates **Heuristic #1**, as the system status was not clearly visible. 
+* **Lack of Feedback (Error Recovery)**: The ball did not respawn after falling, and there was no health/life display. This violates **Heuristic #9**, which requires the system to help users recognize and recover from errors.
+* **Non-transparent Controls (Recognition rather than Recall)**: Control indicators were unclear, increasing the participant's memory load. This violates **Heuristic #6**. 
+* **Difficulty Balance**: The user felt the current ball speed was too slow. To address this, we will add selectable difficulty levels.
+
+#### 1.3 Severity Rating Table 
+We rated the severity of these problems on a scale of 0–4 based on Frequency (F), Impact (I), and Persistence (P). The average severity rating was calculated using the following formula: 
+
+$$Severity = \frac{Frequency + Impact + Persistence}{3}$$
+
+| Issue | Heuristic | Frequency (0-4) | Impact (0-4) | Persistence (0-4) | Severity (Avg) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Mode switching UI is hidden | #1 Visibility of System Status | 4 | 3 | 3 | **3.3** |
+| Ball does not respawn | #9 Help users recognize/recover from errors | 2 | 4 | 4 | **3.3** |
+| Missing control instructions | #6 Recognition rather than recall | 4 | 2 | 2 | **2.7** |
+
+#### 2. Quantitative Evaluation
+#### 3. Description of Code Testing
+#### 4. Conclusion & Future Plan 
+Our next step is to plan a more in-depth qualitative evaluation by testing with participants from other units. The evaluations show that while the core logic is robust, user guidance and UI transparency need improvement. To meet the project requirements, we will implement **two distinct difficulty levels** that players can select between:
+1. **Dark Mode**: A visibility-based challenge where only the area immediately surrounding the ball is visible. 
+2. **Two-Player Battle Mode**: A competitive mode designed to increase engagement through interaction.
+
+<br>
+
 - 15% ~750 words
 
 - One qualitative evaluation (of your choice) 
 
 - One quantitative evaluation (of your choice) 
 
-- Description of how code was tested. 
+- Description of how code was tested.
+
+<br>
 
 ### Process 
 
