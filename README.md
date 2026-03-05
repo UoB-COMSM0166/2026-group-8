@@ -54,14 +54,13 @@ Project Progress: [Here](https://github.com/orgs/UoB-COMSM0166/projects/161/view
 The game follows the core rules of a breakout game: the player controls a paddle to launch a ball and destroy bricks. It is a classic arcade experience that emphasizes timing and coordination. Following the module's requirement to innovate upon a traditional archetype, we have designed three distinct game modes to offer a diverse and engaging experience.
 
   1. Classic Mode:
-This is the standard breakout experience, where players use a mouse to control the paddle to bounce the ball. It provides a familiar and intuitive environment for anyone who enjoys classic arcade games. This mode focuses on precision and mastering the physics-based reflection mechanics. Players must carefully calculate the bounce angle to clear specific areas of the board effectively.
+This is the standard game that most people know. Players use a mouse to move the paddle left or right to bounce the ball. It is easy to learn for anyone who likes old arcade games. This mode focuses on precision. You must understand how the ball reflects off the paddle to hit specific bricks.
 
   2. Dark Mode (The Mystery Twist):
-In this high-intensity mode, the entire game world is shrouded in darkness. Only a small radius around the ball provides light, revealing bricks as the ball passes them. This creates a "spotlight" effect that constantly moves with the ball's position. Players must rely on memory and reaction speed to predict the ball's trajectory in the dark. Since you cannot see the whole layout at once, you must memorize the brick positions to plan your strategy.
+This mode is more difficult and exciting. The entire screen is dark, and you can only see a small area around the ball. As the ball moves, it acts like a "spotlight" and reveals the bricks nearby. You must use your memory to remember where the bricks are and plan your next move. It tests how fast you can react when you cannot see the whole map.
 
   3. Duo Mode (The Tactical Twist):
-This is a two-player local multiplayer mode where each side designates a specific brick as their "King". This adds a competitive layer that is not found in traditional breakout games. The goal is to destroy the opponent's King brick first. This turns the game from a simple clearing exercise into a tactical race of offense and defense. Players must balance attacking the enemy's target while protecting their own King from being hit.
-
+This is a local multiplayer mode for two players. In this mode, each player chooses one special brick to be their "King". The game becomes a race! The first player to destroy the opponent's King brick wins the game. You must decide when it is best to attack the enemy's King and when you need to stay back to protect your own from being hit.
 
 ### Requirements 
 
