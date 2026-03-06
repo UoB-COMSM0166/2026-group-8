@@ -35,7 +35,7 @@ function mouseClicked() {
             currentMode = 'game';
         }
     } else if (currentMode === 'game') {
-        if (gamePage.manage.state === 'INSTRUCTION' || gamePage.manage.state === 'PAUSED') {
+        if (gamePage.manage.state === 'INSTRUCTION' || gamePage.manage.state === 'PAUSED' || gamePage.manage.state === 'GAMEOVER') {
             if (
                 mouseX > 170 && mouseX < 330 &&
                 mouseY > 540 && mouseY < 580
@@ -54,6 +54,7 @@ function mouseClicked() {
     }
 }
 
+
 function keyPressed() {
     if (currentMode === 'game') {
         if (key === 'p' || key === 'P') {
@@ -61,3 +62,4 @@ function keyPressed() {
         }
     }
 }
+

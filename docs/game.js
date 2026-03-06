@@ -33,6 +33,8 @@ class Game {
             this.drawPauseScreen();
         } else if (this.manage.state === 'INSTRUCTION') {
             this.drawInstructionScreen();
+        } else if (this.manage.state === 'GAMEOVER') {
+            this.drawGameOverScreen();
         }
     }
 
@@ -54,6 +56,7 @@ class Game {
         image(this.brickImg, 400, 635, 50, 50);
     }
 
+
     drawPauseScreen() {
         push();
         fill(0, 0, 0, 150);
@@ -73,6 +76,29 @@ class Game {
         this.drawHomeButton();
         pop();
     }
+
+
+    drawGameOverScreen() {
+        push();
+        fill(0, 0, 0, 200);
+        noStroke();
+        rect(25, 25, 450, 600);
+
+        fill(255, 50, 50);
+        textAlign(CENTER, CENTER);
+        textSize(50);
+        textStyle(BOLD);
+        text('GAME OVER', 250, 300);
+
+        fill(255);
+        textSize(18);
+        textStyle(NORMAL);
+        text('Better luck next time!', 250, 350);
+
+        this.drawHomeButton();
+        pop();
+    }
+
 
     drawInstructionScreen() {
         push();
@@ -128,9 +154,10 @@ class Game {
         textStyle(BOLD);
         fill(150, 150, 150, 30);
         noStroke();
-        text('BASIC', 0, 0);
+        text('CLASSIC', 0, 0);
         pop();
     }
+
 
     drawHomeButton() {
         push();
@@ -163,3 +190,4 @@ class Game {
         pop();
     }
 }
+
