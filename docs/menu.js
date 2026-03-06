@@ -12,13 +12,13 @@ class Menu {
         this.drawDecor();
         this.drawTitle();
 
-        let centerX1 = this.center - 150;
-        let centerX2 = this.center;
-        let centerX3 = this.center + 150;
+        let mode1 = this.center - 150;
+        let mode2 = this.center;
+        let mode3 = this.center + 150;
 
-        this.drawBoxButton('Classic', centerX1, this.btnPos, '🚩');
-        this.drawBoxButton('Dark', centerX2, this.btnPos, '💡');
-        this.drawBoxButton('Duel', centerX3, this.btnPos, '⚔️');
+        this.drawBoxButton('Classic', mode1, this.btnPos, '🚩');
+        this.drawBoxButton('Dark', mode2, this.btnPos, '💡');
+        this.drawBoxButton('Duel', mode3, this.btnPos, '⚔️');
     }
 
     drawTitle() {
@@ -36,14 +36,12 @@ class Menu {
         text('CORE_BREAKER', this.center, 250);
         pop();
 
-        push();
         fill(255);
         textSize(20);
         textAlign(CENTER, CENTER);
         text('_______________', this.center, 290);
-        text('Select game mode', this.center, 320);
+        text('◇ Select game mode ◇', this.center, 320);
         text('_______________', this.center, 330);
-        pop();
     }
 
     btnRange(x, y, tw, th) {
@@ -57,15 +55,13 @@ class Menu {
     drawBoxButton(str, x, y, icon) {
         push();
         rectMode(CENTER);
-
         if (this.btnRange(x, y, this.btnW, this.btnH)) {
-            fill(255, 100, 100);
-            cursor(HAND);
             stroke(255);
             strokeWeight(5);
+            fill(255, 100, 100);
+            cursor(HAND);
         } else {
             fill(119, 221, 119);
-            strokeWeight(1);
         }
         rect(x, y, this.btnW, this.btnH, 5);
 
@@ -82,13 +78,14 @@ class Menu {
 
     drawDecor() {
         noStroke();
+        fill(255);
         circle(30, 30, 14);
         circle(width - 30, 30, 14);
         circle(30, height - 30, 14);
         circle(width - 30, height - 30, 14);
     }
 
-    checkStartClicked() {
+    checkModeClicked() {
         let x = this.center - 150;
         let y = this.btnPos;
         return this.btnRange(x, y, this.btnW, this.btnH);

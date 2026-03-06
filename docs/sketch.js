@@ -31,7 +31,7 @@ function draw() {
 
 function mouseClicked() {
     if (currentMode === 'menu') {
-        if (menuPage.checkStartClicked()) {
+        if (menuPage.checkModeClicked()) {
             currentMode = 'game';
         }
     } else if (currentMode === 'game') {
