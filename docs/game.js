@@ -4,7 +4,6 @@ class Game {
         this.paddle = new Paddle();
         this.bricks = new Bricks();
         this.manage = new GameManage();
-        // this.score = 0;
         this.brickImg = imgFile1;
         this.ballImg = imgFile2;
     }
@@ -194,13 +193,11 @@ class Game {
         ) {
             fill(255, 100, 100);
             cursor(HAND);
-            stroke(255);
-            strokeWeight(2);
         } else {
             fill(135, 206, 235);
-            stroke(255);
-            strokeWeight(2);
         }
+        stroke(255);
+        strokeWeight(2);
         rect(btnX, btnY, btnW, btnH, 10);
 
         noStroke();
