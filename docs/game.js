@@ -1,11 +1,10 @@
 class Game {
-    constructor(imgFile1, imgFile2) {
+    constructor(imgFile) {
         this.ball = new Ball(200, 350, 5);
         this.paddle = new Paddle();
         this.bricks = new Bricks();
         this.manage = new GameManage();
-        this.brickImg = imgFile1;
-        this.ballImg = imgFile2;
+        this.brickImg = imgFile;
     }
 
 
