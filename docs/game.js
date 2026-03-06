@@ -35,6 +35,8 @@ class Game {
             this.drawInstructionScreen();
         } else if (this.manage.state === 'GAMEOVER') {
             this.drawGameOverScreen();
+        } else if (this.manage.state === 'WON') {
+            this.drawWinScreen();
         }
     }
 
@@ -72,6 +74,23 @@ class Game {
         textSize(15);
         textStyle(NORMAL);
         text('Press "P" again to Resume', 250, 370);
+
+        this.drawHomeButton();
+        pop();
+    }
+
+
+    drawWinScreen() {
+        push();
+        fill(255, 215, 0, 200);
+        noStroke();
+        rect(25, 25, 450, 600);
+
+        fill(255);
+        textAlign(CENTER, CENTER);
+        textSize(50);
+        textStyle(BOLD);
+        text('YOU WIN!', 250, 300);
 
         this.drawHomeButton();
         pop();

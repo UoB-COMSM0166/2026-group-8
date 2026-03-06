@@ -35,7 +35,8 @@ function mouseClicked() {
             currentMode = 'game';
         }
     } else if (currentMode === 'game') {
-        if (gamePage.manage.state === 'INSTRUCTION' || gamePage.manage.state === 'PAUSED' || gamePage.manage.state === 'GAMEOVER') {
+        if (gamePage.manage.state === 'INSTRUCTION' || gamePage.manage.state === 'PAUSED' ||
+            gamePage.manage.state === 'WON' ||  gamePage.manage.state === 'GAMEOVER') {
             if (
                 mouseX > 170 && mouseX < 330 &&
                 mouseY > 540 && mouseY < 580
