@@ -1,44 +1,24 @@
 class Menu {
     constructor() {
-        this.gridSize = 20;
-        this.btnSize = 24;
+        this.btnW = 130;
+        this.btnH = 160;
+        this.btnPos = 450;
         this.center = width / 2;
     }
 
     display() {
-        background(220);
+        background(135, 206, 235);
 
-        this.drawBorder();
         this.drawDecor();
         this.drawTitle();
 
-        this.drawButton('Start', 350);
-        this.drawButton('Twist version 1', 400);
-        this.drawButton('Twist version 2', 450);
-    }
+        let centerX1 = this.center - 150;
+        let centerX2 = this.center;
+        let centerX3 = this.center + 150;
 
-    drawBorder() {
-        randomSeed(300);
-        // top and bottom
-        for (let x = 0; x < width; x += this.gridSize) {
-            this.drawGrid(x, 0, this.gridSize);
-            this.drawGrid(x, height - this.gridSize, this.gridSize);
-        }
-        // left and right
-        for (let y = this.gridSize; y < height - this.gridSize; y += this.gridSize) {
-            this.drawGrid(0, y, this.gridSize);
-            this.drawGrid(width - this.gridSize, y, this.gridSize);
-        }
-    }
-
-    drawGrid(x, y) {
-        if (((x + y) / this.gridSize) % 2 === 0) {
-            fill('gray');
-        } else {
-            fill('white');
-        }
-        noStroke();
-        rect(x, y, this.gridSize, this.gridSize);
+        this.drawBoxButton('Classic', centerX1, this.btnPos, '🚩');
+        this.drawBoxButton('Dark', centerX2, this.btnPos, '💡');
+        this.drawBoxButton('Duel', centerX3, this.btnPos, '⚔️');
     }
 
     drawTitle() {
@@ -48,53 +28,22 @@ class Menu {
         drawingContext.shadowOffsetY = -5;
         drawingContext.shadowBlur = 10;
         drawingContext.shadowColor = 'black';
-        textSize(50);
+        textSize(40);
         fill(255);
         stroke(0);
         strokeWeight(4);
         textAlign(CENTER, CENTER);
-        text('- BLOCK -', width / 2, 250);
+        text('CORE_BREAKER', this.center, 250);
         pop();
-    }
 
-    drawButton(str, pos) {
-        let x = this.center;
-        let y = pos;
-
-        textSize(this.btnSize);
-
-        let tw = textWidth(str);
-        let th = this.btnSize;
-
-        if (this.btnRange(x, y, tw, th)) {
-            fill('red');
-            cursor(HAND);
-        } else {
-            fill('yellow');
-        }
-
-        textAlign(CENTER, CENTER);
-        stroke(0);
-        strokeWeight(2);
-        text(str, x, y);
-    }
-
-    drawDecor() {
-        noStroke();
+        push();
         fill(255);
-        rect(75, 125, 350, 450);
-        circle(30, 30, 12);
-        circle(width - 30, 30, 12);
-        circle(30, height - 30, 12);
-        circle(width - 30, height - 30, 12);
-    }
-
-    checkStartClicked() {
-        let tw = textWidth('Start');
-        if (this.btnRange(this.center, 350, tw, this.btnSize)) {
-            return true;
-        }
-        return false;
+        textSize(20);
+        textAlign(CENTER, CENTER);
+        text('_______________', this.center, 290);
+        text('Select game mode', this.center, 320);
+        text('_______________', this.center, 330);
+        pop();
     }
 
     btnRange(x, y, tw, th) {
@@ -103,5 +52,45 @@ class Menu {
             return true;
         }
         return false;
+    }
+
+    drawBoxButton(str, x, y, icon) {
+        push();
+        rectMode(CENTER);
+
+        if (this.btnRange(x, y, this.btnW, this.btnH)) {
+            fill(255, 100, 100);
+            cursor(HAND);
+            stroke(255);
+            strokeWeight(5);
+        } else {
+            fill(119, 221, 119);
+            strokeWeight(1);
+        }
+        rect(x, y, this.btnW, this.btnH, 5);
+
+        stroke(255);
+        strokeWeight(3);
+        fill(100);
+        textAlign(CENTER, CENTER);
+        textSize(30);
+        text(icon, x, y - 10);
+        textSize(20);
+        text(str, x, y + 30);
+        pop();
+    }
+
+    drawDecor() {
+        noStroke();
+        circle(30, 30, 14);
+        circle(width - 30, 30, 14);
+        circle(30, height - 30, 14);
+        circle(width - 30, height - 30, 14);
+    }
+
+    checkStartClicked() {
+        let x = this.center - 150;
+        let y = this.btnPos;
+        return this.btnRange(x, y, this.btnW, this.btnH);
     }
 }
