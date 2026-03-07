@@ -1,10 +1,14 @@
 class Game {
-    constructor(imgFile) {
+    constructor(imgFile, mode) {
+        this.mode = mode;
         this.ball = new Ball(200, 350, 5);
         this.paddle = new Paddle();
         this.bricks = new Bricks();
         this.manage = new GameManage();
+
         this.brickImg = imgFile;
+        // screen mask for "DARK" mode
+        this.maskLayer = createGraphics(450, 600);
     }
 
 
@@ -22,11 +26,17 @@ class Game {
             this.manage.checkWinCondition(this.bricks.items);
         }
 
+        // mode
+        if (this.mode === 'DARK') {
+            this.drawDarkEffect();
+        }
+
         this.displayHeartEmojis(this.manage.getLifeString(), 120, 665);
 
         this.paddle.display();
         this.ball.display();
 
+        // status of the game
         if (this.manage.state === 'PAUSED') {
             this.drawPauseScreen();
         } else if (this.manage.state === 'INSTRUCTION') {
@@ -135,7 +145,6 @@ class Game {
             "• Move the mouse to control the paddle",
             "• Click to launch the ball",
             "• Lives: 3 (Game over at 0)",
-            "• Clear all bricks to win",
             "• Press 'P' to pause / resume"
         ];
 
@@ -171,7 +180,11 @@ class Game {
         textStyle(BOLD);
         fill(150, 150, 150, 30);
         noStroke();
-        text('CLASSIC', 0, 0);
+
+        if (this.mode == "CLASSIC") { text('CLASSIC', 0, 0); }
+        else if (this.mode == "DARK") { text('DARK', 0, 0); }
+        else { text('DUEL', 0, 0); }
+
         pop();
     }
 
@@ -203,6 +216,21 @@ class Game {
         fill(255);
         text('BACK TO MENU', btnX, btnY);
         pop();
+    }
+
+    drawDarkEffect() {
+        this.maskLayer.push();
+        this.maskLayer.clear();
+        this.maskLayer.fill(0, 0, 0, 250);
+        this.maskLayer.noStroke();
+        this.maskLayer.rect(0, 0, 450, 600);
+
+        this.maskLayer.erase();
+        this.maskLayer.circle(this.ball.pos.x - 25, this.ball.pos.y - 25, 150);
+        this.maskLayer.noErase();
+        this.maskLayer.pop();
+
+        image(this.maskLayer, 25, 25);
     }
 }
 

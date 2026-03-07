@@ -29,11 +29,11 @@ class Bricks {
                 // change3:Determine the type of the dropping items based on pickedColor
                 let dropType = 'none';
                 if (pickedColor === this.colorPalette[0]) {
-                    dropType = 'debuff'; 
+                    dropType = 'debuff';
                 } else if (pickedColor === this.colorPalette[1]) {
-                    dropType = 'buff';   
+                    dropType = 'buff';
                 }
-                
+
                 this.items.push({
                     x: offsetX + c * (this.brickW + gap),
                     y: 80 + r * (this.brickH + gap),
@@ -54,7 +54,7 @@ class Bricks {
             // change6:Check if the brick was just broken by the ball
             if (b.wasActive && !b.active) {
                 b.wasActive = false; // Stop it from dropping items again
-                
+
                 // If this brick has a dropping item, create it
                 if (b.drop !== 'none') {
                     this.drops.push({
@@ -66,7 +66,7 @@ class Bricks {
                     });
                 }
             }
-            
+
             // Only draw the brick if it hasn't been destroyed (active is true)
             if (b.active) {
                 fill(b.color[0], b.color[1], b.color[2]);
@@ -92,14 +92,14 @@ class Bricks {
             // Draw the item (matching the brick's color)
             noStroke();
             if (d.type === 'buff') {
-                fill(119, 221, 119); 
+                fill(119, 221, 119);
             } else if (d.type === 'debuff') {
-                fill(255, 105, 97);  
+                fill(255, 105, 97);
             }
             circle(d.x, d.y, d.r * 2);
 
             // Clean up: remove the item if it goes off the bottom of the screen
-            if (d.y > height + d.r) { 
+            if (d.y > height + d.r) {
                 this.drops.splice(i, 1);
             }
         }

@@ -11,9 +11,7 @@ function preload() {
 
 function setup() {
     createCanvas(500, 700);
-
     menuPage = new Menu();
-    gamePage = new Game(brickImg);
 }
 
 
@@ -30,25 +28,28 @@ function draw() {
 
 function mouseClicked() {
     if (currentMode === 'menu') {
-        if (menuPage.checkModeClicked()) {
+        let selectedMode = menuPage.checkModeClicked();
+        if (selectedMode) {
             currentMode = 'game';
+            gamePage = new Game(brickImg, selectedMode);
         }
     } else if (currentMode === 'game') {
-        if (gamePage.manage.state === 'INSTRUCTION' || gamePage.manage.state === 'PAUSED' ||
-            gamePage.manage.state === 'WON' ||  gamePage.manage.state === 'GAMEOVER') {
+        let currentState = gamePage.manage.state;
+
+        if (currentState === 'INSTRUCTION' || currentState === 'PAUSED' ||
+            currentState === 'WON' || currentState === 'GAMEOVER') {
             if (
                 mouseX > 170 && mouseX < 330 &&
                 mouseY > 540 && mouseY < 580
             ) {
                 currentMode = 'menu';
-                gamePage = new Game(brickImg, ballImg);
                 return;
             }
         }
 
-        if (gamePage.manage.state === 'INSTRUCTION') {
+        if (currentState === 'INSTRUCTION') {
             gamePage.manage.state = 'PLAYING';
-        } else if (gamePage.manage.state === 'PLAYING') {
+        } else if (currentState === 'PLAYING') {
             gamePage.paddle.launchBall(gamePage.ball);
         }
     }

@@ -86,8 +86,14 @@ class Menu {
     }
 
     checkModeClicked() {
-        let x = this.center - 150;
-        let y = this.btnPos;
-        return this.btnRange(x, y, this.btnW, this.btnH);
+        let mode1 = this.center - 150; // Classic button
+        let mode2 = this.center;       // Dark button
+        let mode3 = this.center + 150; // Duel button
+
+        if (this.btnRange(mode1, this.btnPos, this.btnW, this.btnH)) return 'CLASSIC';
+        if (this.btnRange(mode2, this.btnPos, this.btnW, this.btnH)) return 'DARK';
+        if (this.btnRange(mode3, this.btnPos, this.btnW, this.btnH)) return 'DUEL';
+
+        return null;
     }
 }
