@@ -19,12 +19,12 @@ STRAPLINE. Add an exciting one sentence description of your game here.
 
 IMAGE. Add an image of your game here, keep this updated with a snapshot of your latest development.
 
-<img width="335" height="485" alt="image" src="https://github.com/user-attachments/assets/ecc6fc1c-702a-4b7b-834e-991c4d5013d9" />
+<img width="335" height="485" alt="image" src="https://github.com/user-attachments/assets/9481823b-adb6-4495-a45f-36065be0db4e" /><img width="335" height="485" alt="image" src="https://github.com/user-attachments/assets/c090ba58-f0bb-4119-bda2-d2764e90e124" />
 
 LINK. Add a link here to your deployed game, you can also make the image above link to your game if you wish. Your game lives in the [/docs](/docs) folder, and is published using Github pages.
 
 <a href="https://uob-comsm0166.github.io/2026-group-8/">
-  <img src="https://i.pinimg.com/1200x/0b/e1/27/0be127916560702af014298cc64b7137.jpg" width="100" alt="click to play">
+  <img src="https://i.pinimg.com/1200x/0b/e1/27/0be127916560702af014298cc64b7137.jpg" width="120" alt="click to play">
 </a>
 
 VIDEO. Include a demo video of your game here (you don't have to wait until the end, you can insert a work in progress video)
