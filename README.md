@@ -73,6 +73,11 @@ This is a local multiplayer mode for two players. In this mode, each player choo
 -	Players
 -	Course Instructor (Teachers/ TAs)
 -	Future Platform Providers
+<p align="center">
+  <img width="70%" alt="stakeholder onion diagram" src="https://github.com/user-attachments/assets/98132e1d-1d7a-48d1-82bd-ec49968a7d34" />
+</p>
+
+
 ------------------
 
 #### Epics - User Stories and Acceptance Criteria
