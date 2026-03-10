@@ -15,6 +15,7 @@ class Game {
     display() {
         this.drawInitPage();
         this.bricks.display();
+        this.manage.updateTimer();
 
         if (this.manage.state === 'PLAYING') {
             this.paddle.update();
@@ -25,6 +26,8 @@ class Game {
             }
             this.manage.checkWinCondition(this.bricks.items);
         }
+
+        this.drawPlayerStatusBar();
 
         // mode
         if (this.mode === 'DARK') {
@@ -162,6 +165,25 @@ class Game {
     }
 
 
+    drawPlayerStatusBar() {
+        push();
+        this.displayHeartEmojis(this.manage.getLifeString(), 120, 665);
+        textSize(20);
+        textAlign(RIGHT);
+        fill('white');
+        stroke(0);
+        strokeWeight(3);
+
+        if (this.manage.timer < 10000) {
+            fill(255, 50, 50);
+        }
+
+        text(`TIME: ${this.manage.getFormattedTime()}`, 380, 660);
+        text(`SCORE: ${this.manage.score}`, 460, 660);
+        pop();
+    }
+
+
     displayHeartEmojis(heartString, x, y) {
         push();
         textSize(22);
@@ -218,6 +240,7 @@ class Game {
         pop();
     }
 
+
     drawDarkEffect() {
         this.maskLayer.push();
         this.maskLayer.clear();
@@ -233,4 +256,3 @@ class Game {
         image(this.maskLayer, 25, 25);
     }
 }
-

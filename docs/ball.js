@@ -107,6 +107,7 @@ class Ball {
             if (distanceSq < this.r * this.r) {  // If distance < radius → collision
 
                 brick.active = false;  // Deactivate brick (destroyed)
+                gamePage.manage.score += 100;
 
                 // Determine if collision is left/right face or top/bottom face
                 if (abs(dx) > abs(dy)) { // If x penetration is greater
@@ -143,6 +144,7 @@ class Ball {
             p5.Vector.mult(normal, 2 * dot)
         );
     }
+
 
     reset(paddle) {
         this.pos.x = paddle.x + paddle.w / 2;
