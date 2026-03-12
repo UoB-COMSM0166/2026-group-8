@@ -1,156 +1,178 @@
+/* ball.js  —  Ball class for CORE_BREAKER
+   Supports three modes: standard (multi-ball, powerups), stealth  (single ball, light-radius), duel (single ball, accelerating) */
 class Ball {
-    constructor(x, y, r) {
-        // Ball position (represented as a vector)
-        this.pos = createVector(x, y); // pos.x is horizontal coordinate, pos.y is vertical coordinate
-        // Ball velocity (vector)
-        this.vel = createVector(4, -4); // x direction 4 means moving right, y direction -4 means moving up
-        this.r = r; // Radius
+  /* p - p5 instance
+     x - initial x
+     y - initial y
+     r - radius
+     [opts] - { fire, pierce, dead }
+   */
+  constructor(p, x, y, r, opts = {}) {
+    this.p      = p;
+    this.x      = x;
+    this.y      = y;
+    this.r      = r;
+    this.vx     = 0;
+    this.vy     = 0;
+
+    // Standard-mode powerup flags
+    this.fire   = opts.fire   ?? false; // OVERFLOW: deals 2 dmg per hit
+    this.pierce = opts.pierce ?? false; // PIERCE: doesn't bounce off bricks
+
+    this.dead   = opts.dead   ?? false; // Lifecycle
+  }
+
+
+  clone(dvx = 0, dvy = 0) {  // Cloning
+    const b = new Ball(this.p, this.x, this.y, this.r, {
+      fire: this.fire, pierce: this.pierce,
+    });
+    b.vx = this.vx + dvx;
+    b.vy = this.vy + dvy;
+    return b;
+  }
+
+  // Launch helpers
+  launch(speed, spreadDeg = 20) {   // Standard & stealth launch: angled upward from paddle
+    const a = (Math.random() * spreadDeg * 2 - spreadDeg) * Math.PI / 180;
+    this.vx = speed * Math.sin(a);
+    this.vy = -speed;
+  }
+
+  launchDuel(speed, spreadDeg = 15) {  //Duel launch: random direction (up or down)
+    const a   = (Math.random() * spreadDeg * 2 - spreadDeg) * Math.PI / 180;
+    const dir = Math.random() > 0.5 ? 1 : -1;
+    this.vx   = speed * Math.sin(a);
+    this.vy   = speed * Math.cos(a) * dir;
+  }
+
+  
+  /* Physics
+   Move ball; reflect off left/right/top walls.
+   Returns 'lost' if ball exits bottom (or top in duel).
+   W - canvas width
+   H - canvas height
+   [duelTop=false] - also reflect off top in duel mode
+   */
+  move(W, H, duelTop = false) {
+    this.x += this.vx;
+    this.y += this.vy;
+
+    if (this.x - this.r < 0) { this.x = this.r;     this.vx =  Math.abs(this.vx); }  // Left and right walls
+    if (this.x + this.r > W) { this.x = W - this.r; this.vx = -Math.abs(this.vx); }
+
+    
+    if (duelTop) { // Top wall
+      // In duel the ball scores when it exits top
+      if (this.y + this.r < 0) return 'scored_p1';   // ball exited P2 side → P1 scores
+    } else {
+      if (this.y - this.r < 0) { this.y = this.r; this.vy = Math.abs(this.vy); }
     }
 
-
-    // Update every frame (core function), called continuously inside draw()
-    update(paddle, bricks) {
-        if (paddle.isBallAttached) {
-            this.pos.x = paddle.x + paddle.w / 2;
-            this.pos.y = paddle.y - this.r;
-        } else {
-            this.pos.add(this.vel); // position = current position + velocity
-            this.checkWallCollision(); // Check wall collision
-            this.checkPaddleCollision(paddle); // Check paddle collision
-            this.checkBrickCollision(bricks); // Check brick collision
-        }
+    
+    if (this.y - this.r > H) { // Bottom exit (standard/stealth = ball lost; duel = P2 scores)
+      if (duelTop) return 'scored_p2';
+      this.dead = true;
+      return 'lost';
     }
 
+    return null;
+  }
 
-    // Display the ball
-    display() {
-        fill('#4A90D9');
-        stroke('#4A90D9');
-        strokeWeight(3);
-        circle(this.pos.x, this.pos.y, this.r * 2);
+  checkPaddle(paddle, maxSpeed = 10, accel = 0, fromBelow = false) {  // Check & resolve collision with a Paddle object.
+    if (!this._hitsRect(paddle)) return false;
+
+    const movingToward = fromBelow ? this.vy < 0 : this.vy > 0;
+    if (!movingToward) return false;
+
+    const spd = Math.min(Math.hypot(this.vx, this.vy) + accel, maxSpeed);
+    const dir = Ball._paddleBounceDir(paddle.x, paddle.w, this.x);
+
+    this.vx = dir.vx * spd;
+    this.vy = fromBelow ? -Math.abs(dir.vy) * spd : Math.abs(dir.vy) * spd * -1;
+
+    
+    this.y = fromBelow  // Un-embed
+      ? paddle.y + paddle.h + this.r + 1
+      : paddle.y - this.r - 1;
+
+    return true;
+  }
+
+  checkBrick(brick, dmg = 1) {  // Check & resolve collision with a Brick object.
+    if (!brick.alive || !this._hitsRect(brick)) return false;
+
+    const axis = this._brickBounceAxis(brick);
+    if (!this.pierce) {
+      if (axis === 'y') this.vy *= -1; else this.vx *= -1;
     }
 
+    brick.hit(dmg);
+    return true; // Applies damage; returns true if hit occurred.
+  }
 
-    // Wall collision (left, right, top walls; bottom handled by Game)
-    checkWallCollision() {
+  // Rendering
+  draw() {  // Standard mode: colour reflects powerup state
+    const p = this.p;
+    if (this.dead) return;
 
-        if (this.pos.x - this.r < 35) {
-            this.pos.x = 35 + this.r;
-            this.vel.x *= -1;
-        }
+    let r = 100, g = 200, b = 255; // default: soft blue
+    if (this.fire)  { r = 255; g = 120; b = 0;   } // orange-red
+    if (this.pierce){ r = 255; g = 220; b = 0;   } // yellow
 
-        if (this.pos.x + this.r > 465) {
-            this.pos.x = 465 - this.r;
-            this.vel.x *= -1;
-        }
+    p.fill(r, g, b);
+    p.noStroke();
+    p.ellipse(this.x, this.y, this.r * 2);
+  }
 
-        if (this.pos.y - this.r < 35) {
-            this.pos.y = 35 + this.r;
-            this.vel.y *= -1;
-        }
+  
+  drawStealth() { // Stealth mode which draw ball with a subtle glow halo
+    const p = this.p;
+    // Outer halo (drawn before clipping for the light effect)
+    p.noStroke();
+    p.fill(100, 180, 255, 40);
+    p.ellipse(this.x, this.y, this.r * 6);
+    p.fill(100, 180, 255, 80);
+    p.ellipse(this.x, this.y, this.r * 3);
+    // Core
+    p.fill(100, 180, 255);
+    p.ellipse(this.x, this.y, this.r * 2);
+  }
+
+  
+  drawDuel() { // Duel mode: purple tint, speed-based glow radius
+    const p    = this.p;
+    const spd  = Math.hypot(this.vx, this.vy);
+    const glow = this.p.map(spd, 5, 12, 0, 80, true);
+    if (glow > 0) {
+      p.noStroke(); p.fill(220, 180, 255, glow);
+      p.ellipse(this.x, this.y, this.r * 4);
     }
+    p.fill(220, 180, 255);
+    p.noStroke();
+    p.ellipse(this.x, this.y, this.r * 2);
+  }
 
+  // Private helpers
+  _hitsRect(rect) {
+    return this.x + this.r > rect.x &&
+           this.x - this.r < rect.x + rect.w &&
+           this.y + this.r > rect.y &&
+           this.y - this.r < rect.y + rect.h;
+  }
 
-    // Paddle collision, change angle based on hit position
-    checkPaddleCollision(paddle) {
-        /* Check rectangle collision
-        Conditions:
-        1. Ball x is within paddle range
-        2. Ball y touches the paddle
-        3. Ball is moving downward (avoid repeated triggering)
-        */
-        if (
-            this.pos.x > paddle.x &&
-            this.pos.x < paddle.x + paddle.w &&
-            this.pos.y + this.r > paddle.y &&
-            this.pos.y - this.r < paddle.y + paddle.h &&
-            this.vel.y > 0
-        ) {
-            // Calculate hit position relative to paddle center
-            let hitPos = // Calculate the ball hit point relative to paddle center
-                (this.pos.x - (paddle.x + paddle.w / 2))
-                / (paddle.w / 2); // Result range: -1 to 1 (-1 far left; 0 center; 1 far right)
-            let maxAngle = radians(60); // Maximum reflection angle: 60 degrees
-            let angle = hitPos * maxAngle; // Actual reflection angle
-            let speed = this.vel.mag(); // Record current speed magnitude (change direction only)
+  _brickBounceAxis(b) {
+    const ol  = this.x + this.r - b.x;
+    const or2 = b.x + b.w - (this.x - this.r);
+    const ot  = this.y + this.r - b.y;
+    const ob  = b.y + b.h - (this.y - this.r);
+    const mv  = Math.min(ol, or2, ot, ob);
+    return (mv === ot || mv === ob) ? 'y' : 'x';
+  }
 
-            // Recalculate velocity based on angle
-            this.vel.x = speed * sin(angle); // x uses sin
-            this.vel.y = -speed * cos(angle); // y uses cos, negative because ball bounces upward
-        }
-    }
-
-
-    // Brick collision (distinguish left/right face vs top/bottom)
-    // Using circle vs rectangle collision detection
-    checkBrickCollision(bricks) {
-        // Iterate through all bricks
-        for (let brick of bricks) {
-
-            if (!brick.active) continue; // If brick already destroyed, skip
-
-            // Find the closest point on the brick to the ball
-            let closestX = constrain( // Constrain ball x within brick left/right
-                this.pos.x,
-                brick.x,
-                brick.x + brick.w
-            );
-            let closestY = constrain( // Constrain ball y within brick top/bottom
-                this.pos.y,
-                brick.y,
-                brick.y + brick.h
-            );
-            let dx = this.pos.x - closestX; // Distance from ball center to closest point
-            let dy = this.pos.y - closestY;
-            let distanceSq = dx * dx + dy * dy; // Distance squared (no square root for efficiency)
-
-            if (distanceSq < this.r * this.r) {  // If distance < radius → collision
-
-                brick.active = false;  // Deactivate brick (destroyed)
-                gamePage.manage.score += 100;
-
-                // Determine if collision is left/right face or top/bottom face
-                if (abs(dx) > abs(dy)) { // If x penetration is greater
-                    let normal = createVector( // Left/right collision
-                        dx > 0 ? 1 : -1,
-                        0
-                    );
-                    this.reflect(normal);
-                } else {
-                    let normal = createVector( // Top/bottom collision
-                        0,
-                        dy > 0 ? 1 : -1
-                    );
-                    this.reflect(normal);
-                }
-                break; // Stop after hitting one brick
-            }
-        }
-    }
-
-
-    /*
-    Physical reflection formula: angle of incidence = angle of reflection
-    Formula: v' = v - 2 (v·n) n
-    v  = original velocity
-    n  = normal vector
-    v' = reflected velocity
-    */
-    reflect(normal) {
-        normal.normalize(); // Ensure normal vector is unit length
-        let dot = this.vel.dot(normal); // Dot product
-        this.vel = p5.Vector.sub( // Reflection formula
-            this.vel,
-            p5.Vector.mult(normal, 2 * dot)
-        );
-    }
-
-
-    reset(paddle) {
-        this.pos.x = paddle.x + paddle.w / 2;
-        this.pos.y = paddle.y - this.r;
-
-        this.vel.set(0, 0);
-        paddle.isBallAttached = true;
-    }
+  static _paddleBounceDir(px, pw, bx) {
+    const off = (bx - (px + pw / 2)) / (pw / 2);
+    const ang = Math.max(-1, Math.min(1, off)) * (65 * Math.PI / 180);
+    return { vx: Math.sin(ang), vy: -Math.cos(ang) };
+  }
 }
