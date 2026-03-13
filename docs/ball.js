@@ -145,6 +145,7 @@ class Ball {
         );
     }
 
+
     reset(paddle) {
         this.pos.x = paddle.x + paddle.w / 2;
         this.pos.y = paddle.y - this.r;
