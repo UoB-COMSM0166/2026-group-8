@@ -1,5 +1,5 @@
-let menuPage;
-let gamePage;
+const W = 500, H = 700;
+let menuPage, gamePage;
 let currentMode = 'menu';
 let brickImg;
 
@@ -10,7 +10,7 @@ function preload() {
 
 
 function setup() {
-    createCanvas(500, 700);
+    createCanvas(W, H);
     menuPage = new Menu();
 }
 
@@ -18,10 +18,10 @@ function setup() {
 function draw() {
     cursor(ARROW);
 
-    if (currentMode === 'menu') {
-        menuPage.display();
-    } else if (currentMode === 'game') {
-        gamePage.display();
+    switch(currentMode) {
+        case 'game': gamePage.display(); break;
+        // case 'duel': break;
+        default: menuPage.display();
     }
 }
 
@@ -29,15 +29,19 @@ function draw() {
 function mouseClicked() {
     if (currentMode === 'menu') {
         let selectedMode = menuPage.checkModeClicked();
-        if (selectedMode) {
+        if (selectedMode === 'CLASSIC' || selectedMode === 'DARK') {
             currentMode = 'game';
             gamePage = new Game(brickImg, selectedMode);
         }
-    } else if (currentMode === 'game') {
+        // else if (selectedMode === 'DUEL') {
+
+        // }
+    }
+    
+    if (currentMode === 'game') {
         let currentState = gamePage.manage.state;
 
-        if (currentState === 'INSTRUCTION' || currentState === 'PAUSED' ||
-            currentState === 'WON' || currentState === 'GAMEOVER') {
+        if (['INSTRUCTION', 'PAUSED', 'WON', 'GAMEOVER'].includes(currentState)) {
             if (
                 mouseX > 170 && mouseX < 330 &&
                 mouseY > 540 && mouseY < 580
@@ -52,6 +56,7 @@ function mouseClicked() {
         } else if (currentState === 'PLAYING') {
             gamePage.paddle.launchBall(gamePage.ball);
         }
+        return;
     }
 }
 

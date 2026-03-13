@@ -15,6 +15,7 @@ class Game {
     display() {
         this.drawInitPage();
         this.bricks.display();
+        this.manage.updateTimer();
 
         if (this.manage.state === 'PLAYING') {
             this.paddle.update();
@@ -26,12 +27,12 @@ class Game {
             this.manage.checkWinCondition(this.bricks.items);
         }
 
-        // mode
+        this.drawPlayerStatusBar();
+
+        // DARK mode screen filter
         if (this.mode === 'DARK') {
             this.drawDarkEffect();
         }
-
-        this.displayHeartEmojis(this.manage.getLifeString(), 120, 665);
 
         this.paddle.display();
         this.ball.display();
@@ -55,13 +56,6 @@ class Game {
         noStroke();
         rect(25, 25, 450, 600);
         this.drawWatermark();
-
-        textSize(20);
-        textAlign(LEFT);
-        fill('white');
-        stroke(0);
-        strokeWeight(3);
-        text('LIVES: ', 40, 660);
 
         image(this.brickImg, 400, 635, 50, 50);
     }
@@ -162,9 +156,30 @@ class Game {
     }
 
 
+    drawPlayerStatusBar() {
+        push();
+
+        textSize(15);
+        textAlign(RIGHT);
+        fill('white');
+        stroke(0);
+        strokeWeight(3);
+
+        if (this.manage.timer < 10000) {
+            fill(255, 50, 50);
+        }
+
+        text(`LIVES:`, 80, 660);
+        this.displayHeartEmojis(this.manage.getLifeString(), 90, 665);
+        text(`TIME: ${this.manage.getFormattedTime()}`, 260, 660);
+        text(`SCORE: ${this.manage.score}`, 360, 660);
+        pop();
+    }
+
+
     displayHeartEmojis(heartString, x, y) {
         push();
-        textSize(22);
+        textSize(15);
         noStroke();
         textAlign(LEFT, CENTER);
         text(heartString, x, y - 2);
@@ -218,6 +233,7 @@ class Game {
         pop();
     }
 
+
     drawDarkEffect() {
         this.maskLayer.push();
         this.maskLayer.clear();
@@ -233,4 +249,3 @@ class Game {
         image(this.maskLayer, 25, 25);
     }
 }
-
