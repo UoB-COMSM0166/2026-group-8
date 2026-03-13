@@ -106,4 +106,3 @@ class Bricks {
         pop();
     }
 }
-

@@ -18,7 +18,7 @@ function setup() {
 function draw() {
     cursor(ARROW);
 
-    switch(currentMode) {
+    switch (currentMode) {
         case 'game': gamePage.display(); break;
         // case 'duel': break;
         default: menuPage.display();
@@ -37,7 +37,7 @@ function mouseClicked() {
 
         // }
     }
-    
+
     if (currentMode === 'game') {
         let currentState = gamePage.manage.state;
 
