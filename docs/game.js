@@ -158,6 +158,7 @@ class Game {
 
     drawPlayerStatusBar() {
         push();
+
         textSize(15);
         textAlign(RIGHT);
         fill('white');
