@@ -1,4 +1,6 @@
 class BaseScene {
+    static brickImg;
+
     constructor() {
         this.manage = new GameManage();
     }
@@ -9,6 +11,8 @@ class BaseScene {
         noStroke();
         rect(25, 25, 450, 600);
         this.drawWatermark();
+
+        image(BaseScene.brickImg, 400, 635, 50, 50);
     }
 
     drawInstructionScreen() {

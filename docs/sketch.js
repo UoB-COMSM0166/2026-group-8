@@ -1,13 +1,17 @@
 const W = 500, H = 700;
 let menuPage, gamePage, duelPage;
 let currentMode = 'menu';
+let brickImg;
 
+
+function preload() {
+    BaseScene.brickImg = loadImage('https://cdn-icons-png.flaticon.com/512/5805/5805666.png');
+}
 
 function setup() {
     createCanvas(W, H);
     menuPage = new Menu();
 }
-
 
 function draw() {
     cursor(ARROW);
@@ -18,7 +22,6 @@ function draw() {
         default: menuPage.display();
     }
 }
-
 
 function mouseClicked() {
     if (currentMode === 'menu') {
@@ -74,7 +77,6 @@ function mouseClicked() {
         return;
     }
 }
-
 
 function keyPressed() {
     if (key === 'p' || key === 'P') {
