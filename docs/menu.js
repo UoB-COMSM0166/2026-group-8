@@ -92,7 +92,7 @@ class Menu {
 
         if (this.btnRange(mode1, this.btnPos, this.btnW, this.btnH)) return 'CLASSIC';
         if (this.btnRange(mode2, this.btnPos, this.btnW, this.btnH)) return 'DARK';
-        // if (this.btnRange(mode3, this.btnPos, this.btnW, this.btnH)) return 'DUEL';
+        if (this.btnRange(mode3, this.btnPos, this.btnW, this.btnH)) return 'DUEL';
 
         return null;
     }

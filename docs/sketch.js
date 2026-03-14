@@ -1,11 +1,11 @@
 const W = 500, H = 700;
-let menuPage, gamePage;
+let menuPage, gamePage, duelPage;
 let currentMode = 'menu';
 let brickImg;
 
 
 function preload() {
-    brickImg = loadImage('https://cdn-icons-png.flaticon.com/512/5805/5805666.png');
+    BaseScene.brickImg = loadImage('https://cdn-icons-png.flaticon.com/512/5805/5805666.png');
 }
 
 
@@ -20,7 +20,7 @@ function draw() {
 
     switch (currentMode) {
         case 'game': gamePage.display(); break;
-        // case 'duel': break;
+        case 'duel': duelPage.display(); break;
         default: menuPage.display();
     }
 }
@@ -32,10 +32,13 @@ function mouseClicked() {
         if (selectedMode === 'CLASSIC' || selectedMode === 'DARK') {
             currentMode = 'game';
             gamePage = new Game(brickImg, selectedMode);
+            return;
         }
-        // else if (selectedMode === 'DUEL') {
-
-        // }
+        else if (selectedMode === 'DUEL') {
+            currentMode = 'duel';
+            duelPage = new Duel();
+            return;
+        }
     }
 
     if (currentMode === 'game') {
@@ -58,13 +61,35 @@ function mouseClicked() {
         }
         return;
     }
+
+    if (currentMode == 'duel') {
+        let currentState = duelPage.manage.state;
+
+        if (['INSTRUCTION', 'PAUSED', 'WON', 'GAMEOVER'].includes(currentState)) {
+            if (
+                mouseX > 170 && mouseX < 330 &&
+                mouseY > 540 && mouseY < 580
+            ) {
+                currentMode = 'menu';
+                return;
+            }
+        }
+        if (currentState === 'INSTRUCTION') {
+            duelPage.manage.state = 'PLAYING';
+        } else if (currentState === 'PLAYING') {
+            duelPage.paddle1.launchBall(duelPage.ball);
+        }
+        return;
+    }
 }
 
 
 function keyPressed() {
-    if (currentMode === 'game') {
-        if (key === 'p' || key === 'P') {
-            gamePage.manage.togglePause();
+    if (key === 'p' || key === 'P') {
+        let activeScene = (currentMode === 'game') ? gamePage : (currentMode === 'duel' ? duelPage : null);
+
+        if (activeScene) {
+            activeScene.requestTogglePause();
         }
     }
 }
