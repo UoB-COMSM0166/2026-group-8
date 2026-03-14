@@ -1,5 +1,5 @@
 class Game extends BaseScene {
-    constructor(imgFile, mode) {
+    constructor(mode) {
         super();
         this.mode = mode;
         this.ball = new Ball(200, 350, 5);
@@ -7,7 +7,6 @@ class Game extends BaseScene {
         this.bricks = new Bricks();
         this.manage = new GameManage();
 
-        this.brickImg = imgFile;
         // screen mask for "DARK" mode
         this.maskLayer = createGraphics(450, 600);
     }
