@@ -5,6 +5,9 @@ class Ball {
         // Ball velocity (vector)
         this.vel = createVector(4, -4); // x direction 4 means moving right, y direction -4 means moving up
         this.r = r; // Radius
+        // Record the initial state for later scaling
+        this.originalR = r; 
+        this.baseSpeed = 5.65; // Used as a speed reference
     }
 
 
@@ -18,6 +21,10 @@ class Ball {
             this.checkWallCollision(); // Check wall collision
             this.checkPaddleCollision(paddle); // Check paddle collision
             this.checkBrickCollision(bricks); // Check brick collision
+            // Check every frame to see if any items have been collected from the bricks
+            if (window.gamePage && gamePage.bricks) {
+                this.checkDropCollision(gamePage.bricks.drops, paddle);
+            }
         }
     }
 
@@ -129,6 +136,38 @@ class Ball {
     }
 
 
+    //Checks if the paddle caught any falling items (drops), from the bricks.js file.
+    checkDropCollision(drops, paddle) {
+    
+        for (let i = drops.length - 1; i >= 0; i--) {
+            let d = drops[i];
+
+            // Hit detection
+            if (d.y + d.r > paddle.y && d.x > paddle.x && d.x < paddle.x + paddle.w) {
+                
+                // Identify the item type
+                if (d.type === 'buff') {
+                    this.applyEffect(1.5); // Make it 50% bigger and faster
+                } else if (d.type === 'debuff') {
+                    this.applyEffect(0.6); // Shrink it and slow it down to 60%
+                }
+                
+                // Once caught, remove it from the screen so it doesn't trigger again
+                drops.splice(i, 1); 
+            }
+        }
+    }
+
+    // physically changes the ball's properties, based on a multiplier (scale).
+    applyEffect(scale) {
+        // Resizes the ball based on its "factory setting" (originalR)
+        this.r = this.originalR * scale;          
+        
+        // Updates the ball's speed without changing its current flight direction
+        this.vel.setMag(this.baseSpeed * scale); // setMag = "Set Magnitude" (changes the length of the velocity vector) 
+    }
+
+
     /*
     Physical reflection formula: angle of incidence = angle of reflection
     Formula: v' = v - 2 (v·n) n
@@ -151,5 +190,7 @@ class Ball {
 
         this.vel.set(0, 0);
         paddle.isBallAttached = true;
+
+        this.r = this.originalR; // Reset the ball's size
     }
 }
