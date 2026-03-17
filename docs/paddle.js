@@ -34,10 +34,29 @@ class Paddle {
         };
     }
 
+// DARK mode WIDE powerup
+    activateWide() {
+        this.w = this.WIDE_W;
+    }
+ 
+    deactivateWide() {
+        this.w = this.DEFAULT_W;
+    }
+ 
+    calculateBounce(ballX) {
+        const hitOffset = (ballX - (this.x + this.w / 2)) / (this.w / 2);
+        const maxAngle = radians(60);
+        const angle = hitOffset * maxAngle;
+        return {
+            vx: sin(angle),
+            vy: -cos(angle),
+        };
+    }
+
 //checks whether any falling drop overlaps the paddle
-    checkCatch (bricks0bj){
-        for (let i = bricks0bj.drops.length -1; i > = 0; i --) {
-            let d = bricks0bj.drops[1];
+    checkCatch (bricksObj){
+        for (let i = bricksObj.drops.length -1; i >= 0; i --) {
+            let d = bricksObj.drops[i];
 
             if(
                 d.x - d.w /2 < this.x + this.w &&
