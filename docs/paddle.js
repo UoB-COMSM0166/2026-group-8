@@ -13,7 +13,7 @@ class Paddle {
     }
 
 
- update(keys) {
+update(keys = {}) {
         if (this.ctrl === 'mouse') {
             let tx = this.reversed
                 ? (width - mouseX) - this.w / 2
