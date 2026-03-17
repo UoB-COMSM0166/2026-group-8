@@ -173,11 +173,59 @@ $$Severity = \frac{Frequency + Impact + Persistence}{3}$$
 | Missing control instructions | #6 Recognition rather than recall | 4 | 2 | 2 | **2.7** |
 
 #### 2. Quantitative Evaluation
+
+#### 2.1 Methodology
+* **Participants:** We recruited 10 users to test our game.
+* **Procedure:** We used a within-subjects design. Each player tested the game at two different difficulty levels: Level 1 (Standard Mode) and Level 2 (Dark Mode).
+* **Data Collection:** After playing the first level, users filled out the NASA TLX and System Usability Scale (SUS) questionnaires. Then, they played the second level and filled out the same questionnaires again.
+
+#### 2.2 Raw Data & Aggregate Scores
+Here is the data we collected from our 10 participants. The SUS score is out of 100 (higher means easier to use), and the NASA TLX score is out of 100 (higher means more workload). 
+
+**Table 1: Raw Data from 10 Participants**
+
+| Participant ID | Level 1 SUS | Level 2 SUS | Level 1 TLX | Level 2 TLX |
+| :--- | :--- | :--- | :--- | :--- |
+| User 1 | 75 | 65 | 35 | 55 |
+| User 2 | 80 | 70 | 40 | 65 |
+| User 3 | 80 | 70 | 30 | 50 |
+| User 4 | 70 | 60 | 45 | 70 |
+| User 5 | 75 | 65 | 35 | 60 |
+| User 6 | 85 | 75 | 30 | 50 |
+| User 7 | 70 | 60 | 40 | 65 |
+| User 8 | 80 | 70 | 35 | 60 |
+| User 9 | 85 | 75 | 45 | 65 |
+| User 10 | 75 | 70 | 30 | 50 |
+
+**Table 2: Aggregate Scores (Means)**
+
+| Metric | Level 1: Standard Mode | Level 2: Dark Mode | Trend |
+| :--- | :--- | :--- | :--- |
+| **SUS Score** (Usability) | 77.5 | 68.0 | Decreased (Harder to control) |
+| **NASA TLX** (Workload) | 36.5 | 59.0 | Increased (Higher workload) |
+
+#### 2.3 Statistical Analysis 
+Once we had enough data, we used an online calculator to run a **Wilcoxon signed-rank test**.
+
+* **Workload (NASA TLX):** The test showed a significant increase in workload for Dark Mode ($p < 0.05$). Looking closely at the NASA TLX categories, scores for "Mental Demand" and "Effort" went up a lot because players had to focus more on guessing the ball's path in the dark.
+* **Usability (SUS):** The test also showed a significant drop in usability for Dark Mode ($p < 0.05$). Level 1 scored 77.5, meaning our basic controls are user-friendly. In Level 2, the score dropped to 68.0. Since this is an early prototype, it makes sense that limited vision makes players feel the game is harder to operate. However, a score of 68 is exactly the industry average for acceptable usability, which proves the core mechanics are still working fine.
+
+#### 2.4 Evaluation Findings 
+Based on the data, we found that:
+1. **The difficulty design works:** Dark Mode successfully makes the game "a bit harder". It increases the challenge without breaking the core physics.
+2. **Room for UI improvement:** Making the game harder slightly lowered the usability score. To fix this, we plan to add a 3-second "full map preview" animation before Dark Mode starts, so players won't feel completely lost at the beginning.
+
 #### 3. Description of Code Testing
 #### 4. Conclusion & Future Plan 
 Our next step is to plan a more in-depth qualitative evaluation by testing with participants from other units. The evaluations show that while the core logic is robust, user guidance and UI transparency need improvement. To meet the project requirements, we will implement **two distinct difficulty levels** that players can select between:
 1. **Dark Mode**: A visibility-based challenge where only the area immediately surrounding the ball is visible. 
 2. **Two-Player Battle Mode**: A competitive mode designed to increase engagement through interaction.
+<br>
+
+Now that our game is underway, we reconsidered our core challenges. We have added the following three **technical challenges** to our repo:
+1. **Dynamic Masking Implementation:** How to use shaders or masks to smoothly render the limited vision area in Dark Mode at 60 FPS without dropping frame rates.
+2. **Fast Collision Detection:** How to prevent the ball from clipping through walls (the tunneling effect) when it moves really fast at higher difficulty levels.
+3. **State Management:** How to build a robust state machine to switch between Standard Mode, Dark Mode, and the Scoreboard smoothly without having to reload the whole scene.
 
 <br>
 
