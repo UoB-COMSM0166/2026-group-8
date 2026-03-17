@@ -1,20 +1,37 @@
 class Paddle {
-    constructor() {
-        this.DEFAULT_W = 100;
+    constructor(x, y, w, h, ctrl) {
+        this.DEFAULT_W = w ?? 100;
         this.WIDE_W = 200;
         this.w = this.DEFAULT_W;
-        this.h = 15;
-        this.x = (width - this.w) / 2;
-        this.y = 600;
+        this.h = h ?? 15;
+        this.x = x ?? (width - this.w) / 2;
+        this.y = y ?? 600;
+        this.ctrl  = ctrl ?? 'mouse';
+        this.speed = 6;
+        this.reversed = false;
         this.isBallAttached = true;
     }
 
 
-    update() {
-        this.x = mouseX - this.w / 2;
-        this.x = constrain(this.x, 35, 465 - this.w);
+ update(keys) {
+        if (this.ctrl === 'mouse') {
+            let tx = this.reversed
+                ? (width - mouseX) - this.w / 2
+                : mouseX - this.w / 2;
+            this.x = constrain(tx, 35, 465 - this.w);
+ 
+        } else if (this.ctrl === 'kbd_p1') {
+            if (keys['KeyA']) this.x -= this.speed;
+            if (keys['KeyD']) this.x += this.speed;
+            this.x = constrain(this.x, 0, width - this.w);
+ 
+        } else if (this.ctrl === 'kbd_p2') {
+            if (keys['ArrowLeft'])  this.x -= this.speed;
+            if (keys['ArrowRight']) this.x += this.speed;
+            this.x = constrain(this.x, 0, width - this.w);
+        }
     }
-
+    
 
     launchBall(ball) {
         if (this.isBallAttached) {
@@ -93,4 +110,31 @@ class Paddle {
     }
 }
 
+//One player
+display() {
+        push();
+        fill('#4A90D9');
+        noStroke();
+        rect(this.x, this.y, this.w, this.h, 6);
+        fill(255, 255, 255, 80);
+        rect(this.x + 4, this.y + 2, this.w - 8, 4, 3);
+        pop();
+    }
 
+//Two player
+ displayP1() {
+        push();
+        noStroke();
+        fill(0, 200, 140);
+        rect(this.x, this.y, this.w, this.h);
+        pop();
+    }
+
+displayP2() {
+        push();
+        noStroke();
+        fill(220, 60, 60);
+        rect(this.x, this.y, this.w, this.h);
+        pop();
+    }
+}
