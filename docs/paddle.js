@@ -1,6 +1,7 @@
 class Paddle {
     constructor() {
         this.DEFAULT_W = 100;
+        this.WIDE_W = 200;
         this.w = this.DEFAULT_W;
         this.h = 15;
         this.x = (width - this.w) / 2;
@@ -69,7 +70,7 @@ class Paddle {
                 }else if (d.type === 'debuff'){
                     this.w = max (40, this.w -20);
                 }
-                bricks0bj.drops.splice(i, 1);
+                bricksObj.drops.splice(i, 1);
             }
         }
     }
