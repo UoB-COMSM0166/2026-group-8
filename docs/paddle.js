@@ -60,16 +60,6 @@ update(keys = {}) {
     deactivateWide() {
         this.w = this.DEFAULT_W;
     }
- 
-    calculateBounce(ballX) {
-        const hitOffset = (ballX - (this.x + this.w / 2)) / (this.w / 2);
-        const maxAngle = radians(60);
-        const angle = hitOffset * maxAngle;
-        return {
-            vx: sin(angle),
-            vy: -cos(angle),
-        };
-    }
 
 //checks whether any falling drop overlaps the paddle
     checkCatch (bricksObj){
@@ -96,6 +86,7 @@ update(keys = {}) {
     reset(){
         this.w = this.DEFAULT_W;
         this.x = (width - this.w) / 2;
+        this.reversed = false;
         this.isBallAttached = true;
     }
     
@@ -108,7 +99,6 @@ update(keys = {}) {
         rect(this.x + 4, this.y + 2, this.w - 8, 4, 3);
         pop();
     }
-}
 
 //One player
 display() {
