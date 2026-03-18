@@ -4,15 +4,22 @@ class Brick {
     static COLOR_BLUE   = [135, 206, 235];
     static COLOR_PURPLE = [160,  80, 220]; 
 
+    // Specific effect lists. 
+    static BUFF_EFFECTS = ['ball_large', 'ball_slow', 'paddle_long', 'ball_multi'];
+    static DEBUFF_EFFECTS = ['ball_small', 'ball_fast', 'paddle_short', 'paddle_reverse'];
+
     constructor(x, y, w, h, opts = {}) {
         this.x = x; this.y = y; this.w = w; this.h = h;
         this.hp = opts.hp ?? 1;
         this.mhp = this.hp;
         this.lv = opts.lv ?? 1;
-        this.isKing = opts.isKing ?? false;
+        
+        this.isKing = opts.isKing ?? false; // true if this is the core brick in Dark mode
         this.owner = opts.owner ?? 0;
         this.color = opts.color ?? Brick.COLOR_BLUE;
-        this.dropType = opts.dropType ?? null; 
+        
+        this.dropType = opts.dropType ?? null; // general type: 'buff', 'debuff', or 'light'
+        this.dropEffect = opts.dropEffect ?? null; // specific effect, e.g., 'ball_large'
         
         this._active = true; 
         this.flash = 0;
@@ -48,21 +55,22 @@ class Brick {
         if (!this._active) return;
         push();
         
+        // Draw the core brick (the target in Dark mode)
         if (this.isKing) {
             if (this.flash > 0) {
                 fill(255); stroke(255);
                 rect(this.x, this.y, this.w, this.h, 8);
             } else {
-                fill(80, 0, 0); 
-                stroke(255, 215, 0); 
+                fill(80, 0, 0);       
+                stroke(255, 215, 0);   
                 strokeWeight(2);
+                rectMode(CORNER);
                 rect(this.x, this.y, this.w, this.h, 8); 
-                
+
                 noStroke();
-                fill(255, 50, 50); 
-                ellipse(this.x + this.w / 2, this.y + this.h / 2, this.w * 0.6, this.h * 0.7);
-                fill(255, 255, 0); 
-                ellipse(this.x + this.w / 2, this.y + this.h / 2, this.w * 0.3, this.h * 0.4);
+                textAlign(CENTER, CENTER);
+                textSize(16); 
+                text('👑', this.x + this.w / 2, this.y + this.h / 2); 
             }
             
             if (this.hp < this.mhp) {
@@ -73,6 +81,7 @@ class Brick {
             return; 
         }
         
+        // Draw normal bricks
         if (this.flash > 0) { fill(255); stroke(255); } 
         else { 
             fill(this.color[0], this.color[1], this.color[2]); 
@@ -81,7 +90,8 @@ class Brick {
         strokeWeight(1); 
         rectMode(CORNER);
         rect(this.x, this.y, this.w, this.h, 4);
-        
+     
+        // Draw HP bar for level 2 bricks
         if ((this.lv === 2 || this.mhp >= 2) && this.hp < this.mhp) {
             noStroke(); fill(60); rect(this.x + 2, this.y + this.h - 4, this.w - 4, 3);
             fill(180, 80, 255); rect(this.x + 2, this.y + this.h - 4, (this.w - 4) * (this.hp / this.mhp), 3);
@@ -100,11 +110,13 @@ class Brick {
             let hp = Math.random() < pProb ? 2 : 1;
             let col = null;
             let drop = null;
+            let effect = null; // Temp variable to store specific effect
 
             if (hp === 2) {
                 col = Brick.COLOR_PURPLE; 
                 if (isDark) {
-                    drop = Math.random() < 0.50 ? 'light' : 'buff';
+                    // In dark mode, purple bricks 100% drop light
+                    drop = 'light';
                 }
             } else {
                 if (isDark) {
@@ -114,16 +126,21 @@ class Brick {
                     if (r < 0.15) { 
                         col = Brick.COLOR_RED; 
                         drop = 'debuff'; 
+                        // Randomly pick one debuff effect
+                        effect = Brick.DEBUFF_EFFECTS[Math.floor(Math.random() * Brick.DEBUFF_EFFECTS.length)];
                     } else if (r < 0.30) { 
                         col = Brick.COLOR_GREEN; 
                         drop = 'buff'; 
+                        // Randomly pick one buff effect
+                        effect = Brick.BUFF_EFFECTS[Math.floor(Math.random() * Brick.BUFF_EFFECTS.length)];
                     } else { 
                         col = Brick.COLOR_BLUE; 
                     }
                 }
             }
             
-            row.push(new Brick(cfg.X0 + c * (cfg.BW + cfg.GAP), y, cfg.BW, cfg.BH, { hp, lv: hp, color: col, dropType: drop }));
+            // Pass the generated dropType and dropEffect to the new Brick
+            row.push(new Brick(cfg.X0 + c * (cfg.BW + cfg.GAP), y, cfg.BW, cfg.BH, { hp, lv: hp, color: col, dropType: drop, dropEffect: effect }));
         }
         return row;
     }
@@ -136,9 +153,7 @@ class Bricks {
         this.drops = []; 
         this.wave = 1;
         this.spawnTimer = 0; 
-        
         this.spawnInterval = 20000;
-        
         this.dummyBrick = new Brick(-1000, -1000, 10, 10, { hp: 999999 });
         this.lightTimer = 0;
         this.isInitialized = false;
@@ -201,16 +216,20 @@ class Bricks {
         this.items = []; 
         this.drops = [];
         let isClassic = (typeof gamePage !== 'undefined' && gamePage.mode === 'CLASSIC');
+        let isDark = (typeof gamePage !== 'undefined' && (gamePage.mode === 'DARK' || gamePage.mode === 'ILLUMINATED'));
         
         if (isClassic) this.items.push(this.dummyBrick);
         
-        for (let r = 0; r < 4; r++) {
+        // Set 6 rows for Dark mode to make it harder, 4 rows for Classic mode
+        let initialRows = isDark ? 6 : 4; 
+
+        for (let r = 0; r < initialRows; r++) {
             let yPos = this.cfg.Y0 + r * (this.cfg.BH + this.cfg.GAP);
             this.items.push(...Brick.makeStandardRow(yPos, 1, this.cfg));
         }
 
-        let isDark = (typeof gamePage !== 'undefined' && (gamePage.mode === 'DARK' || gamePage.mode === 'ILLUMINATED'));
         if (isDark) {
+            // Randomly choose one brick to be the core brick (the King)
             let coreIndex = Math.floor(Math.random() * (this.items.length - 1)) + 1;
             let coreBrick = this.items[coreIndex];
             coreBrick.isKing = true;
@@ -245,7 +264,9 @@ class Bricks {
                     h: dropH, 
                     r: dropH / 2, 
                     speed: 2.5, 
-                    type: b.dropType 
+                    type: b.dropType,
+                    // Pass specific effect to the drop object. Teammates can read d.effect when paddle catches it.
+                    effect: b.dropEffect 
                 });
                 b.needsDrop = false; 
             }
@@ -264,6 +285,7 @@ class Bricks {
             }
         }
 
+        // Handle wave spawning in Classic mode
         if (typeof gamePage !== 'undefined' && gamePage.manage) {
             if (gamePage.mode === 'CLASSIC' && gamePage.manage.timer <= 0) {
                 gamePage.manage.state = 'WON'; 
@@ -286,15 +308,18 @@ class Bricks {
             }
         }
 
+        // Update drop items position
         for (let i = this.drops.length - 1; i >= 0; i--) {
             let d = this.drops[i];
             d.y += d.speed; 
             
+            // Remove drop if it falls out of screen
             if (d.y > 625) { 
                 this.drops.splice(i, 1);
                 continue;
             }
 
+            // Check if paddle catches the light drop (other drops are handled in paddle.js)
             if (d.type === 'light' && typeof gamePage !== 'undefined' && gamePage.paddle) {
                 let p = gamePage.paddle;
                 if (d.x - d.w/2 < p.x + p.w && d.x + d.w/2 > p.x &&
@@ -306,6 +331,7 @@ class Bricks {
             }
         }
 
+        // Handle dark/illuminated mode switch
         if (this.lightTimer > 0) {
             this.lightTimer--;
             if (typeof gamePage !== 'undefined') {
@@ -317,6 +343,7 @@ class Bricks {
             }
         }
 
+        // Remove inactive bricks from array to save memory
         this.items = this.items.filter(b => b.active || b === this.dummyBrick || b.needsDrop);
     }
 
@@ -326,6 +353,7 @@ class Bricks {
         let isPlaying = (typeof gamePage !== 'undefined' && gamePage.manage && gamePage.manage.state === 'PLAYING');
         if (isPlaying) {
             this.update();
+            // Call teammate's paddle function to check if drops are caught
             if (typeof gamePage !== 'undefined' && gamePage.paddle && typeof gamePage.paddle.checkCatch === 'function') {
                 gamePage.paddle.checkCatch(this);
             }
@@ -350,10 +378,15 @@ class Bricks {
         drawingContext.clip();
 
         rectMode(CENTER);
+        textAlign(CENTER, CENTER);
+        textStyle(BOLD);
+
         for (let d of this.drops) {
+            // Draw drop box color based on type
             if (d.type === 'debuff') {
                 fill(255, 105, 97); 
                 stroke(255);
+                strokeWeight(2);
             } else {
                 fill(119, 221, 119); 
                 if (d.type === 'light') {
@@ -365,6 +398,31 @@ class Bricks {
                 }
             }
             rect(d.x, d.y, d.w, d.h, 6); 
+
+            // Draw short text on drops so we can test easily
+            noStroke();
+            fill(255);
+            textSize(14);
+            let iconText = '';
+            
+            if (d.type === 'light') {
+                iconText = '💡';
+                textSize(16);
+            } else if (d.effect) {
+                // Match effect with short text
+                switch(d.effect) {
+                    case 'ball_large': iconText = 'B+'; break;
+                    case 'ball_slow': iconText = 'S-'; break;
+                    case 'paddle_long': iconText = 'P+'; break;
+                    case 'ball_multi': iconText = 'x3'; break;
+                    
+                    case 'ball_small': iconText = 'B-'; break;
+                    case 'ball_fast': iconText = 'S+'; break;
+                    case 'paddle_short': iconText = 'P-'; break;
+                    case 'paddle_reverse': iconText = 'Rev'; break;
+                }
+            }
+            text(iconText, d.x, d.y);
         }
         
         drawingContext.restore(); 
