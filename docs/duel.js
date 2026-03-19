@@ -6,12 +6,17 @@ class Duel extends BaseScene {
 
         this.paddle1 = new Paddle(); // Player 1
         this.paddle1.y = 200;
+        this.paddle1.isBallAttached = false;
 
-        this.paddle2 = new Paddle(); // Player 2
+        this.paddle2 = new Paddle(); // Player 2 (with ball)
         this.paddle2.y = 430;
+        this.paddle2.isBallAttached = true;
+        this.ball.reset(this.paddle2);
 
         this.bricks1 = new Bricks(); // Bricks for Player 1
         this.bricks2 = new Bricks(); // Bricks for Player 2
+
+        this.manage = new GameManage();
     }
 
     display() {
