@@ -10,9 +10,22 @@ class Ball {
         this.baseSpeed = 5.65; // Used as a speed reference
     }
 
+    // MODIFIED: Added timers and state flags for overlapping effects (each lasts 6s/360 frames)
+        this.effects = {
+            large: 0,
+            small: 0,
+            fast: 0,
+            slow: 0
+        };
 
     // Update every frame (core function), called continuously inside draw()
     update(paddle, bricks) {
+        // MODIFIED: Update effect timers every frame (assuming 60fps, 360 frames = 6s)
+        for (let key in this.effects) {
+            if (this.effects[key] > 0) this.effects[key]--;
+        }
+        // MODIFIED: Apply dynamic scaling based on active timers
+        this.applyDynamicStatus();
         if (paddle.isBallAttached) {
             this.pos.x = paddle.x + paddle.w / 2;
             this.pos.y = paddle.y - this.r;
@@ -25,6 +38,22 @@ class Ball {
             if (window.gamePage && gamePage.bricks) {
                 this.checkDropCollision(gamePage.bricks.drops, paddle);
             }
+        }
+    }
+
+    // MODIFIED: New helper to calculate overlapping scale and speed
+    applyDynamicStatus() {
+        let rScale = 1.0;
+        let sScale = 1.0;
+
+        if (this.effects.large > 0) rScale *= 1.5;
+        if (this.effects.small > 0) rScale *= 0.6;
+        if (this.effects.fast > 0) sScale *= 1.4;
+        if (this.effects.slow > 0) sScale *= 0.7;
+
+        this.r = this.originalR * rScale;
+        if (this.vel.mag() !== 0) {
+            this.vel.setMag(this.baseSpeed * sScale);
         }
     }
 
@@ -136,25 +165,40 @@ class Ball {
     }
 
 
-    //Checks if the paddle caught any falling items (drops), from the bricks.js file.
+    // Checks if the paddle caught any falling items (drops), from the bricks.js file.
+    // MODIFIED: Specifically handles the effects defined in bricks.js (Brick.BUFF_EFFECTS / DEBUFF_EFFECTS)
     checkDropCollision(drops, paddle) {
     
         for (let i = drops.length - 1; i >= 0; i--) {
             let d = drops[i];
 
-            // Hit detection
-            if (d.y + d.r > paddle.y && d.x > paddle.x && d.x < paddle.x + paddle.w) {
+            // Match hit detection from your source
+            if (d.y + d.h/2 > paddle.y && d.y - d.h/2 < paddle.y + paddle.h && d.x > paddle.x && d.x < paddle.x + paddle.w) {
                 
-                // Identify the item type
-                if (d.type === 'buff') {
-                    this.applyEffect(1.5); // Make it 50% bigger and faster
-                } else if (d.type === 'debuff') {
-                    this.applyEffect(0.6); // Shrink it and slow it down to 60%
+                // MODIFIED: Set 6-second timers (360 frames) for each specific effect string from bricks.js
+                if (d.effect === 'ball_large') this.effects.large = 360;
+                if (d.effect === 'ball_small') this.effects.small = 360;
+                if (d.effect === 'ball_fast')  this.effects.fast = 360;
+                if (d.effect === 'ball_slow')  this.effects.slow = 360;
+                
+                // MODIFIED: Handle multi-ball (spawns 2 extra balls at current position)
+                if (d.effect === 'ball_multi' && window.gamePage) {
+                    this.handleMultiBall();
                 }
-                
+
                 // Once caught, remove it from the screen so it doesn't trigger again
                 drops.splice(i, 1); 
             }
+        }
+    }
+
+    // MODIFIED: Logic for ball_multi to ensure one ball remaining won't lose life
+    handleMultiBall() {
+        if (!window.gamePage.extraBalls) window.gamePage.extraBalls = [];
+        for (let i = 0; i < 2; i++) {
+            let newBall = new Ball(this.pos.x, this.pos.y, this.originalR);
+            newBall.vel = createVector(random(-4, 4), -4);
+            window.gamePage.extraBalls.push(newBall);
         }
     }
 
@@ -192,5 +236,8 @@ class Ball {
         paddle.isBallAttached = true;
 
         this.r = this.originalR; // Reset the ball's size
+
+        // MODIFIED: Clear all effects on reset
+        for (let key in this.effects) this.effects[key] = 0;
     }
 }
