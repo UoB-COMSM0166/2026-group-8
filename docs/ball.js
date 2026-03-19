@@ -8,7 +8,6 @@ class Ball {
         // Record the initial state for later scaling
         this.originalR = r; 
         this.baseSpeed = 5.65; // Used as a speed reference
-    }
 
     // MODIFIED: Added timers and state flags for overlapping effects (each lasts 6s/360 frames)
         this.effects = {
@@ -17,6 +16,7 @@ class Ball {
             fast: 0,
             slow: 0
         };
+    }
 
     // Update every frame (core function), called continuously inside draw()
     update(paddle, bricks) {
