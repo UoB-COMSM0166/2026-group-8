@@ -1,43 +1,47 @@
-let menuPage;
-let gamePage;
+const W = 500, H = 700;
+let menuPage, gamePage, duelPage;
 let currentMode = 'menu';
 let brickImg;
 
 
 function preload() {
-    brickImg = loadImage('https://cdn-icons-png.flaticon.com/512/5805/5805666.png');
+    BaseScene.brickImg = loadImage('https://cdn-icons-png.flaticon.com/512/5805/5805666.png');
 }
-
 
 function setup() {
-    createCanvas(500, 700);
+    createCanvas(W, H);
     menuPage = new Menu();
 }
-
 
 function draw() {
     cursor(ARROW);
 
-    if (currentMode === 'menu') {
-        menuPage.display();
-    } else if (currentMode === 'game') {
-        gamePage.display();
+    switch (currentMode) {
+        case 'game': gamePage.display(); break;
+        case 'duel': duelPage.display(); break;
+        default: menuPage.display();
     }
 }
-
 
 function mouseClicked() {
     if (currentMode === 'menu') {
         let selectedMode = menuPage.checkModeClicked();
-        if (selectedMode) {
+        if (selectedMode === 'CLASSIC' || selectedMode === 'DARK') {
             currentMode = 'game';
-            gamePage = new Game(brickImg, selectedMode);
+            gamePage = new Game(selectedMode);
+            return;
         }
-    } else if (currentMode === 'game') {
+        else if (selectedMode === 'DUEL') {
+            currentMode = 'duel';
+            duelPage = new Duel();
+            return;
+        }
+    }
+
+    if (currentMode === 'game') {
         let currentState = gamePage.manage.state;
 
-        if (currentState === 'INSTRUCTION' || currentState === 'PAUSED' ||
-            currentState === 'WON' || currentState === 'GAMEOVER') {
+        if (['INSTRUCTION', 'PAUSED', 'WON', 'GAMEOVER'].includes(currentState)) {
             if (
                 mouseX > 170 && mouseX < 330 &&
                 mouseY > 540 && mouseY < 580
@@ -52,14 +56,37 @@ function mouseClicked() {
         } else if (currentState === 'PLAYING') {
             gamePage.paddle.launchBall(gamePage.ball);
         }
+        return;
+    }
+
+    if (currentMode === 'duel') {
+        let currentState = duelPage.manage.state;
+
+        if (['INSTRUCTION', 'PAUSED'].includes(currentState)) {
+            if (
+                mouseX > 170 && mouseX < 330 &&
+                mouseY > 540 && mouseY < 580
+            ) {
+                currentMode = 'menu';
+                return;
+            }
+        }
+        if (currentState === 'INSTRUCTION') {
+            duelPage.manage.state = 'PLAYING';
+        } else if (currentState === 'PLAYING') {
+            // duelPage.paddle2.launchBall(duelPage.ball);
+        }
+
+        return;
     }
 }
 
-
 function keyPressed() {
-    if (currentMode === 'game') {
-        if (key === 'p' || key === 'P') {
-            gamePage.manage.togglePause();
+    if (key === 'p' || key === 'P') {
+        let activeScene = (currentMode === 'game') ? gamePage : (currentMode === 'duel' ? duelPage : null);
+
+        if (activeScene) {
+            activeScene.requestTogglePause();
         }
     }
 }

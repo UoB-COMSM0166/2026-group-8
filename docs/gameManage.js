@@ -26,8 +26,8 @@ class GameManage {
         let secs = totalSeconds % 60;
         return nf(mins, 2) + ":" + nf(secs, 2);
     }
-  
-  
+
+
     handleBallLost(ball, paddle) {
         this.lives--;
         if (this.lives <= 0) {
