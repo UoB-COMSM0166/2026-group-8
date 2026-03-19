@@ -10,9 +10,13 @@ class Paddle {
         this.speed = 6;
         this.reversed = false;
         this.isBallAttached = true;
-    }
+    
 
-
+//Timer 
+        this._widerTimer = 0;
+        this_reverseTimer = 0;
+}
+    
 update(keys = {}) {
         if (this.ctrl === 'mouse') {
             let tx = this.reversed
@@ -30,7 +34,19 @@ update(keys = {}) {
             if (keys['ArrowRight']) this.x += this.speed;
             this.x = constrain(this.x, 0, width - this.w);
         }
+    
+    //Wide timer
+    if (this._widerTimer > 0){
+        this._widerTimer--;
+        if(this._widerTimer <= 0) this.deactivateWide();
     }
+
+    //Reserve timer
+    if (this._reverseTimer > 0){
+        this._reverseTimer--;
+        if (this._reverseTimer <= 0) this.reversed = false;
+    }
+}
     
 
     launchBall(ball) {
@@ -73,9 +89,16 @@ update(keys = {}) {
                 d.y + d.h /2 > this.y
             ){
                 if (d.type === 'buff'){
-                    this.w += 20;
+                    this.activateWide();
+                    this._widerTimer = 360;
+                    
                 }else if (d.type === 'debuff'){
-                    this.w = max (40, this.w -20);
+                    
+                    //only classic have reverse
+                    if (typeof gamePage !== 'undefined' && gamePage.mode === 'CLASSIC') {
+                        this.reversed = true;
+                        this._reverseTimer =360;
+                    }
                 }
                 bricksObj.drops.splice(i, 1);
             }
@@ -87,6 +110,8 @@ update(keys = {}) {
         this.w = this.DEFAULT_W;
         this.x = (width - this.w) / 2;
         this.reversed = false;
+        this._widerTimer = 0;
+        this._reverseTimer = 0;
         this.isBallAttached = true;
     }
     
