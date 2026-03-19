@@ -34,8 +34,9 @@ class Ball {
             this.checkWallCollision(); // Check wall collision
             this.checkPaddleCollision(paddle); // Check paddle collision
             this.checkBrickCollision(bricks); // Check brick collision
-            // Check every frame to see if any items have been collected from the bricks
-            if (window.gamePage && gamePage.bricks) {
+            
+            // MODIFIED: Safer check for gamePage to prevent "Cannot read properties of undefined"
+            if (typeof gamePage !== 'undefined' && gamePage && gamePage.bricks) {
                 this.checkDropCollision(gamePage.bricks.drops, paddle);
             }
         }
@@ -51,8 +52,8 @@ class Ball {
         if (this.effects.fast > 0) sScale *= 1.4;
         if (this.effects.slow > 0) sScale *= 0.7;
 
-        this.r = this.originalR * rScale;
-        if (this.vel.mag() !== 0) {
+        // MODIFIED: Added safety check for this.vel
+        if (this.vel && this.vel.mag() !== 0) {
             this.vel.setMag(this.baseSpeed * sScale);
         }
     }
@@ -143,23 +144,19 @@ class Ball {
             if (distanceSq < this.r * this.r) {  // If distance < radius → collision
 
                 brick.active = false;  // Deactivate brick (destroyed)
-                gamePage.manage.score += 100;
-
-                // Determine if collision is left/right face or top/bottom face
-                if (abs(dx) > abs(dy)) { // If x penetration is greater
-                    let normal = createVector( // Left/right collision
-                        dx > 0 ? 1 : -1,
-                        0
-                    );
-                    this.reflect(normal);
-                } else {
-                    let normal = createVector( // Top/bottom collision
-                        0,
-                        dy > 0 ? 1 : -1
-                    );
-                    this.reflect(normal);
+                // MODIFIED: Added safety check for this.vel
+                if (this.vel && this.vel.mag() !== 0) {
+                    this.vel.setMag(this.baseSpeed * sScale);
+                    gamePage.manage.score += 100;
                 }
-                break; // Stop after hitting one brick
+
+                if (abs(dx) > abs(dy)) {
+                    this.reflect(createVector(dx > 0 ? 1 : -1, 0));
+                } else {
+                    this.reflect(createVector(0, dy > 0 ? 1 : -1));
+                }
+                break;
+                
             }
         }
     }
@@ -181,8 +178,7 @@ class Ball {
                 if (d.effect === 'ball_fast')  this.effects.fast = 360;
                 if (d.effect === 'ball_slow')  this.effects.slow = 360;
                 
-                // MODIFIED: Handle multi-ball (spawns 2 extra balls at current position)
-                if (d.effect === 'ball_multi' && window.gamePage) {
+                if (d.effect === 'ball_multi') {
                     this.handleMultiBall();
                 }
 
@@ -194,11 +190,13 @@ class Ball {
 
     // MODIFIED: Logic for ball_multi to ensure one ball remaining won't lose life
     handleMultiBall() {
-        if (!window.gamePage.extraBalls) window.gamePage.extraBalls = [];
+        if (typeof gamePage !== 'undefined' && gamePage) {
+            if (!gamePage.extraBalls) gamePage.extraBalls = [];
         for (let i = 0; i < 2; i++) {
             let newBall = new Ball(this.pos.x, this.pos.y, this.originalR);
             newBall.vel = createVector(random(-4, 4), -4);
             window.gamePage.extraBalls.push(newBall);
+        }
         }
     }
 
