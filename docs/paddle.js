@@ -14,7 +14,7 @@ class Paddle {
 
 //Timer 
         this._widerTimer = 0;
-        this_reverseTimer = 0;
+        this._reverseTimer = 0;
 }
     
 update(keys = {}) {
