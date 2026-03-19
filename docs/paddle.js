@@ -88,19 +88,22 @@ update(keys = {}) {
                 d.y - d.h /2 < this.y + this.h &&
                 d.y + d.h /2 > this.y
             ){
-                if (d.type === 'buff'){
+                 if (d.effect === 'paddle_long') {
                     this.activateWide();
                     this._widerTimer = 360;
-                    
-                }else if (d.type === 'debuff'){
-                    
-                    //only classic have reverse
+                } else if (d.effect === 'paddle_short') {
+                    this.w = 50;
+                    this._widerTimer = 360;
+                } else if (d.effect === 'paddle_reverse') {
                     if (typeof gamePage !== 'undefined' && gamePage.mode === 'CLASSIC') {
                         this.reversed = true;
-                        this._reverseTimer =360;
+                        this._reverseTimer = 360;
                     }
                 }
-                bricksObj.drops.splice(i, 1);
+                
+                if (d.effect === 'paddle_long' || d.effect === 'paddle_short' || d.effect === 'paddle_reverse') {
+                    bricksObj.drops.splice(i, 1);
+                }
             }
         }
     }
