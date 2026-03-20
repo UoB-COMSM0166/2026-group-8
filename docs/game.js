@@ -7,18 +7,35 @@ class Game extends BaseScene {
         this.bricks = new Bricks();
         this.manage = new GameManage();
 
+        this.extraBalls = [];
+        this.ball.isAttached = true;
+        this.paddle.isBallAttached = true;
+
         // screen mask for "DARK" mode
         this.maskLayer = createGraphics(450, 600);
+        // timer for DARK mode
+        this.darkTimer = 0;
     }
 
     display() {
         this.drawInitPage();
+        this.bricks.update();
         this.bricks.display();
         this.manage.updateTimer();
 
         if (this.manage.state === 'PLAYING') {
+            this.darkTimer += deltaTime;
+
             this.paddle.update();
-            this.ball.update(this.paddle, this.bricks.items);
+            this.paddle.checkCatch(this.bricks);
+            this.ball.update(this.paddle, this.bricks);
+
+            for (let i = this.extraBalls.length - 1; i >= 0; i--) {
+                let b = this.extraBalls[i];
+                b.update(this.paddle, this.bricks);
+                b.display();
+                if (b.pos.y > 625) this.extraBalls.splice(i, 1);
+            }
 
             if (this.ball.pos.y > 625) {
                 this.manage.handleBallLost(this.ball, this.paddle);
@@ -29,7 +46,7 @@ class Game extends BaseScene {
         this.drawPlayerStatusBar();
 
         // DARK mode screen filter
-        if (this.mode === 'DARK') {
+        if (this.mode === 'DARK' && this.darkTimer > 1000) {
             this.drawDarkEffect();
         }
 
