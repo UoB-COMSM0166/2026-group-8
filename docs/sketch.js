@@ -59,7 +59,7 @@ function mouseClicked() {
         return;
     }
 
-    if (currentMode == 'duel') {
+    if (currentMode === 'duel') {
         let currentState = duelPage.manage.state;
 
         if (['INSTRUCTION', 'PAUSED'].includes(currentState)) {
@@ -73,7 +73,10 @@ function mouseClicked() {
         }
         if (currentState === 'INSTRUCTION') {
             duelPage.manage.state = 'PLAYING';
+        } else if (currentState === 'PLAYING') {
+            // duelPage.paddle2.launchBall(duelPage.ball);
         }
+
         return;
     }
 }
