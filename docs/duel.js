@@ -20,11 +20,15 @@ class Duel extends BaseScene {
     }
 
     display() {
+        //change:enabled update() and uncommented bricks.display() for both players to let bricks be generated
+        this.bricks1.update(); 
+        this.bricks2.update();
+        
         this.drawInitPage();
         this.drawDuelLayout();
-
-        // this.bricks1.display(); 
-        // this.bricks2.display();
+        
+        this.bricks1.display(); 
+        this.bricks2.display();
         this.paddle1.display();
         this.paddle2.display();
         this.ball.display();
