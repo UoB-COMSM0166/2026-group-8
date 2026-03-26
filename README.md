@@ -216,6 +216,21 @@ Based on the data, we found that:
 2. **Room for UI improvement:** Making the game harder slightly lowered the usability score. To fix this, we plan to add a 3-second "full map preview" animation before Dark Mode starts, so players won't feel completely lost at the beginning.
 
 #### 3. Description of Code Testing
+
+#### 3.1 Black-Box Testing
+| Test Case | Input | Expected Result | Status |
+| :--- | :--- | :--- | :--- |
+| Ball Launch | Left Mouse Click | If the ball is attached, it starts moving upwards from the paddle. | ✅ Pass |
+| Paddle Movement | Mouse X-axis move | The paddle follows the mouse and stays inside the game borders. | ✅ Pass |
+| Brick Collision | Ball hits a brick | The brick disappears, and the player gets points. | ✅ Pass |
+| Boundary Bounce | Ball hits walls | The ball bounces back into the play area instead of going off-screen. | ✅ Pass |
+| Life Loss | Ball falls to bottom | The number of hearts (lives) goes down by 1, and the ball returns to the paddle. | ✅ Pass |
+| Time-out | Timer reaches 00:00 | The game ends immediately and shows the Game Over screen. | ✅ Pass |
+
+
+#### 3.2 White-Box Testing
+
+
 #### 4. Conclusion & Future Plan 
 Our next step is to plan a more in-depth qualitative evaluation by testing with participants from other units. The evaluations show that while the core logic is robust, user guidance and UI transparency need improvement. To meet the project requirements, we will implement **two distinct difficulty levels** that players can select between:
 1. **Dark Mode**: A visibility-based challenge where only the area immediately surrounding the ball is visible. 
