@@ -15,7 +15,7 @@
 
 ------------------
 
-## Our Team
+## 🤝 Our Team
 <img width="450" height="300" alt="image" src="https://github.com/user-attachments/assets/e9fe9ff7-deb9-4966-bee2-bffa69ac1743" />
 
 | Name  | GitHub ID | Email | Role |
@@ -32,7 +32,7 @@
 
 - [1. Introduction](#1-introduction)
 - [2. Requirements](#2-requirements)
-- [3. Design](#3-design)
+- [3. Design & System Architecture](#3-design-&-system-architecture)
 - [4. Implementation](#4-implementation)
 - [5. Evaluation](#5-evaluation)
 - [6. Code Testing](#6-code-testing)
