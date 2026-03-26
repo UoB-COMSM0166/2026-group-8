@@ -195,7 +195,7 @@ class Ball {
         for (let i = 0; i < 2; i++) {
             let newBall = new Ball(this.pos.x, this.pos.y, this.originalR);
             newBall.vel = createVector(random(-4, 4), -4);
-            window.gamePage.extraBalls.push(newBall);
+            gamePage.extraBalls.push(newBall);
         }
         }
     }
