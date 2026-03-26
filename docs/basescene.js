@@ -41,8 +41,6 @@ class BaseScene {
         textStyle(BOLD);
         text('HOW TO PLAY', 250, 150);
 
-        drawingContext.shadowBlur = 0;
-
         textSize(16);
         textStyle(NORMAL);
         let rules = this.getRules();
@@ -57,6 +55,7 @@ class BaseScene {
         text('CLICK ANYWHERE TO START', 250, 480);
 
         this.drawHomeButton();
+        drawingContext.shadowBlur = 0;
         pop();
     }
 
@@ -109,6 +108,8 @@ class BaseScene {
         this.drawRectangleOverlay(color(0, 0, 0, 150), color(255));
 
         push();
+        drawingContext.shadowBlur = 15;
+        drawingContext.shadowColor = color(255, 255, 255, 200);
         fill(255);
         textAlign(CENTER, CENTER);
         textSize(40);
@@ -120,6 +121,7 @@ class BaseScene {
         text('Press "P" again to Resume', 250, 370);
 
         this.drawHomeButton();
+        drawingContext.shadowBlur = 0;
         pop();
     }
 

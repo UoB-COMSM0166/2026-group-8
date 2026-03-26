@@ -47,10 +47,24 @@ class Ball {
 
     // Display the ball
     display() {
-        fill('#4A90D9');
-        stroke('#4A90D9');
-        strokeWeight(3);
+        push();
+        noStroke();
+
+        drawingContext.shadowBlur = 30;
+        drawingContext.shadowColor = color(0, 255, 0);
+        fill(0, 255, 0);
         circle(this.pos.x, this.pos.y, this.r * 2);
+
+        drawingContext.shadowBlur = 8;
+        drawingContext.shadowColor = color(255);
+        fill(255);
+        circle(this.pos.x, this.pos.y, this.r * 2.5);
+
+        drawingContext.shadowBlur = 0;
+        fill(0, 100, 0);
+        circle(this.pos.x, this.pos.y, this.r * 2.5);
+
+        pop();
     }
 
     // Wall collision (left, right, top walls; bottom handled by Game)

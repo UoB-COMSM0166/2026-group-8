@@ -63,11 +63,22 @@ class Paddle {
 
     display() {
         push();
-        fill('#4A90D9');
         noStroke();
-        rect(this.x, this.y, this.w, this.h, 6);
-        fill(255, 255, 255, 80);
-        rect(this.x + 4, this.y + 2, this.w - 8, 4, 3);
+        let cornerR = 6;
+
+        drawingContext.shadowBlur = 25;
+        drawingContext.shadowColor = color(0, 255, 100);
+        fill(0, 255, 100);
+        rect(this.x, this.y, this.w, this.h, cornerR);
+
+        drawingContext.shadowBlur = 10;
+        drawingContext.shadowColor = color(255);
+        fill(255);
+        rect(this.x, this.y, this.w, this.h, cornerR);
+
+        drawingContext.shadowBlur = 0;
+        fill(0, 100, 0);
+        rect(this.x, this.y, this.w, this.h, cornerR);
         pop();
     }
 
