@@ -100,28 +100,27 @@ We ultimately decided to develop a three-tier experience: Classic (for onboardin
 
 #### Epic 1: Core Gameplay System
 - **User Story 1:** As a player, I want to launch the ball by clicking the mouse, so that I can start the game easily.
-  - **Acceptance Criteria:** Given the game is in the start state and the ball is on the paddle, when the player clicks the mouse, then the ball moves upward and the game begins.
+- **Acceptance Criteria:** Given the game is in the start state and the ball is on the paddle, when the player clicks the mouse, then the ball moves upward and the game begins.
 - **User Story 2:** As a player, I want the ball to bounce off walls, bricks, and the paddle, so that the game behaves realistically.
-  - **Acceptance Criteria:** Given the ball collides with a wall, brick, or paddle, when the collision occurs, then the ball changes direction according to collision rules.
+- **Acceptance Criteria:** Given the ball collides with a wall, brick, or paddle, when the collision occurs, then the ball changes direction according to collision rules.
 - **User Story 3:** As a player, I want bricks to disappear when hit, so that I can see my progress.
-  - **Acceptance Criteria:** Given a brick is hit by the ball, when the collision is detected, then the brick is removed from the screen and the score increases.
+- **Acceptance Criteria:** Given a brick is hit by the ball, when the collision is detected, then the brick is removed from the screen and the score increases.
 
 #### Epic 2: Power-up System
 - **User Story 1:** As a player, I want bricks to randomly drop power-ups, so that the game feels dynamic and unpredictable.
-  - **Acceptance Criteria:** Given a brick is destroyed, when the destruction event occurs, then there is a fixed probability that a power-up object is generated.
+- **Acceptance Criteria:** Given a brick is destroyed, when the destruction event occurs, then there is a fixed probability that a power-up object is generated.
 - **User Story 2:** As a player, I want to catch falling power-ups with the paddle, so that I can activate special effects.
-  - **Acceptance Criteria:** Given a power-up is falling, when the paddle collides with the power-up, then the corresponding effect is activated.
+- **Acceptance Criteria:** Given a power-up is falling, when the paddle collides with the power-up, then the corresponding effect is activated.
 
 #### Epic 3: Game Progression and End Conditions
 - **User Story 1:** As a player, I want to lose a life when the ball falls below the paddle, so that the game has challenge.
-  - **Acceptance Criteria:** Given the ball moves below the paddle boundary, when the out-of-bounds condition is detected, then one life is deducted and the ball resets to the paddle.
+- **Acceptance Criteria:** Given the ball moves below the paddle boundary, when the out-of-bounds condition is detected, then one life is deducted and the ball resets to the paddle.
 - **User Story 2:** As a player, I want to pause the game at any time, so that I can take a break without losing progress.
-  - **Acceptance Criteria:** Given the game is currently running, when the player presses the pause key (e.g., “P”), then the ball stops moving and all game interactions are temporarily disabled. Given the game is paused, when the player presses the pause key again, then the game resumes from the same state as before pausing.
+- **Acceptance Criteria:** Given the game is currently running, when the player presses the pause key (e.g., “P”), then the ball stops moving and all game interactions are temporarily disabled. Given the game is paused, when the player presses the pause key again, then the game resumes from the same state as before pausing.
 - **User Story 3:** As a player, I want the game to end when all bricks are destroyed, so that I feel a sense of achievement.
-  -  **Acceptance Criteria:** Given there are no bricks remaining on the screen, when the system checks win conditions, then a victory message is displayed and the game stops.
+-  **Acceptance Criteria:** Given there are no bricks remaining on the screen, when the system checks win conditions, then a victory message is displayed and the game stops.
 
 ### 2.4 Reflection
-
 During the lecture, we learned how epics, user stories, and acceptance criteria help structure requirements in a clear and testable way.
 
 Epics allowed us to organise the system into high-level functional areas, such as core gameplay, power-ups, and game progression. Instead of thinking about isolated features, we first identified the main components of the game. This helped us understand the overall structure and ensured that no important functionality was overlooked.
@@ -138,6 +137,7 @@ The paper prototyping process further strengthened our understanding of the game
 - System architecture. Class diagrams, behavioural diagrams.
 
 ### Class diagram
+Class diagram shows the structure of the game.
 <img width="2440" height="1888" alt="Class diagram" src="https://github.com/user-attachments/assets/b79c23cd-9d33-4a61-8af5-378ccb18fcca" />
 
 ### Sequence diagram
@@ -145,12 +145,10 @@ The paper prototyping process further strengthened our understanding of the game
 
 
 ## 4. Implementation
-
 - 15% ~750 words
 - Describe implementation of your game, in particular highlighting the TWO areas of *technical challenge* in developing your game. 
 
 ## 5. Evaluation
-
 ### 5.1. Qualitative Evaluation: Think Aloud & Heuristic Analysis 
 The goal of this qualitative evaluation was to gain deep insights into the user’s subjective experience and identify logic issues within the interface. 
 
@@ -236,8 +234,11 @@ Our next step is to plan a more in-depth qualitative evaluation by testing with 
 2. **Two-Player Battle (Duel) Mode**: A competitive mode designed to increase engagement through interaction.
 
 ## 6. Code Testing
-
 ### 6.1 Black-Box Testing
+Our black-box testing methodology focused on the functional verification of the user interface and the overall game flow. To handle continuous inputs and states systematically, we applied Equivalence Partitioning across three primary categories: Paddle Control, Ball Physics, and Game State.
+
+We selected our test cases based on the critical User Journey, ranging from high-level navigation in the main menu to detailed in-game interactions such as paddle response and physics-based collisions. By testing the transitions between the 'Classic', 'Dark', and 'Duel' modes, we ensured the state management system correctly loads the intended environment and UI based on specific button inputs.
+
 | Test Case | Input | Expected Result |
 | :--- | :--- | :--- |
 | **Menu - Start Game** | Click 'Classic', 'Dark', or 'Duel' button | The screen changes from the Menu to the Game, and the correct mode is loaded. |
@@ -271,7 +272,6 @@ Our next step is to plan a more in-depth qualitative evaluation by testing with 
 - Description of how code was tested.
 
 ## 7. Process 
-
 - 15% ~750 words
 - Teamwork. How did you work together, what tools and methods did you use? Did you define team roles? Reflection on how you worked together. Be honest, we want to hear about what didn't work as well as what did work, and importantly how your team adapted throughout the project.
 
@@ -280,16 +280,13 @@ Our next step is to plan a more in-depth qualitative evaluation by testing with 
 <br>
 
 ## 9. Conclusion
-
 - 10% ~500 words
 - Reflect on the project as a whole. Lessons learnt. Reflect on challenges. Future work, describe both immediate next steps for your current game and also what you would potentially do if you had chance to develop a sequel.
 
 ## 10. Contribution Statement
-
 - Provide a table of everyone's contribution, which *may* be used to weight individual grades. We expect that the contribution will be split evenly across team-members in most cases. Please let us know as soon as possible if there are any issues with teamwork as soon as they are apparent and we will do our best to help your team work harmoniously together.
 
 ## Additional Marks
-
 You can delete this section in your own repo, it's just here for information. in addition to the marks above, we will be marking you on the following two points:
 
 - **Quality** of report writing, presentation, use of figures and visual material (5% of report grade) 
