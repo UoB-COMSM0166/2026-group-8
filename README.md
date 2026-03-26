@@ -1,10 +1,6 @@
 # 2026-group-8
-
-------------------
-
 ## Our Game - CORE_BREAKER
-
-STRAPLINE. Add an exciting one sentence description of your game here.
+**⚔️Beyond the bounce: Conquer the shadows and outplay your rivals to become the ultimate Core Breaker!⚔️**
 
 <img width="335" height="485" alt="image" src="https://github.com/user-attachments/assets/9481823b-adb6-4495-a45f-36065be0db4e" />  <img width="335" height="485" alt="image" src="https://github.com/user-attachments/assets/c090ba58-f0bb-4119-bda2-d2764e90e124" />
 
@@ -13,7 +9,6 @@ STRAPLINE. Add an exciting one sentence description of your game here.
 </a>
 
 ## 🎥 Gameplay Demo
-
 [![Watch the demo](https://img.youtube.com/vi/5SVV6CRx2f8/0.jpg)](https://youtu.be/5SVV6CRx2f8)
 
 ## Our Team
