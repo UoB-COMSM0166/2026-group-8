@@ -47,12 +47,12 @@ Project Progress: [Here](https://github.com/orgs/UoB-COMSM0166/projects/161/view
 The game follows the core rules of a breakout game: the player controls a paddle to launch a ball and destroy bricks. It is a classic arcade experience that emphasizes timing and coordination. Following the module's requirement to innovate upon a traditional archetype, we have designed three distinct game modes to offer a diverse and engaging experience.
 
   1. Classic Mode:
-This is the standard game that most people know. Players use a mouse to move the paddle left or right to bounce the ball. It is easy to learn for anyone who likes old arcade games. This mode focuses on precision. You must understand how the ball reflects off the paddle to hit specific bricks.
+This is the standard game that most people know. Players use a mouse to move the paddle left or right to bounce the ball. It is easy to learn for anyone who likes old arcade games. This mode focuses on precision. You must understand how the ball reflects off the paddle to hit specific bricks and score as high as possible within a 3-minute time constraint.
 
   2. Dark Mode (The Mystery Twist):
 This mode is more difficult and exciting. The entire screen is dark, and you can only see a small area around the ball. As the ball moves, it acts like a "spotlight" and reveals the bricks nearby. You must use your memory to remember where the bricks are and plan your next move. It tests how fast you can react when you cannot see the whole map.
 
-  3. Duo Mode (The Tactical Twist):
+  3. Duel Mode (The Tactical Twist):
 This is a local multiplayer mode for two players. In this mode, each player chooses one special brick to be their "King". The game becomes a race! The first player to destroy the opponent's King brick wins the game. You must decide when it is best to attack the enemy's King and when you need to stay back to protect your own from being hit.
 
 ## 2. Requirements 
@@ -69,7 +69,6 @@ This is a local multiplayer mode for two players. In this mode, each player choo
 <p align="center">
   <img width="70%" alt="stakeholder onion diagram" src="https://github.com/user-attachments/assets/98132e1d-1d7a-48d1-82bd-ec49968a7d34" />
 </p>
-
 
 ------------------
 
@@ -129,10 +128,10 @@ The paper prototyping process further strengthened our understanding of the game
 
 ## 5. Evaluation
 
-### 1. Qualitative Evaluation: Think Aloud & Heuristic Analysis 
+### 5.1. Qualitative Evaluation: Think Aloud & Heuristic Analysis 
 The goal of this qualitative evaluation was to gain deep insights into the user’s subjective experience and identify logic issues within the interface. 
 
-### 1.1 Methodology
+#### 5.1.1 Methodology
 Our qualitative evaluation was conducted in two distinct phases during the workshop : 
 
 **Phase 1: Think Aloud Study**  
@@ -146,15 +145,15 @@ Our qualitative evaluation was conducted in two distinct phases during the works
     **Process**: The expert first spent 10 minutes familiarizing themselves with the game. They then performed a solo systematic inspection to identify and record usability issues using the provided form.  
     **Criteria**: Findings were assessed against Nielsen’s 10 Usability Heuristics. 
 
-### 1.2 Key Findings
+#### 5.1.2 Key Findings
 Based on the combined observation data and expert feedback, we identified several key issues:
 
 * **Navigation Confusion (Visibility of System Status)**: The user noted they "couldn't find the interface to switch modes." This violates **Heuristic #1**, as the system status was not clearly visible. 
-* **Lack of Feedback (Error Recovery)**: The ball did not respawn after falling, and there was no health/life display. This violates **Heuristic #9**, which requires the system to help users recognize and recover from errors.
+* **Lack of Feedback (Error Recovery)**: The ball did not reset after falling, and there was no health/life display. This violates **Heuristic #9**, which requires the system to help users recognize and recover from errors.
 * **Non-transparent Controls (Recognition rather than Recall)**: Control indicators were unclear, increasing the participant's memory load. This violates **Heuristic #6**. 
-* **Difficulty Balance**: The user felt the current ball speed was too slow. To address this, we will add selectable difficulty levels.
+* **Difficulty Balance**: The user felt the current ball speed was too slow. To address this, we will decide and adjust it to a suitable speed for playing.
 
-### 1.3 Severity Rating Table 
+#### 5.1.3 Severity Rating Table 
 We rated the severity of these problems on a scale of 0–4 based on Frequency (F), Impact (I), and Persistence (P). The average severity rating was calculated using the following formula: 
 
 $$Severity = \frac{Frequency + Impact + Persistence}{3}$$
@@ -165,14 +164,14 @@ $$Severity = \frac{Frequency + Impact + Persistence}{3}$$
 | Ball does not respawn | #9 Help users recognize/recover from errors | 2 | 4 | 4 | **3.3** |
 | Missing control instructions | #6 Recognition rather than recall | 4 | 2 | 2 | **2.7** |
 
-### 2. Quantitative Evaluation
+### 5.2. Quantitative Evaluation
 
-### 2.1 Methodology
+#### 5.2.1 Methodology
 * **Participants:** We recruited 10 users to test our game.
 * **Procedure:** We used a within-subjects design. Each player tested the game at two different difficulty levels: Level 1 (Standard Mode) and Level 2 (Dark Mode).
-* **Data Collection:** After playing the first level, users filled out the NASA TLX and System Usability Scale (SUS) questionnaires. Then, they played the second level and filled out the same questionnaires again.
+* **Data Collection:** After playing the first level (Classic Mode), users filled out the NASA TLX and System Usability Scale (SUS) questionnaires. Then, they played the second level (Dark Mode) and filled out the same questionnaires again.
 
-### 2.2 Raw Data & Aggregate Scores
+#### 5.2.2 Raw Data & Aggregate Scores
 Here is the data we collected from our 10 participants. The SUS score is out of 100 (higher means easier to use), and the NASA TLX score is out of 100 (higher means more workload). 
 
 **Table 1: Raw Data from 10 Participants**
@@ -197,27 +196,21 @@ Here is the data we collected from our 10 participants. The SUS score is out of 
 | **SUS Score** (Usability) | 77.5 | 68.0 | Decreased (Harder to control) |
 | **NASA TLX** (Workload) | 36.5 | 59.0 | Increased (Higher workload) |
 
-### 2.3 Statistical Analysis 
+#### 5.2.3 Statistical Analysis 
 Once we had enough data, we used an online calculator to run a **Wilcoxon signed-rank test**.
 
 * **Workload (NASA TLX):** The test showed a significant increase in workload for Dark Mode ($p < 0.05$). Looking closely at the NASA TLX categories, scores for "Mental Demand" and "Effort" went up a lot because players had to focus more on guessing the ball's path in the dark.
 * **Usability (SUS):** The test also showed a significant drop in usability for Dark Mode ($p < 0.05$). Level 1 scored 77.5, meaning our basic controls are user-friendly. In Level 2, the score dropped to 68.0. Since this is an early prototype, it makes sense that limited vision makes players feel the game is harder to operate. However, a score of 68 is exactly the industry average for acceptable usability, which proves the core mechanics are still working fine.
 
-### 2.4 Evaluation Findings 
+#### 5.2.4 Evaluation Findings 
 Based on the data, we found that:
 1. **The difficulty design works:** Dark Mode successfully makes the game "a bit harder". It increases the challenge without breaking the core physics.
-2. **Room for UI improvement:** Making the game harder slightly lowered the usability score. To fix this, we plan to add a 3-second "full map preview" animation before Dark Mode starts, so players won't feel completely lost at the beginning.
+2. **Room for UI improvement:** Making the game harder slightly lowered the usability score. To fix this, we plan to add a one-second "full map preview" animation before Dark Mode starts, so players won't feel completely lost at the beginning.
 
-### 2.5 Conclusion & Future Plan 
+#### 5.2.5 Conclusion
 Our next step is to plan a more in-depth qualitative evaluation by testing with participants from other units. The evaluations show that while the core logic is robust, user guidance and UI transparency need improvement. To meet the project requirements, we will implement **two distinct difficulty levels** that players can select between:
 1. **Dark Mode**: A visibility-based challenge where only the area immediately surrounding the ball is visible. 
-2. **Two-Player Battle Mode**: A competitive mode designed to increase engagement through interaction.
-<br>
-
-Now that our game is underway, we reconsidered our core challenges. We have added the following three **technical challenges** to our repo:
-1. **Dynamic Masking Implementation:** How to use shaders or masks to smoothly render the limited vision area in Dark Mode at 60 FPS without dropping frame rates.
-2. **Fast Collision Detection:** How to prevent the ball from clipping through walls (the tunneling effect) when it moves really fast at higher difficulty levels.
-3. **State Management:** How to build a robust state machine to switch between Standard Mode, Dark Mode, and the Scoreboard smoothly without having to reload the whole scene.
+2. **Two-Player Battle (Duel) Mode**: A competitive mode designed to increase engagement through interaction.
 
 ## 6. Code Testing
 
