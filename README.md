@@ -38,7 +38,7 @@ STRAPLINE. Add an exciting one sentence description of your game here.
 - [9. Conclusion](#9-conclusion)
 - [10\.Contribution Statement](#10-contribution-statement)
   
-## Kanban
+## 📝 Kanban
 
 Project Progress: [Here](https://github.com/orgs/UoB-COMSM0166/projects/161/views/1)
 
