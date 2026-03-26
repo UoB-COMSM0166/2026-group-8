@@ -1,6 +1,8 @@
 # 2026-group-8
 
-## CORE_BREAKER
+------------------
+
+## Our Game - CORE_BREAKER
 
 STRAPLINE. Add an exciting one sentence description of your game here.
 
@@ -25,6 +27,8 @@ STRAPLINE. Add an exciting one sentence description of your game here.
 | Yumeng Jiang | midnight7273 | ea25130@bristol.ac.uk | Role |
 | Yufei Liu | Yufeifei123 | nq25048@bristol.ac.uk | Role |
 
+------------------
+
 ## Table of Contents
 
 - [1. Introduction](#1-introduction)
@@ -42,6 +46,9 @@ STRAPLINE. Add an exciting one sentence description of your game here.
 
 Project Progress: [Here](https://github.com/orgs/UoB-COMSM0166/projects/161/views/1)
 
+------------------
+
+# Project Report
 ## 1. Introduction
 
 The game follows the core rules of a breakout game: the player controls a paddle to launch a ball and destroy bricks. It is a classic arcade experience that emphasizes timing and coordination. Following the module's requirement to innovate upon a traditional archetype, we have designed three distinct game modes to offer a diverse and engaging experience.
@@ -164,7 +171,7 @@ $$Severity = \frac{Frequency + Impact + Persistence}{3}$$
 | Ball does not respawn | #9 Help users recognize/recover from errors | 2 | 4 | 4 | **3.3** |
 | Missing control instructions | #6 Recognition rather than recall | 4 | 2 | 2 | **2.7** |
 
-### 5.2. Quantitative Evaluation
+### 5.2. Quantitative Evaluation: NASA TLX & SUS
 
 #### 5.2.1 Methodology
 * **Participants:** We recruited 10 users to test our game.
