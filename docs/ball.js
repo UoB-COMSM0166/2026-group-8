@@ -123,7 +123,8 @@ class Ball {
     // Using circle vs rectangle collision detection
     checkBrickCollision(bricks) {
         // Iterate through all bricks
-        for (let brick of bricks) {
+        const brickList = Array.isArray(bricks) ? bricks : bricks.items;
+        for (let brick of brickList) {
 
             if (!brick.active) continue; // If brick already destroyed, skip
 
