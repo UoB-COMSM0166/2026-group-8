@@ -57,7 +57,9 @@ class Ball {
             this.vel.setMag(this.baseSpeed * sScale);
         }
     }
-
+    
+        this.r = this.originalR * rScale;
+    }
 
     // Display the ball
     display() {
@@ -144,11 +146,9 @@ class Ball {
             if (distanceSq < this.r * this.r) {  // If distance < radius → collision
 
                 brick.active = false;  // Deactivate brick (destroyed)
+                
                 // MODIFIED: Added safety check for this.vel
-                if (this.vel && this.vel.mag() !== 0) {
-                    this.vel.setMag(this.baseSpeed * sScale);
                     gamePage.manage.score += 100;
-                }
 
                 if (abs(dx) > abs(dy)) {
                     this.reflect(createVector(dx > 0 ? 1 : -1, 0));
