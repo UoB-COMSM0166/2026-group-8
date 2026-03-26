@@ -2,7 +2,7 @@
 ## Our Game - CORE_BREAKER
 > **⚔️Beyond the bounce! Conquer the shadow and outplay your rivals to become the ultimate Core Breaker⚔️**
 
-<img width="335" height="485" alt="image" src="https://github.com/user-attachments/assets/b6d3af5e-99c6-4a28-9efe-0b906e2b54c8" /> <img width="335" height="485" alt="image" src="https://github.com/user-attachments/assets/c090ba58-f0bb-4119-bda2-d2764e90e124" />
+<img width="335" height="485" alt="image" src="https://github.com/user-attachments/assets/b6d3af5e-99c6-4a28-9efe-0b906e2b54c8" /> <img width="335" height="485" alt="image" src="https://github.com/user-attachments/assets/f923be03-a8ba-44a2-bca4-66b0f93d4241" />
 
 <a href="https://uob-comsm0166.github.io/2026-group-8/">
   <img src="https://i.pinimg.com/1200x/0b/e1/27/0be127916560702af014298cc64b7137.jpg" width="120" alt="click to play">
