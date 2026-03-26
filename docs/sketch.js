@@ -1,11 +1,15 @@
 const W = 500, H = 700;
 let menuPage, gamePage, duelPage;
 let currentMode = 'menu';
-let brickImg;
+let bgImg, brickImg, darkImg, duelImg, classicImg;
 
 
 function preload() {
-    BaseScene.brickImg = loadImage('https://cdn-icons-png.flaticon.com/512/5805/5805666.png');
+    brickImg = loadImage('./brickImg.png');
+    bgImg = loadImage('./Cyber.jpg');
+    darkImg = loadImage('./Dark.jpg');
+    duelImg = loadImage('./Duel.jpg');
+    classicImg = loadImage('./Classic.jpg');
 }
 
 function setup() {
@@ -62,21 +66,20 @@ function mouseClicked() {
     if (currentMode === 'duel') {
         let currentState = duelPage.manage.state;
 
-        if (['INSTRUCTION', 'PAUSED'].includes(currentState)) {
-            if (
-                mouseX > 170 && mouseX < 330 &&
-                mouseY > 540 && mouseY < 580
-            ) {
+        if (['INSTRUCTION', 'PAUSED', 'WON', 'GAMEOVER'].includes(currentState)) {
+            if (mouseX > 170 && mouseX < 330 && mouseY > 540 && mouseY < 580) {
                 currentMode = 'menu';
                 return;
             }
         }
+
         if (currentState === 'INSTRUCTION') {
             duelPage.manage.state = 'PLAYING';
         } else if (currentState === 'PLAYING') {
-            // duelPage.paddle2.launchBall(duelPage.ball);
+            if (duelPage.bricks1.hasKing && duelPage.bricks2.hasKing && duelPage.ball.isAttached) {
+                duelPage.paddle2.launchBall(duelPage.ball);
+            }
         }
-
         return;
     }
 }

@@ -172,6 +172,10 @@ class Bricks {
     update() {
         if (!this.isInitialized) this.initGame();
         let scene = getActiveScene();
+        if (this.lightTimer > 0) {
+            this.lightTimer--;
+        }
+
         let isDuel = (scene && scene.mode === 'DUEL');
         let visibleActiveCount = 0;
 
@@ -251,7 +255,10 @@ class Bricks {
         if (scene && scene.mode === 'DUEL' && !this.hasKing && this.items.length > 0) {
             let targetBrick = this.items[this.kingSelectedIndex];
             if (targetBrick && targetBrick.active) {
-                push(); stroke(255, 255, 0); strokeWeight(3); noFill();
+                push();
+                stroke(255, 255, 0);
+                strokeWeight(3);
+                noFill();
                 // Create a "breathing" animation effect using sin()
                 let glow = 2 + sin(frameCount * 0.2) * 2;
                 rect(targetBrick.x - glow, targetBrick.y - glow, targetBrick.w + glow * 2, targetBrick.h + glow * 2, 6); pop();

@@ -46,7 +46,7 @@ class Game extends BaseScene {
         this.drawPlayerStatusBar();
 
         // DARK mode screen filter
-        if (this.mode === 'DARK' && this.darkTimer > 1000) {
+        if (this.mode === 'DARK' && this.darkTimer > 1000 && this.bricks.lightTimer <= 0) {
             this.drawDarkEffect();
         }
 
@@ -63,43 +63,6 @@ class Game extends BaseScene {
         } else if (this.manage.state === 'WON') {
             this.drawWinScreen();
         }
-    }
-
-    drawWinScreen() {
-        push();
-        fill(255, 215, 0, 200);
-        noStroke();
-        rect(25, 25, 450, 600);
-
-        fill(255);
-        textAlign(CENTER, CENTER);
-        textSize(50);
-        textStyle(BOLD);
-        text('YOU WIN!', 250, 300);
-
-        this.drawHomeButton();
-        pop();
-    }
-
-    drawGameOverScreen() {
-        push();
-        fill(0, 0, 0, 200);
-        noStroke();
-        rect(25, 25, 450, 600);
-
-        fill(255, 50, 50);
-        textAlign(CENTER, CENTER);
-        textSize(50);
-        textStyle(BOLD);
-        text('GAME OVER', 250, 300);
-
-        fill(255);
-        textSize(18);
-        textStyle(NORMAL);
-        text('Better luck next time!', 250, 350);
-
-        this.drawHomeButton();
-        pop();
     }
 
     drawPlayerStatusBar() {
