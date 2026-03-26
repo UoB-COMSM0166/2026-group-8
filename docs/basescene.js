@@ -1,31 +1,47 @@
 class BaseScene {
-    static brickImg;
-
     constructor() {
         this.manage = new GameManage();
     }
 
     drawInitPage() {
-        background('grey');
-        fill('white');
-        noStroke();
-        rect(25, 25, 450, 600);
-        this.drawWatermark();
+        // background image for each mode
+        if (this.mode == 'DARK') {
+            background(darkImg);
+        } else if (this.mode == 'DUEL') {
+            background(duelImg);
+        } else {
+            background(classicImg);
+        }
 
-        image(BaseScene.brickImg, 400, 635, 50, 50);
+        // draw frame
+        push();
+        noFill();
+        stroke(200, 240, 255);
+        strokeWeight(2);
+
+        drawingContext.shadowBlur = 15;
+        drawingContext.shadowColor = color(255, 255, 255, 200);
+        this.drawRectangleOverlay(color(0, 0), color(200, 240, 255));
+        pop();
+
+        this.drawWatermark();
+        image(brickImg, 400, 635, 50, 50);
     }
 
     drawInstructionScreen() {
         push();
-        fill(0, 0, 0, 180);
-        noStroke();
-        rect(25, 25, 450, 600);
+        this.drawRectangleOverlay(color(10, 15, 30, 230), color(255));
+
+        drawingContext.shadowBlur = 10;
+        drawingContext.shadowColor = color(255);
 
         fill(255);
         textAlign(CENTER, CENTER);
         textSize(30);
         textStyle(BOLD);
         text('HOW TO PLAY', 250, 150);
+
+        drawingContext.shadowBlur = 0;
 
         textSize(16);
         textStyle(NORMAL);
@@ -35,6 +51,7 @@ class BaseScene {
         }
 
         fill(255, 255, 0);
+        noStroke();
         textSize(20);
         textStyle(BOLD);
         text('CLICK ANYWHERE TO START', 250, 480);
@@ -78,7 +95,7 @@ class BaseScene {
         textAlign(CENTER, CENTER);
         textSize(80);
         textStyle(BOLD);
-        fill(150, 150, 150, 30);
+        fill(150, 150, 150, 100);
         noStroke();
 
         if (this.mode == "CLASSIC") { text('CLASSIC', 0, 0); }
@@ -89,11 +106,9 @@ class BaseScene {
     }
 
     drawPauseScreen() {
-        push();
-        fill(0, 0, 0, 150);
-        noStroke();
-        rect(25, 25, 450, 600);
+        this.drawRectangleOverlay(color(0, 0, 0, 150), color(255));
 
+        push();
         fill(255);
         textAlign(CENTER, CENTER);
         textSize(40);
@@ -106,6 +121,22 @@ class BaseScene {
 
         this.drawHomeButton();
         pop();
+    }
+
+    drawRectangleOverlay(fillColor, strokeColor) {
+        let x = 25, y = 25;
+        let w = 450, h = 600;
+
+        push();
+        fill(fillColor);
+        if (strokeColor === "NO_STROKE") noStroke();
+        else {
+            stroke(strokeColor || 255);
+            strokeWeight(4);
+        }
+        rect(x, y, w, h);
+        pop();
+
     }
 
     requestTogglePause() {

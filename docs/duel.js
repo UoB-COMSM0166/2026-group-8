@@ -37,10 +37,11 @@ class Duel extends BaseScene {
     }
 
     drawDuelLayout() {
+        noStroke();
         // player 1 control instruction
         fill(255, 0, 0, 50);
         rect(25, 25, 450, 30);
-        fill(0);
+        fill(255);
         textSize(12);
         text("P1: Use 'A'/'D' to move, Click 'W' to set King", 250, 40);
 
@@ -56,7 +57,7 @@ class Duel extends BaseScene {
         fill(255, 0, 0, 50);
         rect(25, 595, 450, 30);
 
-        fill(0);
+        fill(255);
         text("P2: Use ←/→ to move paddle, Click ↑ to set King", 250, 610);
     }
 

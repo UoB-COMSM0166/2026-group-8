@@ -1,12 +1,15 @@
 const W = 500, H = 700;
 let menuPage, gamePage, duelPage;
 let currentMode = 'menu';
-let bgImg, brickImg;
+let bgImg, brickImg, darkImg, duelImg, classicImg;
 
 
 function preload() {
-    BaseScene.brickImg = loadImage('./brickImg.png');
+    brickImg = loadImage('./brickImg.png');
     bgImg = loadImage('./Cyber.jpg');
+    darkImg = loadImage('./Dark.jpg');
+    duelImg = loadImage('./Duel.jpg');
+    classicImg = loadImage('./Classic.jpg');
 }
 
 function setup() {
@@ -91,3 +94,4 @@ function keyPressed() {
         }
     }
 }
+

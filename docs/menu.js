@@ -16,9 +16,9 @@ class Menu {
         let mode2 = this.center;
         let mode3 = this.center + 150;
 
-        this.drawBoxButton('Classic', mode1, this.btnPos, '🎮');
-        this.drawBoxButton('Dark', mode2, this.btnPos, '💡');
-        this.drawBoxButton('Duel', mode3, this.btnPos, '⚔️');
+        this.drawBoxButton('CLASSIC', mode1, this.btnPos, '🎮');
+        this.drawBoxButton('DARK', mode2, this.btnPos, '💡');
+        this.drawBoxButton('DUEL', mode3, this.btnPos, '⚔️');
     }
 
     drawTitle() {
@@ -57,7 +57,7 @@ class Menu {
         rectMode(CENTER);
         stroke(255);
         strokeWeight(3);
-        
+
         if (this.btnRange(x, y, this.btnW, this.btnH)) {
             strokeWeight(6);
             fill(200, 200, 200, 100);
@@ -71,7 +71,7 @@ class Menu {
         textAlign(CENTER, CENTER);
         textSize(30);
         text(icon, x, y - 10);
-        textSize(20);
+        textSize(15);
         text(str, x, y + 30);
         pop();
     }

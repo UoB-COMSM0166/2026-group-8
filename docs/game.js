@@ -66,11 +66,9 @@ class Game extends BaseScene {
     }
 
     drawWinScreen() {
-        push();
-        fill(255, 215, 0, 200);
-        noStroke();
-        rect(25, 25, 450, 600);
+        this.drawRectangleOverlay(color(255, 215, 0, 200), color(255));
 
+        push();
         fill(255);
         textAlign(CENTER, CENTER);
         textSize(50);
@@ -82,11 +80,9 @@ class Game extends BaseScene {
     }
 
     drawGameOverScreen() {
-        push();
-        fill(0, 0, 0, 200);
-        noStroke();
-        rect(25, 25, 450, 600);
+        this.drawRectangleOverlay(color(0, 0, 0, 220), color(255, 50, 50));
 
+        push();
         fill(255, 50, 50);
         textAlign(CENTER, CENTER);
         textSize(50);
