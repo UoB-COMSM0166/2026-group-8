@@ -62,7 +62,7 @@ This is a local multiplayer mode for two players. In this mode, each player choo
 - 15% ~750 words
 - Early stages design. Ideation process. How did you decide as a team what to develop? Use case diagrams, user stories.
 
-### Ideation Process
+### 2.1 Ideation Process
   - **Phase 1: Selecting the Foundation (The "Why")**
 We began by analyzing classic arcade mechanics that allow for both simplicity in control and depth in physics. We settled on the Brick Breaker (Arkanoid) genre because it provides a perfect sandbox for implementing Object-Oriented Programming (OOP) principles, such as inheritance for different game scenes and polymorphism for various game modes.
 
@@ -70,28 +70,27 @@ We began by analyzing classic arcade mechanics that allow for both simplicity in
 To move beyond a simple clone, our team held a brainstorming session focused on "Innovation within Constraints." We asked: How can we make a 50-year-old mechanic feel modern and competitive?
 
   1. The Visibility Challenge: This led to the creation of "Dark Mode," where we shifted the focus from pure reflex to spatial memory.
-
   2. The Competitive Edge: We realized most brick breakers are solo experiences. We decided to develop the "Duel Mode" to introduce a PvP (Player vs. Player) element, turning a casual game into a strategic battle.
 
   - **Phase 3: The Decision-Making Process (The "Core")**
 When deciding which features to prioritize for our MVP (Minimum Viable Product), we followed the criteria below:
 
   1. Technical Feasibility:
-   _Input Synchronization: "Can we reliably handle simultaneous inputs (Mouse for P1 and Keyboard for P2) within the p5.js event loop without causing control lag or ghosting?"
-   _Physical Principles Implementation: "Can we implement the physics (vector reflection and collision) reliably within our timeframe?"
+     - Input Synchronization: "Can we reliably handle simultaneous inputs (Mouse for P1 and Keyboard for P2) within the p5.js event loop without causing control lag or ghosting?"
+     - Physical Principles Implementation: "Can we implement the physics (vector reflection and collision) reliably within our timeframe?"
 
   2. User Engagement:
-   _Highlights and Originality: "Does this mode offer a unique "hook"? (e.g., the "King Brick" mechanic in Duel Mode)."
-   _Risk-Reward Power-ups: "Does the implementation of 'Debuffs' (e.g., paddle shrinking) create a strategic tension where players must decide whether to chase a falling item or focus on the ball?"
+     - Highlights and Originality: "Does this mode offer a unique "hook"? (e.g., the "King Brick" mechanic in Duel Mode)."
+     - Risk-Reward Power-ups: "Does the implementation of 'Debuffs' (e.g., paddle shrinking) create a strategic tension where players must decide whether to chase a falling item or focus on the ball?"
 
   3. Code Scalability:
-   _Modular Entity Interaction: "Can the collision logic in the Ball class be decoupled to interact with any object inheriting from a 'Collidable' interface, allowing us to add obstacles in the future?"
-   _Parameter-Driven Level Design: "By parameterizing the Bricks constructor, can we generate entirely different game layouts by simply changing a few variables in the related layout classes?"
+     - Modular Entity Interaction: "Can the collision logic in the Ball class be decoupled to interact with any object inheriting from a 'Collidable' interface, allowing us to add obstacles in the future?"
+     - Parameter-Driven Level Design: "By parameterizing the Bricks constructor, can we generate entirely different game layouts by simply changing a few variables in the related layout classes?"
 
 **Final Consensus:**
 We ultimately decided to develop a three-tier experience: Classic (for onboarding), Dark (for challenge), and Duel (for replayability). This ensured that our project demonstrated both technical rigor in software architecture and creativity in game design.
 
-### Stakeholders
+### 2.2 Stakeholders
 -	Development Team (Team Leader, Designers, Engineers, Testers, Artists)
 -	Players
 -	Course Instructor (Teachers/ TAs)
@@ -100,7 +99,7 @@ We ultimately decided to develop a three-tier experience: Classic (for onboardin
   <img width="70%" alt="stakeholder onion diagram" src="https://github.com/user-attachments/assets/98132e1d-1d7a-48d1-82bd-ec49968a7d34" />
 </p>
 
-### Epics - User Stories and Acceptance Criteria
+### 2.3 Epics - User Stories and Acceptance Criteria
 
 #### Epic 1: Core Gameplay System
 - **User Story 1:** As a player, I want to launch the ball by clicking the mouse, so that I can start the game easily.
@@ -124,7 +123,7 @@ We ultimately decided to develop a three-tier experience: Classic (for onboardin
 - **User Story 3:** As a player, I want the game to end when all bricks are destroyed, so that I feel a sense of achievement.
 - **Acceptance Criteria:** Given there are no bricks remaining on the screen, when the system checks win conditions, then a victory message is displayed and the game stops.
 
-### Reflection
+### 2.4 Reflection
 
 During the lecture, we learned how epics, user stories, and acceptance criteria help structure requirements in a clear and testable way.
 
