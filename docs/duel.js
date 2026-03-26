@@ -41,6 +41,10 @@ if (this.manage.state === 'PLAYING') {
             this.paddle1.update(keys);
             this.paddle2.update(keys);
     
+            if (this.paddle2.isBallAttached && this.bricks1.hasKing && this.bricks2.hasKing) {
+            this.paddle2.launchBall(this.ball);
+}
+    
             if (this.paddle2.isBallAttached) {
                 this.ball.pos.x = this.paddle2.x + this.paddle2.w / 2;
                 this.ball.pos.y = this.paddle2.y - this.ball.r;
