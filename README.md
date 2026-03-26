@@ -1,38 +1,20 @@
 # 2026-group-8
-2026 COMSM0166 group 8
 
-# COMSM0166 Project Template
-A project template for the Software Engineering Discipline and Practice module (COMSM0166).
-
-## Info
-
-This is the template for your group project repo/report. We'll be setting up your repo and assigning you to it after the group forming activity. You can delete this info section, but please keep the rest of the repo structure intact.
-
-You will be developing your game using [P5.js](https://p5js.org) a javascript library that provides you will all the tools you need to make your game. However, we won't be teaching you javascript, this is a chance for you and your team to learn a (friendly) new language and framework quickly, something you will almost certainly have to do with your summer project and in future. There is a lot of documentation online, you can start with:
-
-- [P5.js tutorials](https://p5js.org/tutorials/) 
-- [Coding Train P5.js](https://thecodingtrain.com/tracks/code-programming-with-p5-js) course - go here for enthusiastic video tutorials from Dan Shiffman (recommended!)
-
-## BLOCK
+## CORE_BREAKER
 
 STRAPLINE. Add an exciting one sentence description of your game here.
 
-IMAGE. Add an image of your game here, keep this updated with a snapshot of your latest development.
-
 <img width="335" height="485" alt="image" src="https://github.com/user-attachments/assets/9481823b-adb6-4495-a45f-36065be0db4e" />  <img width="335" height="485" alt="image" src="https://github.com/user-attachments/assets/c090ba58-f0bb-4119-bda2-d2764e90e124" />
-
-LINK. Add a link here to your deployed game, you can also make the image above link to your game if you wish. Your game lives in the [/docs](/docs) folder, and is published using Github pages.
 
 <a href="https://uob-comsm0166.github.io/2026-group-8/">
   <img src="https://i.pinimg.com/1200x/0b/e1/27/0be127916560702af014298cc64b7137.jpg" width="120" alt="click to play">
 </a>
 
-VIDEO. Include a demo video of your game here (you don't have to wait until the end, you can insert a work in progress video)
 ## 🎥 Gameplay Demo
 
 [![Watch the demo](https://img.youtube.com/vi/5SVV6CRx2f8/0.jpg)](https://youtu.be/5SVV6CRx2f8)
 
-## Your Group
+## Our Team
 <img width="450" height="300" alt="image" src="https://github.com/user-attachments/assets/e9fe9ff7-deb9-4966-bee2-bffa69ac1743" />
 
 | Name  | GitHub ID | Email | Role |
@@ -43,13 +25,24 @@ VIDEO. Include a demo video of your game here (you don't have to wait until the 
 | Yumeng Jiang | midnight7273 | ea25130@bristol.ac.uk | Role |
 | Yufei Liu | Yufeifei123 | nq25048@bristol.ac.uk | Role |
 
+## Table of Contents
+
+- [1. Introduction](#1-introduction)
+- [2. Requirements](#2-requirements)
+- [3. Design](#3-design)
+- [4. Implementation](#4-implementation)
+- [5. Evaluation](#5-evaluation)
+- [6. Code Testing](#6-code-testing)
+- [7. Process](#7-process)
+- [8. Sustainability, Ethics, and Accessibility](#8-sustainability-ethics-and-accessibility)
+- [9. Conclusion](#9-conclusion)
+- [10. Contribution Statement] (#10-contribution-statement)
+  
 ## Kanban
 
 Project Progress: [Here](https://github.com/orgs/UoB-COMSM0166/projects/161/views/1)
 
-## Project Report
-
-### Introduction
+## 1. Introduction
 
 The game follows the core rules of a breakout game: the player controls a paddle to launch a ball and destroy bricks. It is a classic arcade experience that emphasizes timing and coordination. Following the module's requirement to innovate upon a traditional archetype, we have designed three distinct game modes to offer a diverse and engaging experience.
 
@@ -62,13 +55,13 @@ This mode is more difficult and exciting. The entire screen is dark, and you can
   3. Duo Mode (The Tactical Twist):
 This is a local multiplayer mode for two players. In this mode, each player chooses one special brick to be their "King". The game becomes a race! The first player to destroy the opponent's King brick wins the game. You must decide when it is best to attack the enemy's King and when you need to stay back to protect your own from being hit.
 
-### Requirements 
+## 2. Requirements 
 
 - 15% ~750 words
 - Early stages design. Ideation process. How did you decide as a team what to develop? Use case diagrams, user stories.
 ------------------
   
-#### Stakeholders
+### Stakeholders
 -	Development Team (Team Leader, Designers, Engineers, Testers, Artists)
 -	Players
 -	Course Instructor (Teachers/ TAs)
@@ -80,9 +73,9 @@ This is a local multiplayer mode for two players. In this mode, each player choo
 
 ------------------
 
-#### Epics - User Stories and Acceptance Criteria
+### Epics - User Stories and Acceptance Criteria
 
-##### Epic 1: Core Gameplay System
+#### Epic 1: Core Gameplay System
 - User Story 1: As a player, I want to launch the ball by clicking the mouse, so that I can start the game easily.
 - Acceptance Criteria: Given the game is in the start state and the ball is on the paddle, when the player clicks the mouse, then the ball moves upward and the game begins.
 - User Story 2: As a player, I want the ball to bounce off walls, bricks, and the paddle, so that the game behaves realistically.
@@ -90,13 +83,13 @@ This is a local multiplayer mode for two players. In this mode, each player choo
 - User Story 3: As a player, I want bricks to disappear when hit, so that I can see my progress.
 - Acceptance Criteria: Given a brick is hit by the ball, when the collision is detected, then the brick is removed from the screen and the score increases.
 
-##### Epic 2: Power-up System
+#### Epic 2: Power-up System
 - User Story 1: As a player, I want bricks to randomly drop power-ups, so that the game feels dynamic and unpredictable.
 - Acceptance Criteria: Given a brick is destroyed, when the destruction event occurs, then there is a fixed probability that a power-up object is generated.
 - User Story 2: As a player, I want to catch falling power-ups with the paddle, so that I can activate special effects.
 - Acceptance Criteria: Given a power-up is falling, when the paddle collides with the power-up, then the corresponding effect is activated.
 
-##### Epic 3: Game Progression and End Conditions
+#### Epic 3: Game Progression and End Conditions
 - User Story 1: As a player, I want to lose a life when the ball falls below the paddle, so that the game has challenge.
 - Acceptance Criteria: Given the ball moves below the paddle boundary, when the out-of-bounds condition is detected, then one life is deducted and the ball resets to the paddle.
 - User Story 2: As a player, I want to pause the game at any time, so that I can take a break without losing progress.
@@ -105,7 +98,7 @@ This is a local multiplayer mode for two players. In this mode, each player choo
 - Acceptance Criteria: Given there are no bricks remaining on the screen, when the system checks win conditions, then a victory message is displayed and the game stops.
 ------------------
 
-#### Reflection
+### Reflection
 
 During the lecture, we learned how epics, user stories, and acceptance criteria help structure requirements in a clear and testable way.
 
@@ -117,29 +110,29 @@ Acceptance criteria were particularly valuable because they made requirements me
 
 The paper prototyping process further strengthened our understanding of the game’s context. By simulating interactions physically, we identified design issues early, such as pacing and difficulty balance. Overall, this structured requirement approach made our design more systematic, user-centred, and easier to evaluate.
 
-### Design
+## 3. Design
 
 - 15% ~750 words 
 - System architecture. Class diagrams, behavioural diagrams.
-#### Class diagram
+### Class diagram
 <img width="2440" height="1888" alt="Class diagram" src="https://github.com/user-attachments/assets/b79c23cd-9d33-4a61-8af5-378ccb18fcca" />
 
-#### Sequence diagram
+### Sequence diagram
 <img width="2140" height="2048" alt="Sequence diagram" src="https://github.com/user-attachments/assets/72cd1a78-beef-415f-866e-beb186248965" />
 
 
-### Implementation
+## 4. Implementation
 
 - 15% ~750 words
 
 - Describe implementation of your game, in particular highlighting the TWO areas of *technical challenge* in developing your game. 
 
-### Evaluation
+## 5. Evaluation
 
-#### 1. Qualitative Evaluation: Think Aloud & Heuristic Analysis 
+### 1. Qualitative Evaluation: Think Aloud & Heuristic Analysis 
 The goal of this qualitative evaluation was to gain deep insights into the user’s subjective experience and identify logic issues within the interface. 
 
-#### 1.1 Methodology
+### 1.1 Methodology
 Our qualitative evaluation was conducted in two distinct phases during the workshop : 
 
 **Phase 1: Think Aloud Study**  
@@ -153,7 +146,7 @@ Our qualitative evaluation was conducted in two distinct phases during the works
     **Process**: The expert first spent 10 minutes familiarizing themselves with the game. They then performed a solo systematic inspection to identify and record usability issues using the provided form.  
     **Criteria**: Findings were assessed against Nielsen’s 10 Usability Heuristics. 
 
-#### 1.2 Key Findings
+### 1.2 Key Findings
 Based on the combined observation data and expert feedback, we identified several key issues:
 
 * **Navigation Confusion (Visibility of System Status)**: The user noted they "couldn't find the interface to switch modes." This violates **Heuristic #1**, as the system status was not clearly visible. 
@@ -161,7 +154,7 @@ Based on the combined observation data and expert feedback, we identified severa
 * **Non-transparent Controls (Recognition rather than Recall)**: Control indicators were unclear, increasing the participant's memory load. This violates **Heuristic #6**. 
 * **Difficulty Balance**: The user felt the current ball speed was too slow. To address this, we will add selectable difficulty levels.
 
-#### 1.3 Severity Rating Table 
+### 1.3 Severity Rating Table 
 We rated the severity of these problems on a scale of 0–4 based on Frequency (F), Impact (I), and Persistence (P). The average severity rating was calculated using the following formula: 
 
 $$Severity = \frac{Frequency + Impact + Persistence}{3}$$
@@ -172,14 +165,14 @@ $$Severity = \frac{Frequency + Impact + Persistence}{3}$$
 | Ball does not respawn | #9 Help users recognize/recover from errors | 2 | 4 | 4 | **3.3** |
 | Missing control instructions | #6 Recognition rather than recall | 4 | 2 | 2 | **2.7** |
 
-#### 2. Quantitative Evaluation
+### 2. Quantitative Evaluation
 
-#### 2.1 Methodology
+### 2.1 Methodology
 * **Participants:** We recruited 10 users to test our game.
 * **Procedure:** We used a within-subjects design. Each player tested the game at two different difficulty levels: Level 1 (Standard Mode) and Level 2 (Dark Mode).
 * **Data Collection:** After playing the first level, users filled out the NASA TLX and System Usability Scale (SUS) questionnaires. Then, they played the second level and filled out the same questionnaires again.
 
-#### 2.2 Raw Data & Aggregate Scores
+### 2.2 Raw Data & Aggregate Scores
 Here is the data we collected from our 10 participants. The SUS score is out of 100 (higher means easier to use), and the NASA TLX score is out of 100 (higher means more workload). 
 
 **Table 1: Raw Data from 10 Participants**
@@ -204,20 +197,31 @@ Here is the data we collected from our 10 participants. The SUS score is out of 
 | **SUS Score** (Usability) | 77.5 | 68.0 | Decreased (Harder to control) |
 | **NASA TLX** (Workload) | 36.5 | 59.0 | Increased (Higher workload) |
 
-#### 2.3 Statistical Analysis 
+### 2.3 Statistical Analysis 
 Once we had enough data, we used an online calculator to run a **Wilcoxon signed-rank test**.
 
 * **Workload (NASA TLX):** The test showed a significant increase in workload for Dark Mode ($p < 0.05$). Looking closely at the NASA TLX categories, scores for "Mental Demand" and "Effort" went up a lot because players had to focus more on guessing the ball's path in the dark.
 * **Usability (SUS):** The test also showed a significant drop in usability for Dark Mode ($p < 0.05$). Level 1 scored 77.5, meaning our basic controls are user-friendly. In Level 2, the score dropped to 68.0. Since this is an early prototype, it makes sense that limited vision makes players feel the game is harder to operate. However, a score of 68 is exactly the industry average for acceptable usability, which proves the core mechanics are still working fine.
 
-#### 2.4 Evaluation Findings 
+### 2.4 Evaluation Findings 
 Based on the data, we found that:
 1. **The difficulty design works:** Dark Mode successfully makes the game "a bit harder". It increases the challenge without breaking the core physics.
 2. **Room for UI improvement:** Making the game harder slightly lowered the usability score. To fix this, we plan to add a 3-second "full map preview" animation before Dark Mode starts, so players won't feel completely lost at the beginning.
 
-#### 3. Description of Code Testing
+### 2.5 Conclusion & Future Plan 
+Our next step is to plan a more in-depth qualitative evaluation by testing with participants from other units. The evaluations show that while the core logic is robust, user guidance and UI transparency need improvement. To meet the project requirements, we will implement **two distinct difficulty levels** that players can select between:
+1. **Dark Mode**: A visibility-based challenge where only the area immediately surrounding the ball is visible. 
+2. **Two-Player Battle Mode**: A competitive mode designed to increase engagement through interaction.
+<br>
 
-#### 3.1 Black-Box Testing
+Now that our game is underway, we reconsidered our core challenges. We have added the following three **technical challenges** to our repo:
+1. **Dynamic Masking Implementation:** How to use shaders or masks to smoothly render the limited vision area in Dark Mode at 60 FPS without dropping frame rates.
+2. **Fast Collision Detection:** How to prevent the ball from clipping through walls (the tunneling effect) when it moves really fast at higher difficulty levels.
+3. **State Management:** How to build a robust state machine to switch between Standard Mode, Dark Mode, and the Scoreboard smoothly without having to reload the whole scene.
+
+## 6. Code Testing
+
+### 6.1 Black-Box Testing
 | Test Case | Input | Expected Result |
 | :--- | :--- | :--- |
 | Menu - Start Game | Click 'Classic', 'Dark', or 'Duel' button | The screen changes from the Menu to the Game, and the correct mode is loaded. |
@@ -241,19 +245,7 @@ Based on the data, we found that:
 | Game State | Mode Selection | Selecting the specific game twist. | mode is "CLASSIC", "DARK", or "DUEL" |
 || Timer Status | The remaining game time. | timer > 0 vs. timer <= 0 |
 
-#### 3.2 White-Box Testing
-
-
-#### 4. Conclusion & Future Plan 
-Our next step is to plan a more in-depth qualitative evaluation by testing with participants from other units. The evaluations show that while the core logic is robust, user guidance and UI transparency need improvement. To meet the project requirements, we will implement **two distinct difficulty levels** that players can select between:
-1. **Dark Mode**: A visibility-based challenge where only the area immediately surrounding the ball is visible. 
-2. **Two-Player Battle Mode**: A competitive mode designed to increase engagement through interaction.
-<br>
-
-Now that our game is underway, we reconsidered our core challenges. We have added the following three **technical challenges** to our repo:
-1. **Dynamic Masking Implementation:** How to use shaders or masks to smoothly render the limited vision area in Dark Mode at 60 FPS without dropping frame rates.
-2. **Fast Collision Detection:** How to prevent the ball from clipping through walls (the tunneling effect) when it moves really fast at higher difficulty levels.
-3. **State Management:** How to build a robust state machine to switch between Standard Mode, Dark Mode, and the Scoreboard smoothly without having to reload the whole scene.
+### 6.2 White-Box Testing
 
 <br>
 
@@ -267,23 +259,25 @@ Now that our game is underway, we reconsidered our core challenges. We have adde
 
 <br>
 
-### Process 
+## 7. Process 
 
 - 15% ~750 words
 
 - Teamwork. How did you work together, what tools and methods did you use? Did you define team roles? Reflection on how you worked together. Be honest, we want to hear about what didn't work as well as what did work, and importantly how your team adapted throughout the project.
 
-### Conclusion
+## 8. Sustainability, Ethics, and Accessibility
+
+## 9. Conclusion
 
 - 10% ~500 words
 
 - Reflect on the project as a whole. Lessons learnt. Reflect on challenges. Future work, describe both immediate next steps for your current game and also what you would potentially do if you had chance to develop a sequel.
 
-### Contribution Statement
+## 10. Contribution Statement
 
 - Provide a table of everyone's contribution, which *may* be used to weight individual grades. We expect that the contribution will be split evenly across team-members in most cases. Please let us know as soon as possible if there are any issues with teamwork as soon as they are apparent and we will do our best to help your team work harmoniously together.
 
-### Additional Marks
+## Additional Marks
 
 You can delete this section in your own repo, it's just here for information. in addition to the marks above, we will be marking you on the following two points:
 
