@@ -17,13 +17,20 @@ class Paddle {
         this._reverseTimer = 0;
     }
 
-    update() {
+    update(keys = {}) {
         if (this.ctrl === 'mouse') {
             let tx = this.reversed
                 ? (width - mouseX) - this.w / 2
                 : mouseX - this.w / 2;
-            this.x = constrain(tx, 35, 465 - this.w);
-
+            this.x = constrain(tx, 40, 460 - this.w);
+        } else if (this.ctrl === 'kbd_p1') {
+            if (keys['KeyA']) this.x -= this.speed;
+            if (keys['KeyD']) this.x += this.speed;
+            this.x = constrain(this.x, 40, 460 - this.w);
+        } else if (this.ctrl === 'kbd_p2') {
+            if (keys['ArrowLeft']) this.x -= this.speed;
+            if (keys['ArrowRight']) this.x += this.speed;
+            this.x = constrain(this.x, 40, 460 - this.w);
         }
 
         //Wide timer
@@ -39,7 +46,6 @@ class Paddle {
         }
     }
 
-
     launchBall(ball) {
         if (this.isBallAttached) {
             this.isBallAttached = false;
@@ -47,7 +53,6 @@ class Paddle {
             ball.vel.set(4, -4);
         }
     }
-
 
     calculateBounce(ballX) {
         const hitOffset = (ballX - (this.x + this.w / 2)) / (this.w / 2);
@@ -60,7 +65,7 @@ class Paddle {
         };
     }
 
-
+    // One Player
     display() {
         push();
         noStroke();
@@ -79,6 +84,23 @@ class Paddle {
         drawingContext.shadowBlur = 0;
         fill(0, 100, 0);
         rect(this.x, this.y, this.w, this.h, cornerR);
+        pop();
+    }
+
+    //Two player
+    displayP1() {
+        push();
+        noStroke();
+        fill(0, 200, 140);
+        rect(this.x, this.y, this.w, this.h);
+        pop();
+    }
+
+    displayP2() {
+        push();
+        noStroke();
+        fill(220, 60, 60);
+        rect(this.x, this.y, this.w, this.h);
         pop();
     }
 

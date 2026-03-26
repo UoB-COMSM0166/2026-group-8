@@ -66,21 +66,20 @@ function mouseClicked() {
     if (currentMode === 'duel') {
         let currentState = duelPage.manage.state;
 
-        if (['INSTRUCTION', 'PAUSED'].includes(currentState)) {
-            if (
-                mouseX > 170 && mouseX < 330 &&
-                mouseY > 540 && mouseY < 580
-            ) {
+        if (['INSTRUCTION', 'PAUSED', 'WON', 'GAMEOVER'].includes(currentState)) {
+            if (mouseX > 170 && mouseX < 330 && mouseY > 540 && mouseY < 580) {
                 currentMode = 'menu';
                 return;
             }
         }
+
         if (currentState === 'INSTRUCTION') {
             duelPage.manage.state = 'PLAYING';
         } else if (currentState === 'PLAYING') {
-            // duelPage.paddle2.launchBall(duelPage.ball);
+            if (duelPage.bricks1.hasKing && duelPage.bricks2.hasKing && duelPage.ball.isAttached) {
+                duelPage.paddle2.launchBall(duelPage.ball);
+            }
         }
-
         return;
     }
 }

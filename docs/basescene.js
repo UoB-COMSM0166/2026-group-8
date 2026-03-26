@@ -125,6 +125,45 @@ class BaseScene {
         pop();
     }
 
+    drawWinScreen() {
+        this.drawRectangleOverlay(color(255, 215, 0, 200), color(255));
+
+        push();
+        drawingContext.shadowBlur = 15;
+        drawingContext.shadowColor = color(255, 255, 255, 200);
+        fill(255);
+        textAlign(CENTER, CENTER);
+        textSize(50);
+        textStyle(BOLD);
+        text('YOU WIN!', 250, 300);
+
+        this.drawHomeButton();
+        drawingContext.shadowBlur = 0;
+        pop();
+    }
+
+    drawGameOverScreen() {
+        this.drawRectangleOverlay(color(0, 0, 0, 220), color(255, 50, 50));
+
+        push();
+        drawingContext.shadowBlur = 15;
+        drawingContext.shadowColor = color(255, 255, 255, 200);
+        fill(255, 50, 50);
+        textAlign(CENTER, CENTER);
+        textSize(50);
+        textStyle(BOLD);
+        text('GAME OVER', 250, 300);
+
+        fill(255);
+        textSize(18);
+        textStyle(NORMAL);
+        text('Better luck next time!', 250, 350);
+
+        this.drawHomeButton();
+        drawingContext.shadowBlur = 0;
+        pop();
+    }
+
     drawRectangleOverlay(fillColor, strokeColor) {
         let x = 25, y = 25;
         let w = 450, h = 600;

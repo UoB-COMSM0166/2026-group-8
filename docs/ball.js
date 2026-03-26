@@ -9,6 +9,7 @@ class Ball {
         // Record the initial state for later scaling
         this.originalR = r;
         this.baseSpeed = 5.65; // Used as a speed reference
+        this.isMain = true;
 
         // MODIFIED: Added timers and state flags for overlapping effects (each lasts 6s/360 frames)
         this.effects = {
@@ -50,19 +51,25 @@ class Ball {
         push();
         noStroke();
 
+        let scene = window.gamePage || gamePage;
+        let isMultiMode = this.isMain && scene && scene.extraBalls && scene.extraBalls.length > 0;
+
+        let glowColor = isMultiMode ? color(255, 255, 0) : color(0, 255, 0);
+        let coreColor = isMultiMode ? color(150, 150, 0) : color(0, 100, 0);
+
         drawingContext.shadowBlur = 30;
-        drawingContext.shadowColor = color(0, 255, 0);
-        fill(0, 255, 0);
+        drawingContext.shadowColor = glowColor;
+        fill(glowColor);
         circle(this.pos.x, this.pos.y, this.r * 2);
 
         drawingContext.shadowBlur = 8;
         drawingContext.shadowColor = color(255);
         fill(255);
-        circle(this.pos.x, this.pos.y, this.r * 2.5);
+        circle(this.pos.x, this.pos.y, this.r * 2.2);
 
         drawingContext.shadowBlur = 0;
-        fill(0, 100, 0);
-        circle(this.pos.x, this.pos.y, this.r * 2.5);
+        fill(coreColor);
+        circle(this.pos.x, this.pos.y, this.r * 2.2);
 
         pop();
     }
@@ -114,6 +121,42 @@ class Ball {
         }
     }
 
+    checkPaddleCollisionP1(paddle) {
+        this.handlePaddlePhysics(paddle, this);
+    }
+
+    checkPaddleCollisionP2(paddle) {
+        this.handlePaddlePhysics(paddle, this);
+    }
+
+    handlePaddlePhysics(p, b) {
+        let closestX = constrain(b.pos.x, p.x, p.x + p.w);
+        let closestY = constrain(b.pos.y, p.y, p.y + p.h);
+
+        let distanceX = b.pos.x - closestX;
+        let distanceY = b.pos.y - closestY;
+        let distanceSq = (distanceX * distanceX) + (distanceY * distanceY);
+
+        if (distanceSq < (b.r * b.r)) {
+            let paddleCenterY = p.y + p.h / 2;
+            if (b.pos.y < paddleCenterY) {
+                b.pos.y = p.y - b.r;
+                if (b.vel.y > 0) b.vel.y *= -1;
+            } else {
+                b.pos.y = p.y + p.h + b.r;
+                if (b.vel.y < 0) b.vel.y *= -1;
+            }
+
+            let hitOffset = (b.pos.x - (p.x + p.w / 2)) / (p.w / 2);
+            let maxAngle = radians(60);
+            let angle = hitOffset * maxAngle;
+            let speed = b.vel.mag();
+
+            b.vel.x = speed * sin(angle);
+            b.vel.y = (b.pos.y < paddleCenterY) ? -speed * cos(angle) : speed * cos(angle);
+        }
+    }
+
     // Brick collision (distinguish left/right face vs top/bottom)
     // Using circle vs rectangle collision detection
     checkBrickCollision(bricks) {
@@ -144,6 +187,27 @@ class Ball {
                     gamePage.manage.score += 100;
                 }
 
+                if (abs(dx) > abs(dy)) {
+                    this.reflect(createVector(dx > 0 ? 1 : -1, 0));
+                } else {
+                    this.reflect(createVector(0, dy > 0 ? 1 : -1));
+                }
+                break;
+            }
+        }
+    }
+
+    checkBrickCollisionDuel(bricks) {
+        for (let brick of bricks) {
+            if (!brick.active) continue;
+
+            let closestX = constrain(this.pos.x, brick.x, brick.x + brick.w);
+            let closestY = constrain(this.pos.y, brick.y, brick.y + brick.h);
+            let dx = this.pos.x - closestX;
+            let dy = this.pos.y - closestY;
+
+            if (dx * dx + dy * dy < this.r * this.r) {
+                brick.active = false;
                 if (abs(dx) > abs(dy)) {
                     this.reflect(createVector(dx > 0 ? 1 : -1, 0));
                 } else {
@@ -226,7 +290,7 @@ class Ball {
         let sScale = 1.0;
 
         if (this.effects.large > 0) rScale *= 2;
-        if (this.effects.small > 0) rScale *= 0.2;
+        if (this.effects.small > 0) rScale *= 0.5;
         if (this.effects.fast > 0) sScale *= 1.5;
         if (this.effects.slow > 0) sScale *= 0.5;
 
@@ -247,6 +311,7 @@ class Ball {
                 let newBall = new Ball(this.pos.x, this.pos.y, this.originalR);
                 newBall.vel = createVector(random(-4, 4), -4);
                 newBall.isAttached = false;
+                newBall.isMain = false;
                 scene.extraBalls.push(newBall);
             }
         }
