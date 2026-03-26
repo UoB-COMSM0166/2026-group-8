@@ -2,7 +2,7 @@ class Menu {
     constructor() {
         this.btnW = 130;
         this.btnH = 160;
-        this.btnPos = 450;
+        this.btnPos = 480;
         this.center = width / 2;
     }
 

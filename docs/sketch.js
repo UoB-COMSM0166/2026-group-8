@@ -6,7 +6,7 @@ let bgImg, brickImg;
 
 function preload() {
     BaseScene.brickImg = loadImage('./brickImg.png');
-    bgImg = loadImage('./CYBERPUNK.jpg');
+    bgImg = loadImage('./Cyber.jpg');
 }
 
 function setup() {
