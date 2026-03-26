@@ -48,20 +48,49 @@ Project Progress: [Here](https://github.com/orgs/UoB-COMSM0166/projects/161/view
 
 The game follows the core rules of a breakout game: the player controls a paddle to launch a ball and destroy bricks. It is a classic arcade experience that emphasizes timing and coordination. Following the module's requirement to innovate upon a traditional archetype, we have designed three distinct game modes to offer a diverse and engaging experience.
 
-  1. Classic Mode:
+  1. **Classic Mode:**
 This is the standard game that most people know. Players use a mouse to move the paddle left or right to bounce the ball. It is easy to learn for anyone who likes old arcade games. This mode focuses on precision. You must understand how the ball reflects off the paddle to hit specific bricks and score as high as possible within a 3-minute time constraint.
 
-  2. Dark Mode (The Mystery Twist):
+  2. **Dark Mode (The Mystery Twist):**
 This mode is more difficult and exciting. The entire screen is dark, and you can only see a small area around the ball. As the ball moves, it acts like a "spotlight" and reveals the bricks nearby. You must use your memory to remember where the bricks are and plan your next move. It tests how fast you can react when you cannot see the whole map.
 
-  3. Duel Mode (The Tactical Twist):
+  3. **Duel Mode (The Tactical Twist):**
 This is a local multiplayer mode for two players. In this mode, each player chooses one special brick to be their "King". The game becomes a race! The first player to destroy the opponent's King brick wins the game. You must decide when it is best to attack the enemy's King and when you need to stay back to protect your own from being hit.
 
 ## 2. Requirements 
 
 - 15% ~750 words
 - Early stages design. Ideation process. How did you decide as a team what to develop? Use case diagrams, user stories.
-  
+
+### Ideation Process
+  - **Phase 1: Selecting the Foundation (The "Why")**
+We began by analyzing classic arcade mechanics that allow for both simplicity in control and depth in physics. We settled on the Brick Breaker (Arkanoid) genre because it provides a perfect sandbox for implementing Object-Oriented Programming (OOP) principles, such as inheritance for different game scenes and polymorphism for various game modes.
+
+  - **Phase 2: Brainstorming & The "Twist"**
+To move beyond a simple clone, our team held a brainstorming session focused on "Innovation within Constraints." We asked: How can we make a 50-year-old mechanic feel modern and competitive?
+
+  1. The Visibility Challenge: This led to the creation of "Dark Mode," where we shifted the focus from pure reflex to spatial memory.
+
+  2. The Competitive Edge: We realized most brick breakers are solo experiences. We decided to develop the "Duel Mode" to introduce a PvP (Player vs. Player) element, turning a casual game into a strategic battle.
+
+  - **Phase 3: The Decision-Making Process (The "Core")**
+When deciding which features to prioritize for our MVP (Minimum Viable Product), we followed the criteria below:
+
+  1. Technical Feasibility:
+   _Input Synchronization: "Can we reliably handle simultaneous inputs (Mouse for P1 and Keyboard for P2) within the p5.js event loop without causing control lag or ghosting?"
+   _Physical Principles Implementation: "Can we implement the physics (vector reflection and collision) reliably within our timeframe?"
+
+  2. User Engagement:
+   _Highlights and Originality: "Does this mode offer a unique "hook"? (e.g., the "King Brick" mechanic in Duel Mode)."
+   _Risk-Reward Power-ups: "Does the implementation of 'Debuffs' (e.g., paddle shrinking) create a strategic tension where players must decide whether to chase a falling item or focus on the ball?"
+
+  3. Code Scalability:
+   _Modular Entity Interaction: "Can the collision logic in the Ball class be decoupled to interact with any object inheriting from a 'Collidable' interface, allowing us to add obstacles in the future?"
+   _Parameter-Driven Level Design: "By parameterizing the Bricks constructor, can we generate entirely different game layouts by simply changing a few variables in the related layout classes?"
+
+**Final Consensus:**
+We ultimately decided to develop a three-tier experience: Classic (for onboarding), Dark (for challenge), and Duel (for replayability). This ensured that our project demonstrated both technical rigor in software architecture and creativity in game design.
+
 ### Stakeholders
 -	Development Team (Team Leader, Designers, Engineers, Testers, Artists)
 -	Players
@@ -107,7 +136,7 @@ Acceptance criteria were particularly valuable because they made requirements me
 
 The paper prototyping process further strengthened our understanding of the game’s context. By simulating interactions physically, we identified design issues early, such as pacing and difficulty balance. Overall, this structured requirement approach made our design more systematic, user-centred, and easier to evaluate.
 
-## 3. Design
+## 3. Design & System Architecture
 
 - 15% ~750 words 
 - System architecture. Class diagrams, behavioural diagrams.
