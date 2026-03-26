@@ -36,7 +36,7 @@ STRAPLINE. Add an exciting one sentence description of your game here.
 - [7. Process](#7-process)
 - [8. Sustainability, Ethics, and Accessibility](#8-sustainability-ethics-and-accessibility)
 - [9. Conclusion](#9-conclusion)
-- [10. Contribution Statement](#10-contribution-statement)
+- [10\.Contribution Statement](#10-contribution-statement)
   
 ## Kanban
 
