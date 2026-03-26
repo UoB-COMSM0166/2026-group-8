@@ -61,7 +61,6 @@ This is a local multiplayer mode for two players. In this mode, each player choo
 
 - 15% ~750 words
 - Early stages design. Ideation process. How did you decide as a team what to develop? Use case diagrams, user stories.
-------------------
   
 ### Stakeholders
 -	Development Team (Team Leader, Designers, Engineers, Testers, Artists)
@@ -72,32 +71,29 @@ This is a local multiplayer mode for two players. In this mode, each player choo
   <img width="70%" alt="stakeholder onion diagram" src="https://github.com/user-attachments/assets/98132e1d-1d7a-48d1-82bd-ec49968a7d34" />
 </p>
 
-------------------
-
 ### Epics - User Stories and Acceptance Criteria
 
 #### Epic 1: Core Gameplay System
-- User Story 1: As a player, I want to launch the ball by clicking the mouse, so that I can start the game easily.
-- Acceptance Criteria: Given the game is in the start state and the ball is on the paddle, when the player clicks the mouse, then the ball moves upward and the game begins.
-- User Story 2: As a player, I want the ball to bounce off walls, bricks, and the paddle, so that the game behaves realistically.
-- Acceptance Criteria: Given the ball collides with a wall, brick, or paddle, when the collision occurs, then the ball changes direction according to collision rules.
-- User Story 3: As a player, I want bricks to disappear when hit, so that I can see my progress.
-- Acceptance Criteria: Given a brick is hit by the ball, when the collision is detected, then the brick is removed from the screen and the score increases.
+- **User Story 1:** As a player, I want to launch the ball by clicking the mouse, so that I can start the game easily.
+- **Acceptance Criteria:** Given the game is in the start state and the ball is on the paddle, when the player clicks the mouse, then the ball moves upward and the game begins.
+- **User Story 2:** As a player, I want the ball to bounce off walls, bricks, and the paddle, so that the game behaves realistically.
+- **Acceptance Criteria:** Given the ball collides with a wall, brick, or paddle, when the collision occurs, then the ball changes direction according to collision rules.
+- **User Story 3:** As a player, I want bricks to disappear when hit, so that I can see my progress.
+- **Acceptance Criteria:** Given a brick is hit by the ball, when the collision is detected, then the brick is removed from the screen and the score increases.
 
 #### Epic 2: Power-up System
-- User Story 1: As a player, I want bricks to randomly drop power-ups, so that the game feels dynamic and unpredictable.
-- Acceptance Criteria: Given a brick is destroyed, when the destruction event occurs, then there is a fixed probability that a power-up object is generated.
-- User Story 2: As a player, I want to catch falling power-ups with the paddle, so that I can activate special effects.
-- Acceptance Criteria: Given a power-up is falling, when the paddle collides with the power-up, then the corresponding effect is activated.
+- **User Story 1:** As a player, I want bricks to randomly drop power-ups, so that the game feels dynamic and unpredictable.
+- **Acceptance Criteria:** Given a brick is destroyed, when the destruction event occurs, then there is a fixed probability that a power-up object is generated.
+- **User Story 2:** As a player, I want to catch falling power-ups with the paddle, so that I can activate special effects.
+- **Acceptance Criteria:** Given a power-up is falling, when the paddle collides with the power-up, then the corresponding effect is activated.
 
 #### Epic 3: Game Progression and End Conditions
-- User Story 1: As a player, I want to lose a life when the ball falls below the paddle, so that the game has challenge.
-- Acceptance Criteria: Given the ball moves below the paddle boundary, when the out-of-bounds condition is detected, then one life is deducted and the ball resets to the paddle.
-- User Story 2: As a player, I want to pause the game at any time, so that I can take a break without losing progress.
-- Acceptance Criteria: Given the game is currently running, when the player presses the pause key (e.g., “P”), then the ball stops moving and all game interactions are temporarily disabled. Given the game is paused, when the player presses the pause key again, then the game resumes from the same state as before pausing.
-- User Story 3: As a player, I want the game to end when all bricks are destroyed, so that I feel a sense of achievement.
-- Acceptance Criteria: Given there are no bricks remaining on the screen, when the system checks win conditions, then a victory message is displayed and the game stops.
-------------------
+- **User Story 1:** As a player, I want to lose a life when the ball falls below the paddle, so that the game has challenge.
+- **Acceptance Criteria:** Given the ball moves below the paddle boundary, when the out-of-bounds condition is detected, then one life is deducted and the ball resets to the paddle.
+- **User Story 2:** As a player, I want to pause the game at any time, so that I can take a break without losing progress.
+- **Acceptance Criteria:** Given the game is currently running, when the player presses the pause key (e.g., “P”), then the ball stops moving and all game interactions are temporarily disabled. Given the game is paused, when the player presses the pause key again, then the game resumes from the same state as before pausing.
+- **User Story 3:** As a player, I want the game to end when all bricks are destroyed, so that I feel a sense of achievement.
+- **Acceptance Criteria:** Given there are no bricks remaining on the screen, when the system checks win conditions, then a victory message is displayed and the game stops.
 
 ### Reflection
 
@@ -115,6 +111,7 @@ The paper prototyping process further strengthened our understanding of the game
 
 - 15% ~750 words 
 - System architecture. Class diagrams, behavioural diagrams.
+
 ### Class diagram
 <img width="2440" height="1888" alt="Class diagram" src="https://github.com/user-attachments/assets/b79c23cd-9d33-4a61-8af5-378ccb18fcca" />
 
@@ -125,7 +122,6 @@ The paper prototyping process further strengthened our understanding of the game
 ## 4. Implementation
 
 - 15% ~750 words
-
 - Describe implementation of your game, in particular highlighting the TWO areas of *technical challenge* in developing your game. 
 
 ## 5. Evaluation
@@ -137,23 +133,23 @@ The goal of this qualitative evaluation was to gain deep insights into the user�
 Our qualitative evaluation was conducted in two distinct phases during the workshop : 
 
 **Phase 1: Think Aloud Study**  
-    **Roles**: We designated one facilitator and two observers.  
-    **Participants**: We recruited one participant from the group sitting next to us.  
-    **Tasks**: The participant was asked to perform two short tasks: starting the game/switching modes and surviving for one minute in standard mode.   
-    **Process**: The facilitator encouraged the participant to verbalize their thoughts in real-time while observers documented critical moments. 
+  - **Roles**: We designated one facilitator and two observers.  
+  - **Participants**: We recruited one participant from the group sitting next to us.  
+  - **Tasks**: The participant was asked to perform two short tasks: starting the game/switching modes and surviving for one minute in standard mode.   
+  - **Process**: The facilitator encouraged the participant to verbalize their thoughts in real-time while observers documented critical moments. 
 
 **Phase 2: Heuristic Evaluation**  
-    **Roles**: One team member acted as a facilitator to ensure the game ran smoothly, while an observer/expert from another team was recruited to evaluate the interface.  
-    **Process**: The expert first spent 10 minutes familiarizing themselves with the game. They then performed a solo systematic inspection to identify and record usability issues using the provided form.  
-    **Criteria**: Findings were assessed against Nielsen’s 10 Usability Heuristics. 
+  - **Roles**: One team member acted as a facilitator to ensure the game ran smoothly, while an observer/expert from another team was recruited to evaluate the interface.  
+  - **Process**: The expert first spent 10 minutes familiarizing themselves with the game. They then performed a solo systematic inspection to identify and record usability issues using the provided form.  
+  - **Criteria**: Findings were assessed against Nielsen’s 10 Usability Heuristics. 
 
 #### 5.1.2 Key Findings
 Based on the combined observation data and expert feedback, we identified several key issues:
 
-* **Navigation Confusion (Visibility of System Status)**: The user noted they "couldn't find the interface to switch modes." This violates **Heuristic #1**, as the system status was not clearly visible. 
-* **Lack of Feedback (Error Recovery)**: The ball did not reset after falling, and there was no health/life display. This violates **Heuristic #9**, which requires the system to help users recognize and recover from errors.
-* **Non-transparent Controls (Recognition rather than Recall)**: Control indicators were unclear, increasing the participant's memory load. This violates **Heuristic #6**. 
-* **Difficulty Balance**: The user felt the current ball speed was too slow. To address this, we will decide and adjust it to a suitable speed for playing.
+  - **Navigation Confusion (Visibility of System Status)**: The user noted they "couldn't find the interface to switch modes." This violates **Heuristic #1**, as the system status was not clearly visible. 
+  - **Lack of Feedback (Error Recovery)**: The ball did not reset after falling, and there was no health/life display. This violates **Heuristic #9**, which requires the   system to help users recognize and recover from errors.
+  - **Non-transparent Controls (Recognition rather than Recall)**: Control indicators were unclear, increasing the participant's memory load. This violates **Heuristic #6**. 
+  - **Difficulty Balance**: The user felt the current ball speed was too slow. To address this, we will decide and adjust it to a suitable speed for playing.
 
 #### 5.1.3 Severity Rating Table 
 We rated the severity of these problems on a scale of 0–4 based on Frequency (F), Impact (I), and Persistence (P). The average severity rating was calculated using the following formula: 
@@ -219,25 +215,25 @@ Our next step is to plan a more in-depth qualitative evaluation by testing with 
 ### 6.1 Black-Box Testing
 | Test Case | Input | Expected Result |
 | :--- | :--- | :--- |
-| Menu - Start Game | Click 'Classic', 'Dark', or 'Duel' button | The screen changes from the Menu to the Game, and the correct mode is loaded. |
-| Menu - Back to Menu | Click 'BACK TO MENU' button when pressing 'P' in game | The game stops, and the screen returns to the Main Menu. |
-| Menu - Back to Menu | Click 'BACK TO MENU' button when pressing 'P' in game | The game stops, and the screen returns to the Main Menu. |
-| Game - Ball Launch | Left Mouse Click | If the ball is attached, it starts moving upwards from the paddle. |
-| Game - Paddle Movement | Mouse X-axis move | The paddle follows the mouse and stays inside the game borders. |
-| Game - Brick Collision | Ball hits a brick | The brick disappears, and the player gets points. |
-| Game - Boundary Bounce | Ball hits walls | The ball bounces back into the play area instead of going off-screen. |
-| Game - Life Loss | Ball falls to bottom | The number of hearts (lives) goes down by 1, and the ball returns to the paddle. |
-| Game - Time-out | Timer reaches 00:00 | The game ends immediately and shows the Game Over screen. |
+| **Menu - Start Game** | Click 'Classic', 'Dark', or 'Duel' button | The screen changes from the Menu to the Game, and the correct mode is loaded. |
+| **Menu - Back to Menu** | Click 'BACK TO MENU' button when pressing 'P' in game | The game stops, and the screen returns to the Main Menu. |
+| **Menu - Back to Menu** | Click 'BACK TO MENU' button when pressing 'P' in game | The game stops, and the screen returns to the Main Menu. |
+| **Game - Ball Launch** | Left Mouse Click | If the ball is attached, it starts moving upwards from the paddle. |
+| **Game - Paddle Movement** | Mouse X-axis move | The paddle follows the mouse and stays inside the game borders. |
+| **Game - Brick Collision** | Ball hits a brick | The brick disappears, and the player gets points. |
+| **Game - Boundary Bounce** | Ball hits walls | The ball bounces back into the play area instead of going off-screen. |
+| **Game - Life Loss** | Ball falls to bottom | The number of hearts (lives) goes down by 1, and the ball returns to the paddle. |
+| **Game - Time-out** | Timer reaches 00:00 | The game ends immediately and shows the Game Over screen. |
 
 | Category | Partition | Description | Values |
 | :--- | :--- | :--- | :--- |
-| Paddle Control | Within Bounds | Mouse is inside the game area. | 35 < mouseX < 465 |
+| **Paddle Control** | Within Bounds | Mouse is inside the game area. | 35 < mouseX < 465 |
 || Out of Bounds (Left) | Mouse is too far left. | mouseX <= 35 |
 || Out of Bounds (Right) | Mouse is too far right. | mouseX >= 465 |
 || Out of Bounds (Right) | Mouse is too far right. | mouseX >= 465 |
-| Ball Physics | Play Area | Ball is within the rectangle. | 35 < pos.y < 625 |
+| **Ball Physics** | Play Area | Ball is within the rectangle. | 35 < pos.y < 625 |
 || Ball Lost | Ball falls below the paddle. | pos.y >= 625 |
-| Game State | Mode Selection | Selecting the specific game twist. | mode is "CLASSIC", "DARK", or "DUEL" |
+| **Game State** | Mode Selection | Selecting the specific game twist. | mode is "CLASSIC", "DARK", or "DUEL" |
 || Timer Status | The remaining game time. | timer > 0 vs. timer <= 0 |
 
 ### 6.2 White-Box Testing
@@ -245,27 +241,22 @@ Our next step is to plan a more in-depth qualitative evaluation by testing with 
 <br>
 
 - 15% ~750 words
-
 - One qualitative evaluation (of your choice) 
-
 - One quantitative evaluation (of your choice) 
-
 - Description of how code was tested.
-
-<br>
 
 ## 7. Process 
 
 - 15% ~750 words
-
 - Teamwork. How did you work together, what tools and methods did you use? Did you define team roles? Reflection on how you worked together. Be honest, we want to hear about what didn't work as well as what did work, and importantly how your team adapted throughout the project.
 
 ## 8. Sustainability, Ethics, and Accessibility
 
+<br>
+
 ## 9. Conclusion
 
 - 10% ~500 words
-
 - Reflect on the project as a whole. Lessons learnt. Reflect on challenges. Future work, describe both immediate next steps for your current game and also what you would potentially do if you had chance to develop a sequel.
 
 ## 10. Contribution Statement
