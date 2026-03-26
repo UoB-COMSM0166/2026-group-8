@@ -218,15 +218,28 @@ Based on the data, we found that:
 #### 3. Description of Code Testing
 
 #### 3.1 Black-Box Testing
-| Test Case | Input | Expected Result | Status |
-| :--- | :--- | :--- | :--- |
-| Ball Launch | Left Mouse Click | If the ball is attached, it starts moving upwards from the paddle. | ✅ Pass |
-| Paddle Movement | Mouse X-axis move | The paddle follows the mouse and stays inside the game borders. | ✅ Pass |
-| Brick Collision | Ball hits a brick | The brick disappears, and the player gets points. | ✅ Pass |
-| Boundary Bounce | Ball hits walls | The ball bounces back into the play area instead of going off-screen. | ✅ Pass |
-| Life Loss | Ball falls to bottom | The number of hearts (lives) goes down by 1, and the ball returns to the paddle. | ✅ Pass |
-| Time-out | Timer reaches 00:00 | The game ends immediately and shows the Game Over screen. | ✅ Pass |
+| Test Case | Input | Expected Result |
+| :--- | :--- | :--- |
+| Menu - Start Game | Click 'Classic', 'Dark', or 'Duel' button | The screen changes from the Menu to the Game, and the correct mode is loaded. |
+| Menu - Back to Menu | Click 'BACK TO MENU' button when pressing 'P' in game | The game stops, and the screen returns to the Main Menu. |
+| Menu - Back to Menu | Click 'BACK TO MENU' button when pressing 'P' in game | The game stops, and the screen returns to the Main Menu. |
+| Game - Ball Launch | Left Mouse Click | If the ball is attached, it starts moving upwards from the paddle. |
+| Game - Paddle Movement | Mouse X-axis move | The paddle follows the mouse and stays inside the game borders. |
+| Game - Brick Collision | Ball hits a brick | The brick disappears, and the player gets points. |
+| Game - Boundary Bounce | Ball hits walls | The ball bounces back into the play area instead of going off-screen. |
+| Game - Life Loss | Ball falls to bottom | The number of hearts (lives) goes down by 1, and the ball returns to the paddle. |
+| Game - Time-out | Timer reaches 00:00 | The game ends immediately and shows the Game Over screen. |
 
+| Category | Partition | Description | Values |
+| :--- | :--- | :--- | :--- |
+| Paddle Control | Within Bounds | Mouse is inside the game area. | 35 < mouseX < 465 |
+|| Out of Bounds (Left) | Mouse is too far left. | mouseX <= 35 |
+|| Out of Bounds (Right) | Mouse is too far right. | mouseX >= 465 |
+|| Out of Bounds (Right) | Mouse is too far right. | mouseX >= 465 |
+| Ball Physics | Play Area | Ball is within the rectangle. | 35 < pos.y < 625 |
+|| Ball Lost | Ball falls below the paddle. | pos.y >= 625 |
+| Game State | Mode Selection | Selecting the specific game twist. | mode is "CLASSIC", "DARK", or "DUEL" |
+|| Timer Status | The remaining game time. | timer > 0 vs. timer <= 0 |
 
 #### 3.2 White-Box Testing
 
