@@ -56,7 +56,6 @@ class Ball {
         if (this.vel && this.vel.mag() !== 0) {
             this.vel.setMag(this.baseSpeed * sScale);
         }
-    }
     
         this.r = this.originalR * rScale;
     }
