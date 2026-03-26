@@ -57,37 +57,34 @@ This mode is more difficult and exciting. The entire screen is dark, and you can
   3. **Duel Mode (The Tactical Twist):**
 This is a local multiplayer mode for two players. In this mode, each player chooses one special brick to be their "King". The game becomes a race! The first player to destroy the opponent's King brick wins the game. You must decide when it is best to attack the enemy's King and when you need to stay back to protect your own from being hit.
 
-## 2. Requirements 
-
-- 15% ~750 words
-- Early stages design. Ideation process. How did you decide as a team what to develop? Use case diagrams, user stories.
+## 2. Requirements
 
 ### 2.1 Ideation Process
-  - **Phase 1: Selecting the Foundation (The "Why")**
+#### Phase 1: Selecting the Foundation (The "Why")
 We began by analyzing classic arcade mechanics that allow for both simplicity in control and depth in physics. We settled on the Brick Breaker (Arkanoid) genre because it provides a perfect sandbox for implementing Object-Oriented Programming (OOP) principles, such as inheritance for different game scenes and polymorphism for various game modes.
 
-  - **Phase 2: Brainstorming & The "Twist"**
+#### Phase 2: Brainstorming & The "Twist"
 To move beyond a simple clone, our team held a brainstorming session focused on "Innovation within Constraints." We asked: How can we make a 50-year-old mechanic feel modern and competitive?
 
-  1. The Visibility Challenge: This led to the creation of "Dark Mode," where we shifted the focus from pure reflex to spatial memory.
-  2. The Competitive Edge: We realized most brick breakers are solo experiences. We decided to develop the "Duel Mode" to introduce a PvP (Player vs. Player) element, turning a casual game into a strategic battle.
+  1. **The Visibility Challenge:** This led to the creation of "Dark Mode," where we shifted the focus from pure reflex to spatial memory.
+  2. **The Competitive Edge:** We realized most brick breakers are solo experiences so we decided to develop the "Duel Mode" to introduce a PvP (Player vs. Player) element, turning a casual game into a strategic battle.
 
-  - **Phase 3: The Decision-Making Process (The "Core")**
+#### Phase 3: The Decision-Making Process (The "Core")
 When deciding which features to prioritize for our MVP (Minimum Viable Product), we followed the criteria below:
 
-  1. Technical Feasibility:
-     - Input Synchronization: "Can we reliably handle simultaneous inputs (Mouse for P1 and Keyboard for P2) within the p5.js event loop without causing control lag or ghosting?"
-     - Physical Principles Implementation: "Can we implement the physics (vector reflection and collision) reliably within our timeframe?"
+1. **Technical Feasibility:**
+   - Input Synchronization: "Can we reliably handle simultaneous inputs (Mouse for P1 and Keyboard for P2) within the p5.js event loop without causing control lag or ghosting?"
+   - Physical Principles Implementation: "Can we implement the physics (vector reflection and collision) reliably within our timeframe?"
 
-  2. User Engagement:
-     - Highlights and Originality: "Does this mode offer a unique "hook"? (e.g., the "King Brick" mechanic in Duel Mode)."
-     - Risk-Reward Power-ups: "Does the implementation of 'Debuffs' (e.g., paddle shrinking) create a strategic tension where players must decide whether to chase a falling item or focus on the ball?"
+2. **User Engagement:**
+   - Highlights and Originality: "Does this mode offer a unique "hook"? (e.g., the "King Brick" mechanic in Duel Mode)."
+   - Risk-Reward Power-ups: "Does the implementation of 'Debuffs' (e.g., paddle shrinking) create a strategic tension where players must decide whether to chase a falling item or focus on the ball?"
 
-  3. Code Scalability:
-     - Modular Entity Interaction: "Can the collision logic in the Ball class be decoupled to interact with any object inheriting from a 'Collidable' interface, allowing us to add obstacles in the future?"
-     - Parameter-Driven Level Design: "By parameterizing the Bricks constructor, can we generate entirely different game layouts by simply changing a few variables in the related layout classes?"
+3. **Code Scalability:**
+   - Modular Entity Interaction: "Can the collision logic in the Ball class be decoupled to interact with any object inheriting from a 'Collidable' interface, allowing us to add obstacles in the future?"
+   - Parameter-Driven Level Design: "By parameterizing the Bricks constructor, can we generate entirely different game layouts by simply changing a few variables in the related layout classes?"
 
-**Final Consensus:**
+#### Final Consensus
 We ultimately decided to develop a three-tier experience: Classic (for onboarding), Dark (for challenge), and Duel (for replayability). This ensured that our project demonstrated both technical rigor in software architecture and creativity in game design.
 
 ### 2.2 Stakeholders
@@ -96,32 +93,32 @@ We ultimately decided to develop a three-tier experience: Classic (for onboardin
 -	Course Instructor (Teachers/ TAs)
 -	Future Platform Providers
 <p align="center">
-  <img width="70%" alt="stakeholder onion diagram" src="https://github.com/user-attachments/assets/98132e1d-1d7a-48d1-82bd-ec49968a7d34" />
+  <img width="60%" alt="stakeholder onion diagram" src="https://github.com/user-attachments/assets/98132e1d-1d7a-48d1-82bd-ec49968a7d34" />
 </p>
 
 ### 2.3 Epics - User Stories and Acceptance Criteria
 
 #### Epic 1: Core Gameplay System
 - **User Story 1:** As a player, I want to launch the ball by clicking the mouse, so that I can start the game easily.
-- **Acceptance Criteria:** Given the game is in the start state and the ball is on the paddle, when the player clicks the mouse, then the ball moves upward and the game begins.
+  - **Acceptance Criteria:** Given the game is in the start state and the ball is on the paddle, when the player clicks the mouse, then the ball moves upward and the game begins.
 - **User Story 2:** As a player, I want the ball to bounce off walls, bricks, and the paddle, so that the game behaves realistically.
-- **Acceptance Criteria:** Given the ball collides with a wall, brick, or paddle, when the collision occurs, then the ball changes direction according to collision rules.
+  - **Acceptance Criteria:** Given the ball collides with a wall, brick, or paddle, when the collision occurs, then the ball changes direction according to collision rules.
 - **User Story 3:** As a player, I want bricks to disappear when hit, so that I can see my progress.
-- **Acceptance Criteria:** Given a brick is hit by the ball, when the collision is detected, then the brick is removed from the screen and the score increases.
+  - **Acceptance Criteria:** Given a brick is hit by the ball, when the collision is detected, then the brick is removed from the screen and the score increases.
 
 #### Epic 2: Power-up System
 - **User Story 1:** As a player, I want bricks to randomly drop power-ups, so that the game feels dynamic and unpredictable.
-- **Acceptance Criteria:** Given a brick is destroyed, when the destruction event occurs, then there is a fixed probability that a power-up object is generated.
+  - **Acceptance Criteria:** Given a brick is destroyed, when the destruction event occurs, then there is a fixed probability that a power-up object is generated.
 - **User Story 2:** As a player, I want to catch falling power-ups with the paddle, so that I can activate special effects.
-- **Acceptance Criteria:** Given a power-up is falling, when the paddle collides with the power-up, then the corresponding effect is activated.
+  - **Acceptance Criteria:** Given a power-up is falling, when the paddle collides with the power-up, then the corresponding effect is activated.
 
 #### Epic 3: Game Progression and End Conditions
 - **User Story 1:** As a player, I want to lose a life when the ball falls below the paddle, so that the game has challenge.
-- **Acceptance Criteria:** Given the ball moves below the paddle boundary, when the out-of-bounds condition is detected, then one life is deducted and the ball resets to the paddle.
+  - **Acceptance Criteria:** Given the ball moves below the paddle boundary, when the out-of-bounds condition is detected, then one life is deducted and the ball resets to the paddle.
 - **User Story 2:** As a player, I want to pause the game at any time, so that I can take a break without losing progress.
-- **Acceptance Criteria:** Given the game is currently running, when the player presses the pause key (e.g., “P”), then the ball stops moving and all game interactions are temporarily disabled. Given the game is paused, when the player presses the pause key again, then the game resumes from the same state as before pausing.
+  - **Acceptance Criteria:** Given the game is currently running, when the player presses the pause key (e.g., “P”), then the ball stops moving and all game interactions are temporarily disabled. Given the game is paused, when the player presses the pause key again, then the game resumes from the same state as before pausing.
 - **User Story 3:** As a player, I want the game to end when all bricks are destroyed, so that I feel a sense of achievement.
-- **Acceptance Criteria:** Given there are no bricks remaining on the screen, when the system checks win conditions, then a victory message is displayed and the game stops.
+  -  **Acceptance Criteria:** Given there are no bricks remaining on the screen, when the system checks win conditions, then a victory message is displayed and the game stops.
 
 ### 2.4 Reflection
 
