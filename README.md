@@ -103,26 +103,24 @@ We ultimately decided to develop a three-tier experience: Classic (for onboardin
 ### 2.3 Epics - User Stories and Acceptance Criteria
 
 #### Epic 1: Core Gameplay System
-- **User Story 1:** As a player, I want to launch the ball by clicking the mouse, so that I can start the game easily.
-- **Acceptance Criteria:** Given the game is in the start state and the ball is on the paddle, when the player clicks the mouse, then the ball moves upward and the game begins.
-- **User Story 2:** As a player, I want the ball to bounce off walls, bricks, and the paddle, so that the game behaves realistically.
-- **Acceptance Criteria:** Given the ball collides with a wall, brick, or paddle, when the collision occurs, then the ball changes direction according to collision rules.
-- **User Story 3:** As a player, I want bricks to disappear when hit, so that I can see my progress.
-- **Acceptance Criteria:** Given a brick is hit by the ball, when the collision is detected, then the brick is removed from the screen and the score increases.
+| User Story | Acceptance Criteria |
+| :--- | :--- |
+| As a player, I want to launch the ball by clicking the mouse, so that I can start the game easily. | Given the game is in the start state and the ball is on the paddle, when the player clicks the mouse, then the ball moves upward and the game begins. |
+| As a player, I want the ball to bounce off walls, bricks, and the paddle, so that the game behaves realistically. | Given the ball collides with a wall, brick, or paddle, when the collision occurs, then the ball changes direction according to collision rules. |
+| As a player, I want bricks to disappear when hit, so that I can see my progress. | Given a brick is hit by the ball, when the collision is detected, then the brick is removed from the screen and the score increases. |
 
 #### Epic 2: Power-up System
-- **User Story 1:** As a player, I want bricks to randomly drop power-ups, so that the game feels dynamic and unpredictable.
-- **Acceptance Criteria:** Given a brick is destroyed, when the destruction event occurs, then there is a fixed probability that a power-up object is generated.
-- **User Story 2:** As a player, I want to catch falling power-ups with the paddle, so that I can activate special effects.
-- **Acceptance Criteria:** Given a power-up is falling, when the paddle collides with the power-up, then the corresponding effect is activated.
+| User Story | Acceptance Criteria |
+| :--- | :--- |
+| As a player, I want bricks to randomly drop power-ups, so that the game feels dynamic and unpredictable. | Given a brick is destroyed, when the destruction event occurs, then there is a fixed probability that a power-up object is generated. |
+| As a player, I want to catch falling power-ups with the paddle, so that I can activate special effects. | Given a power-up is falling, when the paddle collides with the power-up, then the corresponding effect is activated. |
 
 #### Epic 3: Game Progression and End Conditions
-- **User Story 1:** As a player, I want to lose a life when the ball falls below the paddle, so that the game has challenge.
-- **Acceptance Criteria:** Given the ball moves below the paddle boundary, when the out-of-bounds condition is detected, then one life is deducted and the ball resets to the paddle.
-- **User Story 2:** As a player, I want to pause the game at any time, so that I can take a break without losing progress.
-- **Acceptance Criteria:** Given the game is currently running, when the player presses the pause key (e.g., “P”), then the ball stops moving and all game interactions are temporarily disabled. Given the game is paused, when the player presses the pause key again, then the game resumes from the same state as before pausing.
-- **User Story 3:** As a player, I want the game to end when all bricks are destroyed, so that I feel a sense of achievement.
--  **Acceptance Criteria:** Given there are no bricks remaining on the screen, when the system checks win conditions, then a victory message is displayed and the game stops.
+| User Story | Acceptance Criteria |
+| :--- | :--- |
+| As a player, I want to lose a life when the ball falls below the paddle, so that the game has challenge. | Given the ball moves below the paddle boundary, when the out-of-bounds condition is detected, then one life is deducted and the ball resets to the paddle. |
+| As a player, I want to pause the game at any time, so that I can take a break without losing progress. | Given the game is currently running, when the player presses the pause key (e.g., “P”), then the ball stops moving and all game interactions are temporarily disabled. Given the game is paused, when the player presses the pause key again, then the game resumes from the same state as before pausing. |
+| As a player, I want the game to end when all bricks are destroyed, so that I feel a sense of achievement. | Given there are no bricks remaining on the screen, when the system checks win conditions, then a victory message is displayed and the game stops. |
 
 ### 2.4 Reflection
 During the lecture, we learned how epics, user stories, and acceptance criteria help structure requirements in a clear and testable way.
