@@ -1,11 +1,12 @@
 const W = 500, H = 700;
 let menuPage, gamePage, duelPage;
 let currentMode = 'menu';
-let brickImg;
+let bgImg, brickImg;
 
 
 function preload() {
-    BaseScene.brickImg = loadImage('https://cdn-icons-png.flaticon.com/512/5805/5805666.png');
+    BaseScene.brickImg = loadImage('./brickImg.png');
+    bgImg = loadImage('./CYBERPUNK.jpg');
 }
 
 function setup() {
@@ -90,4 +91,3 @@ function keyPressed() {
         }
     }
 }
-
