@@ -53,10 +53,8 @@ if (this.manage.state === 'PLAYING') {
        this.ball.pos.add(this.ball.vel);
             this.ball.checkWallCollision();
  
-            
-            this.ball.checkBrickCollisionDuel(this.bricks1.items);
-            this.ball.checkBrickCollisionDuel(this.bricks2.items);
- 
+            this.checkBrickCollisionDuel(this.bricks1.items);
+            this.checkBrickCollisionDuel(this.bricks2.items);
         
             this.checkPaddleCollisionP1();
             this.ball.checkPaddleCollision(this.paddle2);
