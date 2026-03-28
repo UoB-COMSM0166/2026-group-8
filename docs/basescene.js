@@ -23,7 +23,7 @@ class BaseScene {
         drawingContext.shadowColor = color(255, 255, 255, 200);
         this.drawRectangleOverlay(color(0, 0), color(200, 240, 255));
 
-        image(img, 400, 635, 50, 50);
+        image(img, 425, 635, 50, 50);
         drawingContext.shadowBlur = 0;
 
         this.drawWatermark();
