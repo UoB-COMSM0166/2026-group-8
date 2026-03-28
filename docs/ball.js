@@ -47,15 +47,24 @@ class Ball {
     }
 
     // Display the ball
+    // ball.js
+
     display() {
         push();
         noStroke();
 
-        let scene = window.gamePage || gamePage;
-        let isMultiMode = this.isMain && scene && scene.extraBalls && scene.extraBalls.length > 0;
+        let scene = (currentMode === 'duel') ? duelPage : gamePage;
 
-        let glowColor = isMultiMode ? color(255, 255, 0) : color(0, 255, 0);
-        let coreColor = isMultiMode ? color(150, 150, 0) : color(0, 100, 0);
+        let glowColor, coreColor;
+
+        if (scene && scene.mode === 'DUEL') {
+            glowColor = color(0, 191, 255);
+            coreColor = color(204, 229, 255);
+        } else {
+            let isMultiMode = this.isMain && scene && scene.extraBalls && scene.extraBalls.length > 0;
+            glowColor = isMultiMode ? color(255, 255, 0) : color(0, 255, 0);
+            coreColor = isMultiMode ? color(150, 150, 0) : color(0, 100, 0);
+        }
 
         drawingContext.shadowBlur = 30;
         drawingContext.shadowColor = glowColor;

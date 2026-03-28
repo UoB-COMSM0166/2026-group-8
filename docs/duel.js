@@ -45,10 +45,10 @@ class Duel extends BaseScene {
                     this.ball.pos.y = this.paddle2.y - this.ball.r;
                 } else {
                     this.ball.pos.add(this.ball.vel);
-                    if (this.ball.pos.x - this.ball.r < 25 || this.ball.pos.x + this.ball.r > 475) {
+                    if (this.ball.pos.x - this.ball.r < 35 || this.ball.pos.x + this.ball.r > 465) {
                         this.ball.vel.x *= -1;
                     }
-                    if (this.ball.pos.y - this.ball.r < 25 || this.ball.pos.y + this.ball.r > 625) {
+                    if (this.ball.pos.y - this.ball.r < 35 || this.ball.pos.y + this.ball.r > 615) {
                         this.ball.vel.y *= -1;
                     }
 
@@ -78,9 +78,6 @@ class Duel extends BaseScene {
     }
 
     drawDuelLayout() {
-        drawingContext.shadowBlur = 15;
-        drawingContext.shadowColor = color(255, 255, 255, 200);
-
         noStroke();
         // player 1 control instruction
         fill(255, 0, 0, 50);

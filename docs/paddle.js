@@ -69,7 +69,7 @@ class Paddle {
     display() {
         push();
         noStroke();
-        let cornerR = 6;
+        let cornerR = 4;
 
         drawingContext.shadowBlur = 25;
         drawingContext.shadowColor = color(0, 255, 100);
@@ -90,17 +90,23 @@ class Paddle {
     //Two player
     displayP1() {
         push();
+        drawingContext.shadowBlur = 10;
+        drawingContext.shadowColor = color(255);
         noStroke();
         fill(0, 200, 140);
-        rect(this.x, this.y, this.w, this.h);
+        rect(this.x, this.y, this.w, this.h, 4);
+        drawingContext.shadowBlur = 0;
         pop();
     }
 
     displayP2() {
         push();
+        drawingContext.shadowBlur = 10;
+        drawingContext.shadowColor = color(255);
         noStroke();
         fill(220, 60, 60);
-        rect(this.x, this.y, this.w, this.h);
+        rect(this.x, this.y, this.w, this.h, 4);
+        drawingContext.shadowBlur = 0;
         pop();
     }
 
