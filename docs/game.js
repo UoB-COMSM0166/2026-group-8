@@ -19,6 +19,7 @@ class Game extends BaseScene {
 
     display() {
         this.drawInitPage();
+
         this.bricks.update();
         this.bricks.display();
         this.manage.updateTimer();
@@ -46,7 +47,11 @@ class Game extends BaseScene {
         this.drawPlayerStatusBar();
 
         // DARK mode screen filter
-        if (this.mode === 'DARK' && this.darkTimer > 1000 && this.bricks.lightTimer <= 0) {
+        if (
+            this.mode === 'DARK' &&
+            this.darkTimer > 1000 &&
+            this.bricks.lightTimer <= 0
+        ) {
             this.drawDarkEffect();
         }
 
@@ -67,6 +72,8 @@ class Game extends BaseScene {
 
     drawPlayerStatusBar() {
         push();
+        drawingContext.shadowBlur = 15;
+        drawingContext.shadowColor = color(255, 255, 255, 200);
 
         textSize(15);
         textAlign(RIGHT);
@@ -81,7 +88,9 @@ class Game extends BaseScene {
         text(`LIVES:`, 80, 660);
         this.displayHeartEmojis(this.manage.getLifeString(), 90, 665);
         text(`TIME: ${this.manage.getFormattedTime()}`, 260, 660);
-        text(`SCORE: ${this.manage.score}`, 360, 660);
+        text(`SCORE: ${this.manage.score}`, 370, 660);
+
+        drawingContext.shadowBlur = 0;
         pop();
     }
 
@@ -114,14 +123,15 @@ class Game extends BaseScene {
             return [
                 "• Move the mouse to control the paddle",
                 "• Light follows the ball - keep it steady!",
-                "• Lives: 3 (Game over at 0)",
+                "• Total ives: 3 (Game over at 0)",
+                "",
                 "• Press 'P' to pause / resume"
             ];
         } else if (this.mode === 'CLASSIC') {
             return [
                 "• Move the mouse to control the paddle",
                 "• Click to launch the ball",
-                "• Lives: 3 (Game over at 0)",
+                "• Total lives: 3 (Game over at 0)",
                 "• Press 'P' to pause / resume"
             ];
         }
