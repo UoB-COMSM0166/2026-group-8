@@ -78,6 +78,9 @@ class Duel extends BaseScene {
     }
 
     drawDuelLayout() {
+        drawingContext.shadowBlur = 15;
+        drawingContext.shadowColor = color(255, 255, 255, 200);
+
         noStroke();
         // player 1 control instruction
         fill(255, 0, 0, 50);
@@ -104,8 +107,12 @@ class Duel extends BaseScene {
 
     getRules() {
         return [
-            "• P1: Keyboard (Left/Right Keys) / P2: Keyboard (A/D Keys)",
+            "• P1: Keyboard (Left/Right Keys)",
+            "• P2: Keyboard (A/D Keys)",
+            "",
+            "• Each player choose a brick to be 'KING'",
             "• Break your opponent's KING to win!",
+            "",
             "• Press 'P' to pause / resume"
         ];
     }

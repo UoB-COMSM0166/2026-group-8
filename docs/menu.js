@@ -16,9 +16,12 @@ class Menu {
         let mode2 = this.center;
         let mode3 = this.center + 150;
 
+        drawingContext.shadowBlur = 15;
+        drawingContext.shadowColor = color(255, 255, 255, 200);
         this.drawBoxButton('CLASSIC', mode1, this.btnPos, '🎮');
         this.drawBoxButton('DARK', mode2, this.btnPos, '💡');
         this.drawBoxButton('DUEL', mode3, this.btnPos, '⚔️');
+        drawingContext.shadowBlur = 0;
     }
 
     drawTitle() {
@@ -28,6 +31,7 @@ class Menu {
         drawingContext.shadowOffsetY = -5;
         drawingContext.shadowBlur = 10;
         drawingContext.shadowColor = 'black';
+
         textSize(40);
         fill(255);
         stroke(0);
@@ -36,12 +40,16 @@ class Menu {
         text('CORE_BREAKER', this.center, 250);
         pop();
 
+        drawingContext.shadowBlur = 15;
+        drawingContext.shadowColor = color(255, 255, 255, 200);
+
         fill(255);
         textSize(20);
         textAlign(CENTER, CENTER);
         text('_______________', this.center, 290);
         text('◇ Select game mode ◇', this.center, 320);
         text('_______________', this.center, 330);
+        drawingContext.shadowBlur = 0;
     }
 
     btnRange(x, y, tw, th) {
@@ -63,7 +71,7 @@ class Menu {
             fill(200, 200, 200, 100);
             cursor(HAND);
         } else {
-            fill(255, 255, 255, 150);
+            fill(255, 255, 255, 110);
         }
         rect(x, y, this.btnW, this.btnH, 5);
 

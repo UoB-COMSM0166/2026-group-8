@@ -1,11 +1,11 @@
 const W = 500, H = 700;
 let menuPage, gamePage, duelPage;
 let currentMode = 'menu';
-let bgImg, brickImg, darkImg, duelImg, classicImg;
+let img, bgImg, darkImg, duelImg, classicImg;
 
 
 function preload() {
-    brickImg = loadImage('./brickImg.png');
+    img = loadImage('./dinosaur.png');
     bgImg = loadImage('./Cyber.jpg');
     darkImg = loadImage('./Dark.jpg');
     duelImg = loadImage('./Duel.jpg');
@@ -21,9 +21,14 @@ function draw() {
     cursor(ARROW);
 
     switch (currentMode) {
-        case 'game': gamePage.display(); break;
-        case 'duel': duelPage.display(); break;
-        default: menuPage.display();
+        case 'game':
+            gamePage.display();
+            break;
+        case 'duel':
+            duelPage.display();
+            break;
+        default:
+            menuPage.display();
     }
 }
 
@@ -76,7 +81,11 @@ function mouseClicked() {
         if (currentState === 'INSTRUCTION') {
             duelPage.manage.state = 'PLAYING';
         } else if (currentState === 'PLAYING') {
-            if (duelPage.bricks1.hasKing && duelPage.bricks2.hasKing && duelPage.ball.isAttached) {
+            if (
+                duelPage.bricks1.hasKing &&
+                duelPage.bricks2.hasKing &&
+                duelPage.ball.isAttached
+            ) {
                 duelPage.paddle2.launchBall(duelPage.ball);
             }
         }
@@ -86,11 +95,11 @@ function mouseClicked() {
 
 function keyPressed() {
     if (key === 'p' || key === 'P') {
-        let activeScene = (currentMode === 'game') ? gamePage : (currentMode === 'duel' ? duelPage : null);
+        let activeScene = (currentMode === 'game') ?
+            gamePage : (currentMode === 'duel' ? duelPage : null);
 
         if (activeScene) {
             activeScene.requestTogglePause();
         }
     }
 }
-
