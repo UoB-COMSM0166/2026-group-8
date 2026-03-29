@@ -44,8 +44,6 @@ class Game extends BaseScene {
             this.manage.checkWinCondition(this.bricks.items);
         }
 
-        this.drawPlayerStatusBar();
-
         // DARK mode screen filter
         if (
             this.mode === 'DARK' &&
@@ -70,39 +68,6 @@ class Game extends BaseScene {
         }
     }
 
-    drawPlayerStatusBar() {
-        push();
-        drawingContext.shadowBlur = 15;
-        drawingContext.shadowColor = color(255, 255, 255, 200);
-
-        textSize(15);
-        textAlign(RIGHT);
-        fill('white');
-        stroke(0);
-        strokeWeight(3);
-
-        if (this.manage.timer < 10000) {
-            fill(255, 50, 50);
-        }
-
-        text(`LIVES:`, 80, 660);
-        this.displayHeartEmojis(this.manage.getLifeString(), 90, 665);
-        text(`TIME: ${this.manage.getFormattedTime()}`, 260, 660);
-        text(`SCORE: ${this.manage.score}`, 370, 660);
-
-        drawingContext.shadowBlur = 0;
-        pop();
-    }
-
-    displayHeartEmojis(heartString, x, y) {
-        push();
-        textSize(15);
-        noStroke();
-        textAlign(LEFT, CENTER);
-        text(heartString, x, y - 2);
-        pop();
-    }
-
     drawDarkEffect() {
         this.maskLayer.push();
         this.maskLayer.clear();
@@ -121,16 +86,18 @@ class Game extends BaseScene {
     getRules() {
         if (this.mode === 'DARK') {
             return [
-                "• Move the mouse to control the paddle",
+                "• Break the KING to win",
                 "• Light follows the ball - keep it steady!",
+                "• Click to launch the ball",
+                "• Move the mouse to control the paddle",
                 "• Total ives: 3 (Game over at 0)",
-                "",
                 "• Press 'P' to pause / resume"
             ];
         } else if (this.mode === 'CLASSIC') {
             return [
-                "• Move the mouse to control the paddle",
+                "• Get the highest score as possible!",
                 "• Click to launch the ball",
+                "• Move the mouse to control the paddle",
                 "• Total lives: 3 (Game over at 0)",
                 "• Press 'P' to pause / resume"
             ];

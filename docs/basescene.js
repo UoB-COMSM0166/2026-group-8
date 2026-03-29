@@ -27,43 +27,71 @@ class BaseScene {
         drawingContext.shadowBlur = 0;
 
         this.drawWatermark();
+        this.drawPlayerStatusBar();
         pop();
     }
 
-    drawInstructionScreen() {
+    drawWatermark() {
         push();
-        this.drawRectangleOverlay(color(10, 15, 30, 230), color(255));
-
-        drawingContext.shadowBlur = 10;
-        drawingContext.shadowColor = color(255);
-
-        fill(255, 255, 0);
-        noStroke();
-        textSize(20);
-        textStyle(BOLD);
-        text('CLICK ANYWHERE TO START', 250, 490);
-
-        fill(255);
+        translate(250, 325);
         textAlign(CENTER, CENTER);
-        textSize(30);
+        textSize(80);
         textStyle(BOLD);
-        text('HOW TO PLAY', 250, 100);
+        fill(150, 150, 150, 100);
+        noStroke();
 
-        textSize(16);
-        textStyle(NORMAL);
-        let rules = this.getRules();
-        for (let i = 0; i < rules.length; i++) {
-            text(rules[i], 250, 160 + (i * 30));
+        if (this.mode == "CLASSIC") {
+            text('CLASSIC', 0, 0);
+        }
+        else if (this.mode == "DARK") {
+            text('DARK', 0, 0);
+        }
+        else {
+            text('DUEL', 0, 0);
+        }
+        pop();
+    }
+
+    drawPlayerStatusBar() {
+        push();
+        drawingContext.shadowBlur = 15;
+        drawingContext.shadowColor = color(255, 255, 255, 200);
+
+        textSize(15);
+        textAlign(LEFT);
+        fill('white');
+        stroke(0);
+        strokeWeight(3);
+
+        // text turned red if less than 10 secs remaining
+        if (this.manage.timer < 10000) {
+            fill(255, 50, 50);
         }
 
-        if (this.mode === 'CLASSIC') {
-            this.drawItemContext(250, 320);
-        } else if (this.mode === 'DARK') {
-            this.drawDarkItemContext(250, 380);
+        if (this.mode !== 'DUEL') {
+            text(`LIVES:`, 35, 660);
+            this.displayHeartEmojis(this.manage.getLifeString(), 90, 660);
+            text(`TIME: ${this.manage.getFormattedTime()}`, 175, 660);
+
+            if (this.mode === 'CLASSIC') {
+                text(`SCORE: ${this.manage.score}`, 285, 660);
+            } else if (this.mode === 'DARK') {
+                text("# _THE_CORE", 285, 660);
+            }
+        } else {
+            text("# _SMASH_YOUR_RIVAL'S_KING", 35, 660);
         }
 
-        this.drawHomeButton();
         drawingContext.shadowBlur = 0;
+        pop();
+    }
+
+    displayHeartEmojis(heartString, x, y) {
+        push();
+        textSize(15);
+        noStroke();
+        textAlign(LEFT, CENTER);
+        text(heartString, x, y - 2);
         pop();
     }
 
@@ -96,24 +124,40 @@ class BaseScene {
         pop();
     }
 
-    drawWatermark() {
+    drawInstructionScreen() {
         push();
-        translate(250, 325);
-        textAlign(CENTER, CENTER);
-        textSize(80);
-        textStyle(BOLD);
-        fill(150, 150, 150, 100);
-        noStroke();
+        this.drawRectangleOverlay(color(10, 15, 30, 230), color(255));
 
-        if (this.mode == "CLASSIC") {
-            text('CLASSIC', 0, 0);
+        drawingContext.shadowBlur = 10;
+        drawingContext.shadowColor = color(255);
+
+        fill(255, 255, 0);
+        noStroke();
+        textSize(20);
+        textStyle(BOLD);
+        text('CLICK ANYWHERE TO START', 250, 500);
+
+        fill(255);
+        textAlign(CENTER, CENTER);
+        textSize(30);
+        textStyle(BOLD);
+        text('HOW TO PLAY', 250, 100);
+
+        textSize(16);
+        textStyle(NORMAL);
+        let rules = this.getRules();
+        for (let i = 0; i < rules.length; i++) {
+            text(rules[i], 250, 160 + (i * 30));
         }
-        else if (this.mode == "DARK") {
-            text('DARK', 0, 0);
+
+        if (this.mode === 'CLASSIC') {
+            this.drawItemContext(250, 350);
+        } else if (this.mode === 'DARK') {
+            this.drawDarkItemContext(250, 400);
         }
-        else {
-            text('DUEL', 0, 0);
-        }
+
+        this.drawHomeButton();
+        drawingContext.shadowBlur = 0;
         pop();
     }
 
@@ -199,14 +243,6 @@ class BaseScene {
 
     }
 
-    requestTogglePause() {
-        this.manage.togglePause();
-    }
-
-    getRules() {
-        return [];
-    }
-
     drawItemContext(centerX, startY) {
         const color_green = [119, 221, 119];
         const color_red = [255, 105, 97];
@@ -226,13 +262,13 @@ class BaseScene {
         let colRight = centerX + 20;
         let rowH = 35;
 
-        textSize(16);
+        textSize(18);
         textAlign(LEFT, CENTER);
         textStyle(BOLD);
 
         fill(200, 240, 255);
         textAlign(CENTER);
-        text('--- POWER UP ITEMS ---', centerX, startY - 30);
+        text('----- POWER UP ITEMS -----', centerX, startY - 30);
         textAlign(LEFT);
 
         for (let i = 0; i < items.length; i++) {
@@ -266,7 +302,7 @@ class BaseScene {
         textAlign(CENTER);
         textSize(18);
         textStyle(BOLD);
-        text('--- SPECIAL ITEM ---', centerX, startY - 30);
+        text('----- SPECIAL ITEM -----', centerX, startY - 30);
 
         push();
         fill(119, 221, 119);
@@ -286,4 +322,13 @@ class BaseScene {
         textStyle(NORMAL);
         text('Temporary Light Support: 3 secs', centerX - 80, startY);
     }
+
+    requestTogglePause() {
+        this.manage.togglePause();
+    }
+
+    getRules() {
+        return [];
+    }
+
 }
