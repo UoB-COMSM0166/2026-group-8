@@ -34,8 +34,10 @@ class Brick {
     // Handle hp damage and item drop trigger
     set active(val) {
         if (val === false && this._active === true) {
+            if (this.flash > 0) return;
+
             this.hp--; // Lose 1 HP 
-            this.flash = 6; this.flashT = 8; // Trigger hit flash 
+            this.flash = 10; this.flashT = 10; // Trigger hit flash 
             if (this.hp > 0) { this._active = true; }
             else {
                 this._active = false; // Destroyed 
@@ -163,7 +165,7 @@ class Bricks {
             this.hasKing = true;
             if (isDark) {
                 let coreBrick = this.items[Math.floor(Math.random() * (this.items.length - 1)) + 1];
-                if (coreBrick) { coreBrick.isKing = true; coreBrick.hp = 2; coreBrick.mhp = 2; }
+                if (coreBrick) { coreBrick.isKing = true; coreBrick.hp = 3; coreBrick.mhp = 3; }
             }
         }
         this.isInitialized = true;
@@ -237,7 +239,7 @@ class Bricks {
             let targetBrick = this.items[this.kingSelectedIndex];
             // Press confirm key to set King 
             if (targetBrick && targetBrick.active && keyIsDown(confirmKey)) {
-                targetBrick.isKing = true; targetBrick.hp = 2; targetBrick.mhp = 2; this.hasKing = true;
+                targetBrick.isKing = true; targetBrick.hp = 3; targetBrick.mhp = 3; this.hasKing = true;
             }
         }
     }
