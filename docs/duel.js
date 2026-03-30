@@ -99,7 +99,7 @@ class Duel extends BaseScene {
         rect(25, 595, 450, 30);
 
         fill(255);
-        text("P2: Use ←/→ to move paddle, Click ↑ to set King", 250, 610);
+        text("P2: Use ←/→ to move, Click ↑ to set King", 250, 610);
     }
 
     getRules() {
