@@ -122,7 +122,7 @@ class Bricks {
         // Timers for wave spawning 
         this.wave = 1;
         this.spawnTimer = 0;
-        this.spawnInterval = 20000;
+        this.spawnInterval = 15000;
         // Safety net: An invisible brick to prevent crashes when screen is empty
         this.dummyBrick = new Brick(-1000, -1000, 10, 10, { hp: 999999 });
         // Timer for Dark Mode illumination
