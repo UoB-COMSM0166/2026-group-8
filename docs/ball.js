@@ -8,7 +8,7 @@ class Ball {
 
         // Record the initial state for later scaling
         this.originalR = r;
-        this.baseSpeed = 8; // Used as a speed reference
+        this.baseSpeed = 7; // Used as a speed reference
         this.isMain = true;
 
         // MODIFIED: Added timers and state flags for overlapping effects (each lasts 6s/360 frames)
@@ -299,8 +299,8 @@ class Ball {
         let sScale = 1.0;
 
         if (this.effects.large > 0) rScale *= 2;
-        if (this.effects.small > 0) rScale *= 0.5;
-        if (this.effects.fast > 0) sScale *= 1.5;
+        if (this.effects.small > 0) rScale *= 0.6;
+        if (this.effects.fast > 0) sScale *= 1.3;
         if (this.effects.slow > 0) sScale *= 0.5;
 
         this.r = this.originalR * rScale;

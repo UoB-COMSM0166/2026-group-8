@@ -305,15 +305,11 @@ class BaseScene {
         text('----- SPECIAL ITEM -----', centerX, startY - 30);
 
         push();
-        fill(119, 221, 119);
+        fill(160, 80, 220);
         stroke(255);
         strokeWeight(1);
         rectMode(CENTER);
         rect(centerX - 115, startY, 35, 22, 4);
-        noStroke();
-        fill(255);
-        textSize(14);
-        text('💡', centerX - 115, startY + 1);
         pop();
 
         fill(255);
