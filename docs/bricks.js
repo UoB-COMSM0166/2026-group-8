@@ -191,7 +191,11 @@ class Bricks {
 
             // Spawn new item drop if brick is broken
             if (b.needsDrop) {
-                this.drops.push({ x: b.x + b.w / 2, y: b.y + b.h / 2, w: 44, h: 28, speed: 2.5, type: b.dropType, effect: b.dropEffect });
+                if (b.dropType === 'light') {
+                    this.lightTimer = 100;
+                } else {
+                    this.drops.push({ x: b.x + b.w / 2, y: b.y + b.h / 2, w: 44, h: 28, speed: 2.5, type: b.dropType, effect: b.dropEffect });
+                }
                 b.needsDrop = false;
             }
             if (b.active) { visibleActiveCount++; b.update(); }
@@ -213,13 +217,6 @@ class Bricks {
             let d = this.drops[i]; d.y += d.speed;
             if (d.y > 650) { this.drops.splice(i, 1); continue; }
             // Collision check: Paddle catches the Light item
-            if (d.type === 'light' && scene && scene.paddle) {
-                let p = scene.paddle;
-                if (d.x - d.w / 2 < p.x + p.w && d.x + d.w / 2 > p.x && d.y - d.h / 2 < p.y + p.h && d.y + d.h / 2 > p.y) {
-                    this.lightTimer = 120; // 2 seconds of light
-                    this.drops.splice(i, 1);
-                }
-            }
         }
         this.updateKingSelection(scene);
     }
