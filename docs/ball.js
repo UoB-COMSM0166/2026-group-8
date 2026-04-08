@@ -191,9 +191,10 @@ class Ball {
 
             if (distanceSq < this.r * this.r) {  // If distance < radius → collision
                 brick.active = false;  // Deactivate brick (destroyed)
-
-                if (typeof gamePage !== 'undefined' && gamePage.manage) {
-                    gamePage.manage.score += 100;
+                let scene = (currentMode === 'duel') ? duelPage : gamePage;
+                if (scene && scene.manage) {
+                    let scoreValue = (brick.mhp === 2) ? 300 : 100;
+                    scene.manage.score += scoreValue;
                 }
 
                 if (abs(dx) > abs(dy)) {
