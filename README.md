@@ -39,8 +39,8 @@
 - [7. Process](#7-process)
 - [8. Sustainability, Ethics, and Accessibility](#8-sustainability-ethics-and-accessibility)
 - [9. Conclusion](#9-conclusion)
-- [10\.Contribution Statement](#10-contribution-statement)
-- [11\.AI Statement](#11-ai-statement)
+- [10\. Contribution Statement](#10-contribution-statement)
+- [11\. AI Statement](#11-ai-statement)
   
 ## 📝 Kanban
 
@@ -279,8 +279,8 @@ We selected our test cases based on the critical User Journey, ranging from high
 - Teamwork. How did you work together, what tools and methods did you use? Did you define team roles? Reflection on how you worked together. Be honest, we want to hear about what didn't work as well as what did work, and importantly how your team adapted throughout the project.
 
 ## 8. Sustainability, Ethics, and Accessibility
-
-<br>
+- 10% ~750 words
+- Evidence of the impact of your game across the environment and two of the other areas: Environmental +  2 of the following: Social, Economic, Technical, Individual 
 
 ## 9. Conclusion
 - 10% ~500 words
@@ -290,6 +290,9 @@ We selected our test cases based on the critical User Journey, ranging from high
 - Provide a table of everyone's contribution, which *may* be used to weight individual grades. We expect that the contribution will be split evenly across team-members in most cases. Please let us know as soon as possible if there are any issues with teamwork as soon as they are apparent and we will do our best to help your team work harmoniously together.
 
 ## 11. AI Statement
+- ~250 words
+- Summarise your team’s use of AI so we know where to give you credit for work done.
+
 
 ## Additional Marks
 You can delete this section in your own repo, it's just here for information. in addition to the marks above, we will be marking you on the following two points:
