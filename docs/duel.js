@@ -28,6 +28,10 @@ class Duel extends BaseScene {
         this.bricks1.display();
         this.bricks2.display();
 
+        if (this.manage.state === 'PLAYING' || this.manage.state === 'PAUSED') {
+            this.drawPowerCountdown(this.paddle2, this.ball);
+        }
+
         if (this.manage.state === 'PLAYING') {
             if (this.bricks1.hasKing && this.bricks2.hasKing) {
                 let keys = {
@@ -100,6 +104,32 @@ class Duel extends BaseScene {
 
         fill(255);
         text("P2: Use ←/→ to move, Click ↑ to set King", 250, 610);
+    }
+
+    drawGameOverContent() {
+        let p1Active = this.bricks1.items.some(b => b.isKing && b.active);
+        let p2Active = this.bricks2.items.some(b => b.isKing && b.active);
+
+        let winner = "";
+        let loser = "";
+
+        if (!p1Active) { 
+            winner = "PLAYER 2";
+            loser = "PLAYER 1";
+        } else if (!p2Active) {
+            winner = "PLAYER 1";
+            loser = "PLAYER 2";
+        }
+
+        fill(255, 215, 0);
+        textSize(50);
+        textStyle(BOLD);
+        text(`${winner} WINS!`, 250, 280);
+
+        fill(200);
+        textSize(20);
+        textStyle(NORMAL);
+        text(`${loser} LOSES`, 250, 340);
     }
 
     getRules() {

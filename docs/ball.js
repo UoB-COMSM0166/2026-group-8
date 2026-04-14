@@ -47,8 +47,6 @@ class Ball {
     }
 
     // Display the ball
-    // ball.js
-
     display() {
         push();
         noStroke();
@@ -314,7 +312,7 @@ class Ball {
 
     // MODIFIED: Logic for ball_multi to ensure one ball remaining won't lose life
     handleMultiBall() {
-        let scene = window.gamePage || gamePage;
+        let scene = getActiveScene();
         if (scene) {
             if (!scene.extraBalls) scene.extraBalls = [];
             for (let i = 0; i < 2; i++) {

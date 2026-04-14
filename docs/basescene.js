@@ -52,6 +52,45 @@ class BaseScene {
         pop();
     }
 
+    drawPowerCountdown(paddle, ball) {
+        push();
+        textAlign(LEFT, CENTER);
+        textSize(14);
+        textStyle(BOLD);
+        noStroke();
+
+        let x = 35;
+        let y = 100;
+        let gap = 20;
+
+        // paddle power
+        if (paddle._widerTimer > 0) {
+            let sec = this.manage.getRemainingSeconds(paddle._widerTimer);
+            fill(119, 221, 119);  // green buff
+            text(`⚡ PADDLE WIDE: ${sec}s`, x, y);
+            y += gap;
+        }
+        if (paddle._reverseTimer > 0) {
+            let sec = this.manage.getRemainingSeconds(paddle._reverseTimer);
+            fill(255, 105, 97);  // red debuff
+            text(`⚠️ REVERSED: ${sec}s`, x, y);
+            y += gap;
+        }
+
+        // ball power
+        for (let effectID in ball.effects) {
+            let frames = ball.effects[effectID];
+            if (frames > 0) {
+                let sec = this.manage.getRemainingSeconds(frames);
+                if (effectID === 'large' || effectID === 'slow') fill(119, 221, 119);
+                else fill(255, 105, 97);
+                text(`🔮 BALL ${effectID.toUpperCase()}: ${sec}s`, x, y);
+                y += gap;
+            }
+        }
+        pop();
+    }
+
     drawPlayerStatusBar() {
         push();
         drawingContext.shadowBlur = 15;
@@ -204,27 +243,20 @@ class BaseScene {
 
     drawGameOverScreen() {
         push();
-
         this.drawRectangleOverlay(color(0, 0, 0, 220), color(255, 50, 50));
 
         drawingContext.shadowBlur = 15;
         drawingContext.shadowColor = color(255, 255, 255, 200);
-
-        fill(255, 50, 50);
         textAlign(CENTER, CENTER);
-        textSize(50);
-        textStyle(BOLD);
-        text('GAME OVER', 250, 300);
 
-        fill(255);
-        textSize(18);
-        textStyle(NORMAL);
-        text('Better luck next time!', 250, 350);
-
+        this.drawGameOverContent();
         this.drawHomeButton();
+
         drawingContext.shadowBlur = 0;
         pop();
     }
+
+    drawGameOverContent() {}
 
     drawRectangleOverlay(fillColor, strokeColor) {
         let x = 25, y = 25;
@@ -326,5 +358,4 @@ class BaseScene {
     getRules() {
         return [];
     }
-
 }

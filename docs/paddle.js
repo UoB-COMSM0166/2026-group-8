@@ -22,15 +22,15 @@ class Paddle {
             let tx = this.reversed
                 ? (width - mouseX) - this.w / 2
                 : mouseX - this.w / 2;
-            this.x = constrain(tx, 40, 460 - this.w);
+            this.x = constrain(tx, 35, 465 - this.w);
         } else if (this.ctrl === 'kbd_p1') {
             if (keys['KeyA']) this.x -= this.speed;
             if (keys['KeyD']) this.x += this.speed;
-            this.x = constrain(this.x, 40, 460 - this.w);
+            this.x = constrain(this.x, 35, 465 - this.w);
         } else if (this.ctrl === 'kbd_p2') {
             if (keys['ArrowLeft']) this.x -= this.speed;
             if (keys['ArrowRight']) this.x += this.speed;
-            this.x = constrain(this.x, 40, 460 - this.w);
+            this.x = constrain(this.x, 35, 465 - this.w);
         }
 
         //Wide timer

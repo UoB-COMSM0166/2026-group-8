@@ -28,6 +28,11 @@ class GameManage {
     }
 
 
+    getRemainingSeconds(frames) {
+        return ceil(frames / 60);
+    }
+
+
     handleBallLost(ball, paddle) {
         this.lives--;
         if (this.lives <= 0) {

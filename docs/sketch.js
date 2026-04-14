@@ -14,6 +14,7 @@ function preload() {
 
 function setup() {
     createCanvas(W, H);
+    // textFont('Courier New');
     menuPage = new Menu();
 }
 

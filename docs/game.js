@@ -19,10 +19,13 @@ class Game extends BaseScene {
 
     display() {
         this.drawInitPage();
-
         this.bricks.update();
         this.bricks.display();
         this.manage.updateTimer();
+
+        if (this.manage.state === 'PLAYING' || this.manage.state === 'PAUSED') {
+            this.drawPowerCountdown(this.paddle, this.ball);
+        }
 
         if (this.manage.state === 'PLAYING') {
             this.darkTimer += deltaTime;
@@ -66,6 +69,19 @@ class Game extends BaseScene {
         } else if (this.manage.state === 'WON') {
             this.drawWinScreen();
         }
+    }
+
+    drawGameOverContent() {
+        textAlign(CENTER, CENTER);
+        fill(119, 221, 119);
+        textSize(50);
+        textStyle(BOLD);
+        text('GOOD GAME!', 250, 280); 
+
+        fill(255);
+        textSize(25);
+        textStyle(NORMAL);
+        text(`FINAL SCORE: ${this.manage.score}`, 250, 350);
     }
 
     drawDarkEffect() {
