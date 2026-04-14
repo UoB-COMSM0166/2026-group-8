@@ -40,6 +40,7 @@
 - [8. Sustainability, Ethics, and Accessibility](#8-sustainability-ethics-and-accessibility)
 - [9. Conclusion](#9-conclusion)
 - [10\.Contribution Statement](#10-contribution-statement)
+- [11\.AI Statement](#11-ai-statement)
   
 ## 📝 Kanban
 
@@ -287,6 +288,8 @@ We selected our test cases based on the critical User Journey, ranging from high
 
 ## 10. Contribution Statement
 - Provide a table of everyone's contribution, which *may* be used to weight individual grades. We expect that the contribution will be split evenly across team-members in most cases. Please let us know as soon as possible if there are any issues with teamwork as soon as they are apparent and we will do our best to help your team work harmoniously together.
+
+## 11. AI Statement
 
 ## Additional Marks
 You can delete this section in your own repo, it's just here for information. in addition to the marks above, we will be marking you on the following two points:
