@@ -54,7 +54,7 @@ Project Progress: [Here](https://github.com/orgs/UoB-COMSM0166/projects/161/view
 The game follows the core rules of a breakout game: the player controls a paddle to launch a ball and destroy bricks. It is a classic arcade experience that emphasizes timing and coordination. Following the module's requirement to innovate upon a traditional archetype, we have designed three distinct game modes to offer a diverse and engaging experience.
 
 | Mode | How To Play |
-| :---: | :--- |
+| :---: | :---: |
 | <img width="167" height="202" alt="image" src="https://github.com/user-attachments/assets/6e31c654-4d42-444d-aaae-751d12cad498" /> **Classic Mode** | This is the standard game that most people know. Players use a mouse to move the paddle left or right to bounce the ball. It is easy to learn for anyone who likes old arcade games. This mode focuses on precision. You must understand how the ball reflects off the paddle to hit specific bricks and score as high as possible within a 3-minute time constraint. |
 | <img width="166" height="201" alt="image" src="https://github.com/user-attachments/assets/cdc17d69-d8e6-426b-b433-32d24162dd0e" /> **Dark Mode** <br> **(The Mystery Twist)** | This mode is more difficult and exciting. The entire screen is dark, and you can only see a small area around the ball. As the ball moves, it acts like a "spotlight" and reveals the bricks nearby. You must use your memory to remember where the bricks are and plan your next move. It tests how fast you can react when you cannot see the whole map. |
 | <img width="164" height="199" alt="image" src="https://github.com/user-attachments/assets/f7dedce6-1754-4a30-821b-1414d2ca674e" /> **Duel Mode** <br> **(The Tactical Twist)** | This is a local multiplayer mode for two players. In this mode, each player chooses one special brick to be their "King". The game becomes a race! The first player to destroy the opponent's King brick wins the game. You must decide when it is best to attack the enemy's King and when you need to stay back to protect your own from being hit. |
@@ -152,8 +152,8 @@ Core_Breaker is a multi-mode arcade game developed using the **p5.js** framework
 The application is built on a hierarchical scene management system. The `BaseScene` class acts as the core blueprint for every screen in the game. It manages all the shared visual elements, such as the status bar at the bottom, background watermarks, and universal overlays like the Pause, Win, and Game Over screens. Specialized classes like `Game` and `Duel` inherit from this base class. This allows them to focus on their specific rules and mechanics while automatically keeping the same look and feel as the rest of the game.
 
 ### 4.2 Core Entities
-<img width="1014" height="460" alt="image" src="https://github.com/user-attachments/assets/894db6d3-f279-4c01-81ed-471ed10b703b" />
-<img width="1014" height="383" alt="image" src="https://github.com/user-attachments/assets/fecb8972-4d30-4c9d-bd9b-32ef41c9f76e" />
+<img width="811" height="368" alt="image" src="https://github.com/user-attachments/assets/894db6d3-f279-4c01-81ed-471ed10b703b" />
+<img width="811" height="306" alt="image" src="https://github.com/user-attachments/assets/fecb8972-4d30-4c9d-bd9b-32ef41c9f76e" />
 
 ------------------
 
