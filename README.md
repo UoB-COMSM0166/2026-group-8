@@ -124,13 +124,13 @@ We ultimately decided to develop a three-tier experience: Classic (for onboardin
 ### 2.4 Reflection
 During the lecture, we learned how epics, user stories, and acceptance criteria help structure requirements in a clear and testable way.
 
-Epics allowed us to organise the system into high-level functional areas, such as core gameplay, power-ups, and game progression. Instead of thinking about isolated features, we first identified the main components of the game. This helped us understand the overall structure and ensured that no important functionality was overlooked.
+**Epics** allowed us to organise the system into high-level functional areas, such as core gameplay, power-ups, and game progression. Instead of thinking about isolated features, we first identified the main components of the game. This helped us understand the overall structure and ensured that no important functionality was overlooked.
 
-Writing user stories using the format “As a player, I want…, so that…” encouraged us to focus on the player’s perspective rather than technical implementation. For example, instead of describing collision detection algorithms, we framed requirements around player goals, such as wanting realistic ball bouncing or dynamic gameplay through power-ups. This shift improved our understanding of user experience and game motivation.
+Writing **user stories** using the format “As a player, I want…, so that…” encouraged us to focus on the player’s perspective rather than technical implementation. For example, instead of describing collision detection algorithms, we framed requirements around player goals, such as wanting realistic ball bouncing or dynamic gameplay through power-ups. This shift improved our understanding of user experience and game motivation.
 
-Acceptance criteria were particularly valuable because they made requirements measurable and testable. Using the “Given–When–Then” format helped us define precise conditions under which a feature is considered complete. For instance, defining what happens when the ball falls below the paddle clarified life deduction and reset behaviour. This reduced ambiguity and improved team communication.
+**Acceptance criteria** were particularly valuable because they made requirements measurable and testable. Using the “Given–When–Then” format helped us define precise conditions under which a feature is considered complete. For instance, defining what happens when the ball falls below the paddle clarified life deduction and reset behaviour. This reduced ambiguity and improved team communication.
 
-The paper prototyping process further strengthened our understanding of the game’s context. By simulating interactions physically, we identified design issues early, such as pacing and difficulty balance. Overall, this structured requirement approach made our design more systematic, user-centred, and easier to evaluate.
+**The paper prototyping** process further strengthened our understanding of the game’s context. By simulating interactions physically, we identified design issues early, such as pacing and difficulty balance. Overall, this structured requirement approach made our design more systematic, user-centred, and easier to evaluate.
 
 ## 3. Design & System Architecture
 
@@ -176,10 +176,12 @@ For the "Dark Mode" effect, we used a separate drawing layer called maskLayer an
 
 Another architectural difficulty we faced during development was determining which entity should be responsible for collision detection. In a system involving a moving ball, a player-controlled paddle, and hundreds of interactive bricks, an inefficient allocation of responsibility could lead to performance degradation.
 
-**Scene-Driven vs. Object-Driven** <br>
+**Scene-Driven vs. Object-Driven**
+
 Initially, collision detection was handled within the main `draw()` loop or the scene classes (`Game` and `Duel`). However, this quickly made the scene files bloated with mathematical calculations, violating the Single Responsibility Principle and having every brick check for the ball's position also created unnecessary overhead.
 
-**The Solution: The Ball as an "Active Agent"** <br>
+**The Solution: The Ball as an "Active Agent"**
+
 Our team implemented a Ball-Centric Detection Model. In this architecture:
 -	The Ball is treated as the "Active Agent" that possesses the intelligence to check its surroundings.
 -	During every `update()` cycle, the ball iterates through the list of active bricks provided by the Bricks manager.
