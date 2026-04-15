@@ -28,10 +28,6 @@ class Duel extends BaseScene {
         this.bricks1.display();
         this.bricks2.display();
 
-        if (this.manage.state === 'PLAYING' || this.manage.state === 'PAUSED') {
-            this.drawPowerCountdown(this.paddle2, this.ball);
-        }
-
         if (this.manage.state === 'PLAYING') {
             if (this.bricks1.hasKing && this.bricks2.hasKing) {
                 let keys = {

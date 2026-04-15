@@ -102,11 +102,6 @@ class BaseScene {
         stroke(0);
         strokeWeight(3);
 
-        // text turned red if less than 10 secs remaining
-        if (this.manage.timer < 10000) {
-            fill(255, 50, 50);
-        }
-
         if (this.mode !== 'DUEL') {
             text(`LIVES:`, 35, 660);
             this.displayHeartEmojis(this.manage.getLifeString(), 90, 660);
