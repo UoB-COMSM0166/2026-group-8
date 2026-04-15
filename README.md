@@ -4,7 +4,9 @@
 
 <p align="center">
   <img width="335" height="485" alt="image" src="https://github.com/user-attachments/assets/bc0a711d-4787-46ec-aa73-122eeacd44b3" /> <img width="335" height="485" alt="image" src="https://github.com/user-attachments/assets/46dc64f6-9223-4d38-b135-37b5c517b3e4" />
+</p>
 
+<p align="center">
   <a href="https://uob-comsm0166.github.io/2026-group-8/">
     <img src="https://i.pinimg.com/1200x/0b/e1/27/0be127916560702af014298cc64b7137.jpg" width="120" alt="click to play">
   </a>
