@@ -176,10 +176,10 @@ For the "Dark Mode" effect, we used a separate drawing layer called maskLayer an
 
 Another architectural difficulty we faced during development was determining which entity should be responsible for collision detection. In a system involving a moving ball, a player-controlled paddle, and hundreds of interactive bricks, an inefficient allocation of responsibility could lead to performance degradation.
 
-**Scene-Driven vs. Object-Driven**
+**Scene-Driven vs. Object-Driven** <br>
 Initially, collision detection was handled within the main `draw()` loop or the scene classes (`Game` and `Duel`). However, this quickly made the scene files bloated with mathematical calculations, violating the Single Responsibility Principle and having every brick check for the ball's position also created unnecessary overhead.
 
-**The Solution: The Ball as an "Active Agent"**
+**The Solution: The Ball as an "Active Agent"** <br>
 Our team implemented a Ball-Centric Detection Model. In this architecture:
 -	The Ball is treated as the "Active Agent" that possesses the intelligence to check its surroundings.
 -	During every `update()` cycle, the ball iterates through the list of active bricks provided by the Bricks manager.
