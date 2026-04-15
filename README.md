@@ -153,8 +153,10 @@ Core_Breaker is a multi-mode arcade game developed using the **p5.js** framework
 The application is built on a hierarchical scene management system. The `BaseScene` class acts as the core blueprint for every screen in the game. It manages all the shared visual elements, such as the status bar at the bottom, background watermarks, and universal overlays like the Pause, Win, and Game Over screens. Specialized classes like `Game` and `Duel` inherit from this base class. This allows them to focus on their specific rules and mechanics while automatically keeping the same look and feel as the rest of the game.
 
 ### 4.2 Core Entities
-<img width="811" height="368" alt="image" src="https://github.com/user-attachments/assets/894db6d3-f279-4c01-81ed-471ed10b703b" />
-<img width="811" height="306" alt="image" src="https://github.com/user-attachments/assets/fecb8972-4d30-4c9d-bd9b-32ef41c9f76e" />
+<p align="center">
+  <img width="80%" alt="core entities-1" src="https://github.com/user-attachments/assets/894db6d3-f279-4c01-81ed-471ed10b703b" />
+  <img width="80%" alt="core entities-2" src="https://github.com/user-attachments/assets/fecb8972-4d30-4c9d-bd9b-32ef41c9f76e" />
+</p>
 
 ------------------
 
