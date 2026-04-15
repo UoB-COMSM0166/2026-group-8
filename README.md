@@ -72,8 +72,11 @@ To move beyond a simple clone, our team held a brainstorming session focused on 
   2. **The Competitive Edge:** We realized most brick breakers are solo experiences so we decided to develop the "Duel Mode" to introduce a PvP (Player vs. Player) element, turning a casual game into a strategic battle.
 
 #### Phase 3: The Decision-Making Process (The "Core")
+<p align="center">
+  <img width="80%" alt="core development pillar" src="https://github.com/user-attachments/assets/96286d0c-b109-4b3b-b285-4e67314814da" />
+</p>
+
 When deciding which features to prioritize for our MVP (Minimum Viable Product), we followed the criteria below:
-<img width="824" height="498" alt="image" src="https://github.com/user-attachments/assets/96286d0c-b109-4b3b-b285-4e67314814da" />
 
 1. **Technical Feasibility:**
    - Input Synchronization: "Can we reliably handle simultaneous inputs (Mouse for P1 and Keyboard for P2) within the p5.js event loop without causing control lag or ghosting?"
@@ -126,9 +129,7 @@ During the lecture, we learned how epics, user stories, and acceptance criteria 
 
 **Epics** allowed us to organise the system into high-level functional areas, such as core gameplay, power-ups, and game progression. Instead of thinking about isolated features, we first identified the main components of the game. This helped us understand the overall structure and ensured that no important functionality was overlooked.
 
-Writing **user stories** using the format “As a player, I want…, so that…” encouraged us to focus on the player’s perspective rather than technical implementation. For example, instead of describing collision detection algorithms, we framed requirements around player goals, such as wanting realistic ball bouncing or dynamic gameplay through power-ups. This shift improved our understanding of user experience and game motivation.
-
-**Acceptance criteria** were particularly valuable because they made requirements measurable and testable. Using the “Given–When–Then” format helped us define precise conditions under which a feature is considered complete. For instance, defining what happens when the ball falls below the paddle clarified life deduction and reset behaviour. This reduced ambiguity and improved team communication.
+Writing **user stories** (“As a player, I want…, so that…”) encouraged us to focus on the player’s perspective rather than technical implementation. For example, instead of describing collision detection algorithms, we framed requirements around player goals, such as wanting realistic ball bouncing or dynamic gameplay through power-ups. This shift improved our understanding of user experience and game motivation. And through **Acceptance criteria** (“Given–When–Then”), we were able to define precise conditions which made requirements measurable and testable.
 
 **The paper prototyping** process further strengthened our understanding of the game’s context. By simulating interactions physically, we identified design issues early, such as pacing and difficulty balance. Overall, this structured requirement approach made our design more systematic, user-centred, and easier to evaluate.
 
@@ -284,7 +285,6 @@ We selected our test cases based on the critical User Journey, ranging from high
 | :--- | :--- | :--- |
 | **Menu - Start Game** | Click 'Classic', 'Dark', or 'Duel' button | The screen changes from the Menu to the Game, and the correct mode is loaded. |
 | **Menu - Back to Menu** | Click 'BACK TO MENU' button when pressing 'P' in game | The game stops, and the screen returns to the Main Menu. |
-| **Menu - Back to Menu** | Click 'BACK TO MENU' button when pressing 'P' in game | The game stops, and the screen returns to the Main Menu. |
 | **Game - Ball Launch** | Left Mouse Click | If the ball is attached, it starts moving upwards from the paddle. |
 | **Game - Paddle Movement** | Mouse X-axis move | The paddle follows the mouse and stays inside the game borders. |
 | **Game - Brick Collision** | Ball hits a brick | The brick disappears, and the player gets points. |
@@ -296,7 +296,6 @@ We selected our test cases based on the critical User Journey, ranging from high
 | :--- | :--- | :--- | :--- |
 | **Paddle Control** | Within Bounds | Mouse is inside the game area. | 35 < mouseX < 465 |
 || Out of Bounds (Left) | Mouse is too far left. | mouseX <= 35 |
-|| Out of Bounds (Right) | Mouse is too far right. | mouseX >= 465 |
 || Out of Bounds (Right) | Mouse is too far right. | mouseX >= 465 |
 | **Ball Physics** | Play Area | Ball is within the rectangle. | 35 < pos.y < 625 |
 || Ball Lost | Ball falls below the paddle. | pos.y >= 625 |
