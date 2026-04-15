@@ -73,6 +73,7 @@ To move beyond a simple clone, our team held a brainstorming session focused on 
 
 #### Phase 3: The Decision-Making Process (The "Core")
 When deciding which features to prioritize for our MVP (Minimum Viable Product), we followed the criteria below:
+<img width="824" height="498" alt="image" src="https://github.com/user-attachments/assets/96286d0c-b109-4b3b-b285-4e67314814da" />
 
 1. **Technical Feasibility:**
    - Input Synchronization: "Can we reliably handle simultaneous inputs (Mouse for P1 and Keyboard for P2) within the p5.js event loop without causing control lag or ghosting?"
