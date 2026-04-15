@@ -152,10 +152,8 @@ Core_Breaker is a multi-mode arcade game developed using the **p5.js** framework
 The application is built on a hierarchical scene management system. The `BaseScene` class acts as the core blueprint for every screen in the game. It manages all the shared visual elements, such as the status bar at the bottom, background watermarks, and universal overlays like the Pause, Win, and Game Over screens. Specialized classes like `Game` and `Duel` inherit from this base class. This allows them to focus on their specific rules and mechanics while automatically keeping the same look and feel as the rest of the game.
 
 ### 4.2 Core Entities
--	**`Ball` Class:** This class manages how the ball moves across the screen using vectors. It features a flexible speed adjustment system that allows the ball to speed up or slow down based on power-ups without losing its current flight direction. We also built a dynamic effect system that lets multiple power-ups (like being both fast and large) work together at the same time without the code getting confused.
--	**`Paddle` Class:** The paddle is designed to work with different controls depending on the mode: mouse-based for solo play and keyboard-based for the two-player Duel mode. It is also responsible for detecting when it "catches" falling items dropped by broken bricks.
--	**`Bricks` Class:** This is the manager for all bricks on the screen. It handles where bricks are placed and includes a progressive row-addition feature that automatically adds new layers of bricks as the game continues in Classic mode.
--	**`GameManage` Class:** This serves as the game’s "brain," functioning as a state machine that keeps track of global numbers like the player's score, the remaining time, and the number of lives left.
+<img width="1014" height="460" alt="image" src="https://github.com/user-attachments/assets/894db6d3-f279-4c01-81ed-471ed10b703b" />
+<img width="1014" height="383" alt="image" src="https://github.com/user-attachments/assets/fecb8972-4d30-4c9d-bd9b-32ef41c9f76e" />
 
 ------------------
 
