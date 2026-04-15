@@ -146,8 +146,48 @@ Class diagram shows the structure of the game.
 
 
 ## 4. Implementation
-- 15% ~750 words
-- Describe implementation of your game, in particular highlighting the TWO areas of *technical challenge* in developing your game. 
+Core_Breaker is a multi-mode arcade game developed using the **p5.js** framework. The primary goal of this project was to create three distinct gameplay experiences—**Classic, Dark, and Duel**—while maintaining an organized codebase. By utilizing **Object-Oriented Programming (OOP)**, specifically inheritance and modular physics, we ensured that the game is both stable and easy to expand.
+
+### 4.1 Scene Management and Inheritance
+The application is built on a hierarchical scene management system. The `BaseScene` class acts as the core blueprint for every screen in the game. It manages all the shared visual elements, such as the status bar at the bottom, background watermarks, and universal overlays like the Pause, Win, and Game Over screens. Specialized classes like `Game` and `Duel` inherit from this base class. This allows them to focus on their specific rules and mechanics while automatically keeping the same look and feel as the rest of the game.
+
+### 4.2 Core Entities
+-	**`Ball` Class:** This class manages how the ball moves across the screen using vectors. It features a flexible speed adjustment system that allows the ball to speed up or slow down based on power-ups without losing its current flight direction. We also built a dynamic effect system that lets multiple power-ups (like being both fast and large) work together at the same time without the code getting confused.
+-	**`Paddle` Class:** The paddle is designed to work with different controls depending on the mode: mouse-based for solo play and keyboard-based for the two-player Duel mode. It is also responsible for detecting when it "catches" falling items dropped by broken bricks.
+-	**`Bricks` Class:** This is the manager for all bricks on the screen. It handles where bricks are placed and includes a progressive row-addition feature that automatically adds new layers of bricks as the game continues in Classic mode.
+-	**`GameManage` Class:** This serves as the game’s "brain," functioning as a state machine that keeps track of global numbers like the player's score, the remaining time, and the number of lives left.
+
+------------------
+
+**Challenge 1: Flexible Architecture & Dynamic UI Rendering**
+
+One of the most significant hurdles was managing the very different visual requirements of our three modes without creating messy "spaghetti" code. Each mode needs a different interface:
+-	**Classic Mode** needs a full list explaining what all 8 power-up items do.
+-	**Dark Mode** only features one item (the Lightbulb) and requires a real-time "flashlight" effect.
+-	**Duel Mode** uses a split-screen layout with unique instructions for two players and has no power-up items at all.
+
+**The Solution: Polymorphic Scene Framework**
+
+Instead of writing separate code for every screen, the `BaseScene` provides a generic instruction page. Depending on the active mode, the system decides whether to draw the full item list, the special dark-mode icons, or—in the case of Duel mode—to skip the items entirely and show player-specific control guides instead. This ensures that each mode only shows the information relevant to the player.
+
+For the "Dark Mode" effect, we used a separate drawing layer called maskLayer and special functions (`erase` and `noErase`) to "cut out" a circular window around the ball, like a flashlight beam. Similarly, Duel mode takes advantage of this rendering flexibility to draw a specialized split-screen layout. It adds colored boundary indicators and customized text prompts that define the play area for each competitor, making the two-player experience intuitive without cluttering the main game engine.
+
+------------------
+
+**Challenge 2: Architectural Responsibility Allocation**
+
+Another architectural difficulty we faced during development was determining which entity should be responsible for collision detection. In a system involving a moving ball, a player-controlled paddle, and hundreds of interactive bricks, an inefficient allocation of responsibility could lead to performance degradation.
+
+**Scene-Driven vs. Object-Driven**
+Initially, collision detection was handled within the main `draw()` loop or the scene classes (`Game` and `Duel`). However, this quickly made the scene files bloated with mathematical calculations, violating the Single Responsibility Principle and having every brick check for the ball's position also created unnecessary overhead.
+
+**The Solution: The Ball as an "Active Agent"**
+Our team implemented a Ball-Centric Detection Model. In this architecture:
+-	The Ball is treated as the "Active Agent" that possesses the intelligence to check its surroundings.
+-	During every `update()` cycle, the ball iterates through the list of active bricks provided by the Bricks manager.
+-	The Paddle and Brick objects remain "Passive Data Containers," merely exposing their spatial coordinates and dimensions for the ball to perform its geometric calculations.
+
+This design choice significantly improved high cohesion within the codebase. By encapsulating physics within the Ball class solely, we ensured that adding new scenes or modes would not require rewriting collision logic, thereby allowing the game for further expansion in the future as well.
 
 ## 5. Evaluation
 ### 5.1. Qualitative Evaluation: Think Aloud & Heuristic Analysis 
