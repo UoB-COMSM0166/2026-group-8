@@ -211,7 +211,7 @@ As shown in Figure 1, the Think Aloud data were grouped into three recurring the
 <p align="center"><strong>Figure 1. Thematic map of recurring themes identified in the Think Aloud study.</strong></p>
 
 <p align="center">
-  <img width="1000" alt="Think Aloud thematic map" src="https://github.com/user-attachments/assets/1a504cbf-8b9c-40a1-913b-91720059b906" />
+  <img width="850" alt="Think Aloud thematic map" src="https://github.com/user-attachments/assets/1a504cbf-8b9c-40a1-913b-91720059b906" />
 </p>
 
 #### 5.1.2 Heuristic Evaluation
@@ -264,7 +264,11 @@ Table 2 presents the raw SUS and NASA TLX scores, and Table 3 summarises the mea
 | SUS Score | 77.5 | 68.0 | 65.0 | Usability decreased across the three levels. |
 | NASA TLX | 36.5 | 59.0 | 72.0 | Workload increased across the three levels. |
 
-**Figure 2. Comparison of mean SUS and NASA TLX scores across the three evaluated levels.**
+<p align="center"><strong>Figure 2. Comparison of mean SUS and NASA TLX scores across the three evaluated levels.</strong></p>
+
+<p align="center">
+  <img width="850" alt="Comparison of mean SUS and NASA TLX scores" src="https://github.com/user-attachments/assets/9818b61b-c2a3-40c1-90f3-7ec391cb2463" />
+</p>
 
 #### 5.2.3 Statistical Analysis
 Wilcoxon signed-rank tests were used to compare the three levels.
