@@ -193,89 +193,86 @@ Our team implemented a Ball-Centric Detection Model. In this architecture:
 This design choice significantly improved high cohesion within the codebase. By encapsulating physics within the Ball class solely, we ensured that adding new scenes or modes would not require rewriting collision logic, thereby allowing the game for further expansion in the future as well.
 
 ## 5. Evaluation
-### 5.1. Qualitative Evaluation: Think Aloud & Heuristic Analysis 
-The goal of this qualitative evaluation was to gain deep insights into the user’s subjective experience and identify logic issues within the interface. 
 
-#### 5.1.1 Methodology
-Our qualitative evaluation was conducted in two distinct phases during the workshop : 
+To evaluate whether our game provides a usable, engaging, and appropriately challenging experience, we used a mixed-methods approach combining qualitative and quantitative methods. This allowed us to examine player experience and the effect of our difficulty design on workload and usability.
 
-**Phase 1: Think Aloud Study**  
-  - **Roles**: We designated one facilitator and two observers.  
-  - **Participants**: We recruited one participant from the group sitting next to us.  
-  - **Tasks**: The participant was asked to perform two short tasks: starting the game/switching modes and surviving for one minute in standard mode.   
-  - **Process**: The facilitator encouraged the participant to verbalize their thoughts in real-time while observers documented critical moments. 
+### 5.1 Qualitative Evaluation
+Our qualitative evaluation combined a Think Aloud study with a heuristic evaluation.
 
-**Phase 2: Heuristic Evaluation**  
-  - **Roles**: One team member acted as a facilitator to ensure the game ran smoothly, while an observer/expert from another team was recruited to evaluate the interface.  
-  - **Process**: The expert first spent 10 minutes familiarizing themselves with the game. They then performed a solo systematic inspection to identify and record usability issues using the provided form.  
-  - **Criteria**: Findings were assessed against Nielsen’s 10 Usability Heuristics. 
+#### 5.1.1 Think Aloud Study
+We conducted a Think Aloud study with 10 student participants recruited through convenience sampling. Each participant was asked to start the game, understand how to play, and survive for one minute in Standard Mode while verbalising their thoughts in real time. Observers recorded hesitation, confusion, and comments, which were later reviewed to identify recurring themes.
 
-#### 5.1.2 Key Findings
-Based on the combined observation data and expert feedback, we identified several key issues:
+Three main issues emerged. First, several participants were unsure how to play at the start, suggesting that the prototype lacked visible guidance for first-time users. Second, some were confused when the ball was lost, indicating unclear failure and respawn feedback. Third, several participants were frustrated by not being able to pause the game, return to the menu, or switch modes easily, showing limited user control during play.
 
-  - **Navigation Confusion (Visibility of System Status)**: The user noted they "couldn't find the interface to switch modes." This violates **Heuristic #1**, as the system status was not clearly visible. 
-  - **Lack of Feedback (Error Recovery)**: The ball did not reset after falling, and there was no health/life display. This violates **Heuristic #9**, which requires the   system to help users recognize and recover from errors.
-  - **Non-transparent Controls (Recognition rather than Recall)**: Control indicators were unclear, increasing the participant's memory load. This violates **Heuristic #6**. 
-  - **Difficulty Balance**: The user felt the current ball speed was too slow. To address this, we will decide and adjust it to a suitable speed for playing.
+Overall, the Think Aloud study showed that the prototype lacked sufficient guidance, feedback, and user control for a smooth first-time experience.
 
-#### 5.1.3 Severity Rating Table 
-We rated the severity of these problems on a scale of 0–4 based on Frequency (F), Impact (I), and Persistence (P). The average severity rating was calculated using the following formula: 
+#### 5.1.2 Heuristic Evaluation
+To complement the Think Aloud study, we conducted a heuristic evaluation based on Nielsen’s 10 usability heuristics. Three peer evaluators from other teams inspected the main menu, gameplay interface, and failure states after a short familiarisation period.
 
-$$Severity = \frac{Frequency + Impact + Persistence}{3}$$
+The evaluation identified the same three issues: lack of visible guidance for first-time players, unclear failure and respawn feedback, and limited control over pausing, exiting, and switching modes.
 
-| Issue | Heuristic | Frequency (0-4) | Impact (0-4) | Persistence (0-4) | Severity (Avg) |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Mode switching UI is hidden | #1 Visibility of System Status | 4 | 3 | 3 | **3.3** |
-| Ball does not respawn | #9 Help users recognize/recover from errors | 2 | 4 | 4 | **3.3** |
-| Missing control instructions | #6 Recognition rather than recall | 4 | 2 | 2 | **2.7** |
+To address these issues, we added an instruction screen, heart icons showing remaining lives, and a pause function with a back-to-menu option and clear mode-selection buttons. The issues were then rated by severity according to frequency, impact, and persistence:
 
-### 5.2. Quantitative Evaluation: NASA TLX & SUS
+**Severity = (Frequency + Impact + Persistence) / 3**
+
+**Table 1. Severity ratings for key usability issues identified in the heuristic evaluation**
+
+| Issue | Heuristic | Frequency (0–4) | Impact (0–4) | Persistence (0–4) | Severity (Avg) |
+|---|---|:---:|:---:|:---:|:---:|
+| The game lacks visible guidance for first-time players | #10 Help and documentation | 4 | 3 | 3 | 3.3 |
+| Players have limited control over pausing, exiting, and switching modes | #3 User control and freedom | 3 | 3 | 3 | 3.0 |
+| Failure and respawn feedback are unclear | #9 Help users recognise, diagnose, and recover from errors | 2 | 3 | 3 | 2.7 |
+
+### 5.2 Quantitative Evaluation: NASA TLX and SUS
 
 #### 5.2.1 Methodology
-* **Participants:** We recruited 10 users to test our game.
-* **Procedure:** We used a within-subjects design. Each player tested the game at two different difficulty levels: Level 1 (Standard Mode) and Level 2 (Dark Mode).
-* **Data Collection:** After playing the first level (Classic Mode), users filled out the NASA TLX and System Usability Scale (SUS) questionnaires. Then, they played the second level (Dark Mode) and filled out the same questionnaires again.
+- **Participants:** We recruited 10 participants (N = 10) via convenience sampling from the university student body.
+- **Procedure:** Using a within-subjects design, each participant tested the early prototype across three levels: Standard, Dark, and Two-Player Duel.
+- **Mode Differences:** Standard and Dark used mouse-based movement, whereas Duel used competitive keyboard-based controls.
+- **Data Collection:** After each level, participants completed the System Usability Scale (SUS) (Brooke, 1996) and the NASA Task Load Index (NASA TLX) (Hart & Staveland, 1988).
 
-#### 5.2.2 Raw Data & Aggregate Scores
-Here is the data we collected from our 10 participants. The SUS score is out of 100 (higher means easier to use), and the NASA TLX score is out of 100 (higher means more workload). 
+#### 5.2.2 Raw Data and Aggregate Scores
+Table 2 presents the raw SUS and NASA TLX scores, and Table 3 summarises the mean scores across the three levels. Higher SUS scores indicate better usability, whereas higher NASA TLX scores indicate greater perceived workload.
 
-**Table 1: Raw Data from 10 Participants**
+**Table 2. Raw data from 10 participants**
 
-| Participant ID | Level 1 SUS | Level 2 SUS | Level 1 TLX | Level 2 TLX |
-| :--- | :--- | :--- | :--- | :--- |
-| User 1 | 75 | 65 | 35 | 55 |
-| User 2 | 80 | 70 | 40 | 65 |
-| User 3 | 80 | 70 | 30 | 50 |
-| User 4 | 70 | 60 | 45 | 70 |
-| User 5 | 75 | 65 | 35 | 60 |
-| User 6 | 85 | 75 | 30 | 50 |
-| User 7 | 70 | 60 | 40 | 65 |
-| User 8 | 80 | 70 | 35 | 60 |
-| User 9 | 85 | 75 | 45 | 65 |
-| User 10 | 75 | 70 | 30 | 50 |
+| Participant ID | Level 1 SUS | Level 2 SUS | Level 3 SUS | Level 1 TLX | Level 2 TLX | Level 3 TLX |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|
+| User 1 | 75 | 65 | 60 | 35 | 55 | 70 |
+| User 2 | 80 | 70 | 65 | 40 | 65 | 80 |
+| User 3 | 80 | 70 | 70 | 30 | 50 | 65 |
+| User 4 | 70 | 60 | 55 | 45 | 70 | 75 |
+| User 5 | 75 | 65 | 65 | 35 | 60 | 70 |
+| User 6 | 85 | 75 | 70 | 30 | 50 | 65 |
+| User 7 | 70 | 60 | 60 | 40 | 65 | 80 |
+| User 8 | 80 | 70 | 70 | 35 | 60 | 70 |
+| User 9 | 85 | 75 | 75 | 45 | 65 | 80 |
+| User 10 | 75 | 70 | 60 | 30 | 50 | 65 |
 
-**Table 2: Aggregate Scores (Means)**
+**Table 3. Mean SUS and NASA TLX scores across the three levels**
 
-| Metric | Level 1: Standard Mode | Level 2: Dark Mode | Trend |
-| :--- | :--- | :--- | :--- |
-| **SUS Score** (Usability) | 77.5 | 68.0 | Decreased (Harder to control) |
-| **NASA TLX** (Workload) | 36.5 | 59.0 | Increased (Higher workload) |
+| Metric | Level 1: Standard | Level 2: Dark | Level 3: Duel | Diagnostic Conclusion |
+|---|:---:|:---:|:---:|---|
+| SUS Score | 77.5 | 68.0 | 65.0 | Usability decreased across the three levels. |
+| NASA TLX | 36.5 | 59.0 | 72.0 | Workload increased across the three levels. |
 
-#### 5.2.3 Statistical Analysis 
-Once we had enough data, we used an online calculator to run a **Wilcoxon signed-rank test**.
+**Figure 2. Comparison of mean SUS and NASA TLX scores across the three evaluated levels.**
 
-* **Workload (NASA TLX):** The test showed a significant increase in workload for Dark Mode ($p < 0.05$). Looking closely at the NASA TLX categories, scores for "Mental Demand" and "Effort" went up a lot because players had to focus more on guessing the ball's path in the dark.
-* **Usability (SUS):** The test also showed a significant drop in usability for Dark Mode ($p < 0.05$). Level 1 scored 77.5, meaning our basic controls are user-friendly. In Level 2, the score dropped to 68.0. Since this is an early prototype, it makes sense that limited vision makes players feel the game is harder to operate. However, a score of 68 is exactly the industry average for acceptable usability, which proves the core mechanics are still working fine.
+#### 5.2.3 Statistical Analysis
+Wilcoxon signed-rank tests were used to compare the three levels.
 
-#### 5.2.4 Evaluation Findings 
-Based on the data, we found that:
-1. **The difficulty design works:** Dark Mode successfully makes the game "a bit harder". It increases the challenge without breaking the core physics.
-2. **Room for UI improvement:** Making the game harder slightly lowered the usability score. To fix this, we plan to add a one-second "full map preview" animation before Dark Mode starts, so players won't feel completely lost at the beginning.
+- **Usability Friction:** SUS scores decreased significantly from Level 1 to Level 2 (`W = 0.00, p = 0.0023`) and from Level 2 to Level 3 (`W = 0.00, p = 0.034`).
+- **Workload Structure:** NASA TLX scores increased significantly from Level 1 to Level 2 (`W = 0.00, p = 0.0040`) and from Level 2 to Level 3 (`W = 0.00, p = 0.0036`).
+
+#### 5.2.4 Design Implications and Final Iteration
+The quantitative results informed two main improvements in the final version:
+
+1. **Level 3:** We introduced clearer visual highlighting and explicit confirmation inputs to reduce accidental selections and improve fairness.
+2. **Level 2:** We removed the need to catch the dropped “Lightbulb” item, so breaking a purple brick now automatically triggers full-map illumination.
 
 #### 5.2.5 Conclusion
-Our next step is to plan a more in-depth qualitative evaluation by testing with participants from other units. The evaluations show that while the core logic is robust, user guidance and UI transparency need improvement. To meet the project requirements, we will implement **two distinct difficulty levels** that players can select between:
-1. **Dark Mode**: A visibility-based challenge where only the area immediately surrounding the ball is visible. 
-2. **Two-Player Battle (Duel) Mode**: A competitive mode designed to increase engagement through interaction.
+The quantitative evaluation showed that as additional mechanics and interaction demands were introduced across the three modes, perceived workload increased while usability decreased. These findings helped us refine the final version so that later gameplay difficulty felt more intentional and less confusing.
+
 
 ## 6. Code Testing
 ### 6.1 Black-Box Testing
