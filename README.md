@@ -206,6 +206,14 @@ Three main issues emerged. First, several participants were unsure how to play a
 
 Overall, the Think Aloud study showed that the prototype lacked sufficient guidance, feedback, and user control for a smooth first-time experience.
 
+As shown in Figure 1, the Think Aloud data were grouped into three recurring themes: player guidance, failure feedback, and user control.
+
+<p align="center"><strong>Figure 1. Thematic map of recurring themes identified in the Think Aloud study.</strong></p>
+
+<p align="center">
+  <img width="1000" alt="Think Aloud thematic map" src="https://github.com/user-attachments/assets/1a504cbf-8b9c-40a1-913b-91720059b906" />
+</p>
+
 #### 5.1.2 Heuristic Evaluation
 To complement the Think Aloud study, we conducted a heuristic evaluation based on Nielsen’s 10 usability heuristics. Three peer evaluators from other teams inspected the main menu, gameplay interface, and failure states after a short familiarisation period.
 
