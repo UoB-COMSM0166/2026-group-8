@@ -192,7 +192,7 @@ Our team implemented a Ball-Centric Detection Model. In this architecture:
 
 This design choice significantly improved high cohesion within the codebase. By encapsulating physics within the Ball class solely, we ensured that adding new scenes or modes would not require rewriting collision logic, thereby allowing the game for further expansion in the future as well.
 
-## 5. Evaluation
+## 5. Evaluation 
 
 To evaluate whether our game provides a usable, engaging, and appropriately challenging experience, we used a mixed-methods approach combining qualitative and quantitative methods. This allowed us to examine player experience and the effect of our difficulty design on workload and usability.
 
@@ -220,13 +220,44 @@ To complement the Think Aloud study, we conducted a heuristic evaluation based o
 
 To address these issues, we added an instruction screen, heart icons showing remaining lives, and a pause function with a back-to-menu option and clearer mode-selection buttons. The severity ratings are summarised in Table 1.
 
-**Table 1. Severity ratings for key usability issues identified in the heuristic evaluation**
+<p align="center">
+  <b>Table 1.</b> Severity ratings for key usability issues identified in the heuristic evaluation.
+</p>
 
-| Issue | Heuristic | Frequency (0–4) | Impact (0–4) | Persistence (0–4) | Severity (Avg) |
-|---|---|---:|---:|---:|---:|
-| The game lacks visible guidance for first-time players | #10 Help and documentation | 4 | 3 | 3 | 3.3 |
-| Players have limited control over pausing, exiting, and switching modes | #3 User control and freedom | 3 | 3 | 3 | 3.0 |
-| Failure and respawn feedback are unclear | #9 Help users recognise, diagnose, and recover from errors | 2 | 3 | 3 | 2.7 |
+<table align="center">
+  <tr>
+    <th align="center">Issue</th>
+    <th align="center">Heuristic</th>
+    <th align="center">Frequency (0–4)</th>
+    <th align="center">Impact (0–4)</th>
+    <th align="center">Persistence (0–4)</th>
+    <th align="center">Severity (Avg)</th>
+  </tr>
+  <tr>
+    <td align="center">The game lacks visible guidance for first-time players</td>
+    <td align="center">#10 Help and documentation</td>
+    <td align="center">4</td>
+    <td align="center">3</td>
+    <td align="center">3</td>
+    <td align="center">3.3</td>
+  </tr>
+  <tr>
+    <td align="center">Players have limited control over pausing, exiting, and switching modes</td>
+    <td align="center">#3 User control and freedom</td>
+    <td align="center">3</td>
+    <td align="center">3</td>
+    <td align="center">3</td>
+    <td align="center">3.0</td>
+  </tr>
+  <tr>
+    <td align="center">Failure and respawn feedback are unclear</td>
+    <td align="center">#9 Help users recognise, diagnose, and recover from errors</td>
+    <td align="center">2</td>
+    <td align="center">3</td>
+    <td align="center">3</td>
+    <td align="center">2.7</td>
+  </tr>
+</table>
 
 ### 5.2 Quantitative Evaluation: NASA TLX and SUS
 
@@ -238,27 +269,56 @@ We recruited 10 participants (N = 10) via convenience sampling from the universi
 
 Table 2 presents the raw SUS and NASA TLX scores, and Table 3 summarises the mean scores across the three levels. Higher SUS scores indicate better usability, whereas higher NASA TLX scores indicate greater perceived workload.
 
-**Table 2. Raw data from 10 participants**
+<p align="center">
+  <b>Table 2.</b> Raw data from 10 participants.
+</p>
 
-| Participant ID | Level 1 SUS | Level 2 SUS | Level 3 SUS | Level 1 TLX | Level 2 TLX | Level 3 TLX |
-|---|---:|---:|---:|---:|---:|---:|
-| P1 | 75 | 65 | 60 | 35 | 55 | 70 |
-| P2 | 80 | 70 | 65 | 40 | 65 | 80 |
-| P3 | 80 | 70 | 70 | 30 | 50 | 65 |
-| P4 | 70 | 60 | 55 | 45 | 70 | 75 |
-| P5 | 75 | 65 | 65 | 35 | 60 | 70 |
-| P6 | 85 | 75 | 70 | 30 | 50 | 65 |
-| P7 | 70 | 60 | 60 | 40 | 65 | 80 |
-| P8 | 80 | 70 | 70 | 35 | 60 | 70 |
-| P9 | 85 | 75 | 75 | 45 | 65 | 80 |
-| P10 | 75 | 70 | 60 | 30 | 50 | 65 |
+<table align="center">
+  <tr>
+    <th align="center">Participant ID</th>
+    <th align="center">Level 1 SUS</th>
+    <th align="center">Level 2 SUS</th>
+    <th align="center">Level 3 SUS</th>
+    <th align="center">Level 1 TLX</th>
+    <th align="center">Level 2 TLX</th>
+    <th align="center">Level 3 TLX</th>
+  </tr>
+  <tr><td align="center">P1</td><td align="center">75</td><td align="center">65</td><td align="center">60</td><td align="center">35</td><td align="center">55</td><td align="center">70</td></tr>
+  <tr><td align="center">P2</td><td align="center">80</td><td align="center">70</td><td align="center">65</td><td align="center">40</td><td align="center">65</td><td align="center">80</td></tr>
+  <tr><td align="center">P3</td><td align="center">80</td><td align="center">70</td><td align="center">70</td><td align="center">30</td><td align="center">50</td><td align="center">65</td></tr>
+  <tr><td align="center">P4</td><td align="center">70</td><td align="center">60</td><td align="center">55</td><td align="center">45</td><td align="center">70</td><td align="center">75</td></tr>
+  <tr><td align="center">P5</td><td align="center">75</td><td align="center">65</td><td align="center">65</td><td align="center">35</td><td align="center">60</td><td align="center">70</td></tr>
+  <tr><td align="center">P6</td><td align="center">85</td><td align="center">75</td><td align="center">70</td><td align="center">30</td><td align="center">50</td><td align="center">65</td></tr>
+  <tr><td align="center">P7</td><td align="center">70</td><td align="center">60</td><td align="center">60</td><td align="center">40</td><td align="center">65</td><td align="center">80</td></tr>
+  <tr><td align="center">P8</td><td align="center">80</td><td align="center">70</td><td align="center">70</td><td align="center">35</td><td align="center">60</td><td align="center">70</td></tr>
+  <tr><td align="center">P9</td><td align="center">85</td><td align="center">75</td><td align="center">75</td><td align="center">45</td><td align="center">65</td><td align="center">80</td></tr>
+  <tr><td align="center">P10</td><td align="center">75</td><td align="center">70</td><td align="center">60</td><td align="center">30</td><td align="center">50</td><td align="center">65</td></tr>
+</table>
 
-**Table 3. Mean SUS and NASA TLX scores across the three levels**
+<p align="center">
+  <b>Table 3.</b> Mean SUS and NASA TLX scores across the three levels.
+</p>
 
-| Metric | Level 1: Standard | Level 2: Dark | Level 3: Duel |
-|---|---:|---:|---:|
-| SUS Score | 77.5 | 68.0 | 65.0 |
-| NASA TLX | 36.5 | 59.0 | 72.0 |
+<table align="center">
+  <tr>
+    <th align="center">Metric</th>
+    <th align="center">Level 1: Standard</th>
+    <th align="center">Level 2: Dark</th>
+    <th align="center">Level 3: Duel</th>
+  </tr>
+  <tr>
+    <td align="center">SUS Score</td>
+    <td align="center">77.5</td>
+    <td align="center">68.0</td>
+    <td align="center">65.0</td>
+  </tr>
+  <tr>
+    <td align="center">NASA TLX</td>
+    <td align="center">36.5</td>
+    <td align="center">59.0</td>
+    <td align="center">72.0</td>
+  </tr>
+</table>
 
 <p align="center"><strong>Figure 2. Comparison of mean SUS and NASA TLX scores across the three evaluated levels.</strong></p>
 
@@ -284,30 +344,121 @@ We also considered constraints across categories, since some actions are only va
 
 The representative black-box test cases and equivalence partitions used in this process are summarised below.
 
-**Table 4. Black-box test cases and observed results**
+<p align="center">
+  <b>Table 4.</b> Black-box test cases and observed results.
+</p>
 
-| Test Case | Input | Expected Result | Observed Output |
-|---|---|---|---|
-| Menu – Start Game | Click “Classic”, “Dark”, or “Duel” button | The screen changes from the Menu to the Game, and the correct mode is loaded. | The game screen loaded correctly and the selected mode was displayed as intended — **Pass** |
-| Menu – Back to Menu | Click “BACK TO MENU” button when pressing `P` in game | The game stops, and the screen returns to the Main Menu. | The game paused correctly and returned to the Main Menu without errors — **Pass** |
-| Game – Ball Launch | Left Mouse Click | If the ball is attached, it starts moving upwards from the paddle. | The ball launched correctly from the paddle when attached — **Pass** |
-| Game – Paddle Movement | Mouse X-axis move | The paddle follows the mouse and stays inside the game borders. | The paddle followed mouse movement correctly and remained within the game boundaries — **Pass** |
-| Game – Brick Collision | Ball hits a brick | The brick disappears, and the player gets points. | The brick was removed correctly and the score increased as expected — **Pass** |
-| Game – Boundary Bounce | Ball hits left, right, or top boundaries | The ball bounces back into the play area instead of going off-screen. | The ball bounced correctly off the boundary and remained inside the play area — **Pass** |
-| Game – Life Loss | Ball falls to the bottom boundary | The number of hearts (lives) goes down by 1, and the ball returns to the paddle. | One life was deducted correctly and the ball reset to the paddle — **Pass** |
-| Game – Time-out | Timer reaches 00:00 | The game ends immediately and shows the Game Over screen. | The game ended immediately at timer expiry and the Game Over screen appeared correctly — **Pass** |
+<table align="center">
+  <tr>
+    <th align="center">Test Case</th>
+    <th align="center">Input</th>
+    <th align="center">Expected Result</th>
+    <th align="center">Observed Output</th>
+  </tr>
+  <tr>
+    <td align="center">Menu – Start Game</td>
+    <td align="center">Click “Classic”, “Dark”, or “Duel” button</td>
+    <td align="center">The screen changes from the Menu to the Game, and the correct mode is loaded.</td>
+    <td align="center">The game screen loaded correctly and the selected mode was displayed as intended — <b>Pass</b></td>
+  </tr>
+  <tr>
+    <td align="center">Menu – Back to Menu</td>
+    <td align="center">Click “BACK TO MENU” button when pressing `P` in game</td>
+    <td align="center">The game stops, and the screen returns to the Main Menu.</td>
+    <td align="center">The game paused correctly and returned to the Main Menu without errors — <b>Pass</b></td>
+  </tr>
+  <tr>
+    <td align="center">Game – Ball Launch</td>
+    <td align="center">Left Mouse Click</td>
+    <td align="center">If the ball is attached, it starts moving upwards from the paddle.</td>
+    <td align="center">The ball launched correctly from the paddle when attached — <b>Pass</b></td>
+  </tr>
+  <tr>
+    <td align="center">Game – Paddle Movement</td>
+    <td align="center">Mouse X-axis move</td>
+    <td align="center">The paddle follows the mouse and stays inside the game borders.</td>
+    <td align="center">The paddle followed mouse movement correctly and remained within the game boundaries — <b>Pass</b></td>
+  </tr>
+  <tr>
+    <td align="center">Game – Brick Collision</td>
+    <td align="center">Ball hits a brick</td>
+    <td align="center">The brick disappears, and the player gets points.</td>
+    <td align="center">The brick was removed correctly and the score increased as expected — <b>Pass</b></td>
+  </tr>
+  <tr>
+    <td align="center">Game – Boundary Bounce</td>
+    <td align="center">Ball hits left, right, or top boundaries</td>
+    <td align="center">The ball bounces back into the play area instead of going off-screen.</td>
+    <td align="center">The ball bounced correctly off the boundary and remained inside the play area — <b>Pass</b></td>
+  </tr>
+  <tr>
+    <td align="center">Game – Life Loss</td>
+    <td align="center">Ball falls to the bottom boundary</td>
+    <td align="center">The number of hearts (lives) goes down by 1, and the ball returns to the paddle.</td>
+    <td align="center">One life was deducted correctly and the ball reset to the paddle — <b>Pass</b></td>
+  </tr>
+  <tr>
+    <td align="center">Game – Time-out</td>
+    <td align="center">Timer reaches 00:00</td>
+    <td align="center">The game ends immediately and shows the Game Over screen.</td>
+    <td align="center">The game ended immediately at timer expiry and the Game Over screen appeared correctly — <b>Pass</b></td>
+  </tr>
+</table>
 
-**Table 5. Equivalence partitions used for black-box testing**
+<p align="center">
+  <b>Table 5.</b> Equivalence partitions used for black-box testing.
+</p>
 
-| Category | Partition | Description | Values |
-|---|---|---|---|
-| Paddle Control | Within Bounds | Mouse is inside the game area. | `35 < mouseX < 465` |
-| Paddle Control | Out of Bounds (Left) | Mouse is too far left. | `mouseX <= 35` |
-| Paddle Control | Out of Bounds (Right) | Mouse is too far right. | `mouseX >= 465` |
-| Ball Physics | Play Area | Ball remains inside the play area. | `35 < pos.y < 625` |
-| Ball Physics | Ball Lost | Ball falls below the paddle. | `pos.y >= 625` |
-| Game State | Mode Selection | A valid game mode is selected. | `mode is "CLASSIC", "DARK", or "DUEL"` |
-| Game State | Timer Status | The remaining game time is active or expired. | `timer > 0` vs. `timer <= 0` |
+<table align="center">
+  <tr>
+    <th align="center">Category</th>
+    <th align="center">Partition</th>
+    <th align="center">Description</th>
+    <th align="center">Values</th>
+  </tr>
+  <tr>
+    <td align="center">Paddle Control</td>
+    <td align="center">Within Bounds</td>
+    <td align="center">Mouse is inside the game area.</td>
+    <td align="center"><code>35 &lt; mouseX &lt; 465</code></td>
+  </tr>
+  <tr>
+    <td align="center">Paddle Control</td>
+    <td align="center">Out of Bounds (Left)</td>
+    <td align="center">Mouse is too far left.</td>
+    <td align="center"><code>mouseX &lt;= 35</code></td>
+  </tr>
+  <tr>
+    <td align="center">Paddle Control</td>
+    <td align="center">Out of Bounds (Right)</td>
+    <td align="center">Mouse is too far right.</td>
+    <td align="center"><code>mouseX &gt;= 465</code></td>
+  </tr>
+  <tr>
+    <td align="center">Ball Physics</td>
+    <td align="center">Play Area</td>
+    <td align="center">Ball remains inside the play area.</td>
+    <td align="center"><code>35 &lt; pos.y &lt; 625</code></td>
+  </tr>
+  <tr>
+    <td align="center">Ball Physics</td>
+    <td align="center">Ball Lost</td>
+    <td align="center">Ball falls below the paddle.</td>
+    <td align="center"><code>pos.y &gt;= 625</code></td>
+  </tr>
+  <tr>
+    <td align="center">Game State</td>
+    <td align="center">Mode Selection</td>
+    <td align="center">A valid game mode is selected.</td>
+    <td align="center"><code>mode is "CLASSIC", "DARK", or "DUEL"</code></td>
+  </tr>
+  <tr>
+    <td align="center">Game State</td>
+    <td align="center">Timer Status</td>
+    <td align="center">The remaining game time is active or expired.</td>
+    <td align="center"><code>timer &gt; 0</code> vs. <code>timer &lt;= 0</code></td>
+  </tr>
+</table>
 
 #### 5.3.2 White-Box Testing
 
@@ -318,7 +469,6 @@ Using debugging outputs and variable tracing, we verified several critical mecha
 By directly inspecting variable changes during execution, we were also able to examine important program branches, including boundary handling, collision handling, and state transitions. This ensured that the game rules were enforced consistently at code level, rather than only appearing correct from the player’s perspective.
 
 Furthermore, we maintained a lightweight testing specification detailing key gameplay scenarios and their intended outcomes. After any major source code modification, we repeated these checks as part of regression testing to ensure that newly added features had not broken existing functionality. This was especially important when integrating the evaluation-informed improvements, such as clearer guidance, improved failure feedback, and the pause menu, so that these additions functioned as intended without disrupting the core mechanics.
-
 <br>
 
 - 15% ~750 words
