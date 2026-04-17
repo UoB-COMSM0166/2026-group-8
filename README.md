@@ -197,16 +197,16 @@ This design choice significantly improved high cohesion within the codebase. By 
 To evaluate whether our game provides a usable, engaging, and appropriately challenging experience, we used a mixed-methods approach combining qualitative and quantitative methods. This allowed us to examine player experience and the effect of our difficulty design on workload and usability.
 
 ### 5.1 Qualitative Evaluation
+
 Our qualitative evaluation combined a Think Aloud study with a heuristic evaluation.
 
 #### 5.1.1 Think Aloud Study
+
 We conducted a Think Aloud study with 10 student participants recruited through convenience sampling. Each participant was asked to start the game, understand how to play, and survive for one minute in Standard Mode while verbalising their thoughts in real time. Observers recorded hesitation, confusion, and comments, which were later reviewed to identify recurring themes.
 
 Three main issues emerged. First, several participants were unsure how to play at the start, suggesting that the prototype lacked visible guidance for first-time users. Second, some were confused when the ball was lost, indicating unclear failure and respawn feedback. Third, several participants were frustrated by not being able to pause the game, return to the menu, or switch modes easily, showing limited user control during play.
 
-Overall, the Think Aloud study showed that the prototype lacked sufficient guidance, feedback, and user control for a smooth first-time experience.
-
-As shown in Figure 1, the Think Aloud data were grouped into three recurring themes: player guidance, failure feedback, and user control.
+Overall, the Think Aloud study showed that the prototype lacked sufficient guidance, feedback, and user control for a smooth first-time experience. As shown in Figure 1, the Think Aloud data were grouped into three recurring themes: player guidance, failure feedback, and user control.
 
 <p align="center"><strong>Figure 1. Thematic map of recurring themes identified in the Think Aloud study.</strong></p>
 
@@ -215,18 +215,15 @@ As shown in Figure 1, the Think Aloud data were grouped into three recurring the
 </p>
 
 #### 5.1.2 Heuristic Evaluation
-To complement the Think Aloud study, we conducted a heuristic evaluation based on Nielsen’s 10 usability heuristics. Three peer evaluators from other teams inspected the main menu, gameplay interface, and failure states after a short familiarisation period.
 
-The evaluation identified the same three issues: lack of visible guidance for first-time players, unclear failure and respawn feedback, and limited control over pausing, exiting, and switching modes.
+To complement the Think Aloud study, we conducted a heuristic evaluation based on Nielsen’s 10 usability heuristics. Three peer evaluators from other teams inspected the main menu, gameplay interface, and failure states after a short familiarisation period. The evaluation confirmed the same three issues identified in the Think Aloud study: insufficient guidance for first-time players, unclear failure and respawn feedback, and limited user control over pausing, exiting, and switching modes.
 
-To address these issues, we added an instruction screen, heart icons showing remaining lives, and a pause function with a back-to-menu option and clear mode-selection buttons. The issues were then rated by severity according to frequency, impact, and persistence:
-
-**Severity = (Frequency + Impact + Persistence) / 3**
+To address these issues, we added an instruction screen, heart icons showing remaining lives, and a pause function with a back-to-menu option and clearer mode-selection buttons. The severity ratings are summarised in Table 1.
 
 **Table 1. Severity ratings for key usability issues identified in the heuristic evaluation**
 
 | Issue | Heuristic | Frequency (0–4) | Impact (0–4) | Persistence (0–4) | Severity (Avg) |
-|---|---|:---:|:---:|:---:|:---:|
+|---|---|---:|---:|---:|---:|
 | The game lacks visible guidance for first-time players | #10 Help and documentation | 4 | 3 | 3 | 3.3 |
 | Players have limited control over pausing, exiting, and switching modes | #3 User control and freedom | 3 | 3 | 3 | 3.0 |
 | Failure and respawn feedback are unclear | #9 Help users recognise, diagnose, and recover from errors | 2 | 3 | 3 | 2.7 |
@@ -234,35 +231,34 @@ To address these issues, we added an instruction screen, heart icons showing rem
 ### 5.2 Quantitative Evaluation: NASA TLX and SUS
 
 #### 5.2.1 Methodology
-- **Participants:** We recruited 10 participants (N = 10) via convenience sampling from the university student body.
-- **Procedure:** Using a within-subjects design, each participant tested the early prototype across three levels: Standard, Dark, and Two-Player Duel.
-- **Mode Differences:** Standard and Dark used mouse-based movement, whereas Duel used competitive keyboard-based controls.
-- **Data Collection:** After each level, participants completed the System Usability Scale (SUS) (Brooke, 1996) and the NASA Task Load Index (NASA TLX) (Hart & Staveland, 1988).
+
+We recruited 10 participants (N = 10) via convenience sampling from the university student body. Using a within-subjects design, each participant tested the prototype across three modes: Standard, Dark, and Two-Player Duel. Standard and Dark used mouse-based movement, whereas Duel used competitive keyboard-based controls. After each mode, participants completed the System Usability Scale (SUS) and the NASA Task Load Index (NASA TLX).
 
 #### 5.2.2 Raw Data and Aggregate Scores
+
 Table 2 presents the raw SUS and NASA TLX scores, and Table 3 summarises the mean scores across the three levels. Higher SUS scores indicate better usability, whereas higher NASA TLX scores indicate greater perceived workload.
 
 **Table 2. Raw data from 10 participants**
 
 | Participant ID | Level 1 SUS | Level 2 SUS | Level 3 SUS | Level 1 TLX | Level 2 TLX | Level 3 TLX |
-|---|:---:|:---:|:---:|:---:|:---:|:---:|
-| User 1 | 75 | 65 | 60 | 35 | 55 | 70 |
-| User 2 | 80 | 70 | 65 | 40 | 65 | 80 |
-| User 3 | 80 | 70 | 70 | 30 | 50 | 65 |
-| User 4 | 70 | 60 | 55 | 45 | 70 | 75 |
-| User 5 | 75 | 65 | 65 | 35 | 60 | 70 |
-| User 6 | 85 | 75 | 70 | 30 | 50 | 65 |
-| User 7 | 70 | 60 | 60 | 40 | 65 | 80 |
-| User 8 | 80 | 70 | 70 | 35 | 60 | 70 |
-| User 9 | 85 | 75 | 75 | 45 | 65 | 80 |
-| User 10 | 75 | 70 | 60 | 30 | 50 | 65 |
+|---|---:|---:|---:|---:|---:|---:|
+| P1 | 75 | 65 | 60 | 35 | 55 | 70 |
+| P2 | 80 | 70 | 65 | 40 | 65 | 80 |
+| P3 | 80 | 70 | 70 | 30 | 50 | 65 |
+| P4 | 70 | 60 | 55 | 45 | 70 | 75 |
+| P5 | 75 | 65 | 65 | 35 | 60 | 70 |
+| P6 | 85 | 75 | 70 | 30 | 50 | 65 |
+| P7 | 70 | 60 | 60 | 40 | 65 | 80 |
+| P8 | 80 | 70 | 70 | 35 | 60 | 70 |
+| P9 | 85 | 75 | 75 | 45 | 65 | 80 |
+| P10 | 75 | 70 | 60 | 30 | 50 | 65 |
 
 **Table 3. Mean SUS and NASA TLX scores across the three levels**
 
-| Metric | Level 1: Standard | Level 2: Dark | Level 3: Duel | Diagnostic Conclusion |
-|---|:---:|:---:|:---:|---|
-| SUS Score | 77.5 | 68.0 | 65.0 | Usability decreased across the three levels. |
-| NASA TLX | 36.5 | 59.0 | 72.0 | Workload increased across the three levels. |
+| Metric | Level 1: Standard | Level 2: Dark | Level 3: Duel |
+|---|---:|---:|---:|
+| SUS Score | 77.5 | 68.0 | 65.0 |
+| NASA TLX | 36.5 | 59.0 | 72.0 |
 
 <p align="center"><strong>Figure 2. Comparison of mean SUS and NASA TLX scores across the three evaluated levels.</strong></p>
 
@@ -270,50 +266,58 @@ Table 2 presents the raw SUS and NASA TLX scores, and Table 3 summarises the mea
   <img width="850" alt="Comparison of mean SUS and NASA TLX scores" src="https://github.com/user-attachments/assets/9818b61b-c2a3-40c1-90f3-7ec391cb2463" />
 </p>
 
-#### 5.2.3 Statistical Analysis
-Wilcoxon signed-rank tests were used to compare the three levels.
+#### 5.2.3 Statistical Results and Design Implications
 
-- **Usability Friction:** SUS scores decreased significantly from Level 1 to Level 2 (`W = 0.00, p = 0.0023`) and from Level 2 to Level 3 (`W = 0.00, p = 0.034`).
-- **Workload Structure:** NASA TLX scores increased significantly from Level 1 to Level 2 (`W = 0.00, p = 0.0040`) and from Level 2 to Level 3 (`W = 0.00, p = 0.0036`).
+Wilcoxon signed-rank tests showed that SUS scores decreased significantly from Level 1 to Level 2 (W = 0.00, p = 0.0023) and from Level 2 to Level 3 (W = 0.00, p = 0.034), while NASA TLX scores increased significantly from Level 1 to Level 2 (W = 0.00, p = 0.0040) and from Level 2 to Level 3 (W = 0.00, p = 0.0036). Together with the mean trends shown in Table 3 and Figure 2, these results indicate that usability decreased and workload increased as additional mechanics and interaction demands were introduced across the three modes.
 
-#### 5.2.4 Design Implications and Final Iteration
-The quantitative results informed two main improvements in the final version:
+These findings informed two final improvements. In Level 3, we introduced clearer visual highlighting and explicit confirmation inputs to reduce accidental selections and improve fairness. In Level 2, we removed the need to catch the dropped “Lightbulb” item, so breaking a purple brick now automatically triggers full-map illumination.
 
-1. **Level 3:** We introduced clearer visual highlighting and explicit confirmation inputs to reduce accidental selections and improve fairness.
-2. **Level 2:** We removed the need to catch the dropped “Lightbulb” item, so breaking a purple brick now automatically triggers full-map illumination.
+### 5.3 Code Testing
 
-#### 5.2.5 Conclusion
-The quantitative evaluation showed that as additional mechanics and interaction demands were introduced across the three modes, perceived workload increased while usability decreased. These findings helped us refine the final version so that later gameplay difficulty felt more intentional and less confusing.
+#### 5.3.1 Black-Box Testing
 
+Our black-box testing focused on verifying the game’s functional behaviour from the player’s perspective, without relying on the internal implementation details of the code. To test the game systematically, we applied Equivalence Partitioning to several key functional areas that were central to the player experience, namely **Paddle Control**, **Ball Physics**, and **Game State**. This allowed us to group similar inputs and behaviours into representative categories, reducing unnecessary duplication while still covering the most important gameplay scenarios.
 
-## 6. Code Testing
-### 6.1 Black-Box Testing
-Our black-box testing methodology focused on the functional verification of the user interface and the overall game flow. To handle continuous inputs and states systematically, we applied Equivalence Partitioning across three primary categories: Paddle Control, Ball Physics, and Game State.
+The test cases were selected based on the critical user journey, from entering the main menu and selecting a mode to interacting with the paddle, launching the ball, colliding with bricks and walls, losing lives, and reaching the end of a timed session. In particular, we tested transitions between the **Classic**, **Dark**, and **Duel** modes to confirm that the correct environment and interface were loaded, as well as core in-game events such as paddle movement, brick collision, boundary bounce, life loss, and timer expiry. Together, these tests helped confirm that the visible behaviour of the final game matched the intended design.
 
-We selected our test cases based on the critical User Journey, ranging from high-level navigation in the main menu to detailed in-game interactions such as paddle response and physics-based collisions. By testing the transitions between the 'Classic', 'Dark', and 'Duel' modes, we ensured the state management system correctly loads the intended environment and UI based on specific button inputs.
+We also considered constraints across categories, since some actions are only valid in specific states. For example, the ball can only be launched when it is attached to the paddle, returning to the main menu is only possible after the game has been paused, life-loss behaviour only occurs when the ball crosses the lower boundary during active gameplay, and timer expiry only triggers the game-over state when the session is running. In addition, boundary values were explicitly tested because they mark the transition points between valid and invalid behaviour. These included paddle positions at the left and right limits, the ball position at the lower boundary, and the timer value at zero. Testing these boundary conditions helped ensure that behaviour changed correctly when the game moved from one state to another.
 
-| Test Case | Input | Expected Result |
-| :--- | :--- | :--- |
-| **Menu - Start Game** | Click 'Classic', 'Dark', or 'Duel' button | The screen changes from the Menu to the Game, and the correct mode is loaded. |
-| **Menu - Back to Menu** | Click 'BACK TO MENU' button when pressing 'P' in game | The game stops, and the screen returns to the Main Menu. |
-| **Game - Ball Launch** | Left Mouse Click | If the ball is attached, it starts moving upwards from the paddle. |
-| **Game - Paddle Movement** | Mouse X-axis move | The paddle follows the mouse and stays inside the game borders. |
-| **Game - Brick Collision** | Ball hits a brick | The brick disappears, and the player gets points. |
-| **Game - Boundary Bounce** | Ball hits walls | The ball bounces back into the play area instead of going off-screen. |
-| **Game - Life Loss** | Ball falls to bottom | The number of hearts (lives) goes down by 1, and the ball returns to the paddle. |
-| **Game - Time-out** | Timer reaches 00:00 | The game ends immediately and shows the Game Over screen. |
+The representative black-box test cases and equivalence partitions used in this process are summarised below.
+
+**Table 4. Black-box test cases and observed results**
+
+| Test Case | Input | Expected Result | Observed Output |
+|---|---|---|---|
+| Menu – Start Game | Click “Classic”, “Dark”, or “Duel” button | The screen changes from the Menu to the Game, and the correct mode is loaded. | The game screen loaded correctly and the selected mode was displayed as intended — **Pass** |
+| Menu – Back to Menu | Click “BACK TO MENU” button when pressing `P` in game | The game stops, and the screen returns to the Main Menu. | The game paused correctly and returned to the Main Menu without errors — **Pass** |
+| Game – Ball Launch | Left Mouse Click | If the ball is attached, it starts moving upwards from the paddle. | The ball launched correctly from the paddle when attached — **Pass** |
+| Game – Paddle Movement | Mouse X-axis move | The paddle follows the mouse and stays inside the game borders. | The paddle followed mouse movement correctly and remained within the game boundaries — **Pass** |
+| Game – Brick Collision | Ball hits a brick | The brick disappears, and the player gets points. | The brick was removed correctly and the score increased as expected — **Pass** |
+| Game – Boundary Bounce | Ball hits left, right, or top boundaries | The ball bounces back into the play area instead of going off-screen. | The ball bounced correctly off the boundary and remained inside the play area — **Pass** |
+| Game – Life Loss | Ball falls to the bottom boundary | The number of hearts (lives) goes down by 1, and the ball returns to the paddle. | One life was deducted correctly and the ball reset to the paddle — **Pass** |
+| Game – Time-out | Timer reaches 00:00 | The game ends immediately and shows the Game Over screen. | The game ended immediately at timer expiry and the Game Over screen appeared correctly — **Pass** |
+
+**Table 5. Equivalence partitions used for black-box testing**
 
 | Category | Partition | Description | Values |
-| :--- | :--- | :--- | :--- |
-| **Paddle Control** | Within Bounds | Mouse is inside the game area. | 35 < mouseX < 465 |
-|| Out of Bounds (Left) | Mouse is too far left. | mouseX <= 35 |
-|| Out of Bounds (Right) | Mouse is too far right. | mouseX >= 465 |
-| **Ball Physics** | Play Area | Ball is within the rectangle. | 35 < pos.y < 625 |
-|| Ball Lost | Ball falls below the paddle. | pos.y >= 625 |
-| **Game State** | Mode Selection | Selecting the specific game twist. | mode is "CLASSIC", "DARK", or "DUEL" |
-|| Timer Status | The remaining game time. | timer > 0 vs. timer <= 0 |
+|---|---|---|---|
+| Paddle Control | Within Bounds | Mouse is inside the game area. | `35 < mouseX < 465` |
+| Paddle Control | Out of Bounds (Left) | Mouse is too far left. | `mouseX <= 35` |
+| Paddle Control | Out of Bounds (Right) | Mouse is too far right. | `mouseX >= 465` |
+| Ball Physics | Play Area | Ball remains inside the play area. | `35 < pos.y < 625` |
+| Ball Physics | Ball Lost | Ball falls below the paddle. | `pos.y >= 625` |
+| Game State | Mode Selection | A valid game mode is selected. | `mode is "CLASSIC", "DARK", or "DUEL"` |
+| Game State | Timer Status | The remaining game time is active or expired. | `timer > 0` vs. `timer <= 0` |
 
-### 6.2 White-Box Testing
+#### 5.3.2 White-Box Testing
+
+To complement our black-box testing, we used white-box testing to verify the game’s internal logic and state transitions. While black-box testing focused on visible gameplay behaviour, white-box testing examined whether the underlying implementation correctly updated internal objects, variables, and event conditions. In particular, we focused on the internal logic behind ball launch, life-loss handling, brick collision, timer expiry, and state changes between active play, pause, and game-over.
+
+Using debugging outputs and variable tracing, we verified several critical mechanisms. First, we checked that the ball began in an attached state before launch. Second, we confirmed that losing the ball decremented the internal life counter by exactly one. Third, we verified that brick collisions updated both the score variable and the brick’s active state correctly. Finally, we checked that timer expiry triggered the correct game-over branch. These checks helped us confirm that the internal logic matched the expected gameplay behaviour tested in Section 5.3.1.
+
+By directly inspecting variable changes during execution, we were also able to examine important program branches, including boundary handling, collision handling, and state transitions. This ensured that the game rules were enforced consistently at code level, rather than only appearing correct from the player’s perspective.
+
+Furthermore, we maintained a lightweight testing specification detailing key gameplay scenarios and their intended outcomes. After any major source code modification, we repeated these checks as part of regression testing to ensure that newly added features had not broken existing functionality. This was especially important when integrating the evaluation-informed improvements, such as clearer guidance, improved failure feedback, and the pause menu, so that these additions functioned as intended without disrupting the core mechanics.
 
 <br>
 
