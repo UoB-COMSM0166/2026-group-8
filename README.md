@@ -475,22 +475,22 @@ Furthermore, we maintained a lightweight testing specification detailing key gam
 - One quantitative evaluation (of your choice) 
 - Description of how code was tested.
 
-## 7. Process 
+## 6. Process 
 - 15% ~750 words
 - Teamwork. How did you work together, what tools and methods did you use? Did you define team roles? Reflection on how you worked together. Be honest, we want to hear about what didn't work as well as what did work, and importantly how your team adapted throughout the project.
 
-## 8. Sustainability, Ethics, and Accessibility
+## 7. Sustainability, Ethics, and Accessibility
 - 10% ~750 words
 - Evidence of the impact of your game across the environment and two of the other areas: Environmental +  2 of the following: Social, Economic, Technical, Individual 
 
-## 9. Conclusion
+## 8. Conclusion
 - 10% ~500 words
 - Reflect on the project as a whole. Lessons learnt. Reflect on challenges. Future work, describe both immediate next steps for your current game and also what you would potentially do if you had chance to develop a sequel.
 
-## 10. Contribution Statement
+## 9. Contribution Statement
 - Provide a table of everyone's contribution, which *may* be used to weight individual grades. We expect that the contribution will be split evenly across team-members in most cases. Please let us know as soon as possible if there are any issues with teamwork as soon as they are apparent and we will do our best to help your team work harmoniously together.
 
-## 11. AI Statement
+## 10. AI Statement
 - ~250 words
 - Summarise your team’s use of AI so we know where to give you credit for work done.
 
