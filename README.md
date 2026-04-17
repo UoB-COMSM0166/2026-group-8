@@ -35,12 +35,11 @@
 - [3. Design & System Architecture](#3-design--system-architecture)
 - [4. Implementation](#4-implementation)
 - [5. Evaluation](#5-evaluation)
-- [6. Code Testing](#6-code-testing)
-- [7. Process](#7-process)
-- [8. Sustainability, Ethics, and Accessibility](#8-sustainability-ethics-and-accessibility)
-- [9. Conclusion](#9-conclusion)
-- [10\. Contribution Statement](#10-contribution-statement)
-- [11\. AI Statement](#11-ai-statement)
+- [6. Process](#6-process)
+- [7. Sustainability, Ethics, and Accessibility](#7-sustainability-ethics-and-accessibility)
+- [8. Conclusion](#8-conclusion)
+- [9. Contribution Statement](#9-contribution-statement)
+- [10. AI Statement](#10-ai-statement)
   
 ## 📝 Kanban
 
