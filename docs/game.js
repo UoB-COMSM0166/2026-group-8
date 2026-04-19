@@ -80,6 +80,10 @@ class Game extends BaseScene {
             textSize(25);
             textStyle(NORMAL);
             text(`FINAL SCORE: ${this.manage.score}`, 250, 350);
+
+            fill(255, 215, 0);
+            textSize(20);
+            text(`${this.manage.getRankTitle()}`, 250, 390);
         } else if (this.mode === 'DARK') {
             fill(255, 50, 50); 
             textSize(50);
