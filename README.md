@@ -2,7 +2,7 @@
 ## Our Game - CORE_BREAKER
 > **⚔️Beyond the bounce! Conquer the shadow and outplay your rivals to become the ultimate Core Breaker⚔️**
 
-<img width="335" height="485" alt="image" src="https://github.com/user-attachments/assets/bc0a711d-4787-46ec-aa73-122eeacd44b3" /><img width="335" height="485" alt="image" src="https://github.com/user-attachments/assets/46dc64f6-9223-4d38-b135-37b5c517b3e4" />
+<img width="335" height="485" alt="image" src="https://github.com/user-attachments/assets/fa69fd38-9fd6-4924-acc1-084af105dcd4" /> <img width="335" height="485" alt="image" src="https://github.com/user-attachments/assets/554f1aa3-2895-43bb-9ee2-0717e3589518" />
 
 <a href="https://uob-comsm0166.github.io/2026-group-8/">
   <img src="https://i.pinimg.com/1200x/0b/e1/27/0be127916560702af014298cc64b7137.jpg" width="120" alt="click to play">
@@ -475,7 +475,7 @@ Furthermore, we maintained a lightweight testing specification detailing key gam
 
 ## 7. Sustainability, Ethics, and Accessibility
 - 10% ~750 words
-- Evidence of the impact of your game across the environment and two of the other areas:Environmental + 2 of the following: Social, Economic, Technical, Individual 
+- Evidence of the impact of your game across the environment and two of the other areas - Environmental + 2 of the following: Social, Economic, Technical, Individual 
 
 ## 8. Conclusion
 - 10% ~500 words
