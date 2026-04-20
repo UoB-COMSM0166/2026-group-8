@@ -148,10 +148,12 @@ Writing **user stories** (“As a player, I want…, so that…”) encouraged u
 
 ### Class diagram
 Class diagram shows the structure of the game.
-<img width="2440" height="1888" alt="Class diagram" src="https://github.com/user-attachments/assets/b79c23cd-9d33-4a61-8af5-378ccb18fcca" />
+<img width="603" height="818" alt="class diagram" src="https://github.com/user-attachments/assets/083d50aa-f43e-463a-a0db-86b94b6b7ba4" />
+
 
 ### Sequence diagram
-<img width="2140" height="2048" alt="Sequence diagram" src="https://github.com/user-attachments/assets/72cd1a78-beef-415f-866e-beb186248965" />
+<img width="1440" height="1964" alt="sequence diagram" src="https://github.com/user-attachments/assets/9da31e81-47b6-4146-b9d7-2e3f954089b0" />
+
 
 
 ## 4. Implementation
