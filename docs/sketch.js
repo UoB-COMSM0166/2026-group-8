@@ -19,7 +19,6 @@ function preload() {
 function setup() {
     createCanvas(W, H);
     menuPage = new Menu();
-    bgm.loop();
 }
 
 function draw() {
@@ -38,6 +37,11 @@ function draw() {
 }
 
 function mouseClicked() {
+    userStartAudio();
+    if (bgm && !bgm.isLooping()) {
+        bgm.loop();
+    }
+  
     if (currentMode === 'menu') {
         let selectedMode = menuPage.checkModeClicked();
         if (selectedMode === 'CLASSIC' || selectedMode === 'DARK') {
