@@ -269,33 +269,25 @@ We recruited 10 participants (N = 10) via convenience sampling from the universi
 Table 2 presents the raw SUS and NASA TLX scores, and Table 3 summarises the mean scores across the three levels. Higher SUS scores indicate better usability, whereas higher NASA TLX scores indicate greater perceived workload.
 
 <p align="center">
-  <b>Table 2.</b> Raw data from 10 participants.
+  **Table 2.** Raw data from 10 participants.
+</p>
+<p align="center">
+  | Participant ID | Level 1 SUS | Level 2 SUS | Level 3 SUS | Level 1 TLX | Level 2 TLX | Level 3 TLX |
+  | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+  | P1 | 75 | 65 | 60 | 35 | 55 | 70 |
+  | P2 | 80 | 70 | 65 | 40 | 65 | 80 |
+  | P3 | 80 | 70 | 70 | 30 | 50 | 65 |
+  | P4 | 70 | 60 | 55 | 45 | 70 | 75 |
+  | P5 | 75 | 65 | 65 | 35 | 60 | 70 |
+  | P6 | 85 | 75 | 70 | 30 | 50 | 65 |
+  | P7 | 70 | 60 | 60 | 40 | 65 | 80 |
+  | P8 | 80 | 70 | 70 | 35 | 60 | 70 |
+  | P9 | 85 | 75 | 75 | 45 | 65 | 80 |
+  | P10 | 75 | 70 | 60 | 30 | 50 | 65 |
 </p>
 
-<table align="center">
-  <tr>
-    <th align="center">Participant ID</th>
-    <th align="center">Level 1 SUS</th>
-    <th align="center">Level 2 SUS</th>
-    <th align="center">Level 3 SUS</th>
-    <th align="center">Level 1 TLX</th>
-    <th align="center">Level 2 TLX</th>
-    <th align="center">Level 3 TLX</th>
-  </tr>
-  <tr><td align="center">P1</td><td align="center">75</td><td align="center">65</td><td align="center">60</td><td align="center">35</td><td align="center">55</td><td align="center">70</td></tr>
-  <tr><td align="center">P2</td><td align="center">80</td><td align="center">70</td><td align="center">65</td><td align="center">40</td><td align="center">65</td><td align="center">80</td></tr>
-  <tr><td align="center">P3</td><td align="center">80</td><td align="center">70</td><td align="center">70</td><td align="center">30</td><td align="center">50</td><td align="center">65</td></tr>
-  <tr><td align="center">P4</td><td align="center">70</td><td align="center">60</td><td align="center">55</td><td align="center">45</td><td align="center">70</td><td align="center">75</td></tr>
-  <tr><td align="center">P5</td><td align="center">75</td><td align="center">65</td><td align="center">65</td><td align="center">35</td><td align="center">60</td><td align="center">70</td></tr>
-  <tr><td align="center">P6</td><td align="center">85</td><td align="center">75</td><td align="center">70</td><td align="center">30</td><td align="center">50</td><td align="center">65</td></tr>
-  <tr><td align="center">P7</td><td align="center">70</td><td align="center">60</td><td align="center">60</td><td align="center">40</td><td align="center">65</td><td align="center">80</td></tr>
-  <tr><td align="center">P8</td><td align="center">80</td><td align="center">70</td><td align="center">70</td><td align="center">35</td><td align="center">60</td><td align="center">70</td></tr>
-  <tr><td align="center">P9</td><td align="center">85</td><td align="center">75</td><td align="center">75</td><td align="center">45</td><td align="center">65</td><td align="center">80</td></tr>
-  <tr><td align="center">P10</td><td align="center">75</td><td align="center">70</td><td align="center">60</td><td align="center">30</td><td align="center">50</td><td align="center">65</td></tr>
-</table>
-
 <p align="center">
-  <b>Table 3.</b> Mean SUS and NASA TLX scores across the three levels.
+  **Table 3.** Mean SUS and NASA TLX scores across the three levels.
 </p>
 
 <table align="center">
@@ -319,8 +311,9 @@ Table 2 presents the raw SUS and NASA TLX scores, and Table 3 summarises the mea
   </tr>
 </table>
 
-<p align="center"><strong>Figure 2. Comparison of mean SUS and NASA TLX scores across the three evaluated levels.</strong></p>
-
+<p align="center">
+  **Figure 2.** Comparison of mean SUS and NASA TLX scores across the three evaluated levels.
+</p>
 <p align="center">
   <img width="850" alt="Comparison of mean SUS and NASA TLX scores" src="https://github.com/user-attachments/assets/9818b61b-c2a3-40c1-90f3-7ec391cb2463" />
 </p>
