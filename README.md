@@ -491,7 +491,11 @@ We began with idea exploration rather than immediate coding. In the requirements
 
 Our communication methods also developed around the different kinds of collaboration we needed. WhatsApp was our main channel for lightweight day-to-day coordination, such as arranging meetings, asking short questions, sharing quick feedback, and reminding each other about deadlines. It was especially useful for keeping communication active between formal meetings without requiring a full discussion each time. In contrast, Microsoft Teams was more useful when we needed a focused discussion between meetings, especially if we had to resolve a design disagreement or make a fast implementation decision. In practice, this meant that WhatsApp supported quick and fragmented exchanges, while Teams was used for more deliberate conversations with a clearer agenda. We also met in person twice a week, and these face-to-face meetings were particularly valuable for discussing broader design questions, reviewing the latest build together, and deciding what each person would work on next. This combination of informal and focused communication helped reduce noise while still keeping the team aligned.
 
-**[Insert Figure Z. WhatsApp group chat here]**
+<p align="center"><strong>Figure 2. WhatsApp group chat.</strong></p>
+
+<p align="center">
+  <img width="650" alt="WhatsApp group chat" src="https://github.com/user-attachments/assets/c44803ce-cebf-41eb-928a-b7d5f44ec948" />
+</p>
 
 For task management and integration, we relied mainly on GitHub and the GitHub Project Kanban board. The board helped us track progress across design, programming, testing, and report writing, and it also made dependencies between tasks more visible. This became increasingly important once the three game modes were all being developed in parallel. GitHub was not just a place to store code: it was also where version control and regular integration happened. Even when features were developed separately, they still needed to be merged back into the main project, and this forced us to communicate frequently about overlaps, dependencies, and possible conflicts. In that sense, integration itself became part of our teamwork process, because combining code successfully depended on shared awareness rather than individual progress alone.
 
