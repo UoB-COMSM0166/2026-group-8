@@ -499,7 +499,11 @@ Our communication methods also developed around the different kinds of collabora
 
 For task management and integration, we relied mainly on GitHub and the GitHub Project Kanban board. The board helped us track progress across design, programming, testing, and report writing, and it also made dependencies between tasks more visible. This became increasingly important once the three game modes were all being developed in parallel. GitHub was not just a place to store code: it was also where version control and regular integration happened. Even when features were developed separately, they still needed to be merged back into the main project, and this forced us to communicate frequently about overlaps, dependencies, and possible conflicts. In that sense, integration itself became part of our teamwork process, because combining code successfully depended on shared awareness rather than individual progress alone.
 
-**[Insert Figure X. GitHub Project Kanban board here]**
+<p align="center"><strong>Figure 3. GitHub Project Kanban board.</strong></p>
+
+<p align="center">
+  <img width="600" alt="GitHub Project Kanban board" src="https://github.com/user-attachments/assets/0e3c1854-48a4-414a-9778-b3c8221828d4" />
+</p>
 
 One thing that worked well was our willingness to revise priorities when evidence showed that our original focus was not working. Early in the project, we were very excited by the idea of making the game more distinctive and visually interesting, so many of our discussions focused on expanding mechanics and making each mode feel more “cool” or unique. This helped us create a more original concept, but it also meant that we initially paid less attention to onboarding, feedback, and user control. Through playtesting, the Think Aloud study, and the heuristic evaluation, we realised that first-time players were not mainly struggling with advanced mechanics, but with more basic issues: they were unsure how to start, confused about what happened when they lost the ball, and frustrated by the lack of pause or return-to-menu options.
 
