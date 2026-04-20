@@ -2,6 +2,7 @@ const W = 500, H = 700;
 let menuPage, gamePage, duelPage;
 let currentMode = 'menu';
 let img, bgImg, darkImg, duelImg, classicImg;
+let bgm;
 
 
 function preload() {
@@ -10,12 +11,15 @@ function preload() {
     darkImg = loadImage('./Dark.jpg');
     duelImg = loadImage('./Duel.jpg');
     classicImg = loadImage('./Classic.jpg');
+
+    soundFormats('mp3');
+    bgm = loadSound('./cyberpunksound.mp3');
 }
 
 function setup() {
     createCanvas(W, H);
-    // textFont('Courier New');
     menuPage = new Menu();
+    bgm.loop();
 }
 
 function draw() {
