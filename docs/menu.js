@@ -37,7 +37,7 @@ class Menu {
         stroke(0);
         strokeWeight(4);
         textAlign(CENTER, CENTER);
-        text('CORE_BREAKER', this.center, 250);
+        text('CODE_BREAKER', this.center, 250);
         pop();
 
         drawingContext.shadowBlur = 15;

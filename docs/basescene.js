@@ -25,69 +25,8 @@ class BaseScene {
 
         image(img, 425, 635, 50, 50);
         drawingContext.shadowBlur = 0;
-
-        this.drawWatermark();
+        
         this.drawPlayerStatusBar();
-        pop();
-    }
-
-    drawWatermark() {
-        push();
-        translate(250, 325);
-        textAlign(CENTER, CENTER);
-        textSize(80);
-        textStyle(BOLD);
-        fill(150, 150, 150, 100);
-        noStroke();
-
-        if (this.mode == "CLASSIC") {
-            text('CLASSIC', 0, 0);
-        }
-        else if (this.mode == "DARK") {
-            text('DARK', 0, 0);
-        }
-        else {
-            text('DUEL', 0, 0);
-        }
-        pop();
-    }
-
-    drawPowerCountdown(paddle, ball) {
-        push();
-        textAlign(LEFT, CENTER);
-        textSize(14);
-        textStyle(BOLD);
-        noStroke();
-
-        let x = 35;
-        let y = 100;
-        let gap = 20;
-
-        // paddle power
-        if (paddle._widerTimer > 0) {
-            let sec = this.manage.getRemainingSeconds(paddle._widerTimer);
-            fill(119, 221, 119);  // green buff
-            text(`⚡ PADDLE WIDE: ${sec}s`, x, y);
-            y += gap;
-        }
-        if (paddle._reverseTimer > 0) {
-            let sec = this.manage.getRemainingSeconds(paddle._reverseTimer);
-            fill(255, 105, 97);  // red debuff
-            text(`⚠️ REVERSED: ${sec}s`, x, y);
-            y += gap;
-        }
-
-        // ball power
-        for (let effectID in ball.effects) {
-            let frames = ball.effects[effectID];
-            if (frames > 0) {
-                let sec = this.manage.getRemainingSeconds(frames);
-                if (effectID === 'large' || effectID === 'slow') fill(119, 221, 119);
-                else fill(255, 105, 97);
-                text(`🔮 BALL ${effectID.toUpperCase()}: ${sec}s`, x, y);
-                y += gap;
-            }
-        }
         pop();
     }
 
