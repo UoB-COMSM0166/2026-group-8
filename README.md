@@ -2,10 +2,10 @@
 ## Our Game - CORE_BREAKER
 > **⚔️Beyond the bounce! Conquer the shadow and outplay your rivals to become the ultimate Core Breaker⚔️**
 
-<table style="width: 100%; border: none;">
+<table>
   <tr>
     <td style="border: none;">
-      <img width="330" height="480" alt="menu" src="https://github.com/user-attachments/assets/f16fa806-c345-4b44-9f84-27022d3eafd7" />
+      <img width="330" height="480" alt="image" src="https://github.com/user-attachments/assets/b93e4f54-6cda-4bbb-9f1a-1cb4279b489b" />
     </td>
     <td style="border: none;">
       <img width="330" height="480" alt="gameplay" src="https://github.com/user-attachments/assets/bec1eb14-bc1a-4957-9237-0202e2ef6f85" />
