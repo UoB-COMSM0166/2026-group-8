@@ -269,25 +269,25 @@ We recruited 10 participants (N = 10) via convenience sampling from the universi
 Table 2 presents the raw SUS and NASA TLX scores, and Table 3 summarises the mean scores across the three levels. Higher SUS scores indicate better usability, whereas higher NASA TLX scores indicate greater perceived workload.
 
 <p align="center">
-  **Table 2.** Raw data from 10 participants.
-</p>
-<p align="center">
-  | Participant ID | Level 1 SUS | Level 2 SUS | Level 3 SUS | Level 1 TLX | Level 2 TLX | Level 3 TLX |
-  | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-  | P1 | 75 | 65 | 60 | 35 | 55 | 70 |
-  | P2 | 80 | 70 | 65 | 40 | 65 | 80 |
-  | P3 | 80 | 70 | 70 | 30 | 50 | 65 |
-  | P4 | 70 | 60 | 55 | 45 | 70 | 75 |
-  | P5 | 75 | 65 | 65 | 35 | 60 | 70 |
-  | P6 | 85 | 75 | 70 | 30 | 50 | 65 |
-  | P7 | 70 | 60 | 60 | 40 | 65 | 80 |
-  | P8 | 80 | 70 | 70 | 35 | 60 | 70 |
-  | P9 | 85 | 75 | 75 | 45 | 65 | 80 |
-  | P10 | 75 | 70 | 60 | 30 | 50 | 65 |
+  <b>Table 2.</b> Raw data from 10 participants.
 </p>
 
+| Participant ID | Level 1 SUS | Level 2 SUS | Level 3 SUS | Level 1 TLX | Level 2 TLX | Level 3 TLX |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| P1 | 75 | 65 | 60 | 35 | 55 | 70 |
+| P2 | 80 | 70 | 65 | 40 | 65 | 80 |
+| P3 | 80 | 70 | 70 | 30 | 50 | 65 |
+| P4 | 70 | 60 | 55 | 45 | 70 | 75 |
+| P5 | 75 | 65 | 65 | 35 | 60 | 70 |
+| P6 | 85 | 75 | 70 | 30 | 50 | 65 |
+| P7 | 70 | 60 | 60 | 40 | 65 | 80 |
+| P8 | 80 | 70 | 70 | 35 | 60 | 70 |
+| P9 | 85 | 75 | 75 | 45 | 65 | 80 |
+| P10 | 75 | 70 | 60 | 30 | 50 | 65 |
+
+
 <p align="center">
-  **Table 3.** Mean SUS and NASA TLX scores across the three levels.
+  <b>Table 3.</b> Mean SUS and NASA TLX scores across the three levels.
 </p>
 
 <table align="center">
@@ -312,7 +312,7 @@ Table 2 presents the raw SUS and NASA TLX scores, and Table 3 summarises the mea
 </table>
 
 <p align="center">
-  **Figure 2.** Comparison of mean SUS and NASA TLX scores across the three evaluated levels.
+  <b>Figure 2.</b> Comparison of mean SUS and NASA TLX scores across the three evaluated levels.
 </p>
 <p align="center">
   <img width="850" alt="Comparison of mean SUS and NASA TLX scores" src="https://github.com/user-attachments/assets/9818b61b-c2a3-40c1-90f3-7ec391cb2463" />
