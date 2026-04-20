@@ -152,7 +152,8 @@ Class diagram shows the structure of the game.
 
 
 ### Sequence diagram
-<img width="1440" height="1964" alt="sequence diagram" src="https://github.com/user-attachments/assets/9da31e81-47b6-4146-b9d7-2e3f954089b0" />
+<img width="628" height="859" alt="sequence diagram" src="https://github.com/user-attachments/assets/a16c6b1f-f728-480f-861e-9bbf05e39184" />
+
 
 
 
