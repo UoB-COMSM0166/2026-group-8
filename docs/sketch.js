@@ -7,7 +7,7 @@ let bgm;
 
 function preload() {
     img = loadImage('./dinosaur.png');
-    bgImg = loadImage('./Cyber.jpg');
+    bgImg = loadImage('./Cyber1.jpg');
     darkImg = loadImage('./Dark.jpg');
     duelImg = loadImage('./Duel.jpg');
     classicImg = loadImage('./Classic.jpg');
