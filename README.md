@@ -1,5 +1,5 @@
 # 2026-group-8
-## Our Game - CORE_BREAKER
+## Our Game - CODE_BREAKER
 > **⚔️Beyond the bounce! Conquer the shadow and outplay your rivals to become the ultimate Core Breaker⚔️**
 
 <table>
@@ -134,13 +134,7 @@ We ultimately decided to develop a three-tier experience: Classic (for onboardin
 | As a player, I want the game to end when all bricks are destroyed, so that I feel a sense of achievement. | Given there are no bricks remaining on the screen, when the system checks win conditions, then a victory message is displayed and the game stops. |
 
 ### 2.4 Reflection
-During the lecture, we learned how epics, user stories, and acceptance criteria help structure requirements in a clear and testable way.
-
-**Epics** allowed us to organise the system into high-level functional areas, such as core gameplay, power-ups, and game progression. Instead of thinking about isolated features, we first identified the main components of the game. This helped us understand the overall structure and ensured that no important functionality was overlooked.
-
-Writing **user stories** (“As a player, I want…, so that…”) encouraged us to focus on the player’s perspective rather than technical implementation. For example, instead of describing collision detection algorithms, we framed requirements around player goals, such as wanting realistic ball bouncing or dynamic gameplay through power-ups. This shift improved our understanding of user experience and game motivation. And through **Acceptance criteria** (“Given–When–Then”), we were able to define precise conditions which made requirements measurable and testable.
-
-**The paper prototyping** process further strengthened our understanding of the game’s context. By simulating interactions physically, we identified design issues early, such as pacing and difficulty balance. Overall, this structured requirement approach made our design more systematic, user-centred, and easier to evaluate.
+**Epics** taught us how to structure requirements, ensuring a comprehensive system overview. **User stories** shifted our focus from technical implementation to player goals and experience. To ensure measurability, we defined **Acceptance Criteria** using the "Given–When–Then" format. Finally, **paper prototyping** allowed us to identify design issues like pacing and balance early on. These approaches enabled us to plan a more systematic, user-centered design that was significantly easier to evaluate.
 
 ## 3. Design & System Architecture
 
@@ -159,7 +153,7 @@ Class diagram shows the structure of the game.
 
 
 ## 4. Implementation
-Core_Breaker is a multi-mode arcade game developed using the **p5.js** framework. The primary goal of this project was to create three distinct gameplay experiences—**Classic, Dark, and Duel**—while maintaining an organized codebase. By utilizing **Object-Oriented Programming (OOP)**, specifically inheritance and modular physics, we ensured that the game is both stable and easy to expand.
+Code_Breaker is a multi-mode arcade game developed using the **p5.js** framework. The primary goal of this project was to create three distinct gameplay experiences—**Classic, Dark, and Duel**—while maintaining an organized codebase. By utilizing **Object-Oriented Programming (OOP)**, specifically inheritance and modular physics, we ensured that the game is both stable and easy to expand.
 
 ### 4.1 Scene Management and Inheritance
 The application is built on a hierarchical scene management system. The `BaseScene` class acts as the core blueprint for every screen in the game. It manages all the shared visual elements, such as the status bar at the bottom, background watermarks, and universal overlays like the Pause, Win, and Game Over screens. Specialized classes like `Game` and `Duel` inherit from this base class. This allows them to focus on their specific rules and mechanics while automatically keeping the same look and feel as the rest of the game.
@@ -348,13 +342,7 @@ These findings informed two final improvements. In Level 3, we introduced cleare
 
 #### 5.3.1 Black-Box Testing
 
-Our black-box testing focused on verifying the game’s functional behaviour from the player’s perspective, without relying on the internal implementation details of the code. To test the game systematically, we applied Equivalence Partitioning to several key functional areas that were central to the player experience, namely **Paddle Control**, **Ball Physics**, and **Game State**. This allowed us to group similar inputs and behaviours into representative categories, reducing unnecessary duplication while still covering the most important gameplay scenarios.
-
-The test cases were selected based on the critical user journey, from entering the main menu and selecting a mode to interacting with the paddle, launching the ball, colliding with bricks and walls, losing lives, and reaching the end of a timed session. In particular, we tested transitions between the **Classic**, **Dark**, and **Duel** modes to confirm that the correct environment and interface were loaded, as well as core in-game events such as paddle movement, brick collision, boundary bounce, life loss, and timer expiry. Together, these tests helped confirm that the visible behaviour of the final game matched the intended design.
-
-We also considered constraints across categories, since some actions are only valid in specific states. For example, the ball can only be launched when it is attached to the paddle, returning to the main menu is only possible after the game has been paused, life-loss behaviour only occurs when the ball crosses the lower boundary during active gameplay, and timer expiry only triggers the game-over state when the session is running. In addition, boundary values were explicitly tested because they mark the transition points between valid and invalid behaviour. These included paddle positions at the left and right limits, the ball position at the lower boundary, and the timer value at zero. Testing these boundary conditions helped ensure that behaviour changed correctly when the game moved from one state to another.
-
-The representative black-box test cases and equivalence partitions used in this process are summarised below.
+In our black-box testing, we checked if the game worked correctly from a player's perspective. We used Equivalence Partitioning to group similar behaviors—like paddle movement and ball physics—to make our testing more efficient. We tested the main gameplay flow across Classic, Dark, and Duel modes to ensure everything loaded right. We also double-checked constraints (like only being able to launch the ball when it’s on the paddle) and boundary values (like the timer hitting zero or the paddle hitting the wall). This helped us confirm the game behaves exactly as we planned.
 
 <p align="center">
   <b>Table 4.</b> Black-box test cases and observed results.
@@ -474,50 +462,52 @@ The representative black-box test cases and equivalence partitions used in this 
 
 #### 5.3.2 White-Box Testing
 
-To complement our black-box testing, we used white-box testing to verify the game’s internal logic and state transitions. While black-box testing focused on visible gameplay behaviour, white-box testing examined whether the underlying implementation correctly updated internal objects, variables, and event conditions. In particular, we focused on the internal logic behind ball launch, life-loss handling, brick collision, timer expiry, and state changes between active play, pause, and game-over.
-
-Using debugging outputs and variable tracing, we verified several critical mechanisms. First, we checked that the ball began in an attached state before launch. Second, we confirmed that losing the ball decremented the internal life counter by exactly one. Third, we verified that brick collisions updated both the score variable and the brick’s active state correctly. Finally, we checked that timer expiry triggered the correct game-over branch. These checks helped us confirm that the internal logic matched the expected gameplay behaviour tested in Section 5.3.1.
-
-By directly inspecting variable changes during execution, we were also able to examine important program branches, including boundary handling, collision handling, and state transitions. This ensured that the game rules were enforced consistently at code level, rather than only appearing correct from the player’s perspective.
-
-Furthermore, we maintained a lightweight testing specification detailing key gameplay scenarios and their intended outcomes. After any major source code modification, we repeated these checks as part of regression testing to ensure that newly added features had not broken existing functionality. This was especially important when integrating the evaluation-informed improvements, such as clearer guidance, improved failure feedback, and the pause menu, so that these additions functioned as intended without disrupting the core mechanics.
+We used white-box testing to check the game’s internal logic, making sure variables and states updated correctly. While black-box testing focused on what the player sees, we looked at the code to verify things like the life counter decreasing by one, score updates after collisions, and the game-over trigger. We also used variable tracing to ensure state transitions, like pausing, worked perfectly at the code level. Finally, we performed regression testing after every major change to ensure new features—like the pause menu or better feedback—didn't break our core mechanics.
 
 ## 6. Process 
+### 6.1 Roles and Coordination
+Our team adopted a highly collaborative and iterative approach throughout the development of Code Breaker. While all five members contributed significantly to ideation, implementation, and testing, we defined lightweight roles to ensure smooth coordination: Jen (Scrum Master), Shanley (QA), Yijia (Visual Design), Yumeng (Game Design), and Yufei (Documentation). These roles were intentionally flexible rather than rigid; since every member also acted as a developer, major design and implementation decisions were always discussed collectively. This structure helped us maintain a balance between individual ownership of tasks and a shared responsibility for the project's overall success, ensuring that no one worked in isolation.
 
-Our team worked in a collaborative and iterative way throughout the development of *Code Breaker*. Although all five members contributed across ideation, implementation, testing, and report writing, we also defined lightweight roles to make coordination more efficient. Jen acted as Scrum Master, Shanley focused primarily on QA and testing, Yijia on visual design, Yumeng on game design, and Yufei on documentation. At the same time, these roles were not rigid. Since every member also contributed as a developer, major design and implementation decisions were still discussed collectively. This combination of role definition and shared responsibility helped us maintain both ownership and flexibility.
+### 6.2 Communication and Task Management
+Our communication strategy was designed to handle different levels of collaboration across multiple platforms. This multi-channel approach helped us reduce "noise" while keeping the team aligned:
 
-We began with idea exploration rather than immediate coding. In the requirements stage, we used brainstorming, user stories, acceptance criteria, and paper prototyping to shape the overall direction of the game. This was important because our goal was not simply to reproduce a standard brick breaker, but to develop three distinct modes—Classic, Dark, and Duel—while keeping the experience coherent. Paper prototyping was especially useful at this stage because it allowed us to discuss gameplay flow, pacing, and difficulty before implementation, which reduced the cost of early mistakes and helped us build a shared understanding of the design.
+- WhatsApp: This served as our primary channel for real-time, day-to-day coordination. It was essential for arranging impromptu syncs, asking quick technical questions, and providing immediate feedback on small UI tweaks without the need for formal meetings.
 
-<p align="center"><strong>Figure 1. Early paper prototype.</strong></p>
-
-Our communication methods also developed around the different kinds of collaboration we needed. WhatsApp was our main channel for lightweight day-to-day coordination, such as arranging meetings, asking short questions, sharing quick feedback, and reminding each other about deadlines. It was especially useful for keeping communication active between formal meetings without requiring a full discussion each time. In contrast, Microsoft Teams was more useful when we needed a focused discussion between meetings, especially if we had to resolve a design disagreement or make a fast implementation decision. In practice, this meant that WhatsApp supported quick and fragmented exchanges, while Teams was used for more deliberate conversations with a clearer agenda. We also met in person twice a week, and these face-to-face meetings were particularly valuable for discussing broader design questions, reviewing the latest build together, and deciding what each person would work on next. This combination of informal and focused communication helped reduce noise while still keeping the team aligned.
-
-<p align="center"><strong>Figure 2. WhatsApp group chat.</strong></p>
+<p align="center"><strong>Figure 1. WhatsApp group chat.</strong></p>
 
 <p align="center">
   <img width="650" alt="WhatsApp group chat" src="https://github.com/user-attachments/assets/c44803ce-cebf-41eb-928a-b7d5f44ec948" />
 </p>
 
-For task management and integration, we relied mainly on GitHub and the GitHub Project Kanban board. The board helped us track progress across design, programming, testing, and report writing, and it also made dependencies between tasks more visible. This became increasingly important once the three game modes were all being developed in parallel. GitHub was not just a place to store code: it was also where version control and regular integration happened. Even when features were developed separately, they still needed to be merged back into the main project, and this forced us to communicate frequently about overlaps, dependencies, and possible conflicts. In that sense, integration itself became part of our teamwork process, because combining code successfully depended on shared awareness rather than individual progress alone.
+- Microsoft Teams: We utilized Teams for more focused, deliberate discussions that required screen sharing or complex problem-solving. This was particularly useful for resolving design disagreements or making rapid decisions on implementation logic when we couldn't meet in person.
 
-<p align="center"><strong>Figure 3. GitHub Project Kanban board.</strong></p>
+- In-person Meetings: Held twice weekly, these face-to-face sessions were the most valuable for discussing high-level design questions, reviewing the latest builds together, and conducting internal playtests. These meetings allowed us to physically brainstorm and decide on the next sprint's priorities.
+
+For task management, we relied on a GitHub Project Kanban board to visualize our workflow. This made dependencies between tasks clear—for instance, ensuring that the visual assets were ready before the implementation of new game modes. GitHub was not just a repository; it was our central hub for version control and regular integration, forcing us to communicate frequently about potential code conflicts and overlaps.
+
+<p align="center"><strong>Figure 2. GitHub Project Kanban board.</strong></p>
 
 <p align="center">
   <img width="600" alt="GitHub Project Kanban board" src="https://github.com/user-attachments/assets/0e3c1854-48a4-414a-9778-b3c8221828d4" />
 </p>
 
-One thing that worked well was our willingness to revise priorities when evidence showed that our original focus was not working. Early in the project, we were very excited by the idea of making the game more distinctive and visually interesting, so many of our discussions focused on expanding mechanics and making each mode feel more “cool” or unique. This helped us create a more original concept, but it also meant that we initially paid less attention to onboarding, feedback, and user control. Through playtesting, the Think Aloud study, and the heuristic evaluation, we realised that first-time players were not mainly struggling with advanced mechanics, but with more basic issues: they were unsure how to start, confused about what happened when they lost the ball, and frustrated by the lack of pause or return-to-menu options.
+### 6.3 Requirement Engineering and Prototyping
+Before writing any code, we invested significant time in the requirements stage. We used brainstorming sessions to define our unique value proposition, translating these ideas into clear user stories and acceptance criteria. This structured approach ensured that every feature we planned was both purposeful and testable.
 
-What mattered here was not just that these problems existed, but how we responded to them together. We first shared the findings in WhatsApp, then discussed them more fully in our in-person meetings, and used short Teams calls to confirm what needed to be changed before the next development cycle. At that point, we deliberately shifted from a feature-driven workflow to a more evidence-driven one. Instead of continuing to add new mechanics immediately, we reprioritised usability work on the GitHub board. Visual design focused more on clarity and feedback, implementation focused on the instruction screen, heart icons, and the pause menu, and testing checked whether these changes actually improved first-time play. Later, we applied the same logic again in Dark Mode: rather than requiring players to catch a dropped Lightbulb item, we simplified the mechanic so that breaking a purple brick automatically triggered full-map illumination. This was a turning point in our teamwork because it taught us that good collaboration is not just about everyone contributing a lot of work, but about being willing to change direction together when feedback shows that the current priorities are wrong.
+Paper prototyping played a crucial role at this stage. By simulating interactions physically, we could discuss gameplay flow, pacing, and difficulty balance before a single line of code was written. This physical simulation allowed us to spot design flaws early, such as realizing that certain power-up mechanics were too distracting, which saved us considerable development time and helped build a shared mental model of the game.
 
-A second challenge emerged as the project became more technically complex. In the early stages, we sometimes prioritised getting features to work quickly rather than thinking carefully about long-term code organisation. This was understandable at the time because it helped us build momentum and see visible progress. However, once Classic, Dark, and Duel all became more developed, some of our early implementation choices started to affect collaboration. In particular, collision-related logic had initially been handled too close to the scene level, which made scene files increasingly crowded and made it less clear where new logic should be placed. As a result, when one person modified a scene for one mode, others had to spend more time checking whether the same change might unintentionally affect another mode.
+### 6.4 Pivot: From Feature-Driven to Evidence-Driven
+A major turning point in our teamwork occurred when we had to reconcile our creative vision with actual user data. Initially, we were driven by the desire to add "cool" and complex mechanics to make each mode unique. However, early playtesting and our Think Aloud study revealed a hard truth: first-time players were struggling with basic usability, such as understanding how to launch the ball or how to pause the game.
 
-We addressed this as a team rather than leaving each person to work around the issue individually. In meetings, we reviewed the structure together and discussed which responsibilities should belong to scenes and which should belong to game objects. From this, we agreed to reorganise collision handling into a more modular ball-centric model. This refactor was not only intended to fix the immediate collision issue, but also to improve maintainability by creating a clearer structure, so that future changes to Classic, Dark, and Duel could be developed in parallel with less interference. It also made later testing easier, because the source of a bug was more likely to be isolated within a clearer part of the codebase. Although this rework was slightly frustrating, because it meant revisiting code that had once seemed finished, it became an important lesson in software teamwork: dividing tasks effectively is only part of collaboration; the team also needs a shared architecture that allows multiple people to build on the same project without constantly getting in each other’s way.
+What mattered most was how we responded to this as a team. After discussing these findings via WhatsApp and in-person meetings, we collectively agreed to shift from a feature-driven to an evidence-driven workflow. We deliberately paused the development of new mechanics to focus on usability improvements. This involved reprioritizing the Kanban board to include an instruction screen, heart icons for life tracking, and clearer failure feedback. This experience taught us that successful collaboration means being willing to set aside personal preferences to meet actual user needs.
 
-Overall, our teamwork improved as the project progressed. At first, we were more idea-driven and sometimes too focused on visible features. Later, we became more reflective about user experience, communication structure, integration, and maintainability. The combination of defined roles, twice-weekly in-person meetings, quick WhatsApp communication, focused Teams discussions, and GitHub-based task tracking helped us work more effectively as a group. Most importantly, this project taught us that successful teamwork is not about getting everything right from the start, but about recognising what is not working, discussing it honestly, and adapting the way the team works in response.
+### 6.5 Technical Collaboration and Refactoring
+As the project’s technical complexity increased, we encountered challenges with code maintainability. In the early stages, our focus on rapid prototyping led to collision logic being handled too close to the scene level, which made the codebase cluttered and difficult for multiple people to work on simultaneously.
 
-- 15% ~750 words
-- Teamwork. How did you work together, what tools and methods did you use? Did you define team roles? Reflection on how you worked together. Be honest, we want to hear about what didn't work as well as what did work, and importantly how your team adapted throughout the project.
+Rather than leaving this as a problem for the lead developers, we addressed it as a team. During our weekly meetings, we reviewed the architecture and decided to refactor the logic into a modular, ball-centric model. Although it was frustrating to revisit "finished" code, this collective decision significantly improved our productivity in the final weeks. It allowed the parallel development of Classic, Dark, and Duel modes with minimal interference, demonstrating that a shared understanding of architecture is vital for technical teamwork.
+
+### 6.6 Reflection and Growth
+Overall, our teamwork matured alongside the project. We moved from being an idea-focused group to a more reflective, user-centered team. By combining structured roles with open communication and transparent task tracking, we turned technical hurdles and negative feedback into opportunities for improvement. The project taught us that great teamwork isn't about avoiding mistakes, but about the ability to discuss them honestly and adapt the team’s direction in response to what is learned.
 
 ## 7. Sustainability, Ethics, and Accessibility
 - 10% ~750 words
