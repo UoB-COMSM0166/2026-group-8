@@ -31,6 +31,10 @@ class Menu {
         drawingContext.shadowOffsetY = -5;
         drawingContext.shadowBlur = 10;
         drawingContext.shadowColor = 'black';
+        pop();
+
+        drawingContext.shadowBlur = 15;
+        drawingContext.shadowColor = color(255, 255, 255, 200);
 
         fill(255);
         textSize(20);
