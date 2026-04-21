@@ -514,8 +514,28 @@ Overall, our teamwork matured alongside the project. We moved from being an idea
 - Evidence of the impact of your game across the environment and two of the other areas - Environmental + 2 of the following: Social, Economic, Technical, Individual 
 
 ## 8. Conclusion
-- 10% ~500 words
-- Reflect on the project as a whole. Lessons learnt. Reflect on challenges. Future work, describe both immediate next steps for your current game and also what you would potentially do if you had chance to develop a sequel.
+### 8.1 Key Takeaways
+The journey of developing Code_Breaker has been a transformative experience, moving from simple sketches to a fully functional, multi-mode software product. A central lesson we learned was that a successful game is not just about a single "cool" feature, but about the seamless synergy between its components. By adopting an Object-Oriented approach, we saw first-hand how a clean structure could handle the complexity of three different game modes while keeping the user interface consistent and professional, proving that a well-organized architecture is the backbone of any sustainable software project.
+
+### 8.2 Problem Solving and Real-world Deployment
+Our team’s first challenge was managing diverse UI needs across modes without creating duplicate code. By implementing “polymorphism” principle in our `BaseScene` class, we learned to build extensible systems that dynamically adapt to different mode’s specific requirements.
+
+The second challenge involved reallocating collision detection responsibilities. Moving away from scene-level logic to a Ball-Centric "Active Agent" structure demonstrated the practical necessity of the ‘single responsibility’ principle. This object-driven approach ensured our physics remained encapsulated and stable.
+
+Finally, managing our collaboration through Git version control taught us to coordinate complex code updates across shared branches. Navigating `merge` conflicts while integrating different game modes forced us to adopt a disciplined, synchronized workflow. This experience transformed our individual scripting into a professional, collaborative engineering process.
+
+### 8.3 Future Work: Next Steps
+If we were to continue this version, we want to ensure players feel challenged but never overwhelmed:
+- **Intelligent Difficulty Adjustments:** We plan to refine our speed logic so the game gets faster as the player gets better, keeping the excitement alive without making it impossible.
+-	**Enhanced Visual Effects:** We aim to add more visual impact, such as particle explosions when bricks break, using the same separate layer technique we used for the Dark Mode mask.
+-	**Smart Audio Feedback:** We would like to add unique sounds for different items to provide clearer non-visual clues to the player.
+
+### 8.4 Future Work: The Sequel
+Looking ahead, a sequel to Code_Breaker would move into the social and narrative space:
+-	**Online Competition:** We would expand our local "Duel Mode" into a full online experience with matchmaking and leaderboards to build a player community.
+-	**Narrative Campaign:** We could transform our three existing modes into a story-driven adventure, where players "break codes" to uncover a digital espionage plot.
+
+In conclusion, Code_Breaker represents our growth as software engineers, and we have built a game that is not only fun to play but also a solid foundation for future innovation and development.
 
 ## 9. Contribution Statement
 Every team member was actively involved across all project phases, contributing to the initial design ideation, core architectural development, and the final production of documentation and videos.
