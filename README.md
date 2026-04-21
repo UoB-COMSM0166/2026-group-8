@@ -62,7 +62,7 @@ Project Progress: [Here](https://github.com/orgs/UoB-COMSM0166/projects/161/view
 
 The game follows the core rules of a breakout game: the player controls a paddle to launch a ball and destroy bricks. It is a classic arcade experience that emphasizes timing and coordination. Following the module's requirement to innovate upon a traditional archetype, we have designed three distinct game modes to offer a diverse and engaging experience.
 
-<p align="center"><b>Table 1.</b>Game Modes</p>
+<p align="center"><b>Table 1.</b> Game Modes</p>
 
 | Mode | How To Play |
 | :---: | :---: |
@@ -83,7 +83,7 @@ To move beyond a simple clone, our team held a brainstorming session focused on 
   2. **The Competitive Edge:** We realized most brick breakers are solo experiences so we decided to develop the "Duel Mode" to introduce a PvP (Player vs. Player) element, turning a casual game into a strategic battle.
 
 #### Phase 3: The Decision-Making Process (The "Core")
-<p align="center"><b>Figure 1.</b>Core Development Pillar</p>
+<p align="center"><b>Figure 1.</b> Core Development Pillar</p>
 
 <p align="center">
   <img width="80%" alt="core development pillar" src="https://github.com/user-attachments/assets/96286d0c-b109-4b3b-b285-4e67314814da" />
@@ -112,7 +112,7 @@ We ultimately decided to develop a three-tier experience: Classic (for onboardin
 -	Course Instructor (Teachers/ TAs)
 -	Future Platform Providers
 
-<p align="center"><b>Figure 1.</b>Stakeholders</p>
+<p align="center"><b>Figure 1.</b> Stakeholders</p>
 
 <p align="center">
   <img width="60%" alt="stakeholder onion diagram" src="https://github.com/user-attachments/assets/98132e1d-1d7a-48d1-82bd-ec49968a7d34" />
@@ -121,7 +121,7 @@ We ultimately decided to develop a three-tier experience: Classic (for onboardin
 ### 2.3 Epics - User Stories and Acceptance Criteria
 
 #### Epic 1: Core Gameplay System
-<p align="center"><b>Table 1.</b>Epic 1: Core Gameplay System</p>
+<p align="center"><b>Table 1.</b> Epic 1: Core Gameplay System</p>
 
 | User Story | Acceptance Criteria |
 | :--- | :--- |
@@ -130,7 +130,7 @@ We ultimately decided to develop a three-tier experience: Classic (for onboardin
 | As a player, I want bricks to disappear when hit, so that I can see my progress. | Given a brick is hit by the ball, when the collision is detected, then the brick is removed from the screen and the score increases. |
 
 #### Epic 2: Power-up System
-<p align="center"><b>Table 2.</b>Epic 2: Power-up System</p>
+<p align="center"><b>Table 2.</b> Epic 2: Power-up System</p>
 
 | User Story | Acceptance Criteria |
 | :--- | :--- |
@@ -138,7 +138,7 @@ We ultimately decided to develop a three-tier experience: Classic (for onboardin
 | As a player, I want to catch falling power-ups with the paddle, so that I can activate special effects. | Given a power-up is falling, when the paddle collides with the power-up, then the corresponding effect is activated. |
 
 #### Epic 3: Game Progression and End Conditions
-<p align="center"><b>Table 3.</b>Epic 3: Game Progression and End Conditions</p>
+<p align="center"><b>Table 3.</b> Epic 3: Game Progression and End Conditions</p>
 
 | User Story | Acceptance Criteria |
 | :--- | :--- |
@@ -168,7 +168,7 @@ Code_Breaker is a multi-mode arcade game developed using the **p5.js** framework
 The application is built on a hierarchical scene management system. The `BaseScene` class acts as the core blueprint for every screen in the game. It manages all the shared visual elements, such as the status bar at the bottom, background watermarks, and universal overlays like the Pause, Win, and Game Over screens. Specialized classes like `Game` and `Duel` inherit from this base class. This allows them to focus on their specific rules and mechanics while automatically keeping the same look and feel as the rest of the game.
 
 ### 4.2 Core Entities
-<p align="center"><b>Figure 1.</b>Core Entities in our game</p>
+<p align="center"><b>Figure 1.</b> Core Entities in our game</p>
 
 <p align="center">
   <img width="80%" alt="core entities-1" src="https://github.com/user-attachments/assets/894db6d3-f279-4c01-81ed-471ed10b703b" />
@@ -225,7 +225,7 @@ Three main issues emerged. First, several participants were unsure how to play a
 
 Overall, the Think Aloud study showed that the prototype lacked sufficient guidance, feedback, and user control for a smooth first-time experience. As shown in Figure 1, the Think Aloud data were grouped into three recurring themes: player guidance, failure feedback, and user control.
 
-<p align="center"><b>Figure 1.</b>Thematic map of recurring themes identified in the Think Aloud study.</p>
+<p align="center"><b>Figure 1.</b> Thematic map of recurring themes identified in the Think Aloud study.</p>
 
 <p align="center">
   <img width="850" alt="Think Aloud thematic map" src="https://github.com/user-attachments/assets/c6e19aee-d04f-4c7d-9887-c66e575a02d8" />
@@ -237,7 +237,7 @@ To complement the Think Aloud study, we conducted a heuristic evaluation based o
 
 To address these issues, we added an instruction screen, heart icons showing remaining lives, and a pause function with a back-to-menu option and clearer mode-selection buttons. The severity ratings are summarised in Table 1.
 
-<p align="center"><b>Table 1.</b>Severity ratings for key usability issues identified in the heuristic evaluation.</p>
+<p align="center"><b>Table 1.</b> Severity ratings for key usability issues identified in the heuristic evaluation.</p>
 
 <table align="center">
   <tr>
@@ -284,7 +284,7 @@ We recruited 10 participants (N = 10) via convenience sampling from the universi
 
 Table 2 presents the raw SUS and NASA TLX scores, and Table 3 summarises the mean scores across the three levels. Higher SUS scores indicate better usability, whereas higher NASA TLX scores indicate greater perceived workload.
 
-<p align="center"><b>Table 2.</b>Raw data from 10 participants.</p>
+<p align="center"><b>Table 2.</b> Raw data from 10 participants.</p>
 
 <table align="center">
   <tr>
@@ -308,7 +308,7 @@ Table 2 presents the raw SUS and NASA TLX scores, and Table 3 summarises the mea
   <tr><td align="center">P10</td><td align="center">75</td><td align="center">70</td><td align="center">60</td><td align="center">30</td><td align="center">50</td><td align="center">65</td></tr>
 </table>
 
-<p align="center"><b>Table 3.</b>Mean SUS and NASA TLX scores across the three levels.</p>
+<p align="center"><b>Table 3.</b> Mean SUS and NASA TLX scores across the three levels.</p>
 
 <table align="center">
   <tr>
@@ -331,7 +331,7 @@ Table 2 presents the raw SUS and NASA TLX scores, and Table 3 summarises the mea
   </tr>
 </table>
 
-<p align="center"><b>Figure 2.</b>Comparison of mean SUS and NASA TLX scores across the three evaluated levels.</p>
+<p align="center"><b>Figure 2.</b> Comparison of mean SUS and NASA TLX scores across the three evaluated levels.</p>
 
 <p align="center">
   <img width="850" alt="Comparison of mean SUS and NASA TLX scores" src="https://github.com/user-attachments/assets/9818b61b-c2a3-40c1-90f3-7ec391cb2463" />
@@ -349,7 +349,7 @@ These findings informed two final improvements. In Level 3, we introduced cleare
 
 In our black-box testing, we checked if the game worked correctly from a player's perspective. We used Equivalence Partitioning to group similar behaviors—like paddle movement and ball physics—to make our testing more efficient. We tested the main gameplay flow across Classic, Dark, and Duel modes to ensure everything loaded right. We also double-checked constraints (like only being able to launch the ball when it’s on the paddle) and boundary values (like the timer hitting zero or the paddle hitting the wall). This helped us confirm the game behaves exactly as we planned.
 
-<p align="center"><b>Table 4.</b>Black-box test cases and observed results.</p>
+<p align="center"><b>Table 4.</b> Black-box test cases and observed results.</p>
 
 <table align="center">
   <tr>
@@ -408,7 +408,7 @@ In our black-box testing, we checked if the game worked correctly from a player'
   </tr>
 </table>
 
-<p align="center"><b>Table 5.</b>Equivalence partitions used for black-box testing.</p>
+<p align="center"><b>Table 5.</b> Equivalence partitions used for black-box testing.</p>
 
 <table align="center">
   <tr>
@@ -474,7 +474,7 @@ Our communication strategy was designed to handle different levels of collaborat
 
 - WhatsApp: This served as our primary channel for real-time, day-to-day coordination. It was essential for arranging impromptu syncs, asking quick technical questions, and providing immediate feedback on small UI tweaks without the need for formal meetings.
 
-<p align="center"><b>Figure 1.</b>WhatsApp group chat.</p>
+<p align="center"><b>Figure 1.</b> WhatsApp group chat.</p>
 
 <p align="center">
   <img width="650" alt="WhatsApp group chat" src="https://github.com/user-attachments/assets/c44803ce-cebf-41eb-928a-b7d5f44ec948" />
@@ -486,7 +486,7 @@ Our communication strategy was designed to handle different levels of collaborat
 
 For task management, we relied on a GitHub Project Kanban board to visualize our workflow. This made dependencies between tasks clear—for instance, ensuring that the visual assets were ready before the implementation of new game modes. GitHub was not just a repository; it was our central hub for version control and regular integration, forcing us to communicate frequently about potential code conflicts and overlaps.
 
-<p align="center"><b>Figure 2.</b>GitHub Project Kanban board.</p>
+<p align="center"><b>Figure 2.</b> GitHub Project Kanban board.</p>
 
 <p align="center">
   <img width="600" alt="GitHub Project Kanban board" src="https://github.com/user-attachments/assets/0e3c1854-48a4-414a-9778-b3c8221828d4" />
