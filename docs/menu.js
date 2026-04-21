@@ -32,17 +32,6 @@ class Menu {
         drawingContext.shadowBlur = 10;
         drawingContext.shadowColor = 'black';
 
-        textSize(40);
-        fill(255);
-        stroke(0);
-        strokeWeight(4);
-        textAlign(CENTER, CENTER);
-        text('CODE_BREAKER', this.center, 250);
-        pop();
-
-        drawingContext.shadowBlur = 15;
-        drawingContext.shadowColor = color(255, 255, 255, 200);
-
         fill(255);
         textSize(20);
         textAlign(CENTER, CENTER);
