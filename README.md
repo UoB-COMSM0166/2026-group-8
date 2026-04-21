@@ -531,13 +531,3 @@ Every team member was actively involved across all project phases, contributing 
 ## 10. AI Statement
 - ~250 words
 - Summarise your team’s use of AI so we know where to give you credit for work done.
-
-
-## Additional Marks
-You can delete this section in your own repo, it's just here for information. in addition to the marks above, we will be marking you on the following two points:
-
-- **Quality** of report writing, presentation, use of figures and visual material (5% of report grade) 
-  - Please write in a clear concise manner suitable for an interested layperson. Write as if this repo was publicly available.
-- **Documentation** of code (5% of report grade)
-  - Organise your code so that it could easily be picked up by another team in the future and developed further.
-  - Is your repo clearly organised? Is code well commented throughout?
