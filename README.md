@@ -5,7 +5,7 @@
 <table>
   <tr>
     <td style="border: none;">
-      <img width="330" height="480" alt="image" src="https://github.com/user-attachments/assets/b93e4f54-6cda-4bbb-9f1a-1cb4279b489b" />
+      <img width="330" height="480" alt="image" src="https://github.com/user-attachments/assets/4e3b6d85-9342-48c9-841c-c47025fed1bd" />
     </td>
     <td style="border: none;">
       <img width="330" height="480" alt="gameplay" src="https://github.com/user-attachments/assets/bec1eb14-bc1a-4957-9237-0202e2ef6f85" />
@@ -26,6 +26,7 @@
 
 ## 🤝 Our Team
 <img width="450" height="300" alt="image" src="https://github.com/user-attachments/assets/e9fe9ff7-deb9-4966-bee2-bffa69ac1743" />
+<br/>
 
 | Name  | GitHub ID | Email | Role |
 | --- | --- | --- | --- |
