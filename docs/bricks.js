@@ -76,13 +76,52 @@ class Brick {
             strokeWeight(2); 
             rect(this.x, this.y, this.w, this.h, 3); 
 
-            // Draw King Brick Content
+            // Special Effects for King (Core) Brick
             if (this.isKing) {
+                // Draw scrolling text
+                drawingContext.save(); 
+                drawingContext.beginPath();
+                drawingContext.rect(this.x, this.y, this.w, this.h); // Clip area to keep text inside
+                drawingContext.clip(); 
+
                 noStroke(); 
-                textAlign(CENTER, CENTER); 
-                textSize(16); 
-                drawingContext.shadowBlur = 0; // Turn off glow for emoji to avoid blur
-                text('👑', this.x + this.w / 2, this.y + this.h / 2 - 2);
+                fill(255, 215, 0, 120); // Semi-transparent yellow
+                textSize(12);
+                textStyle(ITALIC); 
+                textAlign(LEFT, CENTER);
+                
+                // Calculate scrolling text position
+                let txtW = 40; 
+                let speed = 1.2; 
+                let scrollX = (frameCount * speed) % (this.w + txtW + 15);
+                let currentX = this.x + this.w - scrollX + 10;
+                
+                text('CORE', currentX, this.y + this.h / 2 - 1);
+                
+                drawingContext.restore(); // Stop clipping
+
+                // Draw warning triangle
+                let cx = this.x + this.w / 2;
+                let cy = this.y + this.h / 2;
+
+                drawingContext.shadowBlur = 15;
+                drawingContext.shadowColor = color(255, 215, 0);
+                
+                // Draw triangle outline with dark background
+                stroke(255, 215, 0);
+                strokeWeight(1.5);
+                fill(20, 20, 0, 220); 
+                triangle(cx, cy - 6, cx - 7, cy + 5, cx + 7, cy + 5);
+                
+                // Draw exclamation mark inside triangle
+                noStroke();
+                fill(255, 215, 0);
+                rectMode(CENTER);
+                rect(cx, cy - 1, 1.5, 3.5); // Top line
+                rect(cx, cy + 3.5, 1.5, 1.5); // Bottom dot
+                rectMode(CORNER);
+                
+                textStyle(NORMAL); // Reset text style
             }
 
             // Cyber Health Bar
