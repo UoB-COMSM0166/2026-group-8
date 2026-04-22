@@ -1,5 +1,4 @@
 // Helper function: Find current active scene (gamePage or duelPage)
-// 'duelPage' is a temporary name; it can be changed later
 function getActiveScene() {
     if (typeof currentMode !== 'undefined') {
         if (currentMode === 'game' && typeof gamePage !== 'undefined') return gamePage;
@@ -9,11 +8,11 @@ function getActiveScene() {
 }
 
 class Brick {
-    // Colors for different brick types 
+    // Colors for different brick types (RGB format)
     static COLOR_RED = [255, 105, 97];
     static COLOR_GREEN = [119, 221, 119];
-    static COLOR_BLUE = [135, 206, 235];
-    static COLOR_PURPLE = [160, 80, 220];
+    static COLOR_BLUE = [0, 191, 255];   // Brighter neon blue
+    static COLOR_PURPLE = [180, 80, 255]; // Tweaked for neon glow
 
     // Item lists for Classic mode
     static BUFF_EFFECTS = ['ball_large', 'ball_slow', 'paddle_long', 'ball_multi'];
@@ -55,24 +54,48 @@ class Brick {
     display() {
         if (!this._active) return;
         push();
-        if (this.isKing) { // Draw King brick with crown 
-            if (this.flash > 0) { fill(255); stroke(255); rect(this.x, this.y, this.w, this.h, 8); }
-            else {
-                fill(80, 0, 0); stroke(255, 215, 0); strokeWeight(2); rectMode(CORNER);
-                rect(this.x, this.y, this.w, this.h, 8);
-                noStroke(); textAlign(CENTER, CENTER); textSize(16); text('👑', this.x + this.w / 2, this.y + this.h / 2);
+
+        // Get the glow color (Yellow for King, basic color for others)
+        let glowColor = this.isKing ? color(255, 215, 0) : color(this.color[0], this.color[1], this.color[2]);
+
+        if (this.flash > 0) {
+            // Flash effect when hit by the ball
+            drawingContext.shadowBlur = 25;
+            drawingContext.shadowColor = color(255);
+            fill(255);
+            noStroke();
+            rect(this.x, this.y, this.w, this.h, 4);
+        } else {
+            // Draw Neon Border
+            drawingContext.shadowBlur = 15;
+            drawingContext.shadowColor = glowColor;
+
+            // Semi-transparent fill with bright stroke
+            fill(red(glowColor), green(glowColor), blue(glowColor), 40); 
+            stroke(glowColor);
+            strokeWeight(2); 
+            rect(this.x, this.y, this.w, this.h, 3); 
+
+            // Draw King Brick Content
+            if (this.isKing) {
+                noStroke(); 
+                textAlign(CENTER, CENTER); 
+                textSize(16); 
+                drawingContext.shadowBlur = 0; // Turn off glow for emoji to avoid blur
+                text('👑', this.x + this.w / 2, this.y + this.h / 2 - 2);
             }
-            if (this.hp < this.mhp) { // King Health Bar 
-                noStroke(); fill(60); rect(this.x + 2, this.y + this.h - 4, this.w - 4, 3);
-                fill(255, 50, 50); rect(this.x + 2, this.y + this.h - 4, (this.w - 4) * (this.hp / this.mhp), 3);
-            }
-        } else { // Normal brick
-            if (this.flash > 0) { fill(255); stroke(255); }
-            else { fill(this.color[0], this.color[1], this.color[2]); stroke(min(this.color[0] + 60, 255), min(this.color[1] + 60, 255), min(this.color[2] + 60, 255)); }
-            strokeWeight(1); rectMode(CORNER); rect(this.x, this.y, this.w, this.h, 4);
-            if (this.mhp >= 2 && this.hp < this.mhp) { // Tough brick HP bar 
-                noStroke(); fill(60); rect(this.x + 2, this.y + this.h - 4, this.w - 4, 3);
-                fill(180, 80, 255); rect(this.x + 2, this.y + this.h - 4, (this.w - 4) * (this.hp / this.mhp), 3);
+
+            // Cyber Health Bar
+            drawingContext.shadowBlur = 0; // Turn off glow for sharp health bar
+            if ((this.isKing || this.mhp >= 2) && this.hp < this.mhp) {
+                let barY = this.y + this.h - 3;
+                noStroke(); 
+                fill(60, 60, 60, 200); // Empty bar
+                rect(this.x + 2, barY, this.w - 4, 2); 
+                
+                let hpColor = this.isKing ? color(255, 50, 50) : color(180, 80, 255);
+                fill(hpColor); // Current health
+                rect(this.x + 2, barY, (this.w - 4) * (this.hp / this.mhp), 2);
             }
         }
         pop();
@@ -212,11 +235,10 @@ class Bricks {
         // Garbage Collection: Remove dead bricks from the array
         this.items = this.items.filter(b => b.active || b === this.dummyBrick);
 
-        // Update falling items movement and catch detection
+        // Update falling items movement
         for (let i = this.drops.length - 1; i >= 0; i--) {
             let d = this.drops[i]; d.y += d.speed;
             if (d.y > 650) { this.drops.splice(i, 1); continue; }
-            // Collision check: Paddle catches the Light item
         }
         this.updateKingSelection(scene);
     }
@@ -234,6 +256,7 @@ class Bricks {
             }
             this.kingSelectedIndex = (this.kingSelectedIndex + this.items.length) % this.items.length;
             let targetBrick = this.items[this.kingSelectedIndex];
+            
             // Press confirm key to set King 
             if (targetBrick && targetBrick.active && keyIsDown(confirmKey)) {
                 targetBrick.isKing = true; targetBrick.hp = 3; targetBrick.mhp = 3; this.hasKing = true;
@@ -243,6 +266,7 @@ class Bricks {
 
     display() {
         if (!this.isInitialized) this.initGame();
+        
         // 1. Draw active bricks
         push(); for (let b of this.items) { if (b !== this.dummyBrick && b.active) b.display(); } pop();
 
@@ -255,12 +279,15 @@ class Bricks {
             let targetBrick = this.items[this.kingSelectedIndex];
             if (targetBrick && targetBrick.active) {
                 push();
+                drawingContext.shadowBlur = 15;
+                drawingContext.shadowColor = color(255, 255, 0);
                 stroke(255, 255, 0);
-                strokeWeight(3);
+                strokeWeight(2);
                 noFill();
                 // Create a "breathing" animation effect using sin()
                 let glow = 2 + sin(frameCount * 0.2) * 2;
-                rect(targetBrick.x - glow, targetBrick.y - glow, targetBrick.w + glow * 2, targetBrick.h + glow * 2, 6); pop();
+                rect(targetBrick.x - glow, targetBrick.y - glow, targetBrick.w + glow * 2, targetBrick.h + glow * 2, 4); 
+                pop();
             }
         }
     }
@@ -268,16 +295,36 @@ class Bricks {
     // Draw Drops: Uses a clip mask to ensure items stay inside the play area.
     displayDrops() {
         if (this.drops.length === 0) return;
-        push(); drawingContext.save(); drawingContext.beginPath(); drawingContext.rect(25, 25, 450, 600); drawingContext.clip();
+        push(); 
+        drawingContext.save(); 
+        drawingContext.beginPath(); 
+        drawingContext.rect(25, 25, 450, 600); 
+        drawingContext.clip();
+        
         rectMode(CENTER); textAlign(CENTER, CENTER); textStyle(BOLD);
         // Short text mapping for items
         const iconMap = { 'ball_large': 'B+', 'ball_slow': 'S-', 'paddle_long': 'P+', 'ball_multi': 'x3', 'ball_small': 'B-', 'ball_fast': 'S+', 'paddle_short': 'P-', 'paddle_reverse': 'Rev' };
+        
         for (let d of this.drops) {
-            if (d.type === 'debuff') fill(255, 105, 97); else fill(119, 221, 119);
-            rect(d.x, d.y, d.w, d.h, 6); noStroke(); fill(255); textSize(14);
+            // Set neon colors based on buff/debuff
+            let dropColor = d.type === 'debuff' ? color(255, 105, 97) : color(0, 255, 140);
+            
+            drawingContext.shadowBlur = 15;
+            drawingContext.shadowColor = dropColor;
+            stroke(dropColor);
+            strokeWeight(1.5);
+            fill(red(dropColor), green(dropColor), blue(dropColor), 60);
+            
+            rect(d.x, d.y, d.w, d.h, 4); 
+            
+            drawingContext.shadowBlur = 0; // Turn off glow for text to keep it readable
+            noStroke(); 
+            fill(255); 
+            textSize(14);
             text(d.type === 'light' ? '💡' : (iconMap[d.effect] || ''), d.x, d.y);
         }
-        drawingContext.restore(); pop();
+        drawingContext.restore(); 
+        pop();
     }
 
     // Scroll Logic: Moves current bricks down and generates new rows at the top.
