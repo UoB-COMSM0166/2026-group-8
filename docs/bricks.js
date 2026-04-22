@@ -274,11 +274,14 @@ class Bricks {
         // Garbage Collection: Remove dead bricks from the array
         this.items = this.items.filter(b => b.active || b === this.dummyBrick);
 
-        // Update falling items movement
-        for (let i = this.drops.length - 1; i >= 0; i--) {
-            let d = this.drops[i]; d.y += d.speed;
-            if (d.y > 650) { this.drops.splice(i, 1); continue; }
+        // Update falling items movement only when playing
+        if (scene && scene.manage && scene.manage.state === 'PLAYING') {
+            for (let i = this.drops.length - 1; i >= 0; i--) {
+                let d = this.drops[i]; d.y += d.speed;
+                if (d.y > 650) { this.drops.splice(i, 1); continue; }
+            }
         }
+        
         this.updateKingSelection(scene);
     }
 
