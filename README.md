@@ -531,6 +531,34 @@ Rather than leaving this as a problem for the lead developers, we addressed it a
 Overall, our teamwork matured alongside the project. We moved from being an idea-focused group to a more reflective, user-centered team. By combining structured roles with open communication and transparent task tracking, we turned technical hurdles and negative feedback into opportunities for improvement. The project taught us that great teamwork isn't about avoiding mistakes, but about the ability to discuss them honestly and adapt the team’s direction in response to what is learned.
 
 ## 7. Sustainability, Ethics, and Accessibility
+
+To analyse the sustainability of *CODE BREAKER*, we use the Sustainability Awareness Framework (SusAF). For our game, the three most relevant dimensions are **environmental, social, and technical sustainability**. We focus on **energy** and **material and resource use** in the environmental dimension, **inclusiveness and diversity** and **sense of community** in the social dimension, and **maintainability** in the technical dimension.
+
+### 7.1 Environmental sustainability
+
+For environmental sustainability, the most relevant topics are **energy** and **material and resource use**. Since *CODE BREAKER* is a browser-based p5.js game, most processing happens locally in the browser through the p5.js `draw()` loop. Its main resource use therefore comes from client-side rendering, gameplay updates, and collision checks, rather than continuous server-side computation during play.
+
+The game also uses a relatively simple 2D presentation and does not require a complex online backend for its core gameplay. This helps keep the project lightweight and avoids unnecessary technical complexity. However, as a real-time game, repeated updates cannot be avoided completely. One limitation is that we did not directly measure performance or energy use on different devices. In future work, we could record simple measures such as frame rate and loading time as **indicators of computational efficiency**.
+
+### 7.2 Social sustainability
+
+For social sustainability, the most relevant topics are **inclusiveness and diversity** and **sense of community**. Inclusiveness is mainly about whether different players, especially first-time players, can understand the game without too much confusion. Our qualitative evaluation, including a **Think Aloud study** and **heuristic evaluation**, revealed that some players were unsure about basic actions such as launching the ball, pausing the game, and understanding failure or respawn states. In response, we added an instruction screen, heart icons for remaining lives, and clearer pause and menu functions. These changes lowered the entry barrier for new players.
+
+Diversity is reflected in the three game modes. Classic Mode is easier for onboarding, Dark Mode gives a more challenging experience based on memory and limited vision, and Duel Mode offers local two-player competition. This means the game supports players with different preferences and skill levels.
+
+Duel Mode also supports **sense of community**. Because it is a local multiplayer mode, two players can play together in the same place. This encourages face-to-face interaction, shared excitement, and friendly competition, making the game a shared activity rather than only an individual experience.
+
+### 7.3 Technical sustainability
+
+For technical sustainability, the most relevant topic is **maintainability**. *CODE BREAKER* was designed as a multi-mode game, but the three modes are built on a clear shared structure rather than three completely separate systems. `BaseScene` contains shared UI behaviour such as the HUD, instruction screens, pause overlays, and end screens, while `Game` and `Duel` build on this base for different gameplay needs. This makes the code easier to organise and maintain.
+
+Another example is the collision design. This was one of the main technical challenges in our implementation. At first, collision handling was too close to the scene level, which made the code harder to manage. To solve this, we moved to a **Ball-Centric Detection Model**, where the `Ball` class became responsible for checking collisions. This improved cohesion in the codebase and makes future changes easier without rewriting large parts of the system.
+
+### 7.4 Conclusion
+
+Overall, *CODE BREAKER* addresses sustainability in three ways. Environmentally, it keeps its main processing in the browser and avoids unnecessary online infrastructure during play. Socially, it improves inclusiveness through clearer instructions and feedback, supports diversity through different game modes, and builds a sense of community through local multiplayer. Technically, it uses a maintainable structure that can continue improving over time.
+
+
 - 10% ~750 words
 - Evidence of the impact of your game across the environment and two of the other areas - Environmental + 2 of the following: Social, Economic, Technical, Individual 
 
