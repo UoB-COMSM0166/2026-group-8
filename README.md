@@ -570,12 +570,11 @@ Every team member was actively involved across all project phases, contributing 
 | Yufei Liu | 20% |
 
 ## 10. AI Statement
-Throughout the development of CODE BREAKER, our team made selective use of AI tools to support specific areas of the project while ensuring the core design and programming decisions remained our own.
+Throughout the development of Code_Breaker, our team used AI tools in a supportive role. We wanted to make sure that the core logic and all the major programming decisions were entirely our own work, so we only turned to AI when we needed help with specific technical concepts.
 
-The most significant contribution of AI was in establishing the physics model for the game. Specifically, we consulted AI to understand and implement the vector reflection formula used in ball collision detection (`v' = v − 2(v·n)n`), as well as the trigonometric calculations behind angle-based paddle bouncing, where the ball's departure angle is determined by its hit offset from the paddle centre. These physics concepts were explained by AI and then independently integrated into our Ball class by our team, allowing us to understand and own the underlying logic rather than copying code directly.
+The most helpful part was using AI as a consultant for our physics model. For example, we consulted AI to understand and implement the vector reflection formula used in ball collision detection. We also used it to figure out the calculations needed for the paddle bouncing, so the ball’s angle would change depending on where it hit the paddle. These physics concepts were explained by AI and then independently integrated into our `Ball` class.
 
-AI was also used for minor visual enhancements to the game interface. The background images used across different game modes (Classic, Dark, and Duel) were generated with the assistance of AI image generation tools, providing thematic visuals that we then integrated manually into the project.
+AI was also used for visual enhancements to the game interface. The background images used across different game modes (Classic, Dark, and Duel) were generated with the assistance of AI image generation tools, providing thematic visuals that we then integrated manually into our game.
+Aside from these specific areas, the class architecture, the game-state management, the visual layout design, and the mechanics for the Duel mode were designed and built from scratch by us without AI assistance.
 
-All core systems — including the class architecture, game state management, brick wave logic, power-up system, and Duel mode mechanics — were designed and implemented entirely by our team without AI assistance.
-
-In summary, AI served as a learning and supplementary tool rather than a primary contributor, and all final implementation decisions were made and executed by our team.
+In summary, AI served as a learning and supplementary tool rather than a primary contributor. It helped us get past a few tricky spots, but the final implementation and all the key decisions were made and executed by our team.
