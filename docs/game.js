@@ -18,8 +18,8 @@ class Game extends BaseScene {
     }
 
     display() {
+        this.drawCyberEffect();
         this.drawInitPage();
-
         this.bricks.update();
         this.bricks.display();
         this.manage.updateTimer();
@@ -65,6 +65,31 @@ class Game extends BaseScene {
             this.drawGameOverScreen();
         } else if (this.manage.state === 'WON') {
             this.drawWinScreen();
+        }
+    }
+
+    drawGameOverContent() {
+        textAlign(CENTER, CENTER);
+
+        if (this.mode === 'CLASSIC') {
+            fill(119, 221, 119);
+            textSize(50);
+            textStyle(BOLD);
+            text('GOOD GAME!', 250, 280); 
+
+            fill(255);
+            textSize(25);
+            textStyle(NORMAL);
+            text(`FINAL SCORE: ${this.manage.score}`, 250, 350);
+
+            fill(255, 215, 0);
+            textSize(20);
+            text(`${this.manage.getRankTitle()}`, 250, 390);
+        } else if (this.mode === 'DARK') {
+            fill(255, 50, 50); 
+            textSize(50);
+            textStyle(BOLD);
+            text('YOU LOSE', 250, 300);
         }
     }
 
