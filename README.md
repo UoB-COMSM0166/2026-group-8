@@ -182,7 +182,7 @@ The sequence diagram captures four key phases. During Launch, the player moves t
 Classic uses infinite wave spawning and a score system; bricks drop buff/debuff items. Dark overlays a maskLayer canvas that blacks out the screen except for a circular viewport around the ball; purple bricks drop temporary light sources. Duel splits the arena vertically between two players, each defending a self-chosen King brick while sharing one ball.
 
 ## 4. Implementation
-Code_Breaker is a multi-mode arcade game developed using the **p5.js** framework. The primary goal of this project was to create three distinct gameplay experiences—**Classic, Dark, and Duel**—while maintaining an organized codebase. By utilizing **Object-Oriented Programming (OOP)**, specifically inheritance and modular physics, we ensured that the game is both stable and easy to expand.
+Code_Breaker is a multi-mode arcade game developed using the **p5.js** framework. The primary goal of this project was to create three distinct gameplay experiences (**Classic, Dark, and Duel**) while maintaining an organized codebase. By utilizing **Object-Oriented Programming (OOP)**, specifically inheritance and modular physics, we ensured that the game is both stable and easy to expand.
 
 ### 4.1 Scene Management and Inheritance
 The application is built on a hierarchical scene management system. The `BaseScene` class acts as the core blueprint for every screen in the game. It manages all the shared visual elements, such as the status bar at the bottom, background watermarks, and universal overlays like the Pause, Win, and Game Over screens. Specialized classes like `Game` and `Duel` inherit from this base class. This allows them to focus on their specific rules and mechanics while automatically keeping the same look and feel as the rest of the game.
@@ -492,7 +492,7 @@ Our team adopted a highly collaborative and iterative approach throughout the de
 ### 6.2 Communication and Task Management
 Our communication strategy was designed to handle different levels of collaboration across multiple platforms. This multi-channel approach helped us reduce "noise" while keeping the team aligned:
 
-- WhatsApp: This served as our primary channel for real-time, day-to-day coordination. It was essential for arranging impromptu syncs, asking quick technical questions, and providing immediate feedback on small UI tweaks without the need for formal meetings.
+- WhatsApp: This served as our primary channel for real-time, day-to-day coordination. It was essential for arranging discussing ideas, asking quick technical questions, and providing immediate feedback on small UI tweaks without the need for formal meetings.
 
 <p align="center"><b>Figure 1.</b> WhatsApp group chat.</p>
 
@@ -504,7 +504,7 @@ Our communication strategy was designed to handle different levels of collaborat
 
 - In-person Meetings: Held twice weekly, these face-to-face sessions were the most valuable for discussing high-level design questions, reviewing the latest builds together, and conducting internal playtests. These meetings allowed us to physically brainstorm and decide on the next sprint's priorities.
 
-For task management, we relied on a GitHub Project Kanban board to visualize our workflow. This made dependencies between tasks clear—for instance, ensuring that the visual assets were ready before the implementation of new game modes. GitHub was not just a repository; it was our central hub for version control and regular integration, forcing us to communicate frequently about potential code conflicts and overlaps.
+For task management, we relied on a GitHub Project Kanban board to visualize our workflow. This made dependencies between tasks clear, for instance, ensuring that the visual assets were ready before the implementation of new game modes. GitHub was not just a repository; it was our central hub for version control and regular integration, forcing us to communicate frequently about potential code conflicts and overlaps.
 
 <p align="center"><b>Figure 2.</b> GitHub Project Kanban board.</p>
 
@@ -536,25 +536,25 @@ Overall, our teamwork matured alongside the project. We moved from being an idea
 
 ## 8. Conclusion
 ### 8.1 Key Takeaways
-The journey of developing Code_Breaker has been a transformative experience, moving from simple sketches to a fully functional, multi-mode software product. A central lesson we learned was that a successful game is not just about a single "cool" feature, but about the seamless synergy between its components. By adopting an Object-Oriented approach, we saw first-hand how a clean structure could handle the complexity of three different game modes while keeping the user interface consistent and professional, proving that a well-organized architecture is the backbone of any sustainable software project.
+The journey of developing Code_Breaker has been a transformative experience, moving from simple sketches to a fully functional, multi-mode software product. A central lesson we learned was that a successful game is not just about "cool" features, but about the seamless synergy between its components. By adopting an Object-Oriented approach, we saw first-hand how a clean structure could handle the complexity of three different game modes while keeping the user interface consistent and professional, proving that a well-organized architecture is the backbone of any sustainable software project.
 
 ### 8.2 Problem Solving and Real-world Deployment
 Our team’s first challenge was managing diverse UI needs across modes without creating duplicate code. By implementing “polymorphism” principle in our `BaseScene` class, we learned to build extensible systems that dynamically adapt to different mode’s specific requirements.
 
 The second challenge involved reallocating collision detection responsibilities. Moving away from scene-level logic to a Ball-Centric "Active Agent" structure demonstrated the practical necessity of the ‘single responsibility’ principle. This object-driven approach ensured our physics remained encapsulated and stable.
 
-Finally, managing our collaboration through Git version control taught us to coordinate complex code updates across shared branches. Navigating `merge` conflicts while integrating different game modes forced us to adopt a disciplined, synchronized workflow. This experience transformed our individual scripting into a professional, collaborative engineering process.
+Finally, managing our collaboration through Git version control taught us to coordinate complex code updates across shared branches. Navigating `merge` conflicts while integrating different game modes forced us to adopt a disciplined, synchronized workflow. This experience transformed us from "individual development" into a professional, collaborative engineering process.
 
 ### 8.3 Future Work: Next Steps
-If we were to continue this version, we want to ensure players feel challenged but never overwhelmed:
-- **Intelligent Difficulty Adjustments:** We plan to refine our speed logic so the game gets faster as the player gets better, keeping the excitement alive without making it impossible.
--	**Enhanced Visual Effects:** We aim to add more visual impact, such as particle explosions when bricks break, using the same separate layer technique we used for the Dark Mode mask.
--	**Smart Audio Feedback:** We would like to add unique sounds for different items to provide clearer non-visual clues to the player.
+If we were to continue developing this game, we want to ensure players feel challenged but never overwhelmed:
+- **Intelligent Difficulty Adjustments:** We plan to refine our speed logic so the ball gets faster as the player gets better, while keeping the excitement alive without making it impossible.
+-	**Enhanced Visual Effects:** We aim to add more visual impact, such as particle explosions when bricks break, using the layer technique we used for the Dark Mode mask.
+-	**Smart Audio Feedback:** We would like to add unique sounds when the brick breaks or when the ball hits the paddle, to provide clearer non-visual clues to the player.
 
 ### 8.4 Future Work: The Sequel
-Looking ahead, a sequel to Code_Breaker would move into the social and narrative space:
--	**Online Competition:** We would expand our local "Duel Mode" into a full online experience with matchmaking and leaderboards to build a player community.
--	**Narrative Campaign:** We could transform our three existing modes into a story-driven adventure, where players "break codes" to uncover a digital espionage plot.
+Looking ahead, a sequel to Code_Breaker could move into the social and narrative space:
+-	**Online Competition:** Expand our local "Duel Mode" into a full online experience with matchmaking and leaderboards to build a player community.
+-	**Narrative Campaign:** Transform our three existing modes into a story-driven adventure, where players "break codes" to uncover a digital espionage plot.
 
 In conclusion, Code_Breaker represents our growth as software engineers, and we have built a game that is not only fun to play but also a solid foundation for future innovation and development.
 
