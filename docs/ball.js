@@ -47,8 +47,6 @@ class Ball {
     }
 
     // Display the ball
-    // ball.js
-
     display() {
         push();
         noStroke();
@@ -191,9 +189,10 @@ class Ball {
 
             if (distanceSq < this.r * this.r) {  // If distance < radius → collision
                 brick.active = false;  // Deactivate brick (destroyed)
-
-                if (typeof gamePage !== 'undefined' && gamePage.manage) {
-                    gamePage.manage.score += 100;
+                let scene = (currentMode === 'duel') ? duelPage : gamePage;
+                if (scene && scene.manage) {
+                    let scoreValue = (brick.mhp === 2) ? 300 : 100;
+                    scene.manage.score += scoreValue;
                 }
 
                 if (abs(dx) > abs(dy)) {
@@ -313,7 +312,7 @@ class Ball {
 
     // MODIFIED: Logic for ball_multi to ensure one ball remaining won't lose life
     handleMultiBall() {
-        let scene = window.gamePage || gamePage;
+        let scene = getActiveScene();
         if (scene) {
             if (!scene.extraBalls) scene.extraBalls = [];
             for (let i = 0; i < 2; i++) {
