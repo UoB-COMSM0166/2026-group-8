@@ -151,20 +151,20 @@ We ultimately decided to develop a three-tier experience: Classic (for onboardin
 
 ## 3. Design & System Architecture
 
-### System Architecture
+### 3.1 System Architecture
 CODE BREAKER is a browser-based brick-breaking game built with p5.js, offering three distinct game modes: Classic, Dark, and Duel. The system is architected around object-oriented principles, with a clear separation between game state management, rendering, physics, and scene logic.
-#### Entry Point & Scene Management
+#### 3.1.1 Entry Point & Scene Management
 The application is bootstrapped in sketch.js, which maintains a global currentMode variable (menu, game, duel) and delegates each frame's rendering to the active scene via p5.js's draw() loop. Mouse and keyboard events (mouseClicked(), keyPressed()) are intercepted here and routed to the appropriate scene, keeping input handling centralised and decoupled from game logic.
 
 
-### Class diagram
+### 3.2 Class diagram
 Class diagram shows the structure of the game.
 <img width="603" height="818" alt="class diagram" src="https://github.com/user-attachments/assets/083d50aa-f43e-463a-a0db-86b94b6b7ba4" />
-#### Inheritance & Composition
+#### 3.2.1 Inheritance & Composition
 The architecture follows a two-tier object hierarchy. BaseScene serves as the abstract base class, encapsulating all shared UI behaviour: HUD rendering, instruction screens, pause overlays, win/game-over screens, and home button logic. It holds a GameManage instance and exposes overridable hooks such as getRules() and drawGameOverContent().
 Game and Duel both extend BaseScene. Game handles single-player modes (Classic and Dark), composing one Ball, one Paddle, one Bricks instance, and one GameManage. Duel extends the same base for two-player combat, composing one shared Ball, two Paddle objects, two Bricks instances, and one GameManage.
 Bricks acts as a container and manager for an array of Brick objects, maintaining a composition relationship (one-to-many). GameManage is aggregated into every scene, centralising state transitions across all modes.
-#### Key Classes & Responsibilities
+#### 3.2.2 Key Classes & Responsibilities
 GameManage owns the core state machine with five states: INSTRUCTION → PLAYING → PAUSED → WON / GAMEOVER. It tracks lives, score, and a countdown timer (3 minutes). Critical methods include handleBallLost(), which decrements lives and resets the ball, checkWinCondition(), which polls the brick array for remaining active bricks, and togglePause(), which swaps between PLAYING and PAUSED using a prevState buffer.
 Ball manages a position vector (pos), velocity vector (vel), and an effects object recording remaining frame counts for large, small, fast, and slow power-ups. Each frame, applyDynamicStatus() recalculates radius and speed multipliers from these timers, supporting overlapping effects. Collision detection uses the standard vector reflection formula v' = v − 2(v·n)n for both brick and wall interactions, while paddle collision recalculates angle based on hit offset from the paddle's centre.
 Paddle supports three control schemes: mouse-tracking (single-player), keyboard P1 (A/D), and keyboard P2 (arrow keys). It manages two timed power-up states — _widerTimer for width changes and _reverseTimer for inverted controls — and handles item collection via checkCatch().
@@ -172,11 +172,13 @@ Brick uses a property setter on active to intercept destruction events, decremen
 Bricks manages the full lifecycle of the brick grid and falling drops. In Classic mode, shiftAndSpawnRows() shifts all existing bricks downward and prepends new rows every 15 seconds via spawnTimer, creating an endless scroll. In Duel mode, updateKingSelection() handles keyboard-driven King brick designation before play begins.
 
 
-### Behaviour diagram
+### 3.3 Behaviour diagram
 <img width="628" height="859" alt="sequence diagram" src="https://github.com/user-attachments/assets/a16c6b1f-f728-480f-861e-9bbf05e39184" />
-#### Game Loop Sequence
+
+#### 3.3.1 Game Loop Sequence
 The sequence diagram captures four key phases. During Launch, the player moves the paddle (mouseMoved / key input), clicks to trigger Paddle.launchBall(), which detaches the ball and sets its initial velocity. The Game Loop runs while state === PLAYING: each frame, GameManage fires updateTimer(), the ball calls applyDynamicStatus() then updates position, collision checks fire against bricks (checkBrickCollision() → reflect()) and the paddle (checkPaddleCollision() → angle recalculation). On Ball Lost, handleBallLost() decrements lives; if lives remain, Ball.reset() and Paddle.reset() reattach the ball. On All Bricks Cleared (or King destroyed in Dark/Duel), checkWinCondition() sets state to WON, triggering the win screen.
-#### Mode-Specific Behaviour
+
+#### 3.3.2 Mode-Specific Behaviour
 Classic uses infinite wave spawning and a score system; bricks drop buff/debuff items. Dark overlays a maskLayer canvas that blacks out the screen except for a circular viewport around the ball; purple bricks drop temporary light sources. Duel splits the arena vertically between two players, each defending a self-chosen King brick while sharing one ball.
 
 ## 4. Implementation
