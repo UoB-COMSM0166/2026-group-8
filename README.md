@@ -154,29 +154,29 @@ We ultimately decided to develop a three-tier experience: Classic (for onboardin
 ### 3.1 System Architecture
 CODE BREAKER is a browser-based brick-breaking game built with p5.js, offering three distinct game modes: Classic, Dark, and Duel. The system is architected around object-oriented principles, with a clear separation between game state management, rendering, physics, and scene logic.
 #### 3.1.1 Entry Point & Scene Management
-The application is bootstrapped in sketch.js, which maintains a global currentMode variable (menu, game, duel) and delegates each frame's rendering to the active scene via p5.js's draw() loop. Mouse and keyboard events (mouseClicked(), keyPressed()) are intercepted here and routed to the appropriate scene, keeping input handling centralised and decoupled from game logic.
+The application is bootstrapped in `sketch.js`, which maintains a global currentMode variable (menu, game, duel) and delegates each frame's rendering to the active scene via p5.js's `draw()` loop. Mouse and keyboard events (`mouseClicked()`, `keyPressed()`) are intercepted here and routed to the appropriate scene, keeping input handling centralised and decoupled from game logic.
 
 
 ### 3.2 Class diagram
 Class diagram shows the structure of the game.
 <img width="603" height="818" alt="class diagram" src="https://github.com/user-attachments/assets/083d50aa-f43e-463a-a0db-86b94b6b7ba4" />
 #### 3.2.1 Inheritance & Composition
-The architecture follows a two-tier object hierarchy. BaseScene serves as the abstract base class, encapsulating all shared UI behaviour: HUD rendering, instruction screens, pause overlays, win/game-over screens, and home button logic. It holds a GameManage instance and exposes overridable hooks such as getRules() and drawGameOverContent().
-Game and Duel both extend BaseScene. Game handles single-player modes (Classic and Dark), composing one Ball, one Paddle, one Bricks instance, and one GameManage. Duel extends the same base for two-player combat, composing one shared Ball, two Paddle objects, two Bricks instances, and one GameManage.
-Bricks acts as a container and manager for an array of Brick objects, maintaining a composition relationship (one-to-many). GameManage is aggregated into every scene, centralising state transitions across all modes.
+The architecture follows a two-tier object hierarchy. BaseScene serves as the abstract base class, encapsulating all shared UI behaviour: HUD rendering, instruction screens, pause overlays, win/game-over screens, and home button logic. It holds a GameManage instance and exposes overridable hooks such as `getRules()` and `drawGameOverContent()`.
+Game and Duel both extend BaseScene. Game handles single-player modes (Classic and Dark), composing one `Ball`, one `Paddle`, one `Bricks` instance, and one `GameManage`. Duel extends the same base for two-player combat, composing one shared `Ball`, two `Paddle` objects, two `Bricks` instances, and one `GameManage`.
+`Bricks` acts as a container and manager for an array of Brick objects, maintaining a composition relationship (one-to-many). `GameManage` is aggregated into every scene, centralising state transitions across all modes.
 #### 3.2.2 Key Classes & Responsibilities
-GameManage owns the core state machine with five states: INSTRUCTION → PLAYING → PAUSED → WON / GAMEOVER. It tracks lives, score, and a countdown timer (3 minutes). Critical methods include handleBallLost(), which decrements lives and resets the ball, checkWinCondition(), which polls the brick array for remaining active bricks, and togglePause(), which swaps between PLAYING and PAUSED using a prevState buffer.
-Ball manages a position vector (pos), velocity vector (vel), and an effects object recording remaining frame counts for large, small, fast, and slow power-ups. Each frame, applyDynamicStatus() recalculates radius and speed multipliers from these timers, supporting overlapping effects. Collision detection uses the standard vector reflection formula v' = v − 2(v·n)n for both brick and wall interactions, while paddle collision recalculates angle based on hit offset from the paddle's centre.
-Paddle supports three control schemes: mouse-tracking (single-player), keyboard P1 (A/D), and keyboard P2 (arrow keys). It manages two timed power-up states — _widerTimer for width changes and _reverseTimer for inverted controls — and handles item collection via checkCatch().
-Brick uses a property setter on active to intercept destruction events, decrementing HP, triggering a flash animation, and flagging needsDrop for item spawning. Brick.makeStandardRow() is a static factory method that generates rows dynamically based on mode and wave number, assigning colours, HP values, and random buff/debuff effects.
-Bricks manages the full lifecycle of the brick grid and falling drops. In Classic mode, shiftAndSpawnRows() shifts all existing bricks downward and prepends new rows every 15 seconds via spawnTimer, creating an endless scroll. In Duel mode, updateKingSelection() handles keyboard-driven King brick designation before play begins.
+`GameManage` owns the core state machine with five states: INSTRUCTION → PLAYING → PAUSED → WON / GAMEOVER. It tracks lives, score, and a countdown timer (3 minutes). Critical methods include `handleBallLost()`, which decrements lives and resets the ball, `checkWinCondition()`, which polls the brick array for remaining active bricks, and `togglePause()`, which swaps between PLAYING and PAUSED using a prevState buffer.
+`Ball` manages a position vector (pos), velocity vector (vel), and an effects object recording remaining frame counts for large, small, fast, and slow power-ups. Each frame, `applyDynamicStatus()` recalculates radius and speed multipliers from these timers, supporting overlapping effects. Collision detection uses the standard vector reflection formula `v' = v − 2(v·n)n` for both brick and wall interactions, while paddle collision recalculates angle based on hit offset from the paddle's centre.
+`Paddle` supports three control schemes: mouse-tracking (single-player), keyboard P1 (A/D), and keyboard P2 (arrow keys). It manages two timed power-up states — _widerTimer for width changes and _reverseTimer for inverted controls — and handles item collection via `checkCatch()`.
+`Brick` uses a property setter on active to intercept destruction events, decrementing HP, triggering a flash animation, and flagging needsDrop for item spawning. `Brick.makeStandardRow()` is a static factory method that generates rows dynamically based on mode and wave number, assigning colours, HP values, and random buff/debuff effects.
+`Bricks` manages the full lifecycle of the brick grid and falling drops. In Classic mode, `shiftAndSpawnRows()` shifts all existing bricks downward and prepends new rows every 15 seconds via spawnTimer, creating an endless scroll. In Duel mode, `updateKingSelection()` handles keyboard-driven King brick designation before play begins.
 
 
 ### 3.3 Behaviour diagram
 <img width="628" height="859" alt="sequence diagram" src="https://github.com/user-attachments/assets/a16c6b1f-f728-480f-861e-9bbf05e39184" />
 
 #### 3.3.1 Game Loop Sequence
-The sequence diagram captures four key phases. During Launch, the player moves the paddle (mouseMoved / key input), clicks to trigger Paddle.launchBall(), which detaches the ball and sets its initial velocity. The Game Loop runs while state === PLAYING: each frame, GameManage fires updateTimer(), the ball calls applyDynamicStatus() then updates position, collision checks fire against bricks (checkBrickCollision() → reflect()) and the paddle (checkPaddleCollision() → angle recalculation). On Ball Lost, handleBallLost() decrements lives; if lives remain, Ball.reset() and Paddle.reset() reattach the ball. On All Bricks Cleared (or King destroyed in Dark/Duel), checkWinCondition() sets state to WON, triggering the win screen.
+The sequence diagram captures four key phases. During Launch, the player moves the paddle (mouseMoved / key input), clicks to trigger `Paddle.launchBall()`, which detaches the ball and sets its initial velocity. The Game Loop runs while state === PLAYING: each frame, `GameManage` fires `updateTimer()`, the ball calls `applyDynamicStatus()` then updates position, collision checks fire against bricks (`checkBrickCollision()` → `reflect()`) and the paddle (`checkPaddleCollision()` → angle recalculation). On Ball Lost, `handleBallLost()` decrements lives; if lives remain, `Ball.reset()` and `Paddle.reset()` reattach the ball. On All Bricks Cleared (or King destroyed in Dark/Duel), `checkWinCondition()` sets state to WON, triggering the win screen.
 
 #### 3.3.2 Mode-Specific Behaviour
 Classic uses infinite wave spawning and a score system; bricks drop buff/debuff items. Dark overlays a maskLayer canvas that blacks out the screen except for a circular viewport around the ball; purple bricks drop temporary light sources. Duel splits the arena vertically between two players, each defending a self-chosen King brick while sharing one ball.
@@ -570,5 +570,12 @@ Every team member was actively involved across all project phases, contributing 
 | Yufei Liu | 20% |
 
 ## 10. AI Statement
-- ~250 words
-- Summarise your team’s use of AI so we know where to give you credit for work done.
+Throughout the development of CODE BREAKER, our team made selective use of AI tools to support specific areas of the project while ensuring the core design and programming decisions remained our own.
+
+The most significant contribution of AI was in establishing the physics model for the game. Specifically, we consulted AI to understand and implement the vector reflection formula used in ball collision detection (`v' = v − 2(v·n)n`), as well as the trigonometric calculations behind angle-based paddle bouncing, where the ball's departure angle is determined by its hit offset from the paddle centre. These physics concepts were explained by AI and then independently integrated into our Ball class by our team, allowing us to understand and own the underlying logic rather than copying code directly.
+
+AI was also used for minor visual enhancements to the game interface. The background images used across different game modes (Classic, Dark, and Duel) were generated with the assistance of AI image generation tools, providing thematic visuals that we then integrated manually into the project.
+
+All core systems — including the class architecture, game state management, brick wave logic, power-up system, and Duel mode mechanics — were designed and implemented entirely by our team without AI assistance.
+
+In summary, AI served as a learning and supplementary tool rather than a primary contributor, and all final implementation decisions were made and executed by our team.
