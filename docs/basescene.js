@@ -1,17 +1,164 @@
-class BaseScene {
-    constructor() {
-        this.manage = new GameManage();
+class BaseScene { 
+    constructor() { 
+        // set up background data here once
+        this.bgInitDone = false;
+        this.C = { 
+            bg: [12, 24, 42], 
+            green: '0,255,204', 
+            blue: '0,180,255', 
+            purple: '180,100,255', 
+            red: '255,51,102', 
+            white: '220,255,240' 
+        };
+        this.ghosts = []; 
+        this.rain = []; 
+        this.scanners = []; 
+        this.floaters = []; 
+        this.alarmCooldown = 0;
+    }
+
+    // set up the animated background
+    _initDynamicBackground() {
+        let w = width, h = height;
+        
+        // Ghost Texts
+        this.ghosts = Array.from({length: 15}, () => ({ 
+            x: Math.random() * w, 
+            y: Math.random() * h, 
+            char: Math.random() > 0.5 ? '1' : '0', 
+            size: 60 + Math.floor(Math.random() * 100), 
+            phase: Math.random() * Math.PI * 2, 
+            speed: 0.003 + Math.random() * 0.004, 
+            col: Math.random() > 0.5 ? this.C.green : this.C.blue 
+        }));
+        
+        // Digital Rain
+        const COLS = 30; 
+        const colW = w / COLS;
+        this.rain = Array.from({length: COLS}, (_, i) => ({ 
+            x: i * colW + colW / 2, 
+            drops: Array.from({length: 22}, () => ({ 
+                y: Math.random() * h, 
+                // slowed down the falling speed here
+                speed: 0.1 + Math.random() * 0.2, 
+                char: Math.random() > 0.5 ? '1' : '0' 
+            })), 
+            active: Math.random() > 0.2, 
+            col: Math.random() > 0.6 ? this.C.green : Math.random() > 0.5 ? this.C.blue : this.C.purple, 
+            phase: Math.random() * Math.PI * 2, 
+            alarm: false, 
+            alarmTimer: 0 
+        }));
+        
+        // soft light wave effect
+        this.scanners = [
+            { y: 0, speed: 0.4 + Math.random() * 0.2, alpha: 0.08, width: 35 + Math.random() * 10, col: this.C.blue },
+            { y: h / 2, speed: -(0.35 + Math.random() * 0.2), alpha: 0.08, width: 35 + Math.random() * 10, col: this.C.red },
+            { y: h / 2, speed: 0.7 + Math.random() * 0.2, alpha: 0.06, width: 25 + Math.random() * 10, col: this.C.blue }
+        ];
+
+        // floating particles
+        this.floaters = Array.from({length: 80}, () => ({ 
+            x: Math.random() * w, 
+            y: Math.random() * h, 
+            char: Math.random() > 0.5 ? '1' : '0', 
+            phase: Math.random() * Math.PI * 2, 
+            speed: 0.008 + Math.random() * 0.018, 
+            size: 9 + Math.floor(Math.random() * 7), 
+            col: Math.random() > 0.6 ? this.C.green : Math.random() > 0.5 ? this.C.blue : this.C.purple 
+        }));
+        
+        this.bgInitDone = true;
+    }
+
+    // main drawing function
+    drawCyberEffect() {
+        if (!this.bgInitDone) this._initDynamicBackground();
+        let w = width, h = height;
+        
+        background(this.C.bg);
+        push();
+
+        // Ghost Texts
+        textFont('monospace'); textStyle(BOLD); textAlign(LEFT, BASELINE);
+        this.ghosts.forEach(g => {
+            let a = 0.015 + 0.015 * (0.5 + 0.5 * Math.sin(frameCount * g.speed + g.phase));
+            textSize(g.size); fill(`rgba(${g.col},${a})`); noStroke();
+            text(g.char, g.x, g.y);
+            g.y += 0.05;
+            if(g.y > h + g.size) { g.y = -g.size; g.x = Math.random() * w; }
+        });
+
+        // soft light wave effect
+        this.scanners.forEach(s => {
+            s.y += s.speed;
+            if(s.y > h + s.width) s.y = -s.width;
+            if(s.y < -s.width) s.y = h + s.width;
+            
+            let sg = drawingContext.createLinearGradient(0, s.y - s.width, 0, s.y + s.width);
+            sg.addColorStop(0, `rgba(${s.col},0)`);
+            sg.addColorStop(0.5, `rgba(${s.col},${s.alpha})`);
+            sg.addColorStop(1, `rgba(${s.col},0)`);
+            
+            drawingContext.shadowBlur = 15;
+            drawingContext.shadowColor = `rgba(${s.col}, 0.5)`;
+            drawingContext.fillStyle = sg;
+            drawingContext.fillRect(0, s.y - s.width, w, s.width * 2);
+            drawingContext.shadowBlur = 0;
+        });
+
+        // Digital Rain - same logic, only the start speed was changed
+        this.alarmCooldown--;
+        if(this.alarmCooldown <= 0) {
+            let t = this.rain[Math.floor(Math.random() * this.rain.length)];
+            t.alarm = true; t.alarmTimer = 60 + Math.floor(Math.random() * 80);
+            this.alarmCooldown = 120 + Math.floor(Math.random() * 200);
+        }
+        textSize(11); textStyle(NORMAL);
+        this.rain.forEach(col => {
+            if(!col.active) return;
+            if(col.alarm) { col.alarmTimer--; if(col.alarmTimer <= 0) col.alarm = false; }
+            let colAlpha = 0.04 + 0.08 * (0.5 + 0.5 * Math.sin(frameCount * 0.008 + col.phase));
+            let drawCol = col.alarm ? this.C.red : col.col;
+            col.drops.forEach(d => {
+                d.y += d.speed;
+                if(d.y > h + 20) { d.y = -10; d.char = Math.random() > 0.5 ? '1' : '0'; }
+                if(Math.random() > 0.985) d.char = Math.random() > 0.5 ? '1' : '0';
+                fill(`rgba(${drawCol},${colAlpha})`); text(d.char, col.x - 4, d.y);
+            });
+        });
+
+        // Floaters
+        this.floaters.forEach(b => {
+            let alpha = 0.04 + 0.1 * (0.5 + 0.5 * Math.sin(frameCount * b.speed + b.phase));
+            textSize(b.size); fill(`rgba(${b.col},${alpha})`); text(b.char, b.x, b.y);
+            if(Math.random() > 0.998) b.char = b.char === '1' ? '0' : '1';
+        });
+
+        // Glitch Tear Effect
+        if(Math.random() > 0.974) {
+            let gy = Math.random() * h, gh = 1 + Math.random() * 8, go = (Math.random() - 0.5) * 40;
+            let segment = get(0, gy, w, gh);
+            image(segment, go, gy);
+            fill('rgba(0,255,204,0.04)'); noStroke(); rect(0, gy, w, gh);
+        }
+
+        // faint scan lines
+        fill('rgba(0,0,0,0.02)'); noStroke();
+        for(let i = 0; i < h; i += 3) rect(0, i, w, 1);
+
+        // dark corners
+        let vig = drawingContext.createRadialGradient(w/2, h/2, h*0.2, w/2, h/2, h*1.2);
+        vig.addColorStop(0, 'rgba(0,0,0,0)');
+        vig.addColorStop(1, 'rgba(0,5,15,0.4)');
+        drawingContext.fillStyle = vig;
+        drawingContext.fillRect(0, 0, w, h);
+        
+        pop();
     }
 
     drawInitPage() {
-        // background image for each mode
-        if (this.mode == 'DARK') {
-            background(darkImg);
-        } else if (this.mode == 'DUEL') {
-            background(duelImg);
-        } else {
-            background(classicImg);
-        }
+        this.drawCyberEffect();
 
         // draw frame
         push();
@@ -25,30 +172,8 @@ class BaseScene {
 
         image(img, 425, 635, 50, 50);
         drawingContext.shadowBlur = 0;
-
-        this.drawWatermark();
+        
         this.drawPlayerStatusBar();
-        pop();
-    }
-
-    drawWatermark() {
-        push();
-        translate(250, 325);
-        textAlign(CENTER, CENTER);
-        textSize(80);
-        textStyle(BOLD);
-        fill(150, 150, 150, 100);
-        noStroke();
-
-        if (this.mode == "CLASSIC") {
-            text('CLASSIC', 0, 0);
-        }
-        else if (this.mode == "DARK") {
-            text('DARK', 0, 0);
-        }
-        else {
-            text('DUEL', 0, 0);
-        }
         pop();
     }
 
@@ -62,11 +187,6 @@ class BaseScene {
         fill('white');
         stroke(0);
         strokeWeight(3);
-
-        // text turned red if less than 10 secs remaining
-        if (this.manage.timer < 10000) {
-            fill(255, 50, 50);
-        }
 
         if (this.mode !== 'DUEL') {
             text(`LIVES:`, 35, 660);
@@ -135,6 +255,7 @@ class BaseScene {
         noStroke();
         textSize(20);
         textStyle(BOLD);
+        textAlign(CENTER, CENTER);
         text('CLICK ANYWHERE TO START', 250, 500);
 
         fill(255);
@@ -185,7 +306,6 @@ class BaseScene {
 
     drawWinScreen() {
         push();
-
         this.drawRectangleOverlay(color(255, 215, 0, 200), color(255));
 
         drawingContext.shadowBlur = 15;
@@ -204,27 +324,20 @@ class BaseScene {
 
     drawGameOverScreen() {
         push();
-
         this.drawRectangleOverlay(color(0, 0, 0, 220), color(255, 50, 50));
 
         drawingContext.shadowBlur = 15;
         drawingContext.shadowColor = color(255, 255, 255, 200);
-
-        fill(255, 50, 50);
         textAlign(CENTER, CENTER);
-        textSize(50);
-        textStyle(BOLD);
-        text('GAME OVER', 250, 300);
 
-        fill(255);
-        textSize(18);
-        textStyle(NORMAL);
-        text('Better luck next time!', 250, 350);
-
+        this.drawGameOverContent();
         this.drawHomeButton();
+
         drawingContext.shadowBlur = 0;
         pop();
     }
+
+    drawGameOverContent() {}
 
     drawRectangleOverlay(fillColor, strokeColor) {
         let x = 25, y = 25;
@@ -240,7 +353,6 @@ class BaseScene {
         }
         rect(x, y, w, h);
         pop();
-
     }
 
     drawItemContext(centerX, startY) {
@@ -326,5 +438,4 @@ class BaseScene {
     getRules() {
         return [];
     }
-
 }
