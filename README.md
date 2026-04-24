@@ -504,6 +504,12 @@ Our communication strategy was designed to handle different levels of collaborat
 
 - In-person Meetings: Held twice weekly, these face-to-face sessions were the most valuable for discussing high-level design questions, reviewing the latest builds together, and conducting internal playtests. These meetings allowed us to physically brainstorm and decide on the next sprint's priorities.
 
+<p align="center"><b>Figure 2.</b> In-person team meeting for discussing design decisions and reviewing project progress.</p>
+
+<p align="center">
+  <img width="650" alt="In-person team meeting" src="https://github.com/user-attachments/assets/1ec798bf-a287-48d9-b2cb-4abad1311f7d" />
+</p>
+
 For task management, we relied on a GitHub Project Kanban board to visualize our workflow. This made dependencies between tasks clear, for instance, ensuring that the visual assets were ready before the implementation of new game modes. GitHub was not just a repository; it was our central hub for version control and regular integration, forcing us to communicate frequently about potential code conflicts and overlaps.
 
 <p align="center"><b>Figure 2.</b> GitHub Project Kanban board.</p>
