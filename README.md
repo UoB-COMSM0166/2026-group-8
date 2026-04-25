@@ -1,6 +1,6 @@
 # 2026-group-8
 ## Our Game - CODE_BREAKER
-> **⚔️Beyond the bounce! Conquer the shadow and outplay your rivals to become the ultimate Code Breaker⚔️**
+> **⚔️Conquer the shadow and outplay your rivals to become the ultimate Code Breaker⚔️**
 
 <table>
   <tr>
@@ -563,10 +563,6 @@ Another example is the collision design. This was one of the main technical chal
 ### 7.4 Conclusion
 
 Overall, *CODE BREAKER* addresses sustainability in three ways. Environmentally, it keeps its main processing in the browser and avoids unnecessary online infrastructure during play. Socially, it improves inclusiveness through clearer instructions and feedback, supports diversity through different game modes, and builds a sense of community through local multiplayer. Technically, it uses a maintainable structure that can continue improving over time.
-
-
-- 10% ~750 words
-- Evidence of the impact of your game across the environment and two of the other areas - Environmental + 2 of the following: Social, Economic, Technical, Individual 
 
 ## 8. Conclusion
 ### 8.1 Key Takeaways
