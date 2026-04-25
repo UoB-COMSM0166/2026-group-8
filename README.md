@@ -204,6 +204,9 @@ One of the most significant hurdles was managing the very different visual requi
 -	**Dark Mode** only features one item (the Lightbulb) and requires a real-time "flashlight" effect.
 -	**Duel Mode** uses a split-screen layout with unique instructions for two players and has no power-up items at all.
 
+<img width="80%" alt="screenshots of instruction pages" src="https://github.com/user-attachments/assets/3d82bf94-e36c-4067-9139-0d7d4d9beea9" />
+<img width="80%" alt="screenshots of gameplays" src="https://github.com/user-attachments/assets/b18b730e-95aa-4d0c-8d55-c10dab8e69b8" />
+
 **The Solution: Polymorphic Scene Framework**
 
 Instead of writing separate code for every screen, the `BaseScene` provides a generic instruction page. Depending on the active mode, the system decides whether to draw the full item list, the special dark-mode icons, or—in the case of Duel mode—to skip the items entirely and show player-specific control guides instead. This ensures that each mode only shows the information relevant to the player.
