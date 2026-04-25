@@ -4,9 +4,27 @@ class Menu {
         this.btnH = 160;
         this.btnPos = 480;
         this.center = width / 2;
+
+        this.isIntroDone = false;
+        this.introTimer = 0;
+        this.bootLines = [
+            "> INITIATING SYSTEM BOOT...",
+            "> LOADING NEURAL KERNEL........ [OK]",
+            "> ESTABLISHING SECURE CONNECTION... [OK]",
+            "> BYPASSING EXTERNAL FIREWALL...",
+            "> DECRYPTING PROTOCOL ZERO...",
+            "> WARNING: UNAUTHORIZED ACCESS DETECTED!",
+            "> OVERRIDING SECURITY PROTOCOLS...",
+            "> ACCESS GRANTED."
+        ];
     }
 
     display() {
+        if (!this.isIntroDone) {
+            this.drawBootAnimation();
+            return;
+        }
+
         background(bgImg);
 
         this.drawDecor();
@@ -26,7 +44,6 @@ class Menu {
 
     drawTitle() {
         push();
-        // add shadow effect
         drawingContext.shadowOffsetX = 5;
         drawingContext.shadowOffsetY = -5;
         drawingContext.shadowBlur = 10;
@@ -96,5 +113,48 @@ class Menu {
         if (this.btnRange(mode3, this.btnPos, this.btnW, this.btnH)) return 'DUEL';
 
         return null;
+    }
+
+    drawBootAnimation() {
+        background(0, 4, 8);
+        this.introTimer++;
+
+        push();
+        textAlign(LEFT, TOP);
+        textSize(14);
+
+        let startX = width / 2 - 160;
+        let y = height / 2 - 120;
+
+        for (let i = 0; i < this.bootLines.length; i++) {
+            let revealTime = i * 25;
+            if (this.introTimer > revealTime) {
+                if (i === this.bootLines.length - 1) {
+                    drawingContext.shadowBlur = 10;
+                    drawingContext.shadowColor = color(119, 221, 119);
+                    fill(119, 221, 119);
+                    textSize(18);
+                    textStyle(BOLD);
+                    if (this.introTimer % 15 < 10) {
+                        text(this.bootLines[i], startX, y + 10);
+                    }
+                } else if (i === 5) {
+                    drawingContext.shadowBlur = 5;
+                    drawingContext.shadowColor = color(255, 51, 102);
+                    fill(255, 51, 102);
+                    text(this.bootLines[i], startX, y);
+                } else {
+                    drawingContext.shadowBlur = 0;
+                    fill(0, 255, 204, 200);
+                    text(this.bootLines[i], startX, y);
+                }
+                y += 25;
+            }
+        }
+        pop();
+
+        if (this.introTimer > 250) {
+            this.isIntroDone = true;
+        }
     }
 }
