@@ -25,7 +25,7 @@
 ------------------
 
 ## 🤝 Our Team
-<img width="450" height="300" alt="image" src="https://github.com/user-attachments/assets/e9fe9ff7-deb9-4966-bee2-bffa69ac1743" />
+<img width="4032" height="3024" alt="PXL_20260422_132213154" src="https://github.com/user-attachments/assets/98bd8d72-67b7-42fe-a378-9d5fe0f47c96" />
 <br/>
 
 | Name  | GitHub ID | Email | Role |
@@ -371,6 +371,7 @@ Wilcoxon signed-rank tests showed that SUS scores decreased significantly from L
 These findings informed two final improvements. In Level 3, we introduced clearer visual highlighting and explicit confirmation inputs to reduce accidental selections and improve fairness. In Level 2, we removed the need to catch the dropped “Lightbulb” item, so breaking a purple brick now automatically triggers full-map illumination.
 
 ### 5.3 Code Testing
+<img width="2736" height="790" alt="Screenshot 2026-04-25 223212" src="https://github.com/user-attachments/assets/be25e413-0da5-41b5-a1ce-171775962583" />
 
 #### 5.3.1 Black-Box Testing
 
