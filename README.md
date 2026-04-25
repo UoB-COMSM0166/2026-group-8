@@ -8,7 +8,7 @@
       <img width="330" height="480" alt="image" src="https://github.com/user-attachments/assets/4e3b6d85-9342-48c9-841c-c47025fed1bd" />
     </td>
     <td style="border: none;">
-      <img width="330" height="480" alt="gameplay" src="https://github.com/user-attachments/assets/bec1eb14-bc1a-4957-9237-0202e2ef6f85" />
+      <img width="330" height="480" alt="image" src="https://github.com/user-attachments/assets/15c937e5-0562-43d6-91bf-b18ae2dda978" />
     </td>
   </tr>
 </table>
