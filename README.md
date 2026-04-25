@@ -204,8 +204,12 @@ One of the most significant hurdles was managing the very different visual requi
 -	**Dark Mode** only features one item (the Lightbulb) and requires a real-time "flashlight" effect.
 -	**Duel Mode** uses a split-screen layout with unique instructions for two players and has no power-up items at all.
 
-<img width="80%" alt="screenshots of instruction pages" src="https://github.com/user-attachments/assets/3d82bf94-e36c-4067-9139-0d7d4d9beea9" />
-<img width="80%" alt="screenshots of gameplays" src="https://github.com/user-attachments/assets/b18b730e-95aa-4d0c-8d55-c10dab8e69b8" />
+<p align="center"><b>Figure 2.</b> gameplay screenshots</p>
+
+<p align="center">
+  <img width="80%" alt="screenshots of instruction pages" src="https://github.com/user-attachments/assets/3d82bf94-e36c-4067-9139-0d7d4d9beea9" />
+  <img width="80%" alt="screenshots of gameplays" src="https://github.com/user-attachments/assets/b18b730e-95aa-4d0c-8d55-c10dab8e69b8" />
+</p>
 
 **The Solution: Polymorphic Scene Framework**
 
