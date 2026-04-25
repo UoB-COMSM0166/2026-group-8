@@ -25,7 +25,7 @@
 ------------------
 
 ## 🤝 Our Team
-<img width="4032" height="3024" alt="PXL_20260422_132213154" src="https://github.com/user-attachments/assets/98bd8d72-67b7-42fe-a378-9d5fe0f47c96" />
+<img width="600" height="450" alt="IMG_20260425_231056_821~2" src="https://github.com/user-attachments/assets/30426e63-884d-46e0-96ab-a852351b195f" />
 <br/>
 
 | Name  | GitHub ID | Email | Role |
