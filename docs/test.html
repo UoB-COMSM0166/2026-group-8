@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Code Breaker - Automated Test Suite</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.20.0.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.11/lib/p5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.11/lib/addons/p5.sound.min.js"></script>
+
+    <script src="gameManage.js"></script>
+    <script src="basescene.js"></script>
+    <script src="ball.js"></script>
+    <script src="paddle.js"></script>
+    <script src="bricks.js"></script>
+    <script src="game.js"></script>
+    <script src="duel.js"></script>
+</head>
+
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+
+    <script>
+        new p5(); 
+
+        var img, bgImg, darkImg, duelImg, classicImg, bgm;
+        window.deltaTime = 16.66;
+
+        var currentMode = 'game'; 
+        var gamePage = { 
+            mode: 'CLASSIC', 
+            manage: { score: 0, state: 'PLAYING' },
+            extraBalls: []
+        };
+        var duelPage = { 
+            mode: 'DUEL', 
+            manage: { score: 0, state: 'PLAYING' } 
+        };
+
+        window.width = 500;
+        window.height = 700;
+    </script>
+
+    <script src="https://code.jquery.com/qunit/qunit-2.20.0.js"></script>
+    <script src="tests.js"></script>
+</body>
+</html>
