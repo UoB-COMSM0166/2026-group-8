@@ -160,17 +160,18 @@ The application is bootstrapped in `sketch.js`, which maintains a global current
 ### 3.2 Class diagram
 Class diagram shows the structure of the game.
 <img width="603" height="818" alt="class diagram" src="https://github.com/user-attachments/assets/083d50aa-f43e-463a-a0db-86b94b6b7ba4" />
+
 #### 3.2.1 Inheritance & Composition
 The architecture follows a two-tier object hierarchy. BaseScene serves as the abstract base class, encapsulating all shared UI behaviour: HUD rendering, instruction screens, pause overlays, win/game-over screens, and home button logic. It holds a GameManage instance and exposes overridable hooks such as `getRules()` and `drawGameOverContent()`.
 Game and Duel both extend BaseScene. Game handles single-player modes (Classic and Dark), composing one `Ball`, one `Paddle`, one `Bricks` instance, and one `GameManage`. Duel extends the same base for two-player combat, composing one shared `Ball`, two `Paddle` objects, two `Bricks` instances, and one `GameManage`.
 `Bricks` acts as a container and manager for an array of Brick objects, maintaining a composition relationship (one-to-many). `GameManage` is aggregated into every scene, centralising state transitions across all modes.
+
 #### 3.2.2 Key Classes & Responsibilities
 `GameManage` owns the core state machine with five states: INSTRUCTION → PLAYING → PAUSED → WON / GAMEOVER. It tracks lives, score, and a countdown timer (3 minutes). Critical methods include `handleBallLost()`, which decrements lives and resets the ball, `checkWinCondition()`, which polls the brick array for remaining active bricks, and `togglePause()`, which swaps between PLAYING and PAUSED using a prevState buffer.
 `Ball` manages a position vector (pos), velocity vector (vel), and an effects object recording remaining frame counts for large, small, fast, and slow power-ups. Each frame, `applyDynamicStatus()` recalculates radius and speed multipliers from these timers, supporting overlapping effects. Collision detection uses the standard vector reflection formula `v' = v − 2(v·n)n` for both brick and wall interactions, while paddle collision recalculates angle based on hit offset from the paddle's centre.
-`Paddle` supports three control schemes: mouse-tracking (single-player), keyboard P1 (A/D), and keyboard P2 (arrow keys). It manages two timed power-up states — _widerTimer for width changes and _reverseTimer for inverted controls — and handles item collection via `checkCatch()`.
+`Paddle` supports three control schemes: mouse-tracking (single-player), keyboard P1 (A/D), and keyboard P2 (arrow keys). It manages two timed power-up states - _widerTimer for width changes and _reverseTimer for inverted controls - and handles item collection via `checkCatch()`.
 `Brick` uses a property setter on active to intercept destruction events, decrementing HP, triggering a flash animation, and flagging needsDrop for item spawning. `Brick.makeStandardRow()` is a static factory method that generates rows dynamically based on mode and wave number, assigning colours, HP values, and random buff/debuff effects.
 `Bricks` manages the full lifecycle of the brick grid and falling drops. In Classic mode, `shiftAndSpawnRows()` shifts all existing bricks downward and prepends new rows every 15 seconds via spawnTimer, creating an endless scroll. In Duel mode, `updateKingSelection()` handles keyboard-driven King brick designation before play begins.
-
 
 ### 3.3 Behaviour diagram
 <img width="628" height="859" alt="sequence diagram" src="https://github.com/user-attachments/assets/a16c6b1f-f728-480f-861e-9bbf05e39184" />
@@ -182,7 +183,7 @@ The sequence diagram captures four key phases. During Launch, the player moves t
 Classic uses infinite wave spawning and a score system; bricks drop buff/debuff items. Dark overlays a maskLayer canvas that blacks out the screen except for a circular viewport around the ball; purple bricks drop temporary light sources. Duel splits the arena vertically between two players, each defending a self-chosen King brick while sharing one ball.
 
 ## 4. Implementation
-Code_Breaker is a multi-mode arcade game developed using the **p5.js** framework. The primary goal of this project was to create three distinct gameplay experiences (**Classic, Dark, and Duel**) while maintaining an organized codebase. By utilizing **Object-Oriented Programming (OOP)**, specifically inheritance and modular physics, we ensured that the game is both stable and easy to expand.
+*CODE BREAKER* is a multi-mode arcade game developed using the **p5.js** framework. The primary goal of this project was to create three distinct gameplay experiences (**Classic, Dark, and Duel**) while maintaining an organized codebase. By utilizing **Object-Oriented Programming (OOP)**, specifically inheritance and modular physics, we ensured that the game is both stable and easy to expand.
 
 ### 4.1 Scene Management and Inheritance
 The application is built on a hierarchical scene management system. The `BaseScene` class acts as the core blueprint for every screen in the game. It manages all the shared visual elements, such as the status bar at the bottom, background watermarks, and universal overlays like the Pause, Win, and Game Over screens. Specialized classes like `Game` and `Duel` inherit from this base class. This allows them to focus on their specific rules and mechanics while automatically keeping the same look and feel as the rest of the game.
@@ -213,7 +214,7 @@ One of the most significant hurdles was managing the very different visual requi
 
 **The Solution: Polymorphic Scene Framework**
 
-Instead of writing separate code for every screen, the `BaseScene` provides a generic instruction page. Depending on the active mode, the system decides whether to draw the full item list, the special dark-mode icons, or—in the case of Duel mode—to skip the items entirely and show player-specific control guides instead. This ensures that each mode only shows the information relevant to the player.
+Instead of writing separate code for every screen, the `BaseScene` provides a generic instruction page. Depending on the active mode, the system decides whether to draw the full item list, the special dark-mode icons, or-in the case of Duel mode-to skip the items entirely and show player-specific control guides instead. This ensures that each mode only shows the information relevant to the player.
 
 For the "Dark Mode" effect, we used a separate drawing layer called maskLayer and special functions (`erase` and `noErase`) to "cut out" a circular window around the ball, like a flashlight beam. Similarly, Duel mode takes advantage of this rendering flexibility to draw a specialized split-screen layout. It adds colored boundary indicators and customized text prompts that define the play area for each competitor, making the two-player experience intuitive without cluttering the main game engine.
 
@@ -375,7 +376,7 @@ These findings informed two final improvements. In Level 3, we introduced cleare
 
 #### 5.3.1 Black-Box Testing
 
-In our black-box testing, we checked if the game worked correctly from a player's perspective. We used Equivalence Partitioning to group similar behaviors—like paddle movement and ball physics—to make our testing more efficient. We tested the main gameplay flow across Classic, Dark, and Duel modes to ensure everything loaded right. We also double-checked constraints (like only being able to launch the ball when it’s on the paddle) and boundary values (like the timer hitting zero or the paddle hitting the wall). This helped us confirm the game behaves exactly as we planned.
+In our black-box testing, we checked if the game worked correctly from a player's perspective. We used Equivalence Partitioning to group similar behaviors-like paddle movement and ball physics-to make our testing more efficient. We tested the main gameplay flow across Classic, Dark, and Duel modes to ensure everything loaded right. We also double-checked constraints (like only being able to launch the ball when it’s on the paddle) and boundary values (like the timer hitting zero or the paddle hitting the wall). This helped us confirm the game behaves exactly as we planned.
 
 <p align="center"><b>Table 4.</b> Black-box test cases and observed results.</p>
 
@@ -390,49 +391,49 @@ In our black-box testing, we checked if the game worked correctly from a player'
     <td align="center">Menu – Start Game</td>
     <td align="center">Click “Classic”, “Dark”, or “Duel” button</td>
     <td align="center">The screen changes from the Menu to the Game, and the correct mode is loaded.</td>
-    <td align="center">The game screen loaded correctly and the selected mode was displayed as intended — <b>Pass</b></td>
+    <td align="center">The game screen loaded correctly and the selected mode was displayed as intended - <b>Pass</b></td>
   </tr>
   <tr>
     <td align="center">Menu – Back to Menu</td>
     <td align="center">Click “BACK TO MENU” button when pressing `P` in game</td>
     <td align="center">The game stops, and the screen returns to the Main Menu.</td>
-    <td align="center">The game paused correctly and returned to the Main Menu without errors — <b>Pass</b></td>
+    <td align="center">The game paused correctly and returned to the Main Menu without errors - <b>Pass</b></td>
   </tr>
   <tr>
     <td align="center">Game – Ball Launch</td>
     <td align="center">Left Mouse Click</td>
     <td align="center">If the ball is attached, it starts moving upwards from the paddle.</td>
-    <td align="center">The ball launched correctly from the paddle when attached — <b>Pass</b></td>
+    <td align="center">The ball launched correctly from the paddle when attached - <b>Pass</b></td>
   </tr>
   <tr>
     <td align="center">Game – Paddle Movement</td>
     <td align="center">Mouse X-axis move</td>
     <td align="center">The paddle follows the mouse and stays inside the game borders.</td>
-    <td align="center">The paddle followed mouse movement correctly and remained within the game boundaries — <b>Pass</b></td>
+    <td align="center">The paddle followed mouse movement correctly and remained within the game boundaries - <b>Pass</b></td>
   </tr>
   <tr>
     <td align="center">Game – Brick Collision</td>
     <td align="center">Ball hits a brick</td>
     <td align="center">The brick disappears, and the player gets points.</td>
-    <td align="center">The brick was removed correctly and the score increased as expected — <b>Pass</b></td>
+    <td align="center">The brick was removed correctly and the score increased as expected - <b>Pass</b></td>
   </tr>
   <tr>
     <td align="center">Game – Boundary Bounce</td>
     <td align="center">Ball hits left, right, or top boundaries</td>
     <td align="center">The ball bounces back into the play area instead of going off-screen.</td>
-    <td align="center">The ball bounced correctly off the boundary and remained inside the play area — <b>Pass</b></td>
+    <td align="center">The ball bounced correctly off the boundary and remained inside the play area - <b>Pass</b></td>
   </tr>
   <tr>
     <td align="center">Game – Life Loss</td>
     <td align="center">Ball falls to the bottom boundary</td>
     <td align="center">The number of hearts (lives) goes down by 1, and the ball returns to the paddle.</td>
-    <td align="center">One life was deducted correctly and the ball reset to the paddle — <b>Pass</b></td>
+    <td align="center">One life was deducted correctly and the ball reset to the paddle - <b>Pass</b></td>
   </tr>
   <tr>
     <td align="center">Game – Time-out</td>
     <td align="center">Timer reaches 00:00</td>
     <td align="center">The game ends immediately and shows the Game Over screen.</td>
-    <td align="center">The game ended immediately at timer expiry and the Game Over screen appeared correctly — <b>Pass</b></td>
+    <td align="center">The game ended immediately at timer expiry and the Game Over screen appeared correctly - <b>Pass</b></td>
   </tr>
 </table>
 
@@ -491,11 +492,11 @@ In our black-box testing, we checked if the game worked correctly from a player'
 
 #### 5.3.2 White-Box Testing
 
-We used white-box testing to check the game’s internal logic, making sure variables and states updated correctly. While black-box testing focused on what the player sees, we looked at the code to verify things like the life counter decreasing by one, score updates after collisions, and the game-over trigger. We also used variable tracing to ensure state transitions, like pausing, worked perfectly at the code level. Finally, we performed regression testing after every major change to ensure new features—like the pause menu or better feedback—didn't break our core mechanics.
+We used white-box testing to check the game’s internal logic, making sure variables and states updated correctly. While black-box testing focused on what the player sees, we looked at the code to verify things like the life counter decreasing by one, score updates after collisions, and the game-over trigger. We also used variable tracing to ensure state transitions, like pausing, worked perfectly at the code level. Finally, we performed regression testing after every major change to ensure new features-like the pause menu or better feedback-didn't break our core mechanics.
 
 ## 6. Process 
 ### 6.1 Roles and Coordination
-Our team adopted a highly collaborative and iterative approach throughout the development of Code Breaker. While all five members contributed significantly to ideation, implementation, and testing, we defined lightweight roles to ensure smooth coordination: Jen (Scrum Master), Shanley (QA), Yijia (Visual Design), Yumeng (Game Design), and Yufei (Documentation). These roles were intentionally flexible rather than rigid; since every member also acted as a developer, major design and implementation decisions were always discussed collectively. This structure helped us maintain a balance between individual ownership of tasks and a shared responsibility for the project's overall success, ensuring that no one worked in isolation.
+Our team adopted a highly collaborative and iterative approach throughout the development of Code Breaker. While all five members contributed significantly to ideation, implementation, and testing, we defined lightweight roles to ensure smooth coordination: Jen (Scrum Master), Shanley (QA), Yijia (Visual Design), Yumeng (Game Design), and Yufei (Documentation). These roles were intentionally flexible rather than rigid; since every member also acted as a developer, major design and implementation decisions were always discussed collectively.
 
 ### 6.2 Communication and Task Management
 Our communication strategy was designed to handle different levels of collaboration across multiple platforms. This multi-channel approach helped us reduce "noise" while keeping the team aligned:
@@ -529,7 +530,7 @@ For task management, we relied on a GitHub Project Kanban board to visualize our
 ### 6.3 Requirement Engineering and Prototyping
 Before writing any code, we invested significant time in the requirements stage. We used brainstorming sessions to define our unique value proposition, translating these ideas into clear user stories and acceptance criteria. This structured approach ensured that every feature we planned was both purposeful and testable.
 
-Paper prototyping played a crucial role at this stage. By simulating interactions physically, we could discuss gameplay flow, pacing, and difficulty balance before a single line of code was written. This physical simulation allowed us to spot design flaws early, such as realizing that certain power-up mechanics were too distracting, which saved us considerable development time and helped build a shared mental model of the game.
+By simulating interactions physically, we could discuss gameplay flow, pacing, and difficulty balance before a single line of code was written. This physical simulation allowed us to spot design flaws early, such as realizing that certain power-up mechanics were too distracting, which saved us considerable development time and helped build a shared mental model of the game.
 
 ### 6.4 Pivot: From Feature-Driven to Evidence-Driven
 A major turning point in our teamwork occurred when we had to reconcile our creative vision with actual user data. Initially, we were driven by the desire to add "cool" and complex mechanics to make each mode unique. However, early playtesting and our Think Aloud study revealed a hard truth: first-time players were struggling with basic usability, such as understanding how to launch the ball or how to pause the game.
@@ -539,10 +540,10 @@ What mattered most was how we responded to this as a team. After discussing thes
 ### 6.5 Technical Collaboration and Refactoring
 As the project’s technical complexity increased, we encountered challenges with code maintainability. In the early stages, our focus on rapid prototyping led to collision logic being handled too close to the scene level, which made the codebase cluttered and difficult for multiple people to work on simultaneously.
 
-Rather than leaving this as a problem for the lead developers, we addressed it as a team. During our weekly meetings, we reviewed the architecture and decided to refactor the logic into a modular, ball-centric model. Although it was frustrating to revisit "finished" code, this collective decision significantly improved our productivity in the final weeks. It allowed the parallel development of Classic, Dark, and Duel modes with minimal interference, demonstrating that a shared understanding of architecture is vital for technical teamwork.
+During our weekly meetings, we reviewed the architecture and decided to refactor the logic into a modular, ball-centric model. Although it was frustrating to revisit "finished" code, this collective decision significantly improved our productivity in the final weeks. It allowed the parallel development of Classic, Dark, and Duel modes with minimal interference, demonstrating that a shared understanding of architecture is vital for technical teamwork.
 
 ### 6.6 Reflection and Growth
-Overall, our teamwork matured alongside the project. We moved from being an idea-focused group to a more reflective, user-centered team. By combining structured roles with open communication and transparent task tracking, we turned technical hurdles and negative feedback into opportunities for improvement. The project taught us that great teamwork isn't about avoiding mistakes, but about the ability to discuss them honestly and adapt the team’s direction in response to what is learned.
+Overall, our teamwork matured alongside the project. We moved from being an idea-focused group to a more reflective, user-centered team. By combining structured roles with open communication and transparent task tracking, we turned technical hurdles and negative feedback into opportunities for improvement.
 
 ## 7. Sustainability, Ethics, and Accessibility
 
@@ -574,7 +575,7 @@ Overall, *CODE BREAKER* addresses sustainability in three ways. Environmentally,
 
 ## 8. Conclusion
 ### 8.1 Key Takeaways
-The journey of developing Code_Breaker has been a transformative experience, moving from simple sketches to a fully functional, multi-mode software product. A central lesson we learned was that a successful game is not just about "cool" features, but about the seamless synergy between its components. By adopting an Object-Oriented approach, we saw first-hand how a clean structure could handle the complexity of three different game modes while keeping the user interface consistent and professional, proving that a well-organized architecture is the backbone of any sustainable software project.
+The journey of developing *CODE BREAKER* has been a transformative experience, moving from simple sketches to a fully functional, multi-mode software product. A central lesson we learned was that a successful game is not just about "cool" features, but about the seamless synergy between its components. By adopting an Object-Oriented approach, we saw first-hand how a clean structure could handle the complexity of three different game modes while keeping the user interface consistent and professional, proving that a well-organized architecture is the backbone of any sustainable software project.
 
 ### 8.2 Problem Solving and Real-world Deployment
 Our team’s first challenge was managing diverse UI needs across modes without creating duplicate code. By implementing “polymorphism” principle in our `BaseScene` class, we learned to build extensible systems that dynamically adapt to different mode’s specific requirements.
@@ -590,11 +591,11 @@ If we were to continue developing this game, we want to ensure players feel chal
 -	**Smart Audio Feedback:** We would like to add unique sounds when the brick breaks or when the ball hits the paddle, to provide clearer non-visual clues to the player.
 
 ### 8.4 Future Work: The Sequel
-Looking ahead, a sequel to Code_Breaker could move into the social and narrative space:
+Looking ahead, a sequel to *CODE BREAKER* could move into the social and narrative space:
 -	**Online Competition:** Expand our local "Duel Mode" into a full online experience with matchmaking and leaderboards to build a player community.
 -	**Narrative Campaign:** Transform our three existing modes into a story-driven adventure, where players "break codes" to uncover a digital espionage plot.
 
-In conclusion, Code_Breaker represents our growth as software engineers, and we have built a game that is not only fun to play but also a solid foundation for future innovation and development.
+In conclusion, *CODE BREAKER* represents our growth as software engineers, and we have built a game that is not only fun to play but also a solid foundation for future innovation and development.
 
 ## 9. Contribution Statement
 Every team member was actively involved across all project phases, contributing to the initial design ideation, core architectural development, and the final production of documentation and videos.
@@ -608,7 +609,7 @@ Every team member was actively involved across all project phases, contributing 
 | Yufei Liu | 20% |
 
 ## 10. AI Statement
-Throughout the development of Code_Breaker, our team used AI tools in a supportive role. We wanted to make sure that the core logic and all the major programming decisions were entirely our own work, so we only turned to AI when we needed help with specific technical concepts.
+Throughout the development of *CODE BREAKER*, our team used AI tools in a supportive role. We wanted to make sure that the core logic and all the major programming decisions were entirely our own work, so we only turned to AI when we needed help with specific technical concepts.
 
 The most helpful part was using AI as a consultant for our physics model. For example, we consulted AI to understand and implement the vector reflection formula used in ball collision detection. We also used it to figure out the calculations needed for the paddle bouncing, so the ball’s angle would change depending on where it hit the paddle. These physics concepts were explained by AI and then independently integrated into our `Ball` class.
 
