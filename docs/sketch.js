@@ -1,16 +1,12 @@
 const W = 500, H = 700;
 let menuPage, gamePage, duelPage;
 let currentMode = 'menu';
-let img, bgImg, darkImg, duelImg, classicImg;
+let img, bgImg
 let bgm;
-
 
 function preload() {
     img = loadImage('./dinosaur.png');
     bgImg = loadImage('./Cyber.jpg');
-    darkImg = loadImage('./Dark.jpg');
-    duelImg = loadImage('./Duel.jpg');
-    classicImg = loadImage('./Classic.jpg');
 
     soundFormats('mp3');
     bgm = loadSound('./cyberpunksound.mp3');
@@ -41,7 +37,7 @@ function mouseClicked() {
     if (bgm && !bgm.isLooping()) {
         bgm.loop();
     }
-  
+
     if (currentMode === 'menu') {
         let selectedMode = menuPage.checkModeClicked();
         if (selectedMode === 'CLASSIC' || selectedMode === 'DARK') {
