@@ -20,7 +20,7 @@
 ------------------
 
 ## 🎥 Gameplay Demo
-[![Watch the demo](https://img.youtube.com/vi/5SVV6CRx2f8/0.jpg)](https://youtu.be/5SVV6CRx2f8)
+
 
 ------------------
 
@@ -105,6 +105,19 @@ When deciding which features to prioritize for our MVP (Minimum Viable Product),
 
 #### Final Consensus
 We ultimately decided to develop a three-tier experience: Classic (for onboarding), Dark (for challenge), and Duel (for replayability). This ensured that our project demonstrated both technical rigor in software architecture and creativity in game design.
+
+#### Paper Prototype & Early Validation
+After we agreed on the final idea, we made a simple paper prototype to get a clearer sense of how the game would actually work before starting the implementation. This gave us a quick way to visualise the main gameplay flow, including how the paddle, ball, bricks, power-ups, and different game modes would appear and interact on the screen.
+
+The paper prototype was also useful for discussing whether the game felt balanced and easy to understand. For example, we could roughly compare the experience of Classic, Dark, and Duel modes, and spot some possible issues early, such as whether too many power-ups might distract the player, or whether Duel mode needed a clearer layout for the two players.
+
+Overall, this step helped us turn our initial ideas into more concrete requirements. It also made it easier for the team to agree on the main features before moving on to user stories, acceptance criteria, and coding.
+
+<p align="center">
+  <a href="https://youtu.be/5SVV6CRx2f8">
+    <img src="https://img.youtube.com/vi/5SVV6CRx2f8/0.jpg" alt="Watch the demo" width="600">
+  </a>
+</p>
 
 ### 2.2 Stakeholders
 -	Development Team (Team Leader, Designers, Engineers, Testers, Artists)
