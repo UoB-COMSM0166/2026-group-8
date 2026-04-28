@@ -21,12 +21,10 @@
 
 ## 🎥 Gameplay Demo
 <p align="center">
-  <a href="https://youtu.be/5SVV6CRx2f8](https://www.youtube.com/watch?v=31OaMeiRja4">
-    <img src="<img width="600" alt="title page" src="https://github.com/user-attachments/assets/2ee75353-69a4-46d8-b78a-162219e47ae2" />
+  <a href="https://www.youtube.com/watch?v=31OaMeiRja4">
+    <img width="600" alt="title page" src="https://github.com/user-attachments/assets/2ee75353-69a4-46d8-b78a-162219e47ae2" />
   </a>
 </p>
-
-------------------
 
 ## 🤝 Our Team
 <img width="600" height="450" alt="IMG_20260425_231056_821~2" src="https://github.com/user-attachments/assets/30426e63-884d-46e0-96ab-a852351b195f" />
