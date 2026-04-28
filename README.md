@@ -19,7 +19,7 @@
 
 ------------------
 
-## 🎥 Gameplay Demo
+## 🎥 Video
 <p align="center">
   <a href="https://www.youtube.com/watch?v=31OaMeiRja4">
     <img width="600" alt="title page" src="https://github.com/user-attachments/assets/2ee75353-69a4-46d8-b78a-162219e47ae2" />
